@@ -11,12 +11,12 @@
 3. A link to the documentation for an API your team can use related to the domain:
          https://github.com/crobertsbmw/deckofcards
 
-4. A screenshot of using a tool to try out the API
+4. A screenshot of using a tool to try out the API: <br>
 
       <img width="960" alt="屏幕截图 2023-09-27 194018" src="https://github.com/funkyluv1/UNO/assets/140139064/53207d97-110e-446e-91ad-846a6fbdba88">
 
-5. Example output of running your Java code (see below).
-      API Response:
+5. Example output of running your Java code (see below): <br>
+      API Response: <br>
       {"success": true, "deck_id": "9tdabe1a81r6", "remaining": 52, "shuffled": true}
 
 6. A list of any technical problems blocking progress (if any)
