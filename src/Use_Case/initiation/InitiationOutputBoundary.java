@@ -1,5 +1,5 @@
 package Use_Case.initiation;
 
 public interface InitiationOutputBoundary {
-    void execute();
+    void prepareNewGameView();
 }
