@@ -1,4 +1,4 @@
-package use_case.initiation;
+package Use_Case.initiation;
 
 public interface InitiationInputBoundary {
     void execute();
