@@ -1,8 +1,8 @@
 package View;
 
-import interface_adapter.initialization.InitiationController;
-import interface_adapter.initialization.IntiationState;
-import interface_adapter.initialization.InitiationViewModel;
+import interface_adapter.initiation.InitiationController;
+import interface_adapter.initiation.IntiationState;
+import interface_adapter.initiation.InitiationViewModel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,23 +17,18 @@ import java.util.ArrayList;
 public class GameView extends JPanel implements ActionListener, PropertyChangeListener {
     public final String viewName = "game view";
     private final InitiationController initiationController;
-    private final InitializationViewModel initializationViewModel;
+    private final InitiationViewModel initiationViewModel;
     private final JTextField usernameInputField = new JTextField(15);
-    private final JPasswordField passwordInputField = new JPasswordField(15);
-    private final JPasswordField repeatPasswordInputField = new JPasswordField(15);
-
     private final JButton initialize;
 
 
     public GameView(InitiationController initiationController, InitiationViewModel initiationViewModel) {
 
         this.initiationController = initiationController;
-        this.initiationViewModel = clearViewModel;
-        this.signupController = controller;
-        this.signupViewModel = signupViewModel;
-        signupViewModel.addPropertyChangeListener(this);
+        this.initiationViewModel = initiationViewModel;
+        initiationViewModel.addPropertyChangeListener(this);
 
-        JLabel title = new JLabel(SignupViewModel.TITLE_LABEL);
+        JLabel title = new JLabel(InitiationViewModel.TITLE_LABEL);
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         LabelTextPanel usernameInfo = new LabelTextPanel(
