@@ -1,10 +1,10 @@
 package interface_adapter.Initiation;
 
-import interface_adapter.Initiation.ViewModel;
+import interface_adapter.ViewModel;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
-public class InitiationViewModel extends ViewModel{
+public class InitiationViewModel extends ViewModel {
     public static final String TITLE_LABEL = "Game View";
     public static final String INITIATION_BUTTON_LABEL = "Initiation";
 

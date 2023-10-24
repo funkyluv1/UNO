@@ -1,4 +1,4 @@
-package View;
+package view;
 
 //import interface_adapter.initiation.InitiationController;
 //import interface_adapter.initiation.IntiationState;
@@ -8,20 +8,17 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.util.ArrayList;
 
-public class GameView extends JPanel implements ActionListener, PropertyChangeListener {
+public class InitiationView extends JPanel implements ActionListener, PropertyChangeListener {
     public final String viewName = "game view";
     //private final InitiationController initiationController;
     //private final InitiationViewModel initiationViewModel;
     private final JButton initialize;
 
 
-    public GameView(InitiationController initiationController, InitiationViewModel initiationViewModel) {
+    public InitiationView(InitiationController initiationController, InitiationViewModel initiationViewModel) {
         this.initiationController = initiationController;
         this.initiationViewModel = initiationViewModel;
         initiationViewModel.addPropertyChangeListener(this);
