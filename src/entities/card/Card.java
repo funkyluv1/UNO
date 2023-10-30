@@ -2,7 +2,7 @@ package entities.card;
 
 import entities.player.Player;
 
-public class Card {
+public abstract class Card {
     private final int value;
     private final String color;
     private Player player;
