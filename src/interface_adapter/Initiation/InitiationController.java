@@ -1,6 +1,6 @@
 package interface_adapter.Initiation;
 
-import Use_Case.initiation.InitiationInputBoundary;
+import use_case.initiation.InitiationInputBoundary;
 
 public class InitiationController {
     final InitiationInputBoundary initiationInteractor;

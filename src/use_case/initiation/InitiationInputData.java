@@ -1,4 +1,4 @@
-package Use_Case.initiation;
+package use_Case.initiation;
 
 public class InitiationInputData {
 }
