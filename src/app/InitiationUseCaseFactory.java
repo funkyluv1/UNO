@@ -1,6 +1,10 @@
 package app;
 
+import interface_adapter.Initiation.InitiationController;
+import interface_adapter.Initiation.InitiationViewModel;
 import interface_adapter.ViewManagerModel;
+import use_case.initiation.InitiationOutputBoundary;
+import view.InitiationView;
 
 import javax.swing.*;
 import java.io.IOException;
@@ -11,12 +15,12 @@ public class InitiationUseCaseFactory {
     private InitiationUseCaseFactory() {}
 
     public static InitiationView create(
-            ViewManagerModel viewManagerModel, InitiationViewModel loginViewModel, SignupViewModel signupViewModel, SignupUserDataAccessInterface userDataAccessObject, ClearViewModel clearViewModel, ClearUserDataAccessInterface userClearDataAccessObject) {
+            ViewManagerModel viewManagerModel, InitiationViewModel initiationViewModel) {
 
         try {
-            SignupController signupController = createUserSignupUseCase(viewManagerModel, signupViewModel, loginViewModel, userDataAccessObject);
-            ClearController clearController = createUserClearUseCase(viewManagerModel, clearViewModel, userClearDataAccessObject);
-            return new SignupView(signupController, signupViewModel, clearController, clearViewModel);
+            //InitiationController initiationController = createUserInitiationUseCase(viewManagerModel, initiationViewModel);
+            InitiationController initiationController = createInitiationUseCase(viewManagerModel, initiationViewModel);
+            return new InitiationView(initiationController, initiationViewModel);
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, "Could not open user data file.");
         }
@@ -24,26 +28,18 @@ public class InitiationUseCaseFactory {
         return null;
     }
 
-    private static SignupController createUserSignupUseCase(ViewManagerModel viewManagerModel, SignupViewModel signupViewModel, LoginViewModel loginViewModel, SignupUserDataAccessInterface userDataAccessObject) throws IOException {
+    private static InitiationController createInitiationUseCase(ViewManagerModel viewManagerModel, InitiationViewModel initiationViewModel) throws IOException {
 
         // Notice how we pass this method's parameters to the Presenter.
-        SignupOutputBoundary signupOutputBoundary = new SignupPresenter(viewManagerModel, signupViewModel, loginViewModel);
+        InitiationOutputBoundary initiationOutputBoundary = new InitiationPresenter(viewManagerModel, initiationViewModel);
 
-        UserFactory userFactory = new CommonUserFactory();
+        // enetity classes and cre
+        GameFactory gameFactory = new GameFactory();
 
-        SignupInputBoundary userSignupInteractor = new SignupInteractor(
-                userDataAccessObject, signupOutputBoundary, userFactory);
+        InitiationInputBoundary userInitiationInteractor = new InitiationInteractor(
+                initiationOutputBoundary, gameFactory);
 
-        return new SignupController(userSignupInteractor);
+        return new InitiationController(initiationInteractor);
     }
 
-    private static ClearController createUserClearUseCase(ViewManagerModel viewManagerModel, ClearViewModel clearViewModel, ClearUserDataAccessInterface userClearDataAccessObject) throws IOException {
-
-        // Notice how we pass this method's parameters to the Presenter.
-        ClearOutputBoundary clearOutputBoundary = new ClearPresenter(viewManagerModel, clearViewModel);
-
-        ClearInputBoundary userClearInteractor = new ClearInteractor(userClearDataAccessObject, clearOutputBoundary);
-
-        return new ClearController(userClearInteractor);
-    }
 }
