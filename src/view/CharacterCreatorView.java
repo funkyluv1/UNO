@@ -1,10 +1,9 @@
-public CharacterCreatorView.java {
+package view;
 
-public static void main(String[] args){
+public class CharacterCreatorView {
 
+    public static void main(String[] args) {
+        /* testing testing
+    }
 
-
-        }
-
-
-        }
+}
