@@ -1,4 +1,6 @@
 package interface_adapter.Initiation;
+import entities.player.*;
+import java.util.*;
 
 public class InitiationState {
     private ArrayList<Player> playerlist = null;
