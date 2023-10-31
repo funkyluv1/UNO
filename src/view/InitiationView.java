@@ -2,6 +2,8 @@ package view;
 
 //import interface_adapter.initiation.InitiationController;
 //import interface_adapter.initiation.IntiationState;
+import interface_adapter.Initiation.InitiationController;
+import interface_adapter.Initiation.InitiationState;
 import interface_adapter.Initiation.InitiationViewModel;
 
 import javax.swing.*;
@@ -17,6 +19,8 @@ public class InitiationView extends JPanel implements ActionListener, PropertyCh
     //private final InitiationViewModel initiationViewModel;
     private final JButton initialize;
 
+    private final InitiationController initiationController;
+    private final InitiationViewModel initiationViewModel;
 
     public InitiationView(InitiationController initiationController, InitiationViewModel initiationViewModel) {
         this.initiationController = initiationController;
@@ -61,9 +65,6 @@ public class InitiationView extends JPanel implements ActionListener, PropertyCh
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-        SignupState state = (SignupState) evt.getNewValue();
-        if (state.getUsernameError() != null) {
-            JOptionPane.showMessageDialog(this, state.getUsernameError());
-        }
+        InitiationState state = (InitiationState) evt.getNewValue();
     }
 }

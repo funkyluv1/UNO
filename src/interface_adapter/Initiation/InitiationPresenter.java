@@ -1,5 +1,8 @@
 package interface_adapter.Initiation;
 
+import entities.Game;
+import use_case.initiation.InitiationOutputBoundary;
+
 public class InitiationPresenter implements InitiationOutputBoundary {
     private InitiationViewModel initiationViewModel;
     public Game game;
