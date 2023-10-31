@@ -1,27 +1,18 @@
 package interface_adapter.Initiation;
-import entities.player.*;
-import java.util.*;
 
 public class InitiationState {
-    private ArrayList<Player> playerlist = null;
-    private final int playerLimit = 0;
+    private Game game;
+    private String initiationError = null;
 
-    private boolean isPlaying;
-    public InitiationState() {}
-
-    public void setPlayerlist(ArrayList<Player> playerlist) {
-        this.playerlist = playerlist;
+    public InitiationState(InitiationState copy){
+        this.g = game;
+        this.initiationError = initiationError;
     }
 
-    public void setPlaying(boolean playing) {
-        isPlaying = playing;
-    }
+    public void set_game(Game game){this.g = game;}
 
-    public ArrayList<Player> getPlayerlist() {
-        return playerlist;
-    }
+    public Game get_game(){return game;}
 
-    public int getPlayerLimit() {
-        return playerLimit;
-    }
+    public void set_initiationError(String initiationError){this.initiationError = initiationError;}
+
 }
