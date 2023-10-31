@@ -1,4 +1,26 @@
 package interface_adapter.Initiation;
 
-public class InitiationPresenter {
+public class InitiationPresenter implements InitiationOutputBoundary {
+    private InitiationViewModel initiationViewModel;
+    public Game game;
+
+
+    @Override
+
+    public InitiationPresenter(InitiationViewModel initiationViewModel){
+        this.initiationViewModel = initiationViewModel;
+        this.game = game;
+    }
+
+    public void prepareNewGameView(InitiationOutputData initiationOutputData) {
+        InitiationState initiationState = initiationViewModel.getState();
+        initiationState.set_game(game);
+        this.initiationViewModel.set_State(initiationState);
+        initiationViewModel.firePropertyChanged();
+
+        viewManagerModel.setActiveView(initiationViewModel.getViewName());
+        viewManagerModel.firePropertyChanged();
+
+
+    }
 }
