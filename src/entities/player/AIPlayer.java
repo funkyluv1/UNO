@@ -3,6 +3,7 @@ package entities.player;
 import entities.card.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * AIPlayer is the concrete class for all instances of AI players and a subclass of
@@ -15,8 +16,8 @@ public class AIPlayer extends Player {
     /**
      * Constructs a new AIPlayer object, with its userID attribute set to [userID],
      * playerName attribute set to [playerName], its numCards attribute set to [hand],
-     * usableCards and funcCards attributes set to an empty ArrayList of Card, and
-     * its isInGame attribute set to true.
+     * funcCards attributes set to an empty ArrayList of Card, and its isInGame
+     * attribute set to true.
      *
      * @param userID a unique number assigned to this player, which is used for
      *               identifying this player in the database
@@ -33,16 +34,21 @@ public class AIPlayer extends Player {
      *
      * @return the Card object dealt
      */
-    public Card dealCard() {
-        int randIndex = (int) Math.floor(Math.random()*(getUsableCards().size()));
-        Card dealtCard = getUsableCards().get(randIndex);
-        getUsableCards().remove(randIndex);
-        if (dealtCard instanceof NumberCard) {
-            getNumberCards().remove(dealtCard);
+    @Override
+    public Card dealCard(Card topCard) {
+        List<Card> usableCards = super.getUsableCards(topCard);
+        if (usableCards.isEmpty()) {
+            // TODO: implement draw card action
+            return null;
         }
         else {
-            getFuncCards().remove(dealtCard);
+            int randIndex = (int) Math.floor(Math.random()*usableCards.size());
+            Card dealtCard = usableCards.get(randIndex);
+            if (dealtCard instanceof NumberCard)
+                getNumberCards().remove(dealtCard);
+            else
+                getFuncCards().remove(dealtCard);
+            return dealtCard;
         }
-        return dealtCard;
     }
 }

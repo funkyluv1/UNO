@@ -12,14 +12,21 @@ public class HumanPlayer extends Player {
         selectedCard = null;
     }
 
+    /**
+     * TODO: complete javadoc
+     *
+     * @param topCard the most recently placed card in the game
+     * @return the Card object dealt
+     */
+    @Override
+    public Card dealCard(Card topCard) {
+        // TODO: implement me
+        return null;
+    }
+
     public void setSelectedCard(Card card) {
         // TODO: the selected card must be an usable card;
         //  "highlight" this card after the GUI part is done
         selectedCard = card;
-    }
-
-    public Card dealCard() {
-        // TODO: implement me, deal the selected card and remove it from the hand
-        return null;
     }
 }
