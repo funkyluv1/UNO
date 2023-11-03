@@ -7,7 +7,12 @@ import javax.swing.*;
 public class MainMenu {
 
     public static void main(String[] args){
-        JFrame f = new JFrame("Panel Example");
+        JFrame f = new JFrame("UNO");
+
+
+        f.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        f.setResizable(false);
+
         JPanel panel = new JPanel();
         panel.setBounds(40,80,200,200);
         panel.setBackground(Color.gray);
