@@ -1,2 +1,5 @@
-package interface_adapter.Initiation;public class InitiationState {
+package interface_adapter.Initiation;
+
+public class InitiationState {
+
 }

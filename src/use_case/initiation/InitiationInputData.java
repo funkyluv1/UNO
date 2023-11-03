@@ -1,8 +1,15 @@
 package use_case.initiation;
 
-public class InitiationInputData {
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
-    public Integer InitiationInputData(Integer playerNumber){
-        return playerNumber;
+public class InitiationInputData {
+    ArrayList<String> playerNames = new ArrayList<String>();
+    Integer playerNumber;
+    public InitiationInputData(Integer playerNumber, ArrayList<String> playerNames){
+        this.playerNames = playerNames;
+        this.playerNumber = playerNumber;
     };
+    public ArrayList<String> getPlayerNames(){return this.playerNames;};
+    public Integer getPlayerNumber(){return this.playerNumber;};
 }
