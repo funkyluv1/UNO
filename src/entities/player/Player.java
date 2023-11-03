@@ -13,8 +13,6 @@ import java.util.ArrayList;
  * - playerName: the name of this player to be displayed in the game
  * - numCards: the set of number cards that this player is currently holding
  * - funcCards: the set of functional cards that this player is currently holding
- * - usableCards: the set of cards in this player's hand that are actually usable in
- *                the current round
  * - isInGame: the boolean variable that determines whether the player is still playing
  *
  * @author Cynthia Luo
@@ -23,16 +21,15 @@ public abstract class Player {
     private final int userID;
     public String playerName;
     private ArrayList<NumberCard> numCards;
-    private ArrayList<Card> funcCards;
-    private ArrayList<Card> usableCards;
+    private ArrayList<FunctionalCard> funcCards;
     private boolean isInGame;
 
 
     /**
      * Constructs a new Player object, with its userID attribute set to [userID],
      * playerName attribute set to [playerName], its numCards attribute set to [hand],
-     * usableCards and funcCards attributes set to an empty ArrayList of Card, and
-     * its isInGame attribute set to true.
+     * funcCards attributes set to an empty ArrayList of Card, and its isInGame
+     * attribute set to true.
      *
      * @param userID a unique number assigned to this player, which is used for
      *               identifying this player in the database
@@ -44,7 +41,6 @@ public abstract class Player {
         this.playerName = playerName;
         this.numCards = new ArrayList<>(hand);
         this.funcCards = new ArrayList<>();
-        this.usableCards = new ArrayList<>();
         this.isInGame = true;
     }
 
@@ -67,29 +63,41 @@ public abstract class Player {
     }
 
     /**
+     * Sets the numCards attribute of this player object to [newNumCards].
+     *
+     * @param newNumCards the new hand of number cards that this player will hold.
+     */
+    public void setNumCards (ArrayList<NumberCard> newNumCards) {
+        numCards = newNumCards;
+    }
+
+    /**
      * Returns the funcCards attribute of this Player object.
      *
      * @return the funcCards attribute of this Player object
      */
-    public ArrayList<Card> getFuncCards() {
+    public ArrayList<FunctionalCard> getFuncCards() {
         return funcCards;
     }
 
     /**
-     * Returns the usableCards attribute of this Player object.
+     * Sets the funcCards attribute of this player object to [newFuncCards].
      *
-     * @return the usableCards attribute of this Player object
+     * @param newFuncCards the new hand of functional cards that this player will
+     *                     hold.
      */
-    public ArrayList<Card> getUsableCards() {
-        return usableCards;
+    public void setFuncCards (ArrayList<FunctionalCard> newFuncCards) {
+        funcCards = newFuncCards;
     }
 
-
     /**
-     * Updates the cards that are usable during this round.
+     * Returns the cards that are usable in the current round.
+     *
+     * @return the cards that are usable in the current round
      */
-    public void updateUsableCards() {
-        // TODO: implement me when you begin implementing pre-turn
+    public ArrayList<Card> getUsableCards(Card topCard) {
+        // TODO: Implement me, update isUsable of each card
+        return null;
     }
 
     /**
@@ -108,11 +116,13 @@ public abstract class Player {
         isInGame = false;
     }
 
+
     /**
      * Returns the Card object dealt by this Player object and removes it from the
      * hand; HumanPlayer and AIPlayer have different implementations for this method.
      *
+     * @param topCard the most recently placed card in the game
      * @return the Card object dealt
      */
-    public abstract Card dealCard();
+    public abstract Card dealCard(Card topCard);
 }
