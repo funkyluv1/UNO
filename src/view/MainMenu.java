@@ -9,10 +9,6 @@ public class MainMenu {
     public static void main(String[] args){
         JFrame f = new JFrame("UNO");
 
-
-        f.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        f.setResizable(false);
-
         JPanel panel = new JPanel();
         panel.setBounds(40,80,200,200);
         panel.setBackground(Color.gray);
@@ -23,10 +19,14 @@ public class MainMenu {
         b2.setBounds(100,100,80,30);
         b2.setBackground(Color.green);
         panel.add(b1); panel.add(b2);
+
         f.add(panel);
-        f.setSize(400,400);
+        f.setSize(1920,1080);
+        f.setResizable(false);
         f.setLayout(null);
         f.setVisible(true);
+
+
 
     }
 }
