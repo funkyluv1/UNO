@@ -8,24 +8,23 @@ public class MainMenu {
 
     public static void main(String[] args){
         JFrame f = new JFrame("UNO");
-
-        JPanel panel = new JPanel();
-        panel.setBounds(40,80,200,200);
-        panel.setBackground(Color.gray);
-        JButton b1= new JButton("Button 1");
-        b1.setBounds(50,100,80,30);
-        b1.setBackground(Color.yellow);
-        JButton b2=new JButton("Button 2");
-        b2.setBounds(100,100,80,30);
-        b2.setBackground(Color.green);
-        panel.add(b1); panel.add(b2);
-
-        f.add(panel);
         f.setSize(1920,1080);
         f.setResizable(false);
         f.setLayout(null);
         f.setVisible(true);
+        JPanel panel = new JPanel();
+        panel.setBounds(0,0,1920,1080);
+        panel.setBackground(Color.gray);
+        JButton b1= new JButton("Play Game");
+        b1.setBounds(400,300,700,200);
+        b1.setBackground(Color.yellow);
 
+        /*Create the header text*/
+        JLabel header = new JLabel("SpaceY's UNO Game");
+        header.setBounds(550,150,500,100);
+        header.setFont(new Font("Serif", Font.PLAIN, 50));
+        f.add(b1);
+        f.add(header);
 
 
     }
