@@ -1,8 +1,10 @@
 package use_case.initiation;
 
 import Data_access.FileUserDataAccessObject;
+import entities.Game;
 
 public class InitiationInteractor implements InitiationInputBoundary {
+
     final FileUserDataAccessObject fileUserDataAccessObject;
     final InitiationOutputBoundary initiationOutputBoundary;
 
@@ -11,9 +13,13 @@ public class InitiationInteractor implements InitiationInputBoundary {
         this.initiationOutputBoundary = initiationOutputBoundary;
     }
 
+    /*InitiationController should call InitiationInteractor and DrawCardsInteractor
+    * separately. InitiationView should be updated after both InitiationInteractor
+    * and DrawCardsInteractor have executed.*/
     public void execute(InitiationInputData initiationInputData){
-        this.fileUserDataAccessObject.create();
-        this.initiationOutputBoundary.prepareNewGameView();
+        Game game = new Game(initiationInputData.getPlayerNumber(), initiationInputData.players);
+        fileUserDataAccessObject.create(); //Todo: finish this method
+        initiationOutputBoundary.prepareNewGameView(game);
     };
 
 }

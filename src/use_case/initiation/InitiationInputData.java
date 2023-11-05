@@ -1,15 +1,29 @@
 package use_case.initiation;
 
+import entities.player.Player;
+
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class InitiationInputData {
-    ArrayList<String> playerNames = new ArrayList<String>();
+    Player[] players;
     Integer playerNumber;
-    public InitiationInputData(Integer playerNumber, ArrayList<String> playerNames){
-        this.playerNames = playerNames;
-        this.playerNumber = playerNumber;
+    public InitiationInputData(Player[] players){
+        this.players = players;
     };
-    public ArrayList<String> getPlayerNames(){return this.playerNames;};
-    public Integer getPlayerNumber(){return this.playerNumber;};
+    public Player[] getPlayers(){return this.players;}
+    public ArrayList<String> getPlayerNames(){
+        ArrayList<String> playerNames = new ArrayList<String>();
+        for (Player i: this.players){
+            playerNames.add(i.playerName);
+        }
+        return playerNames;
+    };
+    public Integer getPlayerNumber(){
+        int cnt = 0;
+        for(Player i : this.players){
+            cnt ++;
+        }
+        return cnt;
+    };
 }
