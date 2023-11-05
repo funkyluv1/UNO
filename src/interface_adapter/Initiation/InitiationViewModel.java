@@ -5,8 +5,9 @@ import interface_adapter.ViewModel;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 public class InitiationViewModel extends ViewModel {
-    public static final String TITLE_LABEL = "Game View";
-    public static final String INITIATION_BUTTON_LABEL = "Initiation";
+    // this view model displays the text field for player registration
+    public static final String TITLE_LABEL = "Initiation View";
+    public static final String INITIATION_BUTTON_LABEL = "Initialize";
 
     private InitiationState state = new InitiationState();
 
