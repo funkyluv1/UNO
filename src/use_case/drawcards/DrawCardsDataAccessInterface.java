@@ -7,5 +7,5 @@ import java.util.ArrayList;
 public interface DrawCardsDataAccessInterface {
     public NumberCardsDeck createNumberCardsDeck();
     public void reshuffleNumberCardsDeck(NumberCardsDeck numberCardsDeck);
-    ArrayList<String> drawNumberCards(NumberCardsDeck numberCardsDeck, int dealNumber);
+    ArrayList<String> drawNumberCards(NumberCardsDeck numberCardsDeck, int drawNumber);
 }
