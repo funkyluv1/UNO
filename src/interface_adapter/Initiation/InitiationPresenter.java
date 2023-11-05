@@ -1,14 +1,18 @@
 package interface_adapter.Initiation;
 
 import entities.Game;
+import interface_adapter.Initialized.InitializedState;
+import interface_adapter.Initialized.InitializedViewModel;
 import interface_adapter.ViewManagerModel;
 import use_case.initiation.InitiationOutputBoundary;
+import use_case.initiation.InitiationOutputData;
 
 public class InitiationPresenter implements InitiationOutputBoundary {
-    private InitiationViewModel initiationViewModel;
+    private final InitiationViewModel initiationViewModel;
+
+    private final InitializedViewModel intializedInViewModel;
 
     private ViewManagerModel viewManagerModel;
-    public Game game;
 
     public InitiationPresenter(ViewManagerModel viewManagerModel,InitiationViewModel initiationViewModel){
         this.viewManagerModel = viewManagerModel;
@@ -17,12 +21,14 @@ public class InitiationPresenter implements InitiationOutputBoundary {
 
     @Override
     public void prepareNewGameView(InitiationOutputData initiationOutputData) {
-        InitiationState initiationState = initiationViewModel.getState();
-        initiationState.set_game(game);
-        this.initiationViewModel.set_State(initiationState);
+        // On success, switch to the initialized view.
+
+        InitializedState initializedState = initializedViewModel.getState();
+        initializedState.set_game(game);
+        this.initializedViewModel.set_State(initializedState);
         initiationViewModel.firePropertyChanged();
 
-        viewManagerModel.setActiveView(initiationViewModel.getViewName());
+        viewManagerModel.setActiveView(initializedViewModel.getViewName());
         viewManagerModel.firePropertyChanged();
     }
 }

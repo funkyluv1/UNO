@@ -1,7 +1,7 @@
 package view;
 
 import interface_adapter.Initiation.InitiationController;
-//import interface_adapter.initiation.InitiationState;
+import interface_adapter.Initiation.InitiationState;
 import interface_adapter.Initiation.InitiationViewModel;
 
 import javax.swing.*;
@@ -14,13 +14,13 @@ import java.beans.PropertyChangeListener;
 public class InitiationView extends JPanel implements ActionListener, PropertyChangeListener {
     public final String viewName =  "game view";
     //private final InitiationController initiationController;
-    //private final InitiationViewModel initiationViewModel;
+    private final InitiationViewModel initiationViewModel;
     private final JButton initialize;
 
 
     public InitiationView(InitiationController initiationController, InitiationViewModel initiationViewModel) {
         //this.initiationController = initiationController;
-        //this.initiationViewModel = initiationViewModel;
+        this.initiationViewModel = initiationViewModel;
         initiationViewModel.addPropertyChangeListener(this);
 
         JLabel title = new JLabel(InitiationViewModel.TITLE_LABEL);
@@ -37,7 +37,7 @@ public class InitiationView extends JPanel implements ActionListener, PropertyCh
                     public void actionPerformed(ActionEvent evt) {
                         if (evt.getSource().equals(initialize)) {
                             //initiationController.execute();
-                            //InitiationState currentState = initiationViewModel.getState();
+                            InitiationState currentState = initiationViewModel.getState();
                             //Game game = currentState.getGame();
                             String game = "game data";
                             JFrame gameframe = new JFrame();
