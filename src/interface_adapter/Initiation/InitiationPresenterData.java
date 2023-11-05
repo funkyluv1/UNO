@@ -15,7 +15,7 @@ public class InitiationPresenter implements InitiationOutputBoundary {
 
     public void prepareNewGameView(InitiationOutputData initiationOutputData) {
         InitiationState initiationState = initiationViewModel.getState();
-        initiationState.set_game(game);
+        initiationState.set_game(game); //Siwei: the parameter is not used
         this.initiationViewModel.set_State(initiationState);
         initiationViewModel.firePropertyChanged();
 
