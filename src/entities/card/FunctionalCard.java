@@ -16,13 +16,21 @@ public class FunctionalCard extends Card {
         this.type = type;
     }
 
-    public static void test(FunctionalCard funcCard) {
+    public static void applyFunction(FunctionalCard funcCard) {
         switch (funcCard.type) {
-            case PlusFour:
+            case PlusTwo:
                 // handlePlusFour using helper
                 break;
-
-
+            case PlusFour:
+                break;
+            case Skip:
+                break;
+            case Wild:
+                break;
+            case Bomb:
+                break;
+            case HotPotato:
+                break;
         }
     }
 }
