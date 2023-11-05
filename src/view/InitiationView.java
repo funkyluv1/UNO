@@ -1,8 +1,7 @@
 package view;
 
-//import interface_adapter.initiation.InitiationController;
-//import interface_adapter.initiation.InitiationState;
 import interface_adapter.Initiation.InitiationController;
+//import interface_adapter.initiation.InitiationState;
 import interface_adapter.Initiation.InitiationViewModel;
 
 import javax.swing.*;
