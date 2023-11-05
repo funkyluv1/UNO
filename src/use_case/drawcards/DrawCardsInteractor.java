@@ -28,10 +28,25 @@ public class DrawCardsInteractor implements DrawCardsInputDataBoundary {
         ArrayList<String> numCardsInfo;
         ArrayList<NumberCard> playerHands;
 
-        numCardsInfo = drawCardsDataAccessInterface.drawNumberCards(drawCardsInputData.getNumberCardsDeck(), drawCardsInputData.getDrawNumber());
-        for (String numCardInfo : numCardsInfo){
-            playerHands = drawCardsInputData.getPlayer().getNumberCards();
-            //Todo: need Card Builder; Use Card Builder to create new Card and update each player's hands
+        if (drawCardsInputData.getDrawNumber() <= drawCardsInputData.getNumberCardsDeck().getRemainingCards()){
+            numCardsInfo = drawCardsDataAccessInterface.drawNumberCards(drawCardsInputData.getNumberCardsDeck(), drawCardsInputData.getDrawNumber());
+            for (String numCardInfo : numCardsInfo){
+                playerHands = drawCardsInputData.getPlayer().getNumberCards();
+                //Todo: need Card Builder; Use Card Builder to create new Card and update each player's hands
+            }
+            drawCardsInputData.getNumberCardsDeck().setRemainingCards(drawCardsInputData.getNumberCardsDeck().getRemainingCards() - drawCardsInputData.getDrawNumber());
         }
+        else{
+            int deckRemainingCards = drawCardsInputData.getNumberCardsDeck().getRemainingCards();
+            numCardsInfo = drawCardsDataAccessInterface.drawNumberCards(drawCardsInputData.getNumberCardsDeck(), deckRemainingCards);
+            reshuffleNumberCardsDeck(drawCardsInputData);
+            numCardsInfo.addAll(drawCardsDataAccessInterface.drawNumberCards(drawCardsInputData.getNumberCardsDeck(), drawCardsInputData.getDrawNumber() - deckRemainingCards));
+            for (String numCardInfo : numCardsInfo){
+                playerHands = drawCardsInputData.getPlayer().getNumberCards();
+                //Todo: need Card Builder; Use Card Builder to create new Card and update each player's hands
+            }
+            drawCardsInputData.getNumberCardsDeck().setRemainingCards(drawCardsInputData.getNumberCardsDeck().getRemainingCards() - drawCardsInputData.getDrawNumber() + deckRemainingCards);
+        }
+
     }
 }
