@@ -1,7 +1,25 @@
 package use_case.initiation;
 
-public class InitiationInteractor implements InitiationInputBoundary {
-    void execute(InitiationInputData initiationInputData){
+import Data_access.FileUserDataAccessObject;
+import entities.Game;
 
+public class InitiationInteractor implements InitiationInputBoundary {
+
+    final FileUserDataAccessObject fileUserDataAccessObject;
+    final InitiationOutputBoundary initiationOutputBoundary;
+
+    public InitiationInteractor(FileUserDataAccessObject fileUserDataAccessObject, InitiationOutputBoundary initiationOutputBoundary){
+        this.fileUserDataAccessObject = fileUserDataAccessObject;
+        this.initiationOutputBoundary = initiationOutputBoundary;
+    }
+
+    /*InitiationController should call InitiationInteractor and DrawCardsInteractor
+    * separately. InitiationView should be updated after both InitiationInteractor
+    * and DrawCardsInteractor have executed.*/
+    public void execute(InitiationInputData initiationInputData){
+        Game game = new Game(initiationInputData.getPlayerNumber(), initiationInputData.players);
+        fileUserDataAccessObject.create(); //Todo: finish this method
+        initiationOutputBoundary.prepareNewGameView(game);
     };
+
 }
