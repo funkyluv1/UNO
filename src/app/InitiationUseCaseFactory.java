@@ -3,7 +3,7 @@ package app;
 import interface_adapter.Initiation.InitiationController;
 import interface_adapter.Initiation.InitiationViewModel;
 import interface_adapter.ViewManagerModel;
-import use_case.initiation.InitiationOutputBoundary;
+import use_case.initiation.InitiationOutputDataBoundary;
 import view.InitiationView;
 
 import javax.swing.*;
@@ -31,13 +31,13 @@ public class InitiationUseCaseFactory {
     private static InitiationController createInitiationUseCase(ViewManagerModel viewManagerModel, InitiationViewModel initiationViewModel) throws IOException {
 
         // Notice how we pass this method's parameters to the Presenter.
-        InitiationOutputBoundary initiationOutputBoundary = new InitiationPresenter(viewManagerModel, initiationViewModel);
+        InitiationOutputDataBoundary initiationOutputDataBoundary = new InitiationPresenter(viewManagerModel, initiationViewModel);
 
         // enetity classes and cre
         GameFactory gameFactory = new GameFactory();
 
         InitiationInputBoundary userInitiationInteractor = new InitiationInteractor(
-                initiationOutputBoundary, gameFactory);
+                initiationOutputDataBoundary, gameFactory);
 
         return new InitiationController(initiationInteractor);
     }
