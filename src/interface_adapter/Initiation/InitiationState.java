@@ -1,5 +1,7 @@
 package interface_adapter.Initiation;
 
+import entities.Game;
+
 public class InitiationState {
 //    private Game game;
     private String initiationError = null;

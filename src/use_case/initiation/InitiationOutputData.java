@@ -1,5 +1,12 @@
 package use_case.initiation;
 
-public abstract class InitiationOutputData {
+import entities.Game;
 
+public class InitiationOutputData {
+
+    final Game game;
+
+    public InitiationOutputData(Game game){
+        this.game = game;
+    }
 }

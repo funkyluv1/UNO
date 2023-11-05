@@ -1,7 +1,5 @@
 package use_case.initiation;
 
-import entities.Game;
-
-public interface InitiationOutputBoundary {
+public interface InitiationOutputDataBoundary {
     void prepareNewGameView(InitiationOutputData initiationOutputData);
 }

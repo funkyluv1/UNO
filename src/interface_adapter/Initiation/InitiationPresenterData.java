@@ -1,15 +1,15 @@
 package interface_adapter.Initiation;
 
-import use_case.initiation.InitiationOutputBoundary;
+import use_case.initiation.InitiationOutputDataBoundary;
 
-public class InitiationPresenter implements InitiationOutputBoundary {
+public class InitiationPresenterData implements InitiationOutputDataBoundary {
     private InitiationViewModel initiationViewModel;
     public Game game;
 
 
     @Override
 
-    public InitiationPresenter(InitiationViewModel initiationViewModel){
+    public InitiationPresenterData(InitiationViewModel initiationViewModel){
         this.initiationViewModel = initiationViewModel;
     }
 
