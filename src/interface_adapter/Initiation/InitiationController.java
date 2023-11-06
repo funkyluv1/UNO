@@ -1,13 +1,13 @@
 package interface_adapter.Initiation;
 
 import entities.player.Player;
-import use_case.initiation.InitiationInputBoundary;
+import use_case.initiation.InitiationInputDataBoundary;
 import use_case.initiation.InitiationInputData;
 
 public class InitiationController {
-    final InitiationInputBoundary initiationInteractor;
+    final InitiationInputDataBoundary initiationInteractor;
 
-    public InitiationController(InitiationInputBoundary initiationInteractor) {
+    public InitiationController(InitiationInputDataBoundary initiationInteractor) {
         this.initiationInteractor = initiationInteractor;
     }
 
