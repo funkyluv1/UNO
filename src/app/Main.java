@@ -1,5 +1,6 @@
 package app;
 
+import interface_adapter.Initialized.InitializedViewModel;
 import interface_adapter.Initiation.InitiationViewModel;
 import interface_adapter.ViewManagerModel;
 import view.ViewManager;
@@ -10,7 +11,7 @@ import java.awt.*;
 
 public class Main {
     public static void main(String[] args) {
-        JFrame application = new JFrame("Login Example");
+        JFrame application = new JFrame("Initiation Example");
         application.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         CardLayout cardLayout = new CardLayout();
@@ -23,8 +24,15 @@ public class Main {
         new ViewManager(views, cardLayout, viewManagerModel);
 
         InitiationViewModel initiationViewModel = new InitiationViewModel();
+        InitializedViewModel initializedViewModel = new InitializedViewModel();
 
-        InitiationView initiationView = InitiationUseCaseFactory.create(viewManagerModel, initiationViewModel);
+        InitiationView initiationView = InitiationUseCaseFactory.create(viewManagerModel, initiationViewModel, initializedViewModel);
         views.add(initiationView, initiationView.viewName);
+
+        viewManagerModel.setActiveView(initiationView.viewName);
+        viewManagerModel.firePropertyChanged();
+
+        application.pack();
+        application.setVisible(true);
     }
 }
