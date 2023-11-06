@@ -4,19 +4,20 @@ import entities.Game;
 import interface_adapter.Initialized.InitializedState;
 import interface_adapter.Initialized.InitializedViewModel;
 import interface_adapter.ViewManagerModel;
-import use_case.initiation.InitiationOutputBoundary;
+import use_case.initiation.InitiationOutputDataBoundary;
 import use_case.initiation.InitiationOutputData;
 
-public class InitiationPresenter implements InitiationOutputBoundary {
+public class InitiationPresenter implements InitiationOutputDataBoundary {
     private final InitiationViewModel initiationViewModel;
 
     private final InitializedViewModel initializedViewModel;
 
     private ViewManagerModel viewManagerModel;
 
-    public InitiationPresenter(ViewManagerModel viewManagerModel,InitiationViewModel initiationViewModel){
+    public InitiationPresenter(ViewManagerModel viewManagerModel,InitiationViewModel initiationViewModel, InitializedViewModel initializedViewModel){
         this.viewManagerModel = viewManagerModel;
         this.initiationViewModel = initiationViewModel;
+        this.initializedViewModel = initializedViewModel;
     }
 
     @Override

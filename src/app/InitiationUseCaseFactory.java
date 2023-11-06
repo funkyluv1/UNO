@@ -1,5 +1,6 @@
 package app;
 
+import interface_adapter.Initialized.InitializedViewModel;
 import interface_adapter.Initiation.InitiationController;
 import interface_adapter.Initiation.InitiationPresenter;
 import interface_adapter.Initiation.InitiationViewModel;
@@ -29,10 +30,10 @@ public class InitiationUseCaseFactory {
         return null;
     }
 
-    private static InitiationController createInitiationUseCase(ViewManagerModel viewManagerModel, InitiationViewModel initiationViewModel) throws IOException {
+    private static InitiationController createInitiationUseCase(ViewManagerModel viewManagerModel, InitiationViewModel initiationViewModel, InitializedViewModel initializedViewModel) throws IOException {
 
         // Notice how we pass this method's parameters to the Presenter.
-        InitiationOutputDataBoundary initiationOutputDataBoundary = new InitiationPresenter(viewManagerModel, initiationViewModel);
+        InitiationOutputDataBoundary initiationOutputDataBoundary = new InitiationPresenter(viewManagerModel, initiationViewModel, initializedViewModel);
 
         // enetity classes and cre
         GameFactory gameFactory = new GameFactory();
