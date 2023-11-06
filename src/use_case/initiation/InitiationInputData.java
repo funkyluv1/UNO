@@ -6,22 +6,17 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class InitiationInputData {
-    Player[] players;
+    ArrayList<String> playerNames;
 //    Integer playerNumber;
-    public InitiationInputData(Player[] players){
-        this.players = players;
+    public InitiationInputData(ArrayList<String> playerNames){
+        this.playerNames = playerNames;
     };
-    public Player[] getPlayers(){return this.players;}
-    public ArrayList<String> getPlayerNames(){
-        ArrayList<String> playerNames = new ArrayList<String>();
-        for (Player i: this.players){
-            playerNames.add(i.playerName);
-        }
-        return playerNames;
-    };
-    public Integer getPlayerNumber(){
+
+    public ArrayList<String> getPlayerNames(){return this.playerNames;}
+
+    public int getPlayerNumber(){
         int cnt = 0;
-        for(Player i : this.players){
+        for(String i : this.playerNames){
             cnt ++;
         }
         return cnt;
