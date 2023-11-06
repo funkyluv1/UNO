@@ -9,7 +9,7 @@ import java.util.HashMap;
 public class Game {
     private final int playerCapacity;
     private Player[] players;
-    public Card topCard;
+    private Card topCard;
 
     public Game(int playerCapacity, Player[] players) {
         this.playerCapacity = playerCapacity;
@@ -18,5 +18,13 @@ public class Game {
         int randColorIndex = (int) Math.floor(Math.random()*4);
         int randValue = (int) Math.floor(Math.random()*9);
         this.topCard = new NumberCard(randValue, randColor[randColorIndex]);
+    }
+
+    public Player[] getPlayers() {
+        return players;
+    }
+
+    public Card getTopCard() {
+        return topCard;
     }
 }

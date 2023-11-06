@@ -13,18 +13,21 @@ public class DrawCardsInteractor implements DrawCardsInputDataBoundary {
         this.drawCardsDataAccessInterface = drawCardsDataAccessInterface;
     }
 
-    @Override
-    public NumberCardsDeck createNumberCardsDeck(){
-        return drawCardsDataAccessInterface.createNumberCardsDeck();
-    };
+    //We can probably combine these three methods to a single execute(DrawCardsInputData drawCardsInputData) method
+    //I don't think we have to make those methods that just calls the DataAccessInterface, we can just use the method directly from the DataAccessInterface
+
+//    @Override
+//    public NumberCardsDeck createNumberCardsDeck() {
+//        return drawCardsDataAccessInterface.createNumberCardsDeck();
+//    };
+
+//    @Override
+////    public void reshuffleNumberCardsDeck(DrawCardsInputData drawCardsInputData){
+////        drawCardsDataAccessInterface.reshuffleNumberCardsDeck(drawCardsInputData.getNumberCardsDeck());
+////    }
 
     @Override
-    public void reshuffleNumberCardsDeck(DrawCardsInputData drawCardsInputData){
-        drawCardsDataAccessInterface.reshuffleNumberCardsDeck(drawCardsInputData.getNumberCardsDeck());
-    }
-
-    @Override
-    public void drawNumberCards(DrawCardsInputData drawCardsInputData) {
+    public void execute(DrawCardsInputData drawCardsInputData) {
         ArrayList<String> numCardsInfo;
         ArrayList<NumberCard> playerHands;
 
@@ -39,7 +42,7 @@ public class DrawCardsInteractor implements DrawCardsInputDataBoundary {
         else{
             int deckRemainingCards = drawCardsInputData.getNumberCardsDeck().getRemainingCards();
             numCardsInfo = drawCardsDataAccessInterface.drawNumberCards(drawCardsInputData.getNumberCardsDeck(), deckRemainingCards);
-            reshuffleNumberCardsDeck(drawCardsInputData);
+            drawCardsDataAccessInterface.reshuffleNumberCardsDeck(drawCardsInputData.getNumberCardsDeck());
             numCardsInfo.addAll(drawCardsDataAccessInterface.drawNumberCards(drawCardsInputData.getNumberCardsDeck(), drawCardsInputData.getDrawNumber() - deckRemainingCards));
             for (String numCardInfo : numCardsInfo){
                 playerHands = drawCardsInputData.getPlayer().getNumberCards();

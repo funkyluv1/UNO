@@ -7,7 +7,9 @@ import java.util.ArrayList;
 
 
 public interface DrawCardsInputDataBoundary {
-    NumberCardsDeck createNumberCardsDeck();
-    void reshuffleNumberCardsDeck(DrawCardsInputData drawCardsInputData);
-    void drawNumberCards(DrawCardsInputData drawCardsInputData);
+//    NumberCardsDeck createNumberCardsDeck();
+//    void reshuffleNumberCardsDeck(DrawCardsInputData drawCardsInputData);
+//    void drawNumberCards(DrawCardsInputData drawCardsInputData);
+
+    void execute(DrawCardsInputData inputData);
 }

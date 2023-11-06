@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class InitiationInputData {
     Player[] players;
-    Integer playerNumber;
+//    Integer playerNumber;
     public InitiationInputData(Player[] players){
         this.players = players;
     };
