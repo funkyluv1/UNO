@@ -1,12 +1,10 @@
 package use_case.initiation;
-
 import entities.Game;
 
-public class InitiationOutputData {
+public  class InitiationOutputData {
+    Game game;
 
-    final Game game;
+    public InitiationOutputData(Game game) {this.game = game;}
 
-    public InitiationOutputData(Game game){
-        this.game = game;
-    }
+    public Game getGame() {return game;}
 }
