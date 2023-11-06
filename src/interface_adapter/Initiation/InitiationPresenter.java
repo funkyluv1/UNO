@@ -10,7 +10,7 @@ import use_case.initiation.InitiationOutputData;
 public class InitiationPresenter implements InitiationOutputBoundary {
     private final InitiationViewModel initiationViewModel;
 
-    private final InitializedViewModel intializedInViewModel;
+    private final InitializedViewModel initializedViewModel;
 
     private ViewManagerModel viewManagerModel;
 
@@ -24,7 +24,7 @@ public class InitiationPresenter implements InitiationOutputBoundary {
         // On success, switch to the initialized view.
 
         InitializedState initializedState = initializedViewModel.getState();
-        initializedState.set_game(game);
+        initializedState.set_game(initiationOutputData.getGame());
         this.initializedViewModel.set_State(initializedState);
         initiationViewModel.firePropertyChanged();
 

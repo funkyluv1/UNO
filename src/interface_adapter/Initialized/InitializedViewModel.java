@@ -12,8 +12,6 @@ public class InitializedViewModel extends ViewModel {
 
     private InitializedState state = new InitializedState();
 
-    private Game game;
-
     public InitializedViewModel() {
         super("Initialized");
     }
@@ -38,12 +36,4 @@ public class InitializedViewModel extends ViewModel {
         return state;
     }
 
-
-    public Game getInitializedGame() {
-        return game;
-    }
-
-    public void setInitializedGame(Game game) {
-        this.game = game;
-    }
 }
