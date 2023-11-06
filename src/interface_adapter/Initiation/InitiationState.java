@@ -10,6 +10,8 @@ public class InitiationState {
         this.initiationError = initiationError;
     }
 
+    public InitiationState() {}
+
     public void set_game(Game game){this.g = game;}
 
     public Game get_game(){return g;}

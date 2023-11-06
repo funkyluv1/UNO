@@ -2,6 +2,7 @@ package view;
 
 //import interface_adapter.initiation.InitiationController;
 //import interface_adapter.initiation.IntiationState;
+import entities.Game;
 import interface_adapter.Initiation.InitiationController;
 import interface_adapter.Initiation.InitiationState;
 import interface_adapter.Initiation.InitiationViewModel;
@@ -40,10 +41,11 @@ public class InitiationView extends JPanel implements ActionListener, PropertyCh
                 new ActionListener() {
                     public void actionPerformed(ActionEvent evt) {
                         if (evt.getSource().equals(initialize)) {
-                            initiationController.execute();
-                            //InitiationState currentState = InitationViewModel.getState();
-                            //Game game = currentState.getGame();
-                            String game = "game data";
+
+                            InitiationState currentState = initiationViewModel.getState();
+                            Game game = currentState.get_game();
+                            initiationController.execute(game.getPlayers());
+                            String g = "game data";
 
                         }
                     }

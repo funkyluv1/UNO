@@ -1,6 +1,8 @@
 package app;
 
+import interface_adapter.Initiation.InitiationViewModel;
 import interface_adapter.ViewManagerModel;
+import view.InitiationView;
 
 import javax.swing.*;
 import java.io.IOException;
