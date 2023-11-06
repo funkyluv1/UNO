@@ -1,9 +1,12 @@
 package use_case.initiation;
 import entities.Game;
+
+import java.util.ArrayList;
+
 public  class InitiationOutputData {
-    Game game;
+    ArrayList<String> playerNames;
 
-    public InitiationOutputData(Game game) {this.game = game;}
+    public InitiationOutputData(ArrayList<String> playerNames) {this.playerNames = playerNames;}
 
-    public Game getGame() {return game;}
+    public ArrayList<String> getPlayerNames() {return this.playerNames;}
 }
