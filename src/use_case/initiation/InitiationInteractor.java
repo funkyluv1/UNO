@@ -3,7 +3,7 @@ package use_case.initiation;
 import Data_access.FileUserDataAccessObject;
 import entities.Game;
 
-public class InitiationInteractor implements InitiationInputBoundary {
+public class InitiationInteractor implements InitiationInputDataBoundary {
 
     final FileUserDataAccessObject fileUserDataAccessObject;
     final InitiationOutputDataBoundary initiationOutputDataBoundary;
