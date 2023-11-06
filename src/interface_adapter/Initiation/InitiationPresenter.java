@@ -1,29 +1,35 @@
 package interface_adapter.Initiation;
 
 import entities.Game;
-import use_case.initiation.InitiationOutputBoundary;
+import interface_adapter.Initialized.InitializedState;
+import interface_adapter.Initialized.InitializedViewModel;
+import interface_adapter.ViewManagerModel;
+import use_case.initiation.InitiationOutputDataBoundary;
+import use_case.initiation.InitiationOutputData;
 
-public class InitiationPresenter implements InitiationOutputBoundary {
-    private InitiationViewModel initiationViewModel;
-    public Game game;
+public class InitiationPresenter implements InitiationOutputDataBoundary {
+    private final InitiationViewModel initiationViewModel;
 
+    private final InitializedViewModel initializedViewModel;
 
-    @Override
+    private ViewManagerModel viewManagerModel;
 
-    public InitiationPresenter(InitiationViewModel initiationViewModel){
+    public InitiationPresenter(ViewManagerModel viewManagerModel,InitiationViewModel initiationViewModel, InitializedViewModel initializedViewModel){
+        this.viewManagerModel = viewManagerModel;
         this.initiationViewModel = initiationViewModel;
-        this.game = game;
+        this.initializedViewModel = initializedViewModel;
     }
 
+    @Override
     public void prepareNewGameView(InitiationOutputData initiationOutputData) {
-        InitiationState initiationState = initiationViewModel.getState();
-        initiationState.set_game(game);
-        this.initiationViewModel.set_State(initiationState);
-        initiationViewModel.firePropertyChanged();
+        // On success, switch to the initialized view.
 
-        viewManagerModel.setActiveView(initiationViewModel.getViewName());
+        InitializedState initializedState = initializedViewModel.getState();
+        initializedState.set_game(initiationOutputData.getGame());
+        this.initializedViewModel.setState(initializedState);
+        this.initializedViewModel.firePropertyChanged();
+
+        viewManagerModel.setActiveView(initializedViewModel.getViewName());
         viewManagerModel.firePropertyChanged();
-
-
     }
 }

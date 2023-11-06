@@ -1,20 +1,23 @@
 package interface_adapter.Initiation;
+
 import entities.Game;
 
 public class InitiationState {
-    private Game g;
+    private Game game;
     private String initiationError = null;
 
     public InitiationState(InitiationState copy){
-        this.g = g;
-        this.initiationError = initiationError;
+        game = copy.game;
+        initiationError = copy.initiationError;
     }
 
-    public InitiationState() {}
+    public InitiationState(){}
 
-    public void set_game(Game game){this.g = game;}
+    public Game get_game(){return game;}
 
-    public Game get_game(){return g;}
+    public String get_initiationError(){return initiationError;}
+
+    public void set_game(Game game){this.game = game;}
 
     public void set_initiationError(String initiationError){this.initiationError = initiationError;}
 

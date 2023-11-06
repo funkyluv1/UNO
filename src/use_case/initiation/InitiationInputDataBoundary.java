@@ -1,5 +1,5 @@
 package use_case.initiation;
 
-public interface InitiationInputBoundary {
+public interface InitiationInputDataBoundary {
     public void execute(InitiationInputData initiationInputData);
 }

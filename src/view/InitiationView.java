@@ -1,8 +1,5 @@
 package view;
 
-//import interface_adapter.initiation.InitiationController;
-//import interface_adapter.initiation.IntiationState;
-import entities.Game;
 import interface_adapter.Initiation.InitiationController;
 import interface_adapter.Initiation.InitiationState;
 import interface_adapter.Initiation.InitiationViewModel;
@@ -15,16 +12,14 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
 public class InitiationView extends JPanel implements ActionListener, PropertyChangeListener {
-    public final String viewName = "game view";
+    public final String viewName =  "game view";
     //private final InitiationController initiationController;
-    //private final InitiationViewModel initiationViewModel;
+    private final InitiationViewModel initiationViewModel;
     private final JButton initialize;
 
-    private final InitiationController initiationController;
-    private final InitiationViewModel initiationViewModel;
 
     public InitiationView(InitiationController initiationController, InitiationViewModel initiationViewModel) {
-        this.initiationController = initiationController;
+        //this.initiationController = initiationController;
         this.initiationViewModel = initiationViewModel;
         initiationViewModel.addPropertyChangeListener(this);
 
@@ -41,12 +36,13 @@ public class InitiationView extends JPanel implements ActionListener, PropertyCh
                 new ActionListener() {
                     public void actionPerformed(ActionEvent evt) {
                         if (evt.getSource().equals(initialize)) {
-
+                            //initiationController.execute();
                             InitiationState currentState = initiationViewModel.getState();
-                            Game game = currentState.get_game();
-                            initiationController.execute(game.getPlayers());
-                            String g = "game data";
-
+                            //Game game = currentState.getGame();
+                            String game = "game data";
+                            JFrame gameframe = new JFrame();
+                            JLabel gamelabel = new JLabel(game);
+                            gameframe.add(gamelabel);
                         }
                     }
                 }
@@ -67,6 +63,5 @@ public class InitiationView extends JPanel implements ActionListener, PropertyCh
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-        InitiationState state = (InitiationState) evt.getNewValue();
     }
 }

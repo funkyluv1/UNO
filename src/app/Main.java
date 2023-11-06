@@ -24,7 +24,7 @@ public class Main {
 
         InitiationViewModel initiationViewModel = new InitiationViewModel();
 
-        InitiationView signupView = InitiationUseCaseFactory.create(viewManagerModel, initiationViewModel);
-        views.add(signupView, signupView.viewName);
+        InitiationView initiationView = InitiationUseCaseFactory.create(viewManagerModel, initiationViewModel);
+        views.add(initiationView, initiationView.viewName);
     }
 }
