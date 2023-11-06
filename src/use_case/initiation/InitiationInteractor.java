@@ -6,11 +6,11 @@ import entities.Game;
 public class InitiationInteractor implements InitiationInputBoundary {
 
     final FileUserDataAccessObject fileUserDataAccessObject;
-    final InitiationOutputBoundary initiationOutputBoundary;
+    final InitiationOutputDataBoundary initiationOutputDataBoundary;
 
-    public InitiationInteractor(FileUserDataAccessObject fileUserDataAccessObject, InitiationOutputBoundary initiationOutputBoundary){
+    public InitiationInteractor(FileUserDataAccessObject fileUserDataAccessObject, InitiationOutputDataBoundary initiationOutputDataBoundary){
         this.fileUserDataAccessObject = fileUserDataAccessObject;
-        this.initiationOutputBoundary = initiationOutputBoundary;
+        this.initiationOutputDataBoundary = initiationOutputDataBoundary;
     }
 
     /*InitiationController should call InitiationInteractor and DrawCardsInteractor
@@ -19,7 +19,7 @@ public class InitiationInteractor implements InitiationInputBoundary {
     public void execute(InitiationInputData initiationInputData){
         Game game = new Game(initiationInputData.getPlayerNumber(), initiationInputData.players);
         fileUserDataAccessObject.create(); //Todo: finish this method
-        initiationOutputBoundary.prepareNewGameView(game);
+        initiationOutputDataBoundary.prepareNewGameView(new InitiationOutputData(game));
     };
 
 }
