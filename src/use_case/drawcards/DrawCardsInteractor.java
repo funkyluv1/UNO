@@ -35,7 +35,7 @@ public class DrawCardsInteractor implements DrawCardsInputDataBoundary {
             numCardsInfo = drawCardsDataAccessInterface.drawNumberCards(drawCardsInputData.getNumberCardsDeck(), drawCardsInputData.getDrawNumber());
             for (String numCardInfo : numCardsInfo){
                 playerHands = drawCardsInputData.getPlayer().getNumberCards();
-                //Todo: need Card Builder; Use Card Builder to create new Card and update each player's hands
+                //Todo: need Card Factory; Use Card Builder to create new Card and update each player's hands
             }
             drawCardsInputData.getNumberCardsDeck().setRemainingCards(drawCardsInputData.getNumberCardsDeck().getRemainingCards() - drawCardsInputData.getDrawNumber());
         }
@@ -46,7 +46,7 @@ public class DrawCardsInteractor implements DrawCardsInputDataBoundary {
             numCardsInfo.addAll(drawCardsDataAccessInterface.drawNumberCards(drawCardsInputData.getNumberCardsDeck(), drawCardsInputData.getDrawNumber() - deckRemainingCards));
             for (String numCardInfo : numCardsInfo){
                 playerHands = drawCardsInputData.getPlayer().getNumberCards();
-                //Todo: need Card Builder; Use Card Builder to create new Card and update each player's hands
+                //Todo: need Card Factory; Use Card Builder to create new Card and update each player's hands
             }
             drawCardsInputData.getNumberCardsDeck().setRemainingCards(drawCardsInputData.getNumberCardsDeck().getRemainingCards() - drawCardsInputData.getDrawNumber() + deckRemainingCards);
         }

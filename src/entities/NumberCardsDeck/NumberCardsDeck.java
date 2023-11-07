@@ -11,9 +11,10 @@ public class NumberCardsDeck {
     }
 
     public String getId(){return this.id;}
-    public int getRemainingCards(){return this.remainingCards;};
+    public int getRemainingCards(){return this.remainingCards;}
 
     public int setRemainingCards(int remainingCards){
         this.remainingCards = remainingCards;
-        return this.remainingCards;};
+        return this.remainingCards;
+    }
 }
