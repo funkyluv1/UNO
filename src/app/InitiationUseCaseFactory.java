@@ -5,6 +5,7 @@ import interface_adapter.Initiation.InitiationController;
 import interface_adapter.Initiation.InitiationPresenter;
 import interface_adapter.Initiation.InitiationViewModel;
 import interface_adapter.ViewManagerModel;
+import use_case.initiation.InitiationDataAccessInterface;
 import use_case.initiation.InitiationInputDataBoundary;
 import use_case.initiation.InitiationInteractor;
 import use_case.initiation.InitiationOutputDataBoundary;
@@ -31,15 +32,15 @@ public class InitiationUseCaseFactory {
         return null;
     }
 
-    private static InitiationController createInitiationUseCase(ViewManagerModel viewManagerModel, InitiationViewModel initiationViewModel, InitializedViewModel initializedViewModel) throws IOException {
+    private static InitiationController createInitiationUseCase(ViewManagerModel viewManagerModel, InitiationViewModel initiationViewModel, InitializedViewModel initializedViewModel, InitiationDataAccessInterface userDataAccessObject) throws IOException {
 
         // Notice how we pass this method's parameters to the Presenter.
         InitiationOutputDataBoundary initiationOutputDataBoundary = new InitiationPresenter(viewManagerModel, initiationViewModel, initializedViewModel);
 
         // enetity classes
 
-        InitiationInputDataBoundary userInitiationInteractor = new InitiationInteractor(
-                userDataAccessObject,initiationOutputDataBoundary);
+        InitiationInputDataBoundary initiationInteractor = new InitiationInteractor(
+                userDataAccessObject, initiationOutputDataBoundary);
 
         return new InitiationController(initiationInteractor);
     }
