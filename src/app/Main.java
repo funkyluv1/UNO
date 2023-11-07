@@ -1,7 +1,9 @@
 package app;
 
+import Data_access.FileUserDataAccessObject;
 import entities.Game;
 import entities.player.Player;
+import interface_adapter.Initialized.InitializedViewModel;
 import interface_adapter.Initiation.InitiationViewModel;
 import interface_adapter.ViewManagerModel;
 import view.ViewManager;
@@ -35,8 +37,10 @@ public class Main {
         new ViewManager(views, cardLayout, viewManagerModel);
 
         InitiationViewModel initiationViewModel = new InitiationViewModel();
+        InitializedViewModel initializedViewModel = new InitializedViewModel();
+        FileUserDataAccessObject fileUserDataAccessObject = new FileUserDataAccessObject();
 
-        InitiationView initiationView = InitiationUseCaseFactory.create(viewManagerModel, initiationViewModel);
+        InitiationView initiationView = InitiationUseCaseFactory.create(viewManagerModel, initiationViewModel, initializedViewModel,fileUserDataAccessObject );
         views.add(initiationView, initiationView.viewName);
 
         players = new ArrayList<Player>();
