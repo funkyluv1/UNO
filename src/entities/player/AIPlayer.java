@@ -1,5 +1,6 @@
 package entities.player;
 
+import entities.Game;
 import entities.card.*;
 
 import java.util.ArrayList;
@@ -50,5 +51,20 @@ public class AIPlayer extends Player {
                 getFuncCards().remove(dealtCard);
             return dealtCard;
         }
+    }
+
+    @Override
+    public void preTurn(Game game) {
+        // TODO: implement me
+    }
+
+    @Override
+    public void inTurn(Game game) {
+        // TODO: implement me
+    }
+
+    @Override
+    public void postTurn(Game game) {
+        // TODO: implement me
     }
 }

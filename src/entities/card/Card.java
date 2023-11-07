@@ -68,4 +68,6 @@ public abstract class Card {
     public void setPlayer(Player player) {
         this.player = player;
     }
+
+
 }

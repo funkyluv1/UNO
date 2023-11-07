@@ -13,13 +13,18 @@ import java.beans.PropertyChangeListener;
 
 public class InitiationView extends JPanel implements ActionListener, PropertyChangeListener {
     public final String viewName =  "game view";
-    //private final InitiationController initiationController;
     private final InitiationViewModel initiationViewModel;
-    private final JButton initialize;
 
+    final JTextField playernameInputField = new JTextField(15);
+
+    private final JButton initialize;
+    private final JButton addPlayer;
+
+
+    private final InitiationController initiationController;
 
     public InitiationView(InitiationController initiationController, InitiationViewModel initiationViewModel) {
-        //this.initiationController = initiationController;
+        this.initiationController = initiationController;
         this.initiationViewModel = initiationViewModel;
         initiationViewModel.addPropertyChangeListener(this);
 
@@ -29,6 +34,8 @@ public class InitiationView extends JPanel implements ActionListener, PropertyCh
         JPanel buttons = new JPanel();
         initialize = new JButton(InitiationViewModel.INITIATION_BUTTON_LABEL);
         buttons.add(initialize);
+        addPlayer = new JButton("Add player");
+        buttons.add(addPlayer);
 
 
         initialize.addActionListener(
@@ -62,6 +69,9 @@ public class InitiationView extends JPanel implements ActionListener, PropertyCh
     }
 
     @Override
-    public void propertyChange(PropertyChangeEvent evt) {
-    }
+    public void propertyChange(PropertyChangeEvent evt) {}
+
+//    private void setFields(InitiationState state) {
+//        playernameInputField.setText(state.getPlayername());
+//    }
 }
