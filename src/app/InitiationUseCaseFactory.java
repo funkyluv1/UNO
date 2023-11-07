@@ -39,7 +39,7 @@ public class InitiationUseCaseFactory {
         // enetity classes
 
         InitiationInputDataBoundary userInitiationInteractor = new InitiationInteractor(
-                initiationOutputDataBoundary);
+                userDataAccessObject,initiationOutputDataBoundary);
 
         return new InitiationController(initiationInteractor);
     }
