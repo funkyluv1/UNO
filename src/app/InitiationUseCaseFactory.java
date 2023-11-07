@@ -20,10 +20,10 @@ public class InitiationUseCaseFactory {
     private InitiationUseCaseFactory() {}
 
     public static InitiationView create(
-            ViewManagerModel viewManagerModel, InitiationViewModel initiationViewModel, InitializedViewModel initializedViewModel) {
+            ViewManagerModel viewManagerModel, InitiationViewModel initiationViewModel, InitializedViewModel initializedViewModel, InitiationDataAccessInterface userDataAccessObject) {
 
         try {
-            InitiationController initiationController = createInitiationUseCase(viewManagerModel, initiationViewModel, initializedViewModel);
+            InitiationController initiationController = createInitiationUseCase(viewManagerModel, initiationViewModel, initializedViewModel, userDataAccessObject);
             return new InitiationView(initiationController, initiationViewModel);
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, "Could not open user data file.");
