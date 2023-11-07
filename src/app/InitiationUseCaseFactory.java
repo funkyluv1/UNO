@@ -5,6 +5,8 @@ import interface_adapter.Initiation.InitiationController;
 import interface_adapter.Initiation.InitiationPresenter;
 import interface_adapter.Initiation.InitiationViewModel;
 import interface_adapter.ViewManagerModel;
+import use_case.initiation.InitiationInputDataBoundary;
+import use_case.initiation.InitiationInteractor;
 import use_case.initiation.InitiationOutputDataBoundary;
 import view.InitiationView;
 
@@ -38,7 +40,7 @@ public class InitiationUseCaseFactory {
         // enetity classes and cre
         GameFactory gameFactory = new GameFactory();
 
-        InitiationInputBoundary userInitiationInteractor = new InitiationInteractor(
+        InitiationInputDataBoundary userInitiationInteractor = new InitiationInteractor(
                 initiationOutputDataBoundary, gameFactory);
 
         return new InitiationController(initiationInteractor);
