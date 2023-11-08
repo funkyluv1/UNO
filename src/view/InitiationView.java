@@ -84,9 +84,9 @@ public class InitiationView extends JPanel implements ActionListener, PropertyCh
     /**
      * React to a button click that results in evt.
      */
-    //public void actionPerformed(ActionEvent evt) {
-        //JOptionPane.showConfirmDialog(this, "Cancel not implemented yet.");
-    //}
+    public void actionPerformed(ActionEvent evt) {
+        JOptionPane.showConfirmDialog(this, "Cancel not implemented yet.");
+    }
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {}
