@@ -16,6 +16,7 @@ public class InitiationView extends JPanel implements ActionListener, PropertyCh
     private final InitiationViewModel initiationViewModel;
 
     final JTextField playernameInputField = new JTextField(15);
+    private final JLabel playernameErrorField = new JLabel();
 
     private final JButton initialize;
     private final JButton addPlayer;
@@ -30,6 +31,10 @@ public class InitiationView extends JPanel implements ActionListener, PropertyCh
 
         JLabel title = new JLabel(InitiationViewModel.TITLE_LABEL);
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        LabelTextPanel playernameInfo = new LabelTextPanel(
+                new JLabel("Playername"), playernameInputField);
+
 
         JPanel buttons = new JPanel();
         initialize = new JButton(InitiationViewModel.INITIATION_BUTTON_LABEL);
@@ -46,13 +51,28 @@ public class InitiationView extends JPanel implements ActionListener, PropertyCh
                             //initiationController.execute();
                             InitiationState currentState = initiationViewModel.getState();
                             //Game game = currentState.getGame();
-                            String game = "game data";
-                            JFrame gameframe = new JFrame();
-                            JLabel gamelabel = new JLabel(game);
-                            gameframe.add(gamelabel);
+                            //String game = "game data";
+                            //JFrame gameframe = new JFrame();
+                            //JLabel gamelabel = new JLabel(game);
+                            //gameframe.add(gamelabel);
+                            initiationController.execute(
+                                    currentState.get_players());
                         }
                     }
                 }
+        );
+        addPlayer.addActionListener(
+                new ActionListener(){
+                    public void actionPerformed(ActionEvent evt){
+                        if (evt.getSource().equals(addPlayer)) {
+                            InitiationState currentState = initiationViewModel.getState();
+                            String input = playernameInputField.getText();
+                            currentState.set_players(input);
+                            playernameInputField.setText("");
+                        }
+                    }
+                }
+
         );
 
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -64,9 +84,9 @@ public class InitiationView extends JPanel implements ActionListener, PropertyCh
     /**
      * React to a button click that results in evt.
      */
-    public void actionPerformed(ActionEvent evt) {
-        JOptionPane.showConfirmDialog(this, "Cancel not implemented yet.");
-    }
+    //public void actionPerformed(ActionEvent evt) {
+        //JOptionPane.showConfirmDialog(this, "Cancel not implemented yet.");
+    //}
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {}

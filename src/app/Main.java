@@ -40,7 +40,7 @@ public class Main {
         InitializedViewModel initializedViewModel = new InitializedViewModel();
         FileUserDataAccessObject fileUserDataAccessObject = new FileUserDataAccessObject();
 
-        InitiationView initiationView = InitiationUseCaseFactory.create(viewManagerModel, initiationViewModel, initializedViewModel,fileUserDataAccessObject );
+        InitiationView initiationView = InitiationUseCaseFactory.create(viewManagerModel, initiationViewModel, initializedViewModel,fileUserDataAccessObject);
         views.add(initiationView, initiationView.viewName);
 
         players = new ArrayList<Player>();
