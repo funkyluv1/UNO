@@ -19,9 +19,7 @@ public abstract class Card {
     public boolean isUsable;
 
     /**
-     * Constructs a new Card object, with its value attribute set to [value], color
-     * attribute set to [color], player attribute initialized to null, and isUsable
-     * attribute set to false.
+     * Constructs a new Card object.
      *
      * @param value the numeric value of the card
      * @param color the color of the card
@@ -68,6 +66,7 @@ public abstract class Card {
     public void setPlayer(Player player) {
         this.player = player;
     }
+
 
 
 }

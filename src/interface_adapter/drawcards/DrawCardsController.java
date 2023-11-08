@@ -1,6 +1,6 @@
 package interface_adapter.drawcards;
 
-import entities.NumberCardsDeck;
+import entities.NumberCardsDeck.NumberCardsDeck;
 import entities.player.Player;
 import use_case.drawcards.DrawCardsInputData;
 import use_case.drawcards.DrawCardsInputDataBoundary;

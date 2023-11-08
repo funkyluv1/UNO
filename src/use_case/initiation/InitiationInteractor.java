@@ -1,8 +1,7 @@
 package use_case.initiation;
 
-import Data_access.FileUserDataAccessObject;
-import entities.Game;
-import entities.NumberCardsDeck;
+import data_access.FileUserDataAccessObject;
+import entities.NumberCardsDeck.NumberCardsDeck;
 import use_case.drawcards.DrawCardsDataAccessInterface;
 
 public class InitiationInteractor implements InitiationInputDataBoundary {
@@ -22,7 +21,7 @@ public class InitiationInteractor implements InitiationInputDataBoundary {
     * and DrawCardsInteractor have executed.*/
     public void execute(InitiationInputData initiationInputData){
         NumberCardsDeck numberCardsDeck = drawCardsDataAccessInterface.createNumberCardsDeck();
-        fileUserDataAccessObject.create(); //Todo: finish this method
+        fileUserDataAccessObject.initiate(numberCardsDeck, initiationInputData); //Todo: finish this method
         initiationOutputDataBoundary.prepareNewGameView(new InitiationOutputData(initiationInputData.getPlayerNames()));
     };
 

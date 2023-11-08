@@ -1,6 +1,6 @@
 package use_case.drawcards;
 
-import entities.NumberCardsDeck;
+import entities.NumberCardsDeck.NumberCardsDeck;
 
 import java.util.ArrayList;
 
