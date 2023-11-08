@@ -25,6 +25,7 @@ public abstract class Player {
     private boolean isInGame;
 
 
+
     /**
      * Constructs a new Player object, with its userID attribute set to [userID],
      * playerName attribute set to [playerName], its numCards attribute set to [hand],
@@ -41,6 +42,8 @@ public abstract class Player {
         this.funcCards = new ArrayList<>();
         this.isInGame = true;
     }
+
+    public String getPlayerName(){return this.playerName;}
 
     /**
      * Returns the numCards attribute of this Player object.

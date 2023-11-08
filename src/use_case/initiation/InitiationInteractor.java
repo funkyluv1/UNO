@@ -21,7 +21,7 @@ public class InitiationInteractor implements InitiationInputDataBoundary {
     * and DrawCardsInteractor have executed.*/
     public void execute(InitiationInputData initiationInputData){
         NumberCardsDeck numberCardsDeck = drawCardsDataAccessInterface.createNumberCardsDeck();
-        fileUserDataAccessObject.create(numberCardsDeck, initiationInputData); //Todo: finish this method
+        fileUserDataAccessObject.initiate(numberCardsDeck, initiationInputData); //Todo: finish this method
         initiationOutputDataBoundary.prepareNewGameView(new InitiationOutputData(initiationInputData.getPlayerNames()));
     };
 
