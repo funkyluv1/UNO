@@ -15,11 +15,11 @@ public class InitiationState {
 
     public InitiationState(){}
 
-    public ArrayList<String> getPlayers(){return players};
+    public ArrayList<String> get_players(){return players;}
 
     public String get_initiationError(){return initiationError;}
 
-    public void setPlayers(ArrayList<String> players){this.players = players;}
+    public void set_players(String player){this.players.add(player);}
 
     public void set_initiationError(String initiationError){this.initiationError = initiationError;}
 

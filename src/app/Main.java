@@ -3,7 +3,6 @@ package app;
 import Data_access.FileUserDataAccessObject;
 import entities.Game;
 import entities.player.Player;
-import entities.player.PlayerFactory;
 import interface_adapter.Initialized.InitializedViewModel;
 import interface_adapter.Initiation.InitiationViewModel;
 import interface_adapter.ViewManagerModel;
@@ -12,7 +11,6 @@ import view.InitiationView;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.IOException;
 import java.util.*;
 import java.util.List;
 
@@ -40,15 +38,9 @@ public class Main {
 
         InitiationViewModel initiationViewModel = new InitiationViewModel();
         InitializedViewModel initializedViewModel = new InitializedViewModel();
+        FileUserDataAccessObject fileUserDataAccessObject = new FileUserDataAccessObject();
 
-        FileUserDataAccessObject userDataAccessObject;
-        try {
-            userDataAccessObject = new FileUserDataAccessObject("./users.csv", new PlayerFactory());
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-        InitiationView initiationView = InitiationUseCaseFactory.create(viewManagerModel, initiationViewModel, initializedViewModel, userDataAccessObject);
+        InitiationView initiationView = InitiationUseCaseFactory.create(viewManagerModel, initiationViewModel, initializedViewModel,fileUserDataAccessObject);
         views.add(initiationView, initiationView.viewName);
 
         players = new ArrayList<Player>();

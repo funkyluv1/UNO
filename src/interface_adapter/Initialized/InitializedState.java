@@ -1,18 +1,21 @@
 package interface_adapter.Initialized;
 
 import entities.Game;
+import entities.player.Player;
+
+import java.util.ArrayList;
 
 public class InitializedState {
-    private Game game;
+    private ArrayList<String> players;
 
     public InitializedState(InitializedState copy) {
-        game = copy.game;
+        players = copy.players;
     }
 
     // Because of the previous copy constructor, the default constructor must be explicit.
     public InitializedState() {}
 
-    public Game get_game(){return game;}
+    public ArrayList<String> get_players(){return players;}
 
-    public void set_game(Game game){this.game = game;}
+    public void set_players(ArrayList<String> players){this.players = players;}
 }
