@@ -25,7 +25,7 @@ public class InitiationPresenter implements InitiationOutputDataBoundary {
         // On success, switch to the initialized view.
 
         InitializedState initializedState = initializedViewModel.getState();
-        initializedState.set_game(initiationOutputData.getGame());
+        initializedState.set_players(initiationOutputData.getPlayerNames());
         this.initializedViewModel.setState(initializedState);
         this.initializedViewModel.firePropertyChanged();
 

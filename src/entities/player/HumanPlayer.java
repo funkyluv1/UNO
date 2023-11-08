@@ -1,5 +1,6 @@
 package entities.player;
 
+import entities.Game;
 import entities.card.*;
 
 import java.util.ArrayList;
@@ -65,4 +66,20 @@ public class HumanPlayer extends Player {
             selectedCard = card;
         }
     }
+
+    @Override
+    public void preTurn(Game game){
+        // TODO: implement me
+    }
+
+    @Override
+    public void inTurn(Game game){
+        // TODO: implement me
+    }
+
+    @Override
+    public void postTurn(Game game){
+        // TODO: implement me
+    }
+
 }

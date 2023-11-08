@@ -13,22 +13,34 @@ import java.beans.PropertyChangeListener;
 
 public class InitiationView extends JPanel implements ActionListener, PropertyChangeListener {
     public final String viewName =  "game view";
-    //private final InitiationController initiationController;
     private final InitiationViewModel initiationViewModel;
-    private final JButton initialize;
 
+    final JTextField playernameInputField = new JTextField(15);
+    private final JLabel playernameErrorField = new JLabel();
+
+    private final JButton initialize;
+    private final JButton addPlayer;
+
+
+    private final InitiationController initiationController;
 
     public InitiationView(InitiationController initiationController, InitiationViewModel initiationViewModel) {
-        //this.initiationController = initiationController;
+        this.initiationController = initiationController;
         this.initiationViewModel = initiationViewModel;
         initiationViewModel.addPropertyChangeListener(this);
 
         JLabel title = new JLabel(InitiationViewModel.TITLE_LABEL);
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
 
+        LabelTextPanel playernameInfo = new LabelTextPanel(
+                new JLabel("Playername"), playernameInputField);
+
+
         JPanel buttons = new JPanel();
         initialize = new JButton(InitiationViewModel.INITIATION_BUTTON_LABEL);
         buttons.add(initialize);
+        addPlayer = new JButton("Add player");
+        buttons.add(addPlayer);
 
 
         initialize.addActionListener(
@@ -39,13 +51,28 @@ public class InitiationView extends JPanel implements ActionListener, PropertyCh
                             //initiationController.execute();
                             InitiationState currentState = initiationViewModel.getState();
                             //Game game = currentState.getGame();
-                            String game = "game data";
-                            JFrame gameframe = new JFrame();
-                            JLabel gamelabel = new JLabel(game);
-                            gameframe.add(gamelabel);
+                            //String game = "game data";
+                            //JFrame gameframe = new JFrame();
+                            //JLabel gamelabel = new JLabel(game);
+                            //gameframe.add(gamelabel);
+                            initiationController.execute(
+                                    currentState.get_players());
                         }
                     }
                 }
+        );
+        addPlayer.addActionListener(
+                new ActionListener(){
+                    public void actionPerformed(ActionEvent evt){
+                        if (evt.getSource().equals(addPlayer)) {
+                            InitiationState currentState = initiationViewModel.getState();
+                            String input = playernameInputField.getText();
+                            currentState.set_players(input);
+                            playernameInputField.setText("");
+                        }
+                    }
+                }
+
         );
 
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -62,6 +89,9 @@ public class InitiationView extends JPanel implements ActionListener, PropertyCh
     }
 
     @Override
-    public void propertyChange(PropertyChangeEvent evt) {
-    }
+    public void propertyChange(PropertyChangeEvent evt) {}
+
+//    private void setFields(InitiationState state) {
+//        playernameInputField.setText(state.getPlayername());
+//    }
 }

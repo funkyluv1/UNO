@@ -1,5 +1,6 @@
 package entities.player;
 
+import entities.Game;
 import entities.card.*;
 
 import java.util.ArrayList;
@@ -113,4 +114,12 @@ public abstract class Player {
      * @return the Card object dealt
      */
     public abstract Card dealCard(Card topCard);
+
+    // TODO: add javadoc
+    public abstract void preTurn(Game game);
+
+    public abstract void inTurn(Game game);
+
+    public abstract void postTurn(Game game);
+
 }
