@@ -1,2 +1,4 @@
-package entities.player;public class HumanPlayerFactory {
+package entities.player;
+
+public class HumanPlayerFactory implements PlayerFactory{
 }

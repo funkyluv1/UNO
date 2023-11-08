@@ -18,7 +18,6 @@ import java.util.ArrayList;
  * @author Cynthia Luo
  */
 public abstract class Player {
-    private final int userID;
     public String playerName;
     private ArrayList<NumberCard> numCards;
     private ArrayList<FunctionalCard> funcCards;
@@ -31,26 +30,15 @@ public abstract class Player {
      * funcCards attributes set to an empty ArrayList of Card, and its isInGame
      * attribute set to true.
      *
-     * @param userID a unique number assigned to this player, which is used for
-     *               identifying this player in the database
+
      * @param playerName the name of this player to be displayed in the game
      * @param hand the set of cards that this player is dealt with initially
      */
-    public Player(int userID, String playerName, ArrayList<NumberCard> hand) {
-        this.userID = userID;
+    public Player(String playerName, ArrayList<NumberCard> hand) {
         this.playerName = playerName;
         this.numCards = new ArrayList<>(hand);
         this.funcCards = new ArrayList<>();
         this.isInGame = true;
-    }
-
-    /**
-     * Returns the userID attribute of this Player object.
-     *
-     * @return the userID attribute of this Player object
-     */
-    public int getUserID() {
-        return userID;
     }
 
     /**

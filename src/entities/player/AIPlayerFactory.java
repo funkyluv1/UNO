@@ -1,2 +1,4 @@
-package entities.player;public class AIPlayerFactory {
+package entities.player;
+
+public class AIPlayerFactory {
 }

@@ -19,13 +19,11 @@ public class AIPlayer extends Player {
      * funcCards attributes set to an empty ArrayList of Card, and its isInGame
      * attribute set to true.
      *
-     * @param userID a unique number assigned to this player, which is used for
-     *               identifying this player in the database
      * @param playerName the name of this player to be displayed in the game
      * @param hand the set of cards that this player is dealt with initially
      */
-    public AIPlayer(int userID, String playerName, ArrayList<NumberCard> hand){
-        super(userID, playerName, hand);
+    public AIPlayer(String playerName, ArrayList<NumberCard> hand){
+        super(playerName, hand);
     }
 
     /**
