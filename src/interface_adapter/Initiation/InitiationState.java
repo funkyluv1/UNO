@@ -2,22 +2,24 @@ package interface_adapter.Initiation;
 
 import entities.Game;
 
+import java.util.ArrayList;
+
 public class InitiationState {
-    private Game game;
+    private ArrayList<String> players;
     private String initiationError = null;
 
     public InitiationState(InitiationState copy){
-        game = copy.game;
+        players = copy.players;
         initiationError = copy.initiationError;
     }
 
     public InitiationState(){}
 
-    public Game get_game(){return game;}
+    public ArrayList<String> getPlayers(){return players};
 
     public String get_initiationError(){return initiationError;}
 
-    public void set_game(Game game){this.game = game;}
+    public void setPlayers(ArrayList<String> players){this.players = players;}
 
     public void set_initiationError(String initiationError){this.initiationError = initiationError;}
 

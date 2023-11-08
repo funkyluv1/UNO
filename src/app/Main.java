@@ -3,6 +3,7 @@ package app;
 import Data_access.FileUserDataAccessObject;
 import entities.Game;
 import entities.player.Player;
+import entities.player.PlayerFactory;
 import interface_adapter.Initialized.InitializedViewModel;
 import interface_adapter.Initiation.InitiationViewModel;
 import interface_adapter.ViewManagerModel;
@@ -42,7 +43,7 @@ public class Main {
 
         FileUserDataAccessObject userDataAccessObject;
         try {
-            userDataAccessObject = new FileUserDataAccessObject("./users.csv", new CommonUserFactory());
+            userDataAccessObject = new FileUserDataAccessObject("./users.csv", new PlayerFactory());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

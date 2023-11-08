@@ -4,6 +4,8 @@ import entities.player.Player;
 import use_case.initiation.InitiationInputDataBoundary;
 import use_case.initiation.InitiationInputData;
 
+import java.util.ArrayList;
+
 public class InitiationController {
     final InitiationInputDataBoundary initiationInteractor;
 
@@ -11,7 +13,7 @@ public class InitiationController {
         this.initiationInteractor = initiationInteractor;
     }
 
-    public void execute(Player[] players) {
+    public void execute(ArrayList<String> players) {
         InitiationInputData inputData = new InitiationInputData(players);
         initiationInteractor.execute(inputData);
     }

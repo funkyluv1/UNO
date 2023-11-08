@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.ArrayList;
 
 public class InitiationView extends JPanel implements ActionListener, PropertyChangeListener {
     public final String viewName =  "game view";
@@ -43,13 +44,12 @@ public class InitiationView extends JPanel implements ActionListener, PropertyCh
                 new ActionListener() {
                     public void actionPerformed(ActionEvent evt) {
                         if (evt.getSource().equals(initialize)) {
-                            //initiationController.execute();
+                            ArrayList<String> players = new ArrayList<>();
+                            initiationController.execute(players);
                             InitiationState currentState = initiationViewModel.getState();
-                            //Game game = currentState.getGame();
-                            String game = "game data";
-                            JFrame gameframe = new JFrame();
-                            JLabel gamelabel = new JLabel(game);
-                            gameframe.add(gamelabel);
+                            JFrame initializedframe = new JFrame();
+                            JLabel initializedlabel = new JLabel();
+                            initializedframe.add(initializedlabel);
                         }
                     }
                 }
@@ -65,13 +65,15 @@ public class InitiationView extends JPanel implements ActionListener, PropertyCh
      * React to a button click that results in evt.
      */
     public void actionPerformed(ActionEvent evt) {
-        JOptionPane.showConfirmDialog(this, "Cancel not implemented yet.");
+        System.out.println("Click " + evt.getActionCommand());
     }
 
     @Override
-    public void propertyChange(PropertyChangeEvent evt) {}
+    public void propertyChange(PropertyChangeEvent evt) {
+        InitiationState state = (InitiationState) evt.getNewValue();
+        setFields(state);}
 
-//    private void setFields(InitiationState state) {
-//        playernameInputField.setText(state.getPlayername());
-//    }
+    private void setFields(InitiationState state) {
+        playernameInputField.setText(state.getPlayers().get(0));
+    }
 }
