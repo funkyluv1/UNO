@@ -1,4 +1,4 @@
-package entities;
+package entities.NumberCardsDeck;
 
 public class NumberCardsDeck {
 

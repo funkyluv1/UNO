@@ -1,5 +1,7 @@
 package use_case.initiation;
 
+import entities.NumberCardsDeck.NumberCardsDeck;
+
 public interface InitiationDataAccessInterface {
-    void create();
+    void initiate(NumberCardsDeck numberCardsDeck, InitiationInputData initiationInputData);
 }

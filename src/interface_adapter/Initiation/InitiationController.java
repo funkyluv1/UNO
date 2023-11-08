@@ -13,8 +13,8 @@ public class InitiationController {
         this.initiationInteractor = initiationInteractor;
     }
 
-    public void execute(ArrayList<String> players) {
-        InitiationInputData inputData = new InitiationInputData(players);
+    public void execute(ArrayList<String> players, int botNumber) {
+        InitiationInputData inputData = new InitiationInputData(players, botNumber);
         initiationInteractor.execute(inputData);
     }
 }
