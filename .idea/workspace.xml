@@ -6,10 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="d57b91c4-c160-4479-a59c-64bc9723df5c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project/APIClient.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/InitiationUseCaseFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/InitiationUseCaseFactory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interface_adapter/Initiation/InitiationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interface_adapter/Initiation/InitiationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interface_adapter/Initiation/InitiationState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interface_adapter/Initiation/InitiationState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interface_adapter/Initiation/InitiationViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interface_adapter/Initiation/InitiationViewModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entities/card/FunctionalCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/card/FunctionalCard.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/InitiationView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/InitiationView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
