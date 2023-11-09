@@ -1,7 +1,7 @@
 package app;
 
-import Data_access.APIDataAccessObject;
-import Data_access.FileUserDataAccessObject;
+import data_access.APIDataAccessObject;
+import data_access.FileUserDataAccessObject;
 import interface_adapter.Initialized.InitializedViewModel;
 import interface_adapter.Initiation.InitiationController;
 import interface_adapter.Initiation.InitiationPresenter;

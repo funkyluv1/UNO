@@ -2,7 +2,15 @@ package app;
 
 import data_access.FileUserDataAccessObject;
 import entities.Game;
+import entities.NumberCardsDeck.NumberCardsDeck;
+import entities.NumberCardsDeck.NumberCardsDeckFactory;
+import entities.card.CardBuilder;
+import entities.card.FunctionalCard;
+import entities.card.NumberCard;
+import entities.player.AIPlayerFactory;
+import entities.player.HumanPlayerFactory;
 import entities.player.Player;
+import entities.player.PlayerFactory;
 import interface_adapter.Initialized.InitializedViewModel;
 import interface_adapter.Initiation.InitiationViewModel;
 import interface_adapter.ViewManagerModel;
@@ -11,6 +19,7 @@ import view.InitiationView;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
 import java.util.*;
 import java.util.List;
 
@@ -21,7 +30,7 @@ public class Main {
 
     // constructor
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         game = Game.getInstance();
 
         JFrame application = new JFrame("Login Example");
@@ -38,7 +47,7 @@ public class Main {
 
         InitiationViewModel initiationViewModel = new InitiationViewModel();
         InitializedViewModel initializedViewModel = new InitializedViewModel();
-        FileUserDataAccessObject fileUserDataAccessObject = new FileUserDataAccessObject();
+        FileUserDataAccessObject fileUserDataAccessObject = new FileUserDataAccessObject("./users.csv", new AIPlayerFactory(), new HumanPlayerFactory(), new NumberCardsDeckFactory());
 
         InitiationView initiationView = InitiationUseCaseFactory.create(viewManagerModel, initiationViewModel, initializedViewModel,fileUserDataAccessObject);
         views.add(initiationView, initiationView.viewName);

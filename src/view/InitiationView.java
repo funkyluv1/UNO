@@ -56,7 +56,7 @@ public class InitiationView extends JPanel implements ActionListener, PropertyCh
                             //JLabel gamelabel = new JLabel(game);
                             //gameframe.add(gamelabel);
                             initiationController.execute(
-                                    currentState.get_players());
+                                    currentState.get_players(), 4 - currentState.get_players().size());
                         }
                     }
                 }

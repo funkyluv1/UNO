@@ -1,13 +1,16 @@
 package data_access;
 
 import entities.NumberCardsDeck.NumberCardsDeck;
+import entities.card.NumberCard;
+import entities.card.NumberCardBuilder;
 import use_case.drawcards.DrawCardsDataAccessInterface;
 import use_case.drawcards.DrawCardsResponseExtractFacade;
 
 import java.util.ArrayList;
 
 public class APIDataAccessObject implements DrawCardsDataAccessInterface {
-    public APIDataAccessObject(){};
+    public APIDataAccessObject() {
+    }
 
     @Override
     public NumberCardsDeck createNumberCardsDeck() {
@@ -21,24 +24,25 @@ public class APIDataAccessObject implements DrawCardsDataAccessInterface {
         String decknum = drawCardsResponseExtractFacade.DrawCardsExtractRemaining();
         return new NumberCardsDeck(id, Integer.parseInt(decknum));
     }
+
     @Override
 
     /* Precondition: dealNumber <= numberCardsDeck.remainingCards*/
 
-    public ArrayList<String> drawNumberCards(NumberCardsDeck numberCardsDeck, int dealNumber) {
+    public ArrayList<NumberCard> drawNumberCards(NumberCardsDeck numberCardsDeck, int dealNumber) {
         StringBuilder response;
         String id = numberCardsDeck.getId();
-        String num = new String(String.valueOf(dealNumber));
+        String num = String.valueOf(dealNumber);
         String apiUrl = "https://deckofcardsapi.com/api/deck/" + id + "/draw/?count=" + num;
         APIAccess apiAccess = new APIAccess(apiUrl);
         response = apiAccess.send();
 
         DrawCardsResponseExtractFacade drawCardsResponseExtractFacade = new DrawCardsResponseExtractFacade(response);
-        return drawCardsResponseExtractFacade.DrawCardsExtractNumCards();
+        return convertToNumCards(drawCardsResponseExtractFacade.DrawCardsExtractNumCards());
     }
 
     @Override
-    public void reshuffleNumberCardsDeck(NumberCardsDeck numberCardsDeck){
+    public void reshuffleNumberCardsDeck(NumberCardsDeck numberCardsDeck) {
         StringBuilder response;
         String id = numberCardsDeck.getId();
         String apiUrl = "https://deckofcardsapi.com/api/deck/" + id + "/shuffle/";
@@ -50,4 +54,30 @@ public class APIDataAccessObject implements DrawCardsDataAccessInterface {
         numberCardsDeck.setRemainingCards(Integer.parseInt(decknum));
     }
 
+    private ArrayList<NumberCard> convertToNumCards(ArrayList<String> numCardsInfo) {
+        ArrayList<NumberCard> output = new ArrayList<>();
+
+        for (String s : numCardsInfo) {
+                if (s.charAt(0) == 'A') {
+                    s = s.replace('A', '1');
+                }
+
+                if (s.charAt(1) == 'S'){
+                    NumberCardBuilder builder = new NumberCardBuilder(s.charAt(1), "Green");
+                    output.add(builder.createCard());
+                } else if (s.charAt(1) == 'C') {
+                    NumberCardBuilder builder = new NumberCardBuilder(s.charAt(1), "Blue");
+                    output.add(builder.createCard());
+                } else if (s.charAt(1) == 'D') {
+                    NumberCardBuilder builder = new NumberCardBuilder(s.charAt(1), "Yellow");
+                    output.add(builder.createCard());
+                } else {
+                    NumberCardBuilder builder = new NumberCardBuilder(s.charAt(1), "Red");
+                    output.add(builder.createCard());
+                }
+
+        }
+
+        return output;
+    }
 }

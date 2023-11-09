@@ -5,8 +5,8 @@ import entities.card.NumberCard;
 import java.util.ArrayList;
 
 public class DrawCardsInteractor implements DrawCardsInputDataBoundary {
-    public DrawCardsOutputDataBoundary drawCardsOutputDataBoundary;
-    public DrawCardsDataAccessInterface drawCardsDataAccessInterface;
+    final DrawCardsOutputDataBoundary drawCardsOutputDataBoundary;
+    final DrawCardsDataAccessInterface drawCardsDataAccessInterface;
     public DrawCardsInteractor(DrawCardsOutputDataBoundary drawCardsOutputDataBoundary, DrawCardsDataAccessInterface drawCardsDataAccessInterface){
         this.drawCardsOutputDataBoundary = drawCardsOutputDataBoundary;
         this.drawCardsDataAccessInterface = drawCardsDataAccessInterface;
