@@ -4,13 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d57b91c4-c160-4479-a59c-64bc9723df5c" name="Changes" comment="">
+    <list default="true" id="d57b91c4-c160-4479-a59c-64bc9723df5c" name="Changes" comment="Adding the majority of use case Post Turn, that checks if the player holds bomb card or hot potato card after the player clicks on the &quot;next&quot; button. Also adding the CardBuilder class to replace the CardFactory class, so consider using it for FileUserDataAccessObject. I also add a helper function that convert the String API response to Number Card, and I change the drawNumberCards to return ArrayList&lt;NumberCard&gt;">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_8_2023_4_03_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_8_2023_4_03_PM__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project/APIClient.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/InitiationUseCaseFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/InitiationUseCaseFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entities/NumberCardsDeck/NumberCardsDeckCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/NumberCardsDeck/NumberCardsDeckCreator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entities/card/CardFactory.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/entities/card/FunctionalCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/card/FunctionalCard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/InitiationView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/InitiationView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/use_case/drawcards/DrawCardsInteractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/use_case/drawcards/DrawCardsInteractor.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,6 +58,26 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="app.Main" />
+      <module name="project" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="app.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -67,6 +87,8 @@
       <option name="presentableId" value="Default" />
       <updated>1699228632630</updated>
       <workItem from="1699228634022" duration="11508000" />
+      <workItem from="1699517583355" duration="202000" />
+      <workItem from="1699558140480" duration="1788000" />
     </task>
     <servers />
   </component>
@@ -83,5 +105,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Adding the majority of use case Post Turn, that checks if the player holds bomb card or hot potato card after the player clicks on the &quot;next&quot; button. Also adding the CardBuilder class to replace the CardFactory class, so consider using it for FileUserDataAccessObject. I also add a helper function that convert the String API response to Number Card, and I change the drawNumberCards to return ArrayList&lt;NumberCard&gt;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Adding the majority of use case Post Turn, that checks if the player holds bomb card or hot potato card after the player clicks on the &quot;next&quot; button. Also adding the CardBuilder class to replace the CardFactory class, so consider using it for FileUserDataAccessObject. I also add a helper function that convert the String API response to Number Card, and I change the drawNumberCards to return ArrayList&lt;NumberCard&gt;" />
   </component>
 </project>

@@ -29,7 +29,7 @@ public class FileUserDataAccessObject implements InitiationDataAccessInterface, 
     private final Map<String, Integer> playerHeaders = new LinkedHashMap<>();
 
 
-    public FileUserDataAccessObject(String csvPath, AIPlayerFactory aiPlayerFactory, HumanPlayerFactory humanPlayerFactory, NumberCardsDeckFactory numberCardsDeckFactory, CardBuilder cardBuilder) throws IOException {
+    public FileUserDataAccessObject(String csvPath, AIPlayerFactory aiPlayerFactory, HumanPlayerFactory humanPlayerFactory, NumberCardsDeckFactory numberCardsDeckFactory) throws IOException {
         this.aiPlayerFactory = aiPlayerFactory;
         this.humanPlayerFactory = humanPlayerFactory;
         this.numberCardsDeckFactory = numberCardsDeckFactory;

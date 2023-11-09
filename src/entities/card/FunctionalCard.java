@@ -36,9 +36,4 @@ public class FunctionalCard extends Card {
         }
     }
 
-    @Override
-    public void setPlayer(Player player) {
-        super.setPlayer(player);
-    }
-
 }
