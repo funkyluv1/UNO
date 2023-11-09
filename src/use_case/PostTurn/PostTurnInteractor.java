@@ -7,15 +7,16 @@ import entities.card.NumberCard;
 import use_case.drawcards.DrawCardsDataAccessInterface;
 
 import java.util.ArrayList;
-import java.util.function.Function;
 
 public class PostTurnInteractor implements PostTurnInputDataBoundary{
     final PostTurnOutputDataBoundary postTurnOutputDataBoundary;
     final DrawCardsDataAccessInterface dataAccessInterface;
+    final PostTurnDataAccessInterface postTurnDataAccessInterface;
 
-    public PostTurnInteractor(PostTurnOutputDataBoundary postTurnOutputDataBoundary, DrawCardsDataAccessInterface dataAccessInterface) {
+    public PostTurnInteractor(PostTurnOutputDataBoundary postTurnOutputDataBoundary, DrawCardsDataAccessInterface dataAccessInterface, PostTurnDataAccessInterface postTurnDataAccessInterface) {
         this.dataAccessInterface = dataAccessInterface;
         this.postTurnOutputDataBoundary = postTurnOutputDataBoundary;
+        this.postTurnDataAccessInterface = postTurnDataAccessInterface;
     }
 
     @Override
@@ -30,8 +31,8 @@ public class PostTurnInteractor implements PostTurnInputDataBoundary{
                 numberCards.addAll(dataAccessInterface.drawNumberCards(inputData.getNumberCardsDeck(), 2));
             }
         }
-
-        PostTurnOutputData outputData = new PostTurnOutputData(numberCards, functionalCards);
+        postTurnDataAccessInterface.recordPostTurnChange(functionalCards, numberCards, inputData.getCurrentPlayer());
+        PostTurnOutputData outputData = new PostTurnOutputData(numberCards, functionalCards, inputData.getCurrentPlayer());
         postTurnOutputDataBoundary.preparePostTurnView(outputData);
     }
 }

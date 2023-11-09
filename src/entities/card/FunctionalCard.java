@@ -36,4 +36,7 @@ public class FunctionalCard extends Card {
         }
     }
 
+    public String getType() {
+        return type;
+    }
 }

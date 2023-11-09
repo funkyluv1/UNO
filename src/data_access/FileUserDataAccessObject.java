@@ -19,9 +19,9 @@ import java.util.Map;
 
 public class FileUserDataAccessObject implements InitiationDataAccessInterface, PostTurnDataAccessInterface {
     private final File csvFile;
-    private AIPlayerFactory aiPlayerFactory;
-    private HumanPlayerFactory humanPlayerFactory;
-    private NumberCardsDeckFactory numberCardsDeckFactory;
+    private final AIPlayerFactory aiPlayerFactory;
+    private final HumanPlayerFactory humanPlayerFactory;
+    private final NumberCardsDeckFactory numberCardsDeckFactory;
 //    private CardBuilder cardBuilder;
     private final Map<String, Player> playerInfo = new LinkedHashMap<>();
     private final Map<Integer, NumberCardsDeck> cardsDeck = new HashMap<>();
@@ -126,7 +126,9 @@ public class FileUserDataAccessObject implements InitiationDataAccessInterface, 
 
     //TODO: implement this method
     @Override
-    public void recordPostTurnChange() {
+    public void recordPostTurnChange(ArrayList<FunctionalCard> functionalCards, ArrayList<NumberCard> numberCards, String currentPlayer) {
+        playerInfo.get(currentPlayer).setFuncCards(functionalCards);
+        playerInfo.get(currentPlayer).setNumCards(numberCards);
         save();
     }
 }
