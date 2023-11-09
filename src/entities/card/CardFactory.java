@@ -1,2 +1,3 @@
-package entities.card;public class CardFactory {
+package entities.card;
+public abstract class CardFactory {
 }

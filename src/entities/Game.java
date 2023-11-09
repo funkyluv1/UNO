@@ -9,7 +9,8 @@ import java.util.HashMap;
 public class Game {
 
     private static Game instance;
-    private Card topCard;
+    private NumberCard topCard;
+    private ArrayList<Card> FunctionalCardList;
     private int drawCard;
     private boolean isSkipped;
 
@@ -32,7 +33,7 @@ public class Game {
         return topCard;
     }
 
-    public void setTopCard(Card card) {
+    public void setTopCard(NumberCard card) {
         topCard = card;
     }
 
