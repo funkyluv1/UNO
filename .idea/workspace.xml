@@ -5,32 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d57b91c4-c160-4479-a59c-64bc9723df5c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/interface_adapter/postTurn/PostTurnController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/interface_adapter/postTurn/PostTurnPresenter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/interface_adapter/postTurn/PostTurnState.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/interface_adapter/postTurn/PostTurnViewModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/use_case/PostTurn/PostTurnDataAccessInterface.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/use_case/PostTurn/PostTurnInputData.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/use_case/PostTurn/PostTurnInputDataBoundary.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/use_case/PostTurn/PostTurnInteractor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/use_case/PostTurn/PostTurnOutputData.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/use_case/PostTurn/PostTurnOutputDataBoundary.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project/APIClient.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/InitiationUseCaseFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/InitiationUseCaseFactory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data_access/APIDataAccessObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data_access/APIDataAccessObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data_access/FileUserDataAccessObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data_access/FileUserDataAccessObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entities/NumberCardsDeck/NumberCardsDeckCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/NumberCardsDeck/NumberCardsDeckCreator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entities/NumberCardsDeck/NumberCardsDeckFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/NumberCardsDeck/NumberCardsDeckFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entities/card/BombCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/card/BombCard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entities/card/CardFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/card/CardFactory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/entities/card/FunctionalCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/card/FunctionalCard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entities/card/HotPotatoCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/card/HotPotatoCard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interface_adapter/Initiation/InitiationPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interface_adapter/Initiation/InitiationPresenter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/use_case/drawcards/DrawCardsDataAccessInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/use_case/drawcards/DrawCardsDataAccessInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/use_case/drawcards/DrawCardsInteractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/use_case/drawcards/DrawCardsInteractor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/use_case/drawcards/DrawCardsResponseExtractFacade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/use_case/drawcards/DrawCardsResponseExtractFacade.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/InitiationView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/InitiationView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -41,7 +20,6 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -77,9 +55,6 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -92,7 +67,6 @@
       <option name="presentableId" value="Default" />
       <updated>1699228632630</updated>
       <workItem from="1699228634022" duration="11508000" />
-      <workItem from="1699488027157" duration="3422000" />
     </task>
     <servers />
   </component>

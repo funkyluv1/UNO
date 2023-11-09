@@ -2,15 +2,10 @@ package app;
 
 import data_access.FileUserDataAccessObject;
 import entities.Game;
-import entities.NumberCardsDeck.NumberCardsDeck;
-import entities.NumberCardsDeck.NumberCardsDeckFactory;
-import entities.card.CardBuilder;
-import entities.card.FunctionalCard;
-import entities.card.NumberCard;
-import entities.player.AIPlayerFactory;
+import entities.NumberCardsDeck.NumberCardsDeckCreator;
+import entities.card.CardFactory;
 import entities.player.HumanPlayerFactory;
 import entities.player.Player;
-import entities.player.PlayerFactory;
 import interface_adapter.Initialized.InitializedViewModel;
 import interface_adapter.Initiation.InitiationViewModel;
 import interface_adapter.ViewManagerModel;
@@ -30,7 +25,7 @@ public class Main {
 
     // constructor
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         game = Game.getInstance();
 
         JFrame application = new JFrame("Login Example");
@@ -47,32 +42,41 @@ public class Main {
 
         InitiationViewModel initiationViewModel = new InitiationViewModel();
         InitializedViewModel initializedViewModel = new InitializedViewModel();
-        FileUserDataAccessObject fileUserDataAccessObject = new FileUserDataAccessObject("./users.csv", new AIPlayerFactory(), new HumanPlayerFactory(), new NumberCardsDeckFactory());
 
-        InitiationView initiationView = InitiationUseCaseFactory.create(viewManagerModel, initiationViewModel, initializedViewModel,fileUserDataAccessObject);
+        FileUserDataAccessObject userDataAccessObject;
+        try {
+            userDataAccessObject = new FileUserDataAccessObject("./users.csv", new HumanPlayerFactory(), new NumberCardsDeckCreator(), new CardFactory());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        InitiationView initiationView = InitiationUseCaseFactory.create(viewManagerModel, initiationViewModel, initializedViewModel,userDataAccessObject);
         views.add(initiationView, initiationView.viewName);
 
-        players = new ArrayList<Player>();
-        // TODO: add Player objects to players, then shuffle players
-        // TODO: create game object, add a while loop that updates the game object in
-        //  each round (pre-turn, in-turn. etc.)
+        application.pack();
+        application.setVisible(true);
 
-        int round = 1;
-        while (true) { //TODO: replace true with some winning criteria
-            Player currPlayer = players.get(round);
-            round = round % players.size();
+//        players = new ArrayList<Player>();
+//        // TODO: add Player objects to players, then shuffle players
+//        // TODO: create game object, add a while loop that updates the game object in
+//        //  each round (pre-turn, in-turn. etc.)
 
-            if (game.getSkipped()) {
-                //...
-            }
-            if (game.getDrawCard() > 0) {
-                //...
-            }
-
-            currPlayer.preTurn(game);
-            currPlayer.inTurn(game);
-            currPlayer.postTurn(game);
-
-        }
+//        int round = 1;
+//        while (true) { //TODO: replace true with some winning criteria
+//            Player currPlayer = players.get(round);
+//            round = round % players.size();
+//
+//            if (game.getSkipped()) {
+//                //...
+//            }
+//            if (game.getDrawCard() > 0) {
+//                //...
+//            }
+//
+//            currPlayer.preTurn(game);
+//            currPlayer.inTurn(game);
+//            currPlayer.postTurn(game);
+//
+//        }
     }
 }
