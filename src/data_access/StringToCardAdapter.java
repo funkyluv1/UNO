@@ -19,7 +19,7 @@ public class StringToCardAdapter {
             if (s.charAt(0) == 'A') {
                 s = s.replace('A', '1');
             }else if (s.charAt(0) == 'J' || s.charAt(0) == 'K' || s.charAt(0) == 'Q'){
-                String num = String.valueOf((int) Math.random() * 9);
+                String num = String.valueOf((int) (Math.random() * 9));
                 s = s.replace(s.charAt(0), num.charAt(0));
             }
 
