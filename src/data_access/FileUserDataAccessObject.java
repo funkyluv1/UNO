@@ -4,7 +4,7 @@ import entities.Game;
 import entities.NumberCardsDeck.NumberCardsDeck;
 import entities.NumberCardsDeck.NumberCardsDeckFactory;
 import entities.card.Card;
-import entities.card.CardBuilder;
+import entities.card.CardFactory;
 import entities.card.FunctionalCard;
 import entities.card.NumberCard;
 import entities.player.*;
@@ -24,7 +24,7 @@ public class FileUserDataAccessObject implements InitiationDataAccessInterface, 
     private final AIPlayerFactory aiPlayerFactory;
     private final HumanPlayerFactory humanPlayerFactory;
     private final NumberCardsDeckFactory numberCardsDeckFactory;
-//    private CardBuilder cardBuilder;
+
     private final Map<String, Player> playerInfo = new LinkedHashMap<>();
     private final Map<Integer, NumberCardsDeck> cardsDeck = new HashMap<>();
     private final Map<String, Integer> numberCardDeckHeaders = new LinkedHashMap<>();

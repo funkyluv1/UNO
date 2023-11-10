@@ -1,9 +1,9 @@
 package entities.card;
 
-public class FunctionalCardBuilder implements CardBuilder {
+public class FunctionalCardFactory extends CardFactory {
     private FunctionalCard functionalCard;
 
-    public FunctionalCardBuilder(int value, String color, String type) {
+    public FunctionalCardFactory(int value, String color, String type) {
         this.functionalCard = new FunctionalCard(value, color, type);
     }
 

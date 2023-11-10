@@ -1,9 +1,9 @@
 package entities.card;
 
-public class NumberCardBuilder implements CardBuilder {
+public class NumberCardFactory extends CardFactory {
     private NumberCard numberCard;
 
-    public NumberCardBuilder(int value, String color) {
+    public NumberCardFactory(int value, String color) {
         this.numberCard = new NumberCard(value, color);
     }
 

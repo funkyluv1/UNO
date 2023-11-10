@@ -2,7 +2,7 @@ package data_access;
 
 import entities.NumberCardsDeck.NumberCardsDeck;
 import entities.card.NumberCard;
-import entities.card.NumberCardBuilder;
+import entities.card.NumberCardFactory;
 import use_case.drawcards.DrawCardsDataAccessInterface;
 import use_case.drawcards.DrawCardsResponseExtractFacade;
 
@@ -38,7 +38,8 @@ public class APIDataAccessObject implements DrawCardsDataAccessInterface {
         response = apiAccess.send();
 
         DrawCardsResponseExtractFacade drawCardsResponseExtractFacade = new DrawCardsResponseExtractFacade(response);
-        return convertToNumCards(drawCardsResponseExtractFacade.DrawCardsExtractNumCards());
+        StringToCardAdapter adapter = new StringToCardAdapter(drawCardsResponseExtractFacade.DrawCardsExtractNumCards());
+        return adapter.convertToNumCards();
     }
 
     @Override
@@ -54,30 +55,4 @@ public class APIDataAccessObject implements DrawCardsDataAccessInterface {
         numberCardsDeck.setRemainingCards(Integer.parseInt(decknum));
     }
 
-    private ArrayList<NumberCard> convertToNumCards(ArrayList<String> numCardsInfo) {
-        ArrayList<NumberCard> output = new ArrayList<>();
-
-        for (String s : numCardsInfo) {
-                if (s.charAt(0) == 'A') {
-                    s = s.replace('A', '1');
-                }
-
-                if (s.charAt(1) == 'S'){
-                    NumberCardBuilder builder = new NumberCardBuilder(s.charAt(1), "Green");
-                    output.add(builder.createCard());
-                } else if (s.charAt(1) == 'C') {
-                    NumberCardBuilder builder = new NumberCardBuilder(s.charAt(1), "Blue");
-                    output.add(builder.createCard());
-                } else if (s.charAt(1) == 'D') {
-                    NumberCardBuilder builder = new NumberCardBuilder(s.charAt(1), "Yellow");
-                    output.add(builder.createCard());
-                } else {
-                    NumberCardBuilder builder = new NumberCardBuilder(s.charAt(1), "Red");
-                    output.add(builder.createCard());
-                }
-
-        }
-
-        return output;
-    }
 }
