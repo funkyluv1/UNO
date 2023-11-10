@@ -48,4 +48,5 @@ public class DrawCardsResponseExtractFacade {
         return numCardsInfo;
     }
 
+
 }

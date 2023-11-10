@@ -16,6 +16,7 @@ public abstract class Card {
     private final int value;
     private final String color;
     private Player player; // TODO: decide whether we still need this attribute
+
     public boolean isUsable;
 
     /**

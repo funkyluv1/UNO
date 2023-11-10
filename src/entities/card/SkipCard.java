@@ -1,6 +1,6 @@
 package entities.card;
 
-public class SkipCard extends Card{
+public class SkipCard extends FunctionalCard{
     /**
      * Constructs a new SkipCard object.
      *
@@ -8,6 +8,6 @@ public class SkipCard extends Card{
      * @param color the color of the card
      */
     public SkipCard(int value, String color) {
-        super(value, color);
+        super(value, color, "Skip");
     }
 }
