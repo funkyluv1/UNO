@@ -1,5 +1,6 @@
 package data_access;
 
+import entities.Game;
 import entities.NumberCardsDeck.NumberCardsDeck;
 import entities.NumberCardsDeck.NumberCardsDeckFactory;
 import entities.card.Card;
@@ -8,6 +9,7 @@ import entities.card.FunctionalCard;
 import entities.card.NumberCard;
 import entities.player.*;
 import use_case.PostTurn.PostTurnDataAccessInterface;
+import use_case.PreTurn.PreTurnDataAccessInterface;
 import use_case.initiation.InitiationDataAccessInterface;
 import use_case.initiation.InitiationInputData;
 
@@ -17,7 +19,7 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class FileUserDataAccessObject implements InitiationDataAccessInterface, PostTurnDataAccessInterface {
+public class FileUserDataAccessObject implements InitiationDataAccessInterface, PreTurnDataAccessInterface, PostTurnDataAccessInterface {
     private final File csvFile;
     private final AIPlayerFactory aiPlayerFactory;
     private final HumanPlayerFactory humanPlayerFactory;
@@ -27,6 +29,7 @@ public class FileUserDataAccessObject implements InitiationDataAccessInterface, 
     private final Map<Integer, NumberCardsDeck> cardsDeck = new HashMap<>();
     private final Map<String, Integer> numberCardDeckHeaders = new LinkedHashMap<>();
     private final Map<String, Integer> playerHeaders = new LinkedHashMap<>();
+    private Game game;
 
 
     public FileUserDataAccessObject(String csvPath, AIPlayerFactory aiPlayerFactory, HumanPlayerFactory humanPlayerFactory, NumberCardsDeckFactory numberCardsDeckFactory) throws IOException {
@@ -124,11 +127,28 @@ public class FileUserDataAccessObject implements InitiationDataAccessInterface, 
 
     }
 
-    //TODO: implement this method
     @Override
     public void recordPostTurnChange(ArrayList<FunctionalCard> functionalCards, ArrayList<NumberCard> numberCards, String currentPlayer) {
         playerInfo.get(currentPlayer).setFuncCards(functionalCards);
         playerInfo.get(currentPlayer).setNumCards(numberCards);
         save();
+    }
+
+
+    @Override
+    public ArrayList<NumberCard> getNumberCards(String player) {
+        return playerInfo.get(player).getNumberCards();
+    }
+
+    @Override
+    public void recordPreTurnChange(ArrayList<NumberCard> numberCards, String currentPlayer) {
+        playerInfo.get(currentPlayer).setNumCards(numberCards);
+        save();
+    }
+
+    //TODO: need a method to skip the player
+    @Override
+    public void recordSkip() {
+
     }
 }

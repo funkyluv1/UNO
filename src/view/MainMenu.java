@@ -1,6 +1,10 @@
 package view;
 
+import Assets.BackGroundMusic;
+
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import javax.swing.*;
 
 
@@ -26,6 +30,14 @@ public class MainMenu {
         f.add(b1);
         f.add(header);
 
-
+        BackGroundMusic bgm = new BackGroundMusic();
+        bgm.play("src/Assets/M2U - Body Talk.wav");
+        f.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                bgm.stop();
+                f.dispose();
+            }
+        });
     }
 }
