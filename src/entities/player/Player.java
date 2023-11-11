@@ -22,7 +22,7 @@ public abstract class Player {
     private final int userID;
     public String playerName;
     private ArrayList<NumberCard> numCards;
-    private ArrayList<FunctionalCard> funcCards;
+    private ArrayList<Card> funcCards;
     private boolean isInGame;
 
 
@@ -77,7 +77,7 @@ public abstract class Player {
      *
      * @return the funcCards attribute of this Player object
      */
-    public ArrayList<FunctionalCard> getFuncCards() {
+    public ArrayList<Card> getFuncCards() {
         return funcCards;
     }
 
@@ -87,18 +87,18 @@ public abstract class Player {
      * @param newFuncCards the new hand of functional cards that this player will
      *                     hold.
      */
-    public void setFuncCards (ArrayList<FunctionalCard> newFuncCards) {
+    public void setFuncCards (ArrayList<Card> newFuncCards) {
         funcCards = newFuncCards;
     }
 
     /**
-     * Returns the cards that are usable in the current round.
+     * Update the availability of each card in the player's hand.
      *
-     * @return the cards that are usable in the current round
+     * @param topCard the most recently played number card.
+     * @param funcCards the list of functional cards played by the last player.
      */
-    public ArrayList<Card> getUsableCards(Card topCard) {
+    public void updateUsableCards(Card topCard, ArrayList<Card> funcCards) {
         // TODO: Implement me, update isUsable of each card
-        return null;
     }
 
     /**

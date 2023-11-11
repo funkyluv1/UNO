@@ -10,7 +10,7 @@ public class Game {
 
     private static Game instance;
     private NumberCard topCard;
-    private ArrayList<Card> FunctionalCardList;
+    private ArrayList<Card> funcCardList;
     private int drawCard;
     private boolean isSkipped;
 
@@ -29,12 +29,20 @@ public class Game {
         return instance;
     }
 
-    public Card getTopCard() {
+    public NumberCard getTopCard() {
         return topCard;
     }
 
     public void setTopCard(NumberCard card) {
         topCard = card;
+    }
+
+    public ArrayList<Card> getFuncCard() {
+        return funcCardList;
+    }
+
+    public void setFuncCard(ArrayList<Card> funcCards) {
+        funcCardList = funcCards;
     }
 
     public int getDrawCard() {

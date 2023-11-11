@@ -35,7 +35,7 @@ public class HumanPlayer extends Player {
         if (selectedCard instanceof NumberCard) {
             getNumberCards().remove(selectedCard);
         }
-        else if (selectedCard instanceof FunctionalCard) {
+        else if (selectedCard != null) {
             getNumberCards().remove(selectedCard);
         }
         Card dealtCard = selectedCard;
@@ -57,19 +57,31 @@ public class HumanPlayer extends Player {
      * usable during this round
      *
      * @param card the card selected
-     * @param topCard the most recently placed card in the game
      */
-    public void setSelectedCard(Card card, Card topCard) {
+    public void setSelectedCard(Card card) {
         // TODO: "highlight" this card after the GUI part is done
-        List<Card> usableCards = super.getUsableCards(topCard);
-        if (usableCards.contains(card)) {
+        if (card.isUsable) {
             selectedCard = card;
         }
     }
 
     @Override
     public void preTurn(Game game){
-        // TODO: implement me
+        NumberCard topCard = game.getTopCard();
+        ArrayList<Card> funcCards = game.getFuncCard();
+        super.updateUsableCards(topCard, funcCards);
+        for (Card funcCard : funcCards) {
+            if (funcCard instanceof SkipCard) {
+                game.setSkipped(true);
+            }
+            if (funcCard instanceof PlusTwoCard) {
+                game.setDrawCard(game.getDrawCard() + 2);
+            }
+            if (funcCard instanceof PlusFourCard) {
+                game.setDrawCard(game.getDrawCard() + 4);
+            }
+            // TODO: add cases for Wild, Bomb, HotPotato, Random, if applicable
+        }
     }
 
     @Override
