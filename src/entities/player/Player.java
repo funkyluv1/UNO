@@ -118,11 +118,4 @@ public abstract class Player {
      */
     public abstract Card dealCard(Card topCard);
 
-    // TODO: add javadoc
-    public abstract void preTurn(Game game);
-
-    public abstract void inTurn(Game game);
-
-    public abstract void postTurn(Game game);
-
 }

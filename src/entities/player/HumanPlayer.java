@@ -65,33 +65,4 @@ public class HumanPlayer extends Player {
         }
     }
 
-    @Override
-    public void preTurn(Game game){
-        NumberCard topCard = game.getTopCard();
-        ArrayList<Card> funcCards = game.getFuncCard();
-        super.updateUsableCards(topCard, funcCards);
-        for (Card funcCard : funcCards) {
-            if (funcCard instanceof SkipCard) {
-                game.setSkipped(true);
-            }
-            if (funcCard instanceof PlusTwoCard) {
-                game.setDrawCard(game.getDrawCard() + 2);
-            }
-            if (funcCard instanceof PlusFourCard) {
-                game.setDrawCard(game.getDrawCard() + 4);
-            }
-            // TODO: add cases for Wild, Bomb, HotPotato, Random, if applicable
-        }
-    }
-
-    @Override
-    public void inTurn(Game game){
-        // TODO: implement me
-    }
-
-    @Override
-    public void postTurn(Game game){
-        // TODO: implement me
-    }
-
 }
