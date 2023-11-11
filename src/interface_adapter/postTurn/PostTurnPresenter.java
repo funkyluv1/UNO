@@ -13,7 +13,8 @@ public class PostTurnPresenter implements PostTurnOutputDataBoundary {
         this.viewManagerModel = viewManagerModel;
         this.postTurnViewModel = postTurnViewModel;
     }
-
+    //TODO: call the PreTurn of the next player after viewManagerModel.firePropertyChanged();
+    // The next player is represented by the playerIndex; add one after each postTurn
     @Override
     public void preparePostTurnView(PostTurnOutputData outputData) {
         PostTurnState postTurnState = postTurnViewModel.getState();

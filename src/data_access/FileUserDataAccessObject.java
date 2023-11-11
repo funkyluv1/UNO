@@ -128,6 +128,13 @@ public class FileUserDataAccessObject implements InitiationDataAccessInterface, 
     }
 
     @Override
+    public void savePlayerwithCards(String playerName, ArrayList<NumberCard> numberCards, ArrayList<FunctionalCard>functionalCards){
+        playerInfo.get(playerName).setFuncCards(functionalCards);
+        playerInfo.get(playerName).setNumCards(numberCards);
+        save();
+    }
+//TODO: probably need to combine these two into one public function of the DAO itself (not by overriding)
+    @Override
     public void recordPostTurnChange(ArrayList<FunctionalCard> functionalCards, ArrayList<NumberCard> numberCards, String currentPlayer) {
         playerInfo.get(currentPlayer).setFuncCards(functionalCards);
         playerInfo.get(currentPlayer).setNumCards(numberCards);
@@ -144,11 +151,5 @@ public class FileUserDataAccessObject implements InitiationDataAccessInterface, 
     public void recordPreTurnChange(ArrayList<NumberCard> numberCards, String currentPlayer) {
         playerInfo.get(currentPlayer).setNumCards(numberCards);
         save();
-    }
-
-    //TODO: need a method to skip the player
-    @Override
-    public void recordSkip() {
-
     }
 }
