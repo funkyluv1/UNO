@@ -7,31 +7,21 @@ import entities.card.NumberCard;
 import java.util.ArrayList;
 
 public class PreTurnInputData {
-    final private String currentPlayer;
+    final private int currentPlayerIndex;
     final private NumberCardsDeck numberCardsDeck;
-    final private boolean isSkipped;
     private int plusN = 0;
-
-    public PreTurnInputData(NumberCardsDeck numberCardsDeck, String currentPlayer, boolean isSkipped, int plusN) {
+//TODO: probably need playerIndex
+    public PreTurnInputData(NumberCardsDeck numberCardsDeck, int currentPlayerIndex) {
         this.numberCardsDeck = numberCardsDeck;
-        this.currentPlayer = currentPlayer;
-        this.isSkipped = isSkipped;
-        this.plusN = plusN;
+        this.currentPlayerIndex = currentPlayerIndex;
     }
 
     public NumberCardsDeck getNumberCardsDeck() {
         return numberCardsDeck;
     }
 
-    public String getCurrentPlayer() {
-        return currentPlayer;
+    public int getCurrentPlayerIndex() {
+        return currentPlayerIndex;
     }
 
-    public int getPlusN() {
-        return plusN;
-    }
-
-    public boolean isSkipped() {
-        return isSkipped;
-    }
 }
