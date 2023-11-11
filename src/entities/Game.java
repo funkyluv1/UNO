@@ -67,7 +67,8 @@ public class Game {
         return plusN;
     }
 
-    public void updatePlusN(int plusN) {
-        this.plusN += plusN;
+    public void setPlusN(int plusN) {
+        this.plusN = plusN;
     }
+
 }

@@ -10,10 +10,25 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
 =======
     <list default="true" id="d57b91c4-c160-4479-a59c-64bc9723df5c" name="Changes" comment="Implement the recordChange method in FileUserDataAccessObject to record the change of cards in hand of the current player after the turn.">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data_access/StringToCardAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data_access/StringToCardAdapter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/use_case/PreTurn/FindPlayableCards.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/use_case/PreTurn/FindPlayableCardsInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_8_2023_4_03_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_8_2023_4_03_PM__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data_access/FileUserDataAccessObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data_access/FileUserDataAccessObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entities/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interface_adapter/Initiation/InitiationPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interface_adapter/Initiation/InitiationPresenter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interface_adapter/postTurn/PostTurnPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interface_adapter/postTurn/PostTurnPresenter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/use_case/PostTurn/PostTurnInteractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/use_case/PostTurn/PostTurnInteractor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/use_case/PreTurn/PreTurnDataAccessInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/use_case/PreTurn/PreTurnDataAccessInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/use_case/PreTurn/PreTurnInputData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/use_case/PreTurn/PreTurnInputData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/use_case/PreTurn/PreTurnInteractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/use_case/PreTurn/PreTurnInteractor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/use_case/initiation/InitiationDataAccessInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/use_case/initiation/InitiationDataAccessInterface.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/use_case/initiation/InitiationInteractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/use_case/initiation/InitiationInteractor.java" afterDir="false" />
+<<<<<<< HEAD
 >>>>>>> 8448dabfeea87bd5eb8614811c73d82dad6056fa
+=======
+      <change beforePath="$PROJECT_DIR$/src/use_case/initiation/InitiationOutputData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/use_case/initiation/InitiationOutputData.java" afterDir="false" />
+>>>>>>> 63f3d9f0bd21eaddd07982a77e863f36ab3e49df
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,6 +38,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -78,7 +94,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "Siwei",
     "last_opened_file_path": "C:/Users/Yony/IdeaProjects/UNO",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",

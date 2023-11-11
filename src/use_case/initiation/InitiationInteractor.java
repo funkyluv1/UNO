@@ -1,10 +1,17 @@
 package use_case.initiation;
 
 import data_access.FileUserDataAccessObject;
+import entities.Game;
 import entities.NumberCardsDeck.NumberCardsDeck;
+import entities.card.FunctionalCard;
+import entities.card.NumberCard;
+import use_case.PreTurn.FindPlayableCardsInterface;
 import use_case.drawcards.DrawCardsDataAccessInterface;
 
+import java.util.ArrayList;
+
 public class InitiationInteractor implements InitiationInputDataBoundary {
+    public static Game game;
 
     final FileUserDataAccessObject fileUserDataAccessObject;
     final InitiationOutputDataBoundary initiationOutputDataBoundary;
@@ -16,13 +23,16 @@ public class InitiationInteractor implements InitiationInputDataBoundary {
         this.drawCardsDataAccessInterface = drawCardsDataAccessInterface;
     }
 
-    /*InitiationController should call InitiationInteractor and DrawCardsInteractor
-    * separately. InitiationView should be updated after both InitiationInteractor
-    * and DrawCardsInteractor have executed.*/
-    public void execute(InitiationInputData initiationInputData){
-        NumberCardsDeck numberCardsDeck = drawCardsDataAccessInterface.createNumberCardsDeck();
-        fileUserDataAccessObject.initiate(numberCardsDeck, initiationInputData); //Todo: finish this method
-        initiationOutputDataBoundary.prepareNewGameView(new InitiationOutputData(initiationInputData.getPlayerNames()));
+        public void execute(InitiationInputData initiationInputData){
+            int initialNumberCards = 5;
+            NumberCardsDeck numberCardsDeck = drawCardsDataAccessInterface.createNumberCardsDeck();
+            fileUserDataAccessObject.initiate(numberCardsDeck, initiationInputData);
+            for (String playerName : initiationInputData.getPlayerNames()){
+                ArrayList<NumberCard> numberCards = drawCardsDataAccessInterface.drawNumberCards(numberCardsDeck, initialNumberCards);
+                fileUserDataAccessObject.savePlayerwithCards(playerName, numberCards, new ArrayList<FunctionalCard>());
+            }
+            game = Game.getInstance();
+            initiationOutputDataBoundary.prepareNewGameView(new InitiationOutputData(initiationInputData.getPlayerNames(), numberCardsDeck));
     };
 
 }
