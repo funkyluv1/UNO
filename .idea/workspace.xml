@@ -4,6 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+<<<<<<< HEAD
+    <list default="true" id="a14e6e89-be74-4c77-b398-2a741c9aab79" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+=======
     <list default="true" id="d57b91c4-c160-4479-a59c-64bc9723df5c" name="Changes" comment="Implement the recordChange method in FileUserDataAccessObject to record the change of cards in hand of the current player after the turn.">
       <change afterPath="$PROJECT_DIR$/src/use_case/PreTurn/FindPlayableCards.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/use_case/PreTurn/FindPlayableCardsInterface.java" afterDir="false" />
@@ -19,7 +24,11 @@
       <change beforePath="$PROJECT_DIR$/src/use_case/PreTurn/PreTurnInteractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/use_case/PreTurn/PreTurnInteractor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/use_case/initiation/InitiationDataAccessInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/use_case/initiation/InitiationDataAccessInterface.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/use_case/initiation/InitiationInteractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/use_case/initiation/InitiationInteractor.java" afterDir="false" />
+<<<<<<< HEAD
+>>>>>>> 8448dabfeea87bd5eb8614811c73d82dad6056fa
+=======
       <change beforePath="$PROJECT_DIR$/src/use_case/initiation/InitiationOutputData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/use_case/initiation/InitiationOutputData.java" afterDir="false" />
+>>>>>>> 63f3d9f0bd21eaddd07982a77e863f36ab3e49df
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,14 +55,36 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectColorInfo">{
+<<<<<<< HEAD
+  &quot;associatedIndex&quot;: 5
+}</component>
+  <component name="ProjectId" id="2XmU6aijBQfjzL9e6vF6WHJvkVs" />
+=======
   &quot;associatedIndex&quot;: 0
 }</component>
   <component name="ProjectId" id="2XmK5Xfppiyd8U9w7k1njBPOMf7" />
+>>>>>>> 8448dabfeea87bd5eb8614811c73d82dad6056fa
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+<<<<<<< HEAD
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Cynthia&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+=======
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Downloaded.Files.Path.Enabled": "false",
@@ -118,6 +149,7 @@
       </list>
     </recent_temporary>
   </component>
+>>>>>>> 8448dabfeea87bd5eb8614811c73d82dad6056fa
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -125,11 +157,17 @@
       <created>1699228632630</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
+<<<<<<< HEAD
+      <updated>1699233575633</updated>
+      <workItem from="1699233578138" duration="2275000" />
+      <workItem from="1699663804487" duration="1111000" />
+=======
       <updated>1699228632630</updated>
       <workItem from="1699228634022" duration="11508000" />
       <workItem from="1699517583355" duration="202000" />
       <workItem from="1699558140480" duration="12353000" />
       <workItem from="1699642541278" duration="695000" />
+>>>>>>> 8448dabfeea87bd5eb8614811c73d82dad6056fa
     </task>
     <task id="LOCAL-00001" summary="Fix some issues with cardBuilder replacing card factory. Now the main method can open a window with two buttons">
       <option name="closed" value="true" />

@@ -9,7 +9,8 @@ import java.util.HashMap;
 public class Game {
 
     private static Game instance;
-    private Card topCard;
+    private NumberCard topCard;
+    private ArrayList<Card> funcCardList;
     private int drawCard;
     private boolean isSkipped;
     private int plusN; //the total number of additional cards need to be drawn after +2 and +4 cards
@@ -30,12 +31,20 @@ public class Game {
         return instance;
     }
 
-    public Card getTopCard() {
+    public NumberCard getTopCard() {
         return topCard;
     }
 
-    public void setTopCard(Card card) {
+    public void setTopCard(NumberCard card) {
         topCard = card;
+    }
+
+    public ArrayList<Card> getFuncCard() {
+        return funcCardList;
+    }
+
+    public void setFuncCard(ArrayList<Card> funcCards) {
+        funcCardList = funcCards;
     }
 
     public int getDrawCard() {

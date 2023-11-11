@@ -5,6 +5,7 @@ import entities.player.Player;
 /**
  * Card is the abstract base class for all types of playing cards in this UNO game.
  * This class contains essential attributes for any card, which include:
+ * - id: the id of a card; id is unique for each type of card
  * - value: the numeric value of a card
  * - color: the color of a card
  * - player: the current holder of a card
@@ -13,10 +14,14 @@ import entities.player.Player;
  * @author Cynthia Luo
  */
 public abstract class Card {
+    private String id = "";
     private final int value;
     private final String color;
+<<<<<<< HEAD
+=======
     private Player player; // TODO: decide whether we still need this attribute
 
+>>>>>>> 8448dabfeea87bd5eb8614811c73d82dad6056fa
     public boolean isUsable;
 
     /**
@@ -28,7 +33,6 @@ public abstract class Card {
     public Card(int value, String color) {
         this.value = value;
         this.color = color;
-        player = null;
         isUsable = false;
     }
 
@@ -51,14 +55,16 @@ public abstract class Card {
     }
 
     /**
-     * Returns the player attribute of this Card object.
+     * Change the id of the current card.
      *
-     * @return the player attribute of this Card object
+     * @param id new id
      */
-    public Player getPlayer() {
-        return player;
+    void changeID(String id) {
+        this.id = id;
     }
 
+<<<<<<< HEAD
+=======
     /**
      * Sets the player attribute of this Card object to [player].
      *
@@ -70,4 +76,5 @@ public abstract class Card {
 
 
 
+>>>>>>> 8448dabfeea87bd5eb8614811c73d82dad6056fa
 }

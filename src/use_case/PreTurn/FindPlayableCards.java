@@ -16,6 +16,7 @@ public class FindPlayableCards implements FindPlayableCardsInterface{
         for (FunctionalCard functionalCard : functionalCards){
             if (functionalCard.getColor().equals(roundColor) || functionalCard.getColor().equals("any")){
                 playableFunctionalCards.add(functionalCard);
+                functionalCard.isUsable = true;
             }
         }
         return playableFunctionalCards;
@@ -27,6 +28,7 @@ public class FindPlayableCards implements FindPlayableCardsInterface{
         for (NumberCard numberCard : numberCards){
             if (numberCard.getColor().equals(roundColor)){
                 playableNumberCards.add(numberCard);
+                numberCard.isUsable = true;
             }
         }
         return playableNumberCards;
