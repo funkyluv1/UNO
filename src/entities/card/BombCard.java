@@ -1,6 +1,6 @@
 package entities.card;
 
-public class BombCard extends Card{
+public class BombCard extends FunctionalCard{
     /**
      * Constructs a new BombCard object.
      *
@@ -8,6 +8,6 @@ public class BombCard extends Card{
      * @param color the color of the card
      */
     public BombCard(int value, String color) {
-        super(value, color);
+        super(value, color, "Bomb");
     }
 }

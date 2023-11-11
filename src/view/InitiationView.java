@@ -8,6 +8,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
@@ -16,7 +18,6 @@ public class InitiationView extends JPanel implements ActionListener, PropertyCh
     private final InitiationViewModel initiationViewModel;
 
     final JTextField playernameInputField = new JTextField(15);
-    private final JLabel playernameErrorField = new JLabel();
 
     private final JButton initialize;
     private final JButton addPlayer;
@@ -25,16 +26,16 @@ public class InitiationView extends JPanel implements ActionListener, PropertyCh
     private final InitiationController initiationController;
 
     public InitiationView(InitiationController initiationController, InitiationViewModel initiationViewModel) {
+
         this.initiationController = initiationController;
         this.initiationViewModel = initiationViewModel;
-        initiationViewModel.addPropertyChangeListener(this);
+        this.initiationViewModel.addPropertyChangeListener(this);
 
         JLabel title = new JLabel(InitiationViewModel.TITLE_LABEL);
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         LabelTextPanel playernameInfo = new LabelTextPanel(
                 new JLabel("Playername"), playernameInputField);
-
 
         JPanel buttons = new JPanel();
         initialize = new JButton(InitiationViewModel.INITIATION_BUTTON_LABEL);
@@ -43,24 +44,37 @@ public class InitiationView extends JPanel implements ActionListener, PropertyCh
         buttons.add(addPlayer);
 
 
-        initialize.addActionListener(
+        initialize.addActionListener( //button set enable
                 // This creates an anonymous subclass of ActionListener and instantiates it.
                 new ActionListener() {
                     public void actionPerformed(ActionEvent evt) {
                         if (evt.getSource().equals(initialize)) {
-                            //initiationController.execute();
                             InitiationState currentState = initiationViewModel.getState();
-                            //Game game = currentState.getGame();
-                            //String game = "game data";
-                            //JFrame gameframe = new JFrame();
-                            //JLabel gamelabel = new JLabel(game);
-                            //gameframe.add(gamelabel);
-                            initiationController.execute(
-                                    currentState.get_players());
+
+                            initiationController.execute(currentState.get_players(), 0);
                         }
                     }
                 }
         );
+
+        playernameInputField.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                InitiationState currentState = initiationViewModel.getState();
+                currentState.set_players(playernameInputField.getText() + e.getKeyChar());
+                initiationViewModel.setState(currentState);
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+            }
+        });
+        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+
         addPlayer.addActionListener(
                 new ActionListener(){
                     public void actionPerformed(ActionEvent evt){

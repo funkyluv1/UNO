@@ -1,8 +1,9 @@
 package entities.card;
 
-public class FunctionalCard extends Card {
+import entities.player.Player;
 
-    CardType type;
+public class FunctionalCard extends Card {
+    String type;
     /**
      * Constructs a new Card object, with its value attribute set to [value], color
      * attribute set to [color], player attribute initialized to null, isUsable
@@ -11,7 +12,7 @@ public class FunctionalCard extends Card {
      * @param value the numeric value of the card
      * @param color the color of the card
      */
-    public FunctionalCard(int value, String color, CardType type) {
+    public FunctionalCard(int value, String color, String type) {
         super(value, color);
         this.type = type;
     }
@@ -19,19 +20,23 @@ public class FunctionalCard extends Card {
     // TODO: modify pre-turn, in-turn, post-turn handling methods
     public static void applyFunction(FunctionalCard funcCard) {
         switch (funcCard.type) {
-            case PlusTwo:
+            case "PlusTwo":
                 // handlePlusFour using helper
                 break;
-            case PlusFour:
+            case "PlusFour":
                 break;
-            case Skip:
+            case "Skip":
                 break;
-            case Wild:
+            case "Wild":
                 break;
-            case Bomb:
+            case "Bomb":
                 break;
-            case HotPotato:
+            case "HotPotato":
                 break;
         }
+    }
+
+    public String getType() {
+        return type;
     }
 }

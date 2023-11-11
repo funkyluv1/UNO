@@ -11,42 +11,36 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
 public class InitializedView extends JPanel implements ActionListener, PropertyChangeListener {
-    public final String viewName = "Game Begin";
+    public final String viewName = "Initialized";
+    private final InitializedViewModel initializedViewModel;
 
-    public InitializedViewModel initializedViewModel;
+    JLabel playername;
 
-
-
-    /**
-     * A window with a title and a JButton.
-     */
     public InitializedView(InitializedViewModel initializedViewModel) {
         this.initializedViewModel = initializedViewModel;
         this.initializedViewModel.addPropertyChangeListener(this);
-        JLabel title = new JLabel("Game Board");
-        title.setAlignmentX(Component.CENTER_ALIGNMENT);
-        JPanel handPanel = new JPanel();
-        handPanel.setLayout(new FlowLayout());
-//        for (Card card : gameBoard.getHand()) {
-//            CardPanel cardPanel = new CardPanel(card);
-//            handPanel.add(cardPanel);
 
+        JLabel title = new JLabel("Initialized Screen");
+        title.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        JLabel usernameInfo = new JLabel("Currently players: ");
+        playername = new JLabel();
+
+        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         this.add(title);
-        this.add(buttons);
+        this.add(usernameInfo);
+        this.add(playername);
     }
 
-    /**
-     * React to a button click that results in evt.
-     */
-    public void actionPerformed(ActionEvent evt) {
-        System.out.println("Click " + evt.getActionCommand());
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        System.out.println("Click " + e.getActionCommand());
     }
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         InitializedState state = (InitializedState) evt.getNewValue();
-        //username.setText(state.getUsername());
+        playername.setText(state.get_players().get(0));
     }
-
 }
