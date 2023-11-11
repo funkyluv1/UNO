@@ -1,13 +1,12 @@
 package use_case.drawcards;
 
-import entities.NumberCardsDeck;
 import entities.card.NumberCard;
 
 import java.util.ArrayList;
 
 public class DrawCardsInteractor implements DrawCardsInputDataBoundary {
-    public DrawCardsOutputDataBoundary drawCardsOutputDataBoundary;
-    public DrawCardsDataAccessInterface drawCardsDataAccessInterface;
+    final DrawCardsOutputDataBoundary drawCardsOutputDataBoundary;
+    final DrawCardsDataAccessInterface drawCardsDataAccessInterface;
     public DrawCardsInteractor(DrawCardsOutputDataBoundary drawCardsOutputDataBoundary, DrawCardsDataAccessInterface drawCardsDataAccessInterface){
         this.drawCardsOutputDataBoundary = drawCardsOutputDataBoundary;
         this.drawCardsDataAccessInterface = drawCardsDataAccessInterface;
@@ -28,15 +27,16 @@ public class DrawCardsInteractor implements DrawCardsInputDataBoundary {
 
     @Override
     public void execute(DrawCardsInputData drawCardsInputData) {
-        ArrayList<String> numCardsInfo;
+        ArrayList<NumberCard> numCardsInfo;
         ArrayList<NumberCard> playerHands;
 
         if (drawCardsInputData.getDrawNumber() <= drawCardsInputData.getNumberCardsDeck().getRemainingCards()){
             numCardsInfo = drawCardsDataAccessInterface.drawNumberCards(drawCardsInputData.getNumberCardsDeck(), drawCardsInputData.getDrawNumber());
-            for (String numCardInfo : numCardsInfo){
-                playerHands = drawCardsInputData.getPlayer().getNumberCards();
-                //Todo: need Card Factory; Use Card Builder to create new Card and update each player's hands
-            }
+//            for (String numCardInfo : numCardsInfo){
+            playerHands = drawCardsInputData.getPlayer().getNumberCards();
+            playerHands.addAll(numCardsInfo);
+//                //Todo: need Card Factory; Use Card Builder to create new Card and update each player's hands
+//            }
             drawCardsInputData.getNumberCardsDeck().setRemainingCards(drawCardsInputData.getNumberCardsDeck().getRemainingCards() - drawCardsInputData.getDrawNumber());
         }
         else{
@@ -44,10 +44,11 @@ public class DrawCardsInteractor implements DrawCardsInputDataBoundary {
             numCardsInfo = drawCardsDataAccessInterface.drawNumberCards(drawCardsInputData.getNumberCardsDeck(), deckRemainingCards);
             drawCardsDataAccessInterface.reshuffleNumberCardsDeck(drawCardsInputData.getNumberCardsDeck());
             numCardsInfo.addAll(drawCardsDataAccessInterface.drawNumberCards(drawCardsInputData.getNumberCardsDeck(), drawCardsInputData.getDrawNumber() - deckRemainingCards));
-            for (String numCardInfo : numCardsInfo){
-                playerHands = drawCardsInputData.getPlayer().getNumberCards();
-                //Todo: need Card Factory; Use Card Builder to create new Card and update each player's hands
-            }
+//            for (String numCardInfo : numCardsInfo){
+            playerHands = drawCardsInputData.getPlayer().getNumberCards();
+            playerHands.addAll(numCardsInfo);
+//                //Todo: need Card Factory; Use Card Builder to create new Card and update each player's hands
+//            }
             drawCardsInputData.getNumberCardsDeck().setRemainingCards(drawCardsInputData.getNumberCardsDeck().getRemainingCards() - drawCardsInputData.getDrawNumber() + deckRemainingCards);
         }
 

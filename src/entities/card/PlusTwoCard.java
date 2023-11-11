@@ -1,6 +1,6 @@
 package entities.card;
 
-public class PlusTwoCard extends Card {
+public class PlusTwoCard extends FunctionalCard {
     /**
      * Constructs a new PlusTwoCard object.
      *
@@ -8,6 +8,6 @@ public class PlusTwoCard extends Card {
      * @param color the color of the card
      */
     public PlusTwoCard(int value, String color) {
-        super(value, color);
+        super(value, color, "PlusTwo");
     }
 }

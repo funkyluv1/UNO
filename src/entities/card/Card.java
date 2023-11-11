@@ -17,6 +17,11 @@ public abstract class Card {
     private String id = "";
     private final int value;
     private final String color;
+<<<<<<< HEAD
+=======
+    private Player player; // TODO: decide whether we still need this attribute
+
+>>>>>>> 8448dabfeea87bd5eb8614811c73d82dad6056fa
     public boolean isUsable;
 
     /**
@@ -58,4 +63,18 @@ public abstract class Card {
         this.id = id;
     }
 
+<<<<<<< HEAD
+=======
+    /**
+     * Sets the player attribute of this Card object to [player].
+     *
+     * @param player the player who will be holding this card
+     */
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
+
+
+
+>>>>>>> 8448dabfeea87bd5eb8614811c73d82dad6056fa
 }

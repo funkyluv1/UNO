@@ -8,6 +8,7 @@ import use_case.initiation.InitiationOutputDataBoundary;
 import use_case.initiation.InitiationOutputData;
 
 public class InitiationPresenter implements InitiationOutputDataBoundary {
+    //TODO: This instance variable is not used, do we need to keep it?
     private final InitiationViewModel initiationViewModel;
 
     private final InitializedViewModel initializedViewModel;
@@ -25,7 +26,7 @@ public class InitiationPresenter implements InitiationOutputDataBoundary {
         // On success, switch to the initialized view.
 
         InitializedState initializedState = initializedViewModel.getState();
-        initializedState.set_game(initiationOutputData.getGame());
+        initializedState.set_players(initiationOutputData.getPlayerNames());
         this.initializedViewModel.setState(initializedState);
         this.initializedViewModel.firePropertyChanged();
 

@@ -4,9 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="a14e6e89-be74-4c77-b398-2a741c9aab79" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+=======
+    <list default="true" id="d57b91c4-c160-4479-a59c-64bc9723df5c" name="Changes" comment="Implement the recordChange method in FileUserDataAccessObject to record the change of cards in hand of the current player after the turn.">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data_access/StringToCardAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data_access/StringToCardAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/use_case/initiation/InitiationInteractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/use_case/initiation/InitiationInteractor.java" afterDir="false" />
+>>>>>>> 8448dabfeea87bd5eb8614811c73d82dad6056fa
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,14 +39,21 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectColorInfo">{
+<<<<<<< HEAD
   &quot;associatedIndex&quot;: 5
 }</component>
   <component name="ProjectId" id="2XmU6aijBQfjzL9e6vF6WHJvkVs" />
+=======
+  &quot;associatedIndex&quot;: 0
+}</component>
+  <component name="ProjectId" id="2XmK5Xfppiyd8U9w7k1njBPOMf7" />
+>>>>>>> 8448dabfeea87bd5eb8614811c73d82dad6056fa
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+<<<<<<< HEAD
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
@@ -54,17 +68,108 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
+=======
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Downloaded.Files.Path.Enabled": "false",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "C:/Users/Yony/IdeaProjects/UNO",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Yony\IdeaProjects\UNO\src\Assets" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Yony\IdeaProjects\UNO\src\Assets" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.MainMenu">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="app.Main" />
+      <module name="project" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="app.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MainMenu" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="view.MainMenu" />
+      <module name="project" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="view.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.MainMenu" />
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
+  </component>
+>>>>>>> 8448dabfeea87bd5eb8614811c73d82dad6056fa
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="a14e6e89-be74-4c77-b398-2a741c9aab79" name="Changes" comment="" />
-      <created>1699233575633</created>
+      <changelist id="d57b91c4-c160-4479-a59c-64bc9723df5c" name="Changes" comment="" />
+      <created>1699228632630</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
+<<<<<<< HEAD
       <updated>1699233575633</updated>
       <workItem from="1699233578138" duration="2275000" />
       <workItem from="1699663804487" duration="1111000" />
+=======
+      <updated>1699228632630</updated>
+      <workItem from="1699228634022" duration="11508000" />
+      <workItem from="1699517583355" duration="202000" />
+      <workItem from="1699558140480" duration="12353000" />
+      <workItem from="1699642541278" duration="695000" />
+>>>>>>> 8448dabfeea87bd5eb8614811c73d82dad6056fa
     </task>
+    <task id="LOCAL-00001" summary="Fix some issues with cardBuilder replacing card factory. Now the main method can open a window with two buttons">
+      <option name="closed" value="true" />
+      <created>1699560489365</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1699560489365</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Implement the recordChange method in FileUserDataAccessObject to record the change of cards in hand of the current player after the turn.">
+      <option name="closed" value="true" />
+      <created>1699563023717</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1699563023717</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -80,5 +185,11 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Adding the majority of use case Post Turn, that checks if the player holds bomb card or hot potato card after the player clicks on the &quot;next&quot; button. Also adding the CardBuilder class to replace the CardFactory class, so consider using it for FileUserDataAccessObject. I also add a helper function that convert the String API response to Number Card, and I change the drawNumberCards to return ArrayList&lt;NumberCard&gt;" />
+    <MESSAGE value="Fix some issues with cardBuilder replacing card factory. Now the main method can open a window with two buttons" />
+    <MESSAGE value="Implement the recordChange method in FileUserDataAccessObject to record the change of cards in hand of the current player after the turn." />
+    <option name="LAST_COMMIT_MESSAGE" value="Implement the recordChange method in FileUserDataAccessObject to record the change of cards in hand of the current player after the turn." />
   </component>
 </project>
