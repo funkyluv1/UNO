@@ -3,7 +3,7 @@ package app;
 import data_access.FileUserDataAccessObject;
 import entities.Game;
 import entities.NumberCardsDeck.NumberCardsDeckCreator;
-import entities.card.CardFactory;
+import entities.player.AIPlayerFactory;
 import entities.player.HumanPlayerFactory;
 import interface_adapter.Initialized.InitializedViewModel;
 import interface_adapter.Initiation.InitiationViewModel;
@@ -39,7 +39,7 @@ public class Main {
 
         FileUserDataAccessObject userDataAccessObject;
         try {
-            userDataAccessObject = new FileUserDataAccessObject("./users.csv", new HumanPlayerFactory(), new NumberCardsDeckCreator(), new CardFactory());
+            userDataAccessObject = new FileUserDataAccessObject("./users.csv", new AIPlayerFactory(), new HumanPlayerFactory(), new NumberCardsDeckCreator());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

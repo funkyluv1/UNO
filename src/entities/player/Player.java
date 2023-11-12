@@ -83,13 +83,13 @@ public abstract class Player {
     }
 
     /**
-     * Returns the cards that are usable in the current round.
+     * Update the availability of each card in the player's hand.
      *
-     * @return the cards that are usable in the current round
+     * @param topCard the most recently played number card.
+     * @param funcCards the list of functional cards played by the last player.
      */
-    public ArrayList<Card> getUsableCards(Card topCard) {
+    public void updateUsableCards(Card topCard, ArrayList<Card> funcCards) {
         // TODO: Implement me, update isUsable of each card
-        return null;
     }
 
     /**
@@ -117,12 +117,5 @@ public abstract class Player {
      * @return the Card object dealt
      */
     public abstract Card dealCard(Card topCard);
-
-    // TODO: add javadoc
-    public abstract void preTurn(Game game);
-
-    public abstract void inTurn(Game game);
-
-    public abstract void postTurn(Game game);
 
 }

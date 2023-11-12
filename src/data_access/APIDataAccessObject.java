@@ -1,13 +1,16 @@
 package data_access;
 
 import entities.NumberCardsDeck.NumberCardsDeck;
+import entities.card.NumberCard;
+import entities.card.NumberCardFactory;
 import use_case.drawcards.DrawCardsDataAccessInterface;
 import use_case.drawcards.DrawCardsResponseExtractFacade;
 
 import java.util.ArrayList;
 
 public class APIDataAccessObject implements DrawCardsDataAccessInterface {
-    public APIDataAccessObject(){};
+    public APIDataAccessObject() {
+    }
 
     @Override
     public NumberCardsDeck createNumberCardsDeck() {
@@ -21,24 +24,26 @@ public class APIDataAccessObject implements DrawCardsDataAccessInterface {
         String decknum = drawCardsResponseExtractFacade.DrawCardsExtractRemaining();
         return new NumberCardsDeck(id, Integer.parseInt(decknum));
     }
+
     @Override
 
     /* Precondition: dealNumber <= numberCardsDeck.remainingCards*/
 
-    public ArrayList<String> drawNumberCards(NumberCardsDeck numberCardsDeck, int dealNumber) {
+    public ArrayList<NumberCard> drawNumberCards(NumberCardsDeck numberCardsDeck, int dealNumber) {
         StringBuilder response;
         String id = numberCardsDeck.getId();
-        String num = new String(String.valueOf(dealNumber));
+        String num = String.valueOf(dealNumber);
         String apiUrl = "https://deckofcardsapi.com/api/deck/" + id + "/draw/?count=" + num;
         APIAccess apiAccess = new APIAccess(apiUrl);
         response = apiAccess.send();
 
         DrawCardsResponseExtractFacade drawCardsResponseExtractFacade = new DrawCardsResponseExtractFacade(response);
-        return drawCardsResponseExtractFacade.DrawCardsExtractNumCards();
+        StringToCardAdapter adapter = new StringToCardAdapter(drawCardsResponseExtractFacade.DrawCardsExtractNumCards());
+        return adapter.convertToNumCards();
     }
 
     @Override
-    public void reshuffleNumberCardsDeck(NumberCardsDeck numberCardsDeck){
+    public void reshuffleNumberCardsDeck(NumberCardsDeck numberCardsDeck) {
         StringBuilder response;
         String id = numberCardsDeck.getId();
         String apiUrl = "https://deckofcardsapi.com/api/deck/" + id + "/shuffle/";

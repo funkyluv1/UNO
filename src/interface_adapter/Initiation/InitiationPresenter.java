@@ -4,10 +4,14 @@ import entities.Game;
 import interface_adapter.Initialized.InitializedState;
 import interface_adapter.Initialized.InitializedViewModel;
 import interface_adapter.ViewManagerModel;
+import interface_adapter.preTurn.PreTurnController;
+import use_case.PreTurn.PreTurnInputData;
+import use_case.PreTurn.PreTurnInputDataBoundary;
 import use_case.initiation.InitiationOutputDataBoundary;
 import use_case.initiation.InitiationOutputData;
 
 public class InitiationPresenter implements InitiationOutputDataBoundary {
+    //TODO: This instance variable is not used, do we need to keep it?
     private final InitiationViewModel initiationViewModel;
 
     private final InitializedViewModel initializedViewModel;
@@ -21,7 +25,7 @@ public class InitiationPresenter implements InitiationOutputDataBoundary {
     }
 
     @Override
-    public void prepareNewGameView(InitiationOutputData initiationOutputData) {
+    public void prepareNewGameView(InitiationOutputData initiationOutputData, PreTurnInputDataBoundary preTurnInputDataBoundary) {
         // On success, switch to the initialized view.
 
         InitializedState initializedState = initializedViewModel.getState();
@@ -31,5 +35,8 @@ public class InitiationPresenter implements InitiationOutputDataBoundary {
 
         viewManagerModel.setActiveView(initializedViewModel.getViewName());
         viewManagerModel.firePropertyChanged();
+
+        PreTurnController preTurnController = new PreTurnController(preTurnInputDataBoundary);
+        preTurnController.execute(new PreTurnInputData(initiationOutputData.getNumberCardsDeck(), 0));
     }
 }
