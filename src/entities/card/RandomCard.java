@@ -7,6 +7,6 @@ public class RandomCard extends Card{
     public RandomCard() {
         super((int) Math.floor(Math.random()*9),
                 new String[]{"red", "blue", "green", "yellow"}[(int) Math.floor(Math.random()*4)]);
-        super.changeID(Integer.toString(value));
+//        super.changeID(Integer.toString(value));
     }
 }

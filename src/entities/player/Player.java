@@ -4,6 +4,7 @@ import entities.Game;
 import entities.card.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Player is the abstract base class for all player classes in this UNO game, which
@@ -118,4 +119,7 @@ public abstract class Player {
      */
     public abstract Card dealCard(Card topCard);
 
+    protected List<Card> getUsableCards(Card topCard) {
+        return null;
+    }
 }
