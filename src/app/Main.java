@@ -5,7 +5,6 @@ import entities.Game;
 import entities.NumberCardsDeck.NumberCardsDeckCreator;
 import entities.card.CardFactory;
 import entities.player.HumanPlayerFactory;
-import entities.player.Player;
 import interface_adapter.Initialized.InitializedViewModel;
 import interface_adapter.Initiation.InitiationViewModel;
 import interface_adapter.ViewManagerModel;
@@ -15,20 +14,15 @@ import view.InitiationView;
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
-import java.util.*;
-import java.util.List;
+
 
 public class Main {
-
-    static List<Player> players;
     static Game game;
-
-    // constructor
 
     public static void main(String[] args) {
         game = Game.getInstance();
 
-        JFrame application = new JFrame("Login Example");
+        JFrame application = new JFrame("Initiation Example");
         application.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         CardLayout cardLayout = new CardLayout();

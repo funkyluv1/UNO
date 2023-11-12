@@ -22,7 +22,6 @@ public class InitiationView extends JPanel implements ActionListener, PropertyCh
     private final JButton initialize;
     private final JButton addPlayer;
 
-
     private final InitiationController initiationController;
 
     public InitiationView(InitiationController initiationController, InitiationViewModel initiationViewModel) {
@@ -61,7 +60,7 @@ public class InitiationView extends JPanel implements ActionListener, PropertyCh
             @Override
             public void keyTyped(KeyEvent e) {
                 InitiationState currentState = initiationViewModel.getState();
-                currentState.set_players(playernameInputField.getText() + e.getKeyChar());
+                currentState.set_player(playernameInputField.getText() + e.getKeyChar());
                 initiationViewModel.setState(currentState);
             }
 
@@ -81,7 +80,7 @@ public class InitiationView extends JPanel implements ActionListener, PropertyCh
                         if (evt.getSource().equals(addPlayer)) {
                             InitiationState currentState = initiationViewModel.getState();
                             String input = playernameInputField.getText();
-                            currentState.set_players(input);
+                            currentState.set_player(input);
                             playernameInputField.setText("");
                         }
                     }
@@ -92,6 +91,8 @@ public class InitiationView extends JPanel implements ActionListener, PropertyCh
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         this.add(title);
+        this.add(playernameInfo);
+
         this.add(buttons);
     }
 
@@ -99,13 +100,16 @@ public class InitiationView extends JPanel implements ActionListener, PropertyCh
      * React to a button click that results in evt.
      */
     public void actionPerformed(ActionEvent evt) {
-        JOptionPane.showConfirmDialog(this, "Cancel not implemented yet.");
+        System.out.println("Click " + evt.getActionCommand());
     }
 
     @Override
-    public void propertyChange(PropertyChangeEvent evt) {}
+    public void propertyChange(PropertyChangeEvent evt) {
+        InitiationState state = (InitiationState) evt.getNewValue();
+        setFields(state);
+    }
 
-//    private void setFields(InitiationState state) {
-//        playernameInputField.setText(state.getPlayername());
-//    }
+    private void setFields(InitiationState state) {
+        playernameInputField.setText(state.get_players().get(0));
+    }
 }
