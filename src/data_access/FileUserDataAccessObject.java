@@ -152,4 +152,16 @@ public class FileUserDataAccessObject implements InitiationDataAccessInterface, 
         playerInfo.get(currentPlayer).setNumCards(numberCards);
         save();
     }
+
+    @Override
+    public ArrayList<FunctionalCard> getFunctionalCards(String player) {
+        // TODO: implement me
+        return null;
+    }
+
+    @Override
+    public Player getPlayer(int playerIndex) {
+        // TODO: implement me
+        return null;
+    }
 }

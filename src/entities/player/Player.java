@@ -21,7 +21,7 @@ import java.util.ArrayList;
 public abstract class Player {
     public String playerName;
     private ArrayList<NumberCard> numCards;
-    private ArrayList<Card> funcCards;
+    private ArrayList<FunctionalCard> funcCards;
     private boolean isInGame;
 
 
@@ -68,7 +68,7 @@ public abstract class Player {
      *
      * @return the funcCards attribute of this Player object
      */
-    public ArrayList<Card> getFuncCards() {
+    public ArrayList<FunctionalCard> getFuncCards() {
         return funcCards;
     }
 
@@ -78,7 +78,7 @@ public abstract class Player {
      * @param newFuncCards the new hand of functional cards that this player will
      *                     hold.
      */
-    public void setFuncCards (ArrayList<Card> newFuncCards) {
+    public void setFuncCards (ArrayList<FunctionalCard> newFuncCards) {
         funcCards = newFuncCards;
     }
 
