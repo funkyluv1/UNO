@@ -108,7 +108,7 @@ public class FileUserDataAccessObject implements InitiationDataAccessInterface, 
                 for (NumberCard numberCard : numberCardsList){
                     numberCards = numberCards.concat(numberCard.getString()).concat(",");
                 }
-                numberCards = numberCards.substring(0, numberCards.length() - 1);
+                //numberCards = numberCards.substring(0, numberCards.length() - 1);
                 String funcCards = "";
                 //TODO: need getString for FunctionalCards
 
