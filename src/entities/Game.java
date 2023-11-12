@@ -15,6 +15,8 @@ public class Game {
     private boolean isSkipped;
     private int plusN; //the total number of additional cards need to be drawn after +2 and +4 cards
 
+    private int currentPlayerIndex;
+
     private Game() {
         String[] randColor = {"red", "blue", "green", "yellow"};
         int randColorIndex = (int) Math.floor(Math.random()*4);
@@ -23,6 +25,7 @@ public class Game {
         drawCard = 0;
         isSkipped = false;
         plusN = 0;
+        currentPlayerIndex = 0;
     }
 
     public static Game getInstance() {
@@ -71,4 +74,11 @@ public class Game {
         this.plusN = plusN;
     }
 
+    public int getCurrentPlayerIndex() {
+        return currentPlayerIndex;
+    }
+
+    public void updateCurrentPlayerIndex() {
+        currentPlayerIndex += 1;
+    }
 }
