@@ -1,0 +1,14 @@
+Index: users.csv
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>p1lpa8qzb094;36\r\nHuman;dan;83G,72R,67B,67B,72R,;\r\nHuman;jason;68Y,83G,72R,83G,68Y,;\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/users.csv b/users.csv
+--- a/users.csv	(revision 1fd7ac89d571041c00669f22d7b91372bdc3d3ec)
++++ b/users.csv	(date 1699921747648)
+@@ -1,3 +1,0 @@
+-p1lpa8qzb094;36
+-Human;dan;83G,72R,67B,67B,72R,;
+-Human;jason;68Y,83G,72R,83G,68Y,;
