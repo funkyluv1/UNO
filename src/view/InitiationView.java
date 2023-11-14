@@ -56,22 +56,6 @@ public class InitiationView extends JPanel implements ActionListener, PropertyCh
                 }
         );
 
-        playernameInputField.addKeyListener(new KeyListener() {
-            @Override
-            public void keyTyped(KeyEvent e) {
-                InitiationState currentState = initiationViewModel.getState();
-                currentState.set_player(playernameInputField.getText() + e.getKeyChar());
-                initiationViewModel.setState(currentState);
-            }
-
-            @Override
-            public void keyPressed(KeyEvent e) {
-            }
-
-            @Override
-            public void keyReleased(KeyEvent e) {
-            }
-        });
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         addPlayer.addActionListener(

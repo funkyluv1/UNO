@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.ArrayList;
 
 public class InitializedView extends JPanel implements ActionListener, PropertyChangeListener {
     public final String viewName = "Initialized";
@@ -41,6 +42,12 @@ public class InitializedView extends JPanel implements ActionListener, PropertyC
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         InitializedState state = (InitializedState) evt.getNewValue();
-        playername.setText(state.get_players().get(0));
+        // we don't know how many players there are, so we can't create player1, player2 ...
+        // this is the best we can do, display all players in one string
+        String output = "";
+        ArrayList<String> players = state.get_players();
+        for (int i = 0; i < players.size(); i++)
+            output += (players.get(i) + "/n");
+        playername.setText(output);
     }
 }

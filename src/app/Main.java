@@ -8,6 +8,7 @@ import entities.player.HumanPlayerFactory;
 import interface_adapter.Initialized.InitializedViewModel;
 import interface_adapter.Initiation.InitiationViewModel;
 import interface_adapter.ViewManagerModel;
+import view.InitializedView;
 import view.ViewManager;
 import view.InitiationView;
 
@@ -46,6 +47,9 @@ public class Main {
 
         InitiationView initiationView = InitiationUseCaseFactory.create(viewManagerModel, initiationViewModel, initializedViewModel,userDataAccessObject);
         views.add(initiationView, initiationView.viewName);
+
+        InitializedView initializedView = new InitializedView(initializedViewModel);
+        views.add(initializedView, initializedView.viewName);
 
         application.pack();
         application.setVisible(true);
