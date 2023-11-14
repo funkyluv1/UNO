@@ -47,7 +47,7 @@ public class InitializedView extends JPanel implements ActionListener, PropertyC
         String output = "";
         ArrayList<String> players = state.get_players();
         for (int i = 0; i < players.size(); i++)
-            output += (players.get(i) + "/n");
+            output += (players.get(i) + "\n");
         playername.setText(output);
     }
 }
