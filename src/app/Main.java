@@ -7,8 +7,10 @@ import entities.player.AIPlayerFactory;
 import entities.player.HumanPlayerFactory;
 import interface_adapter.Initialized.InitializedViewModel;
 import interface_adapter.Initiation.InitiationViewModel;
+import interface_adapter.MainMeau.MainMeauViewModel;
 import interface_adapter.ViewManagerModel;
 import view.InitializedView;
+import view.MainMeauView;
 import view.ViewManager;
 import view.InitiationView;
 
@@ -25,6 +27,10 @@ public class Main {
 
         JFrame application = new JFrame("Initiation Example");
         application.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        application.setSize(800, 600);
+
+        // Center the window on the screen
+        application.setLocationRelativeTo(null);
 
         CardLayout cardLayout = new CardLayout();
 
@@ -44,6 +50,9 @@ public class Main {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
+        MainMeauView mainMeauView = new MainMeauView(new MainMeauViewModel());
+        views.add(mainMeauView, mainMeauView.viewName);
 
         InitiationView initiationView = InitiationUseCaseFactory.create(viewManagerModel, initiationViewModel, initializedViewModel,userDataAccessObject);
         views.add(initiationView, initiationView.viewName);
