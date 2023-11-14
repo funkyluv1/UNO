@@ -16,16 +16,16 @@ public class MainMenu implements ActionListener {
         f.setVisible(true);
         f.getContentPane().setBackground(Color.RED);
 
+
         /* i think this part is useless?*/
         JPanel panel = new JPanel();
         panel.setBounds(0,0,1920,1080);
-        panel.setBackground(Color.gray);
+
 
 
         JButton b1 = new JButton("Play Game");
         b1.setBounds(400,300,700,200);
         b1.setBackground(Color.BLACK);
-
         b1.setFont(new Font("Helvetica", Font.PLAIN, 40));
         b1.setForeground(Color.WHITE);
 
@@ -49,7 +49,6 @@ public class MainMenu implements ActionListener {
 
         f.add(b1);
         f.add(header);
-
 
     }
 
