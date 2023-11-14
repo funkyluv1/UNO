@@ -1,6 +1,7 @@
 package use_case.PreTurn;
 
 import data_access.FileUserDataAccessObject;
+import entities.NumberCardsDeck.NumberCardsDeck;
 import entities.card.*;
 import entities.player.Player;
 import use_case.drawcards.DrawCardsDataAccessInterface;
@@ -37,16 +38,19 @@ public class PreTurnInteractor implements PreTurnInputDataBoundary {
             }
         }
 
-        if (game.getPlusN() > 0 && !hasPlusCard) //previousPlayer played a plusCard, and the currentPlayer doesnt have a plus card
-            {
-            numberCards.addAll(dataAccessInterface.drawNumberCards(currentInputData.getNumberCardsDeck(), game.getPlusN()));
+        NumberCardsDeck numberCardsDeck = currentInputData.getNumberCardsDeck();
+        PreTurnInputData nextInputData = new PreTurnInputData(numberCardsDeck, currentInputData.getCurrentPlayerIndex() + 1);
+        if (game.getPlusN() > 0 && !hasPlusCard) { //previousPlayer played a plusCard, and the currentPlayer doesnt have a plus card
+            numberCards.addAll(dataAccessInterface.drawNumberCards(numberCardsDeck, game.getPlusN()));
             preTurnDataAccessInterface.recordPreTurnChange(numberCards, currentPlayer.getPlayerName());
             game.setPlusN(0);
-            //TODO: skip and turn to the next Player's PreTurn
+            game.updateCurrentPlayerIndex();
+            execute(nextInputData);
         }
         else if (game.getSkipped()) {
-            //TODO: skip and turn to the next Player's Preturn
             game.setSkipped(false);
+            game.updateCurrentPlayerIndex();
+            execute(nextInputData);
         }
         else {
             //TODO: highlight PlayableCard
