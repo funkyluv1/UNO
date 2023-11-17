@@ -53,7 +53,6 @@ public class PreTurnInteractor implements PreTurnInputDataBoundary {
             execute(nextInputData);
         }
         else {
-            //TODO: highlight PlayableCard
             PreTurnOutputData outputData = new PreTurnOutputData(numberCards, currentPlayer.getPlayerName());
             preTurnOutputDataBoundary.preparePreTurnView(outputData);
         }
