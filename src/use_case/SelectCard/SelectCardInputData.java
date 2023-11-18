@@ -5,13 +5,11 @@ import entities.card.*;
 
 public class SelectCardInputData{
     private final Player player;
-    private final Card selectedCardNew;
-    private final Object selectedCardOld;
+    private final Card selectedCard;
 
-    public SelectCardInputData (Player player, Card cardNew, Object cardOld) {
+    public SelectCardInputData (Player player, Card cardNew) {
         this.player = player;
-        selectedCardNew = cardNew;
-        selectedCardOld = cardOld;
+        selectedCard = cardNew;
     }
 
     public Player getPlayer() {
@@ -19,10 +17,7 @@ public class SelectCardInputData{
     }
 
     public Card getSelectedCardNew() {
-        return selectedCardNew;
+        return selectedCard;
     }
 
-    public Object getSelectedCardOld() {
-        return selectedCardOld;
-    }
 }

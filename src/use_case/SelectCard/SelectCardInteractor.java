@@ -1,6 +1,7 @@
 package use_case.SelectCard;
 
 import entities.card.Card;
+import static use_case.initiation.InitiationInteractor.game;
 
 public class SelectCardInteractor implements SelectCardInputDataBoundary{
     final SelectCardOutputDataBoundary selectCardOutputDataBoundary;
@@ -11,15 +12,9 @@ public class SelectCardInteractor implements SelectCardInputDataBoundary{
 
     @Override
     public void execute(SelectCardInputData selectCardInputData) {
-        Card selectedCardNew = selectCardInputData.getSelectedCardNew();
-        Object selectedCardOld = selectCardInputData.getSelectedCardOld();
-        SelectCardOutputData selectCardOutputData;
-        if (selectedCardNew == selectedCardOld) {
-            selectCardOutputData = new SelectCardOutputData(null);
-        }
-        else {
-            selectCardOutputData = new SelectCardOutputData(selectedCardNew);
-        }
+        Card selectedCard = selectCardInputData.getSelectedCardNew();
+        game.setCurrSelectedCard(selectedCard);
+        SelectCardOutputData selectCardOutputData = new SelectCardOutputData(selectedCard);
         selectCardOutputDataBoundary.prepareSelectCardView(selectCardOutputData);
     }
 }
