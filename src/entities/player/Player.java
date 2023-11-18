@@ -4,6 +4,7 @@ import entities.Game;
 import entities.card.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Player is the abstract base class for all player classes in this UNO game, which
@@ -21,7 +22,7 @@ import java.util.ArrayList;
 public abstract class Player {
     public String playerName;
     private ArrayList<NumberCard> numCards;
-    private ArrayList<Card> funcCards;
+    private ArrayList<FunctionalCard> funcCards;
     private boolean isInGame;
 
 
@@ -68,7 +69,7 @@ public abstract class Player {
      *
      * @return the funcCards attribute of this Player object
      */
-    public ArrayList<Card> getFuncCards() {
+    public ArrayList<FunctionalCard> getFuncCards() {
         return funcCards;
     }
 
@@ -78,7 +79,7 @@ public abstract class Player {
      * @param newFuncCards the new hand of functional cards that this player will
      *                     hold.
      */
-    public void setFuncCards (ArrayList<Card> newFuncCards) {
+    public void setFuncCards (ArrayList<FunctionalCard> newFuncCards) {
         funcCards = newFuncCards;
     }
 
@@ -118,4 +119,7 @@ public abstract class Player {
      */
     public abstract Card dealCard(Card topCard);
 
+    protected List<Card> getUsableCards(Card topCard) {
+        return null;
+    }
 }

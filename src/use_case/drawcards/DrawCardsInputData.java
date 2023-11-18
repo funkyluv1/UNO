@@ -4,9 +4,9 @@ import entities.NumberCardsDeck.NumberCardsDeck;
 import entities.player.Player;
 
 public class DrawCardsInputData {
-    public Player player;
-    public NumberCardsDeck numberCardsDeck;
-    public int drawNumber;
+    private final Player player;
+    private final NumberCardsDeck numberCardsDeck;
+    private final int drawNumber;
     public DrawCardsInputData(Player player, NumberCardsDeck numberCardsDeck, int dealNumber){
         this.player = player;
         this.numberCardsDeck = numberCardsDeck;

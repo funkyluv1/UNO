@@ -9,6 +9,6 @@ import java.util.ArrayList;
 public interface PreTurnDataAccessInterface {
     ArrayList<NumberCard> getNumberCards(String player);
     void recordPreTurnChange(ArrayList<NumberCard> numberCards, String currentPlayer);
-    ArrayList<FunctionalCard> getPlayerFunctionalCards();
+    ArrayList<FunctionalCard> getFunctionalCards(String player);
     Player getPlayer(int playerIndex);
 }

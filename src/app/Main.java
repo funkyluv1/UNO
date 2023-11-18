@@ -5,30 +5,25 @@ import entities.Game;
 import entities.NumberCardsDeck.NumberCardsDeckCreator;
 import entities.player.AIPlayerFactory;
 import entities.player.HumanPlayerFactory;
-import entities.player.Player;
 import interface_adapter.Initialized.InitializedViewModel;
 import interface_adapter.Initiation.InitiationViewModel;
 import interface_adapter.ViewManagerModel;
+import view.InitializedView;
 import view.ViewManager;
 import view.InitiationView;
 
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
-import java.util.*;
-import java.util.List;
+
 
 public class Main {
-
-    static List<Player> players;
     static Game game;
-
-    // constructor
 
     public static void main(String[] args) {
         game = Game.getInstance();
 
-        JFrame application = new JFrame("Login Example");
+        JFrame application = new JFrame("Initiation Example");
         application.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         CardLayout cardLayout = new CardLayout();
@@ -52,6 +47,9 @@ public class Main {
 
         InitiationView initiationView = InitiationUseCaseFactory.create(viewManagerModel, initiationViewModel, initializedViewModel,userDataAccessObject);
         views.add(initiationView, initiationView.viewName);
+
+        InitializedView initializedView = new InitializedView(initializedViewModel);
+        views.add(initializedView, initializedView.viewName);
 
         application.pack();
         application.setVisible(true);

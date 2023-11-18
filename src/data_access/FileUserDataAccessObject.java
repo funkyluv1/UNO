@@ -108,7 +108,7 @@ public class FileUserDataAccessObject implements InitiationDataAccessInterface, 
                 for (NumberCard numberCard : numberCardsList){
                     numberCards = numberCards.concat(numberCard.getString()).concat(",");
                 }
-                numberCards = numberCards.substring(0, numberCards.length() - 1);
+                //numberCards = numberCards.substring(0, numberCards.length() - 1);
                 String funcCards = "";
                 //TODO: need getString for FunctionalCards
 
@@ -151,5 +151,17 @@ public class FileUserDataAccessObject implements InitiationDataAccessInterface, 
     public void recordPreTurnChange(ArrayList<NumberCard> numberCards, String currentPlayer) {
         playerInfo.get(currentPlayer).setNumCards(numberCards);
         save();
+    }
+
+    @Override
+    public ArrayList<FunctionalCard> getFunctionalCards(String player) {
+        // TODO: implement me
+        return null;
+    }
+
+    @Override
+    public Player getPlayer(int playerIndex) {
+        // TODO: implement me
+        return null;
     }
 }

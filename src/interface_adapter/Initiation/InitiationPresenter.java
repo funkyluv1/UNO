@@ -25,7 +25,7 @@ public class InitiationPresenter implements InitiationOutputDataBoundary {
     }
 
     @Override
-    public void prepareNewGameView(InitiationOutputData initiationOutputData, PreTurnInputDataBoundary preTurnInputDataBoundary) {
+    public void prepareNewGameView(InitiationOutputData initiationOutputData) {
         // On success, switch to the initialized view.
 
         InitializedState initializedState = initializedViewModel.getState();
@@ -35,8 +35,5 @@ public class InitiationPresenter implements InitiationOutputDataBoundary {
 
         viewManagerModel.setActiveView(initializedViewModel.getViewName());
         viewManagerModel.firePropertyChanged();
-
-        PreTurnController preTurnController = new PreTurnController(preTurnInputDataBoundary);
-        preTurnController.execute(new PreTurnInputData(initiationOutputData.getNumberCardsDeck(), 0));
     }
 }
