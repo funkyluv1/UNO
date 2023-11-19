@@ -58,10 +58,13 @@ public class InitializedView extends JPanel implements ActionListener, PropertyC
 
 
     public InitializedView(InitializedViewModel initializedViewModel) {
+
+        this.viewName = "Initialized";
+        this.initializedViewModel = initializedViewModel;
+        this.initializedViewModel.addPropertyChangeListener(this);
+
         JLabel title = new JLabel("Initialized Screen");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
-        this.viewName = "InitializedView";
-        this.initializedViewModel = initializedViewModel;
 
         setSize(1200, 1000);
 
