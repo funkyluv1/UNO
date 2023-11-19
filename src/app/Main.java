@@ -48,7 +48,7 @@ public class Main {
         InitiationView initiationView = InitiationUseCaseFactory.create(viewManagerModel, initiationViewModel, initializedViewModel,userDataAccessObject);
         views.add(initiationView, initiationView.viewName);
 
-        InitializedView initializedView = new InitializedView();//需要改成viewmodel
+        InitializedView initializedView = new InitializedView(initializedViewModel);
         views.add(initializedView, initializedView.viewName);
 
         application.pack();

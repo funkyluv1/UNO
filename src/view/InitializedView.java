@@ -51,27 +51,23 @@ import java.util.ArrayList;
 //        playername.setText(output);
 //    }
 //}
-public class InitializedView extends JFrame {//!!!
+public class InitializedView extends JPanel implements ActionListener, PropertyChangeListener{
 
     public final String viewName;
+    private final InitializedViewModel initializedViewModel;
 
-    public InitializedView() {
 
+    public InitializedView(InitializedViewModel initializedViewModel) {
+        JLabel title = new JLabel("Initialized Screen");
+        title.setAlignmentX(Component.CENTER_ALIGNMENT);
         this.viewName = "InitializedView";
-        setTitle("UNO Game");//!!!
+        this.initializedViewModel = initializedViewModel;
 
         setSize(1200, 1000);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//!!!
-        initializeUI();
-    }
 
-    private void initializeUI() {
-
-
-        JPanel mainPanel = new JPanel();
-        mainPanel.setLayout(new BorderLayout());
+        this.setLayout(new BorderLayout());
         Color darkRed = new Color(218, 40, 40);
-        mainPanel.setBackground(darkRed);
+        this.setBackground(darkRed);
 
         JPanel playerPanel = new JPanel();
         playerPanel.setLayout(new GridLayout(1, 4, 10, 10));
@@ -156,18 +152,25 @@ public class InitializedView extends JFrame {//!!!
 
         controlPanel.add(nextTurnButton);
 
-        mainPanel.add(playerPanel, BorderLayout.NORTH);
-        mainPanel.add(cardPanel, BorderLayout.CENTER);
-        mainPanel.add(controlPanel, BorderLayout.SOUTH);
+        this.add(playerPanel, BorderLayout.NORTH);
+        this.add(cardPanel, BorderLayout.CENTER);
+        this.add(controlPanel, BorderLayout.SOUTH);
 
-        add(mainPanel);
+    }
+    public void actionPerformed(ActionEvent e) {
+        System.out.println("Click " + e.getActionCommand());
     }
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                new InitializedView().setVisible(true);
-            }
-        });
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+        InitializedState state = (InitializedState) evt.getNewValue();
+        // we don't know how many players there are, so we can't create player1, player2 ...
+        // this is the best we can do, display all players in one string
+        String output = "";
+        ArrayList<String> players = state.get_players();
+        for (int i = 0; i < players.size(); i++)
+            output += (players.get(i) + "\n");
+//        playername.setText(output);
     }
+
 }
