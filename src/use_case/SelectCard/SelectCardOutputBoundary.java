@@ -1,5 +1,5 @@
 package use_case.SelectCard;
 
-public interface SelectCardOutputDataBoundary {
+public interface SelectCardOutputBoundary {
     void prepareSelectCardView (SelectCardOutputData selectCardOutputData);
 }
