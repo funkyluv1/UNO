@@ -173,8 +173,6 @@ public class InitializedView extends JPanel implements ActionListener, PropertyC
         InitializedState state = (InitializedState) evt.getNewValue();
         ArrayList<String> players = state.get_players();
 
-        // queue mechanism: if we have more than four players registered, we will only take the 4 most recent players
-
         for (int i = 0; i< players.size(); i++){  // usernames.size() == 4
             usernames.get(i).setText(players.get(i));
         }
