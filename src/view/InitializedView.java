@@ -98,6 +98,7 @@ public class InitializedView extends JPanel implements ActionListener, PropertyC
 //            playerPanel.add(playerInfo);
 //            playerInfo.setBackground(colorList.get(i - 1));
 //        }
+////////////////////////////////////////////////////////////////////////////////////////////////////////
         JPanel playerInfo1 = new JPanel();
         playerInfo1.setLayout(new BorderLayout());
         playerInfo1.setBorder(BorderFactory.createLineBorder(Color.WHITE, 15));
@@ -149,7 +150,7 @@ public class InitializedView extends JPanel implements ActionListener, PropertyC
         playerInfo4.add(scoreLabel4, BorderLayout.SOUTH);
         playerPanel.add(playerInfo4);
         playerInfo4.setBackground(colorList.get(3));
-
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         JPanel cardPanel = new JPanel();
         cardPanel.setLayout(new BorderLayout());
