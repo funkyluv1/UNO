@@ -51,27 +51,29 @@ import java.util.ArrayList;
 //        playername.setText(output);
 //    }
 //}
-public class InitializedView extends JFrame {//!!!
+public class InitializedView extends JPanel implements ActionListener, PropertyChangeListener{
 
     public final String viewName;
+    private final InitializedViewModel initializedViewModel;
 
-    public InitializedView() {
+    JLabel usernameLabel1;
+    JLabel usernameLabel2;
+    JLabel usernameLabel3;
+    JLabel usernameLabel4;
 
-        this.viewName = "InitializedView";
-        setTitle("UNO Game");//!!!
+    public InitializedView(InitializedViewModel initializedViewModel) {
+        JLabel title = new JLabel("Initialized Screen");
+        title.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        this.viewName = "Initialized";
+        this.initializedViewModel = initializedViewModel;
+        this.initializedViewModel.addPropertyChangeListener(this);
 
         setSize(1200, 1000);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//!!!
-        initializeUI();
-    }
 
-    private void initializeUI() {
-
-
-        JPanel mainPanel = new JPanel();
-        mainPanel.setLayout(new BorderLayout());
+        this.setLayout(new BorderLayout());
         Color darkRed = new Color(218, 40, 40);
-        mainPanel.setBackground(darkRed);
+        this.setBackground(darkRed);
 
         JPanel playerPanel = new JPanel();
         playerPanel.setLayout(new GridLayout(1, 4, 10, 10));
@@ -82,21 +84,72 @@ public class InitializedView extends JFrame {//!!!
         colorList.add(new Color(144, 238, 144));
         colorList.add(new Color(255, 224, 255));
 
+//        for (int i = 1; i <= 4; i++) {
+//            JPanel playerInfo = new JPanel();
+//            playerInfo.setLayout(new BorderLayout());
+//            playerInfo.setBorder(BorderFactory.createLineBorder(Color.WHITE, 15));
+//            Dimension preferredSize = playerInfo.getPreferredSize();
+//            preferredSize.height = 120;
+//            playerInfo.setPreferredSize(preferredSize);
+//            JLabel usernameLabel = new JLabel("PLAYER " + i + " USERNAME");//这个需要根据viewmodel来
+//            JLabel scoreLabel = new JLabel("Score: 0");
+//            playerInfo.add(usernameLabel, BorderLayout.NORTH);
+//            playerInfo.add(scoreLabel, BorderLayout.SOUTH);
+//            playerPanel.add(playerInfo);
+//            playerInfo.setBackground(colorList.get(i - 1));
+//        }
+        JPanel playerInfo1 = new JPanel();
+        playerInfo1.setLayout(new BorderLayout());
+        playerInfo1.setBorder(BorderFactory.createLineBorder(Color.WHITE, 15));
+        Dimension preferredSize1 = playerInfo1.getPreferredSize();
+        preferredSize1.height = 120;
+        playerInfo1.setPreferredSize(preferredSize1);
+        JLabel scoreLabel1 = new JLabel("Score: 0");
+        usernameLabel1 = new JLabel();
+        playerInfo1.add(usernameLabel1, BorderLayout.NORTH);
+        playerInfo1.add(scoreLabel1, BorderLayout.SOUTH);
+        playerPanel.add(playerInfo1);
+        playerInfo1.setBackground(colorList.get(0));
 
-        for (int i = 1; i <= 4; i++) {
-            JPanel playerInfo = new JPanel();
-            playerInfo.setLayout(new BorderLayout());
-            playerInfo.setBorder(BorderFactory.createLineBorder(Color.WHITE, 15));
-            Dimension preferredSize = playerInfo.getPreferredSize();
-            preferredSize.height = 120;
-            playerInfo.setPreferredSize(preferredSize);
-            JLabel usernameLabel = new JLabel("PLAYER " + i + " USERNAME");//这个需要根据viewmodel来
-            JLabel scoreLabel = new JLabel("Score: 0");
-            playerInfo.add(usernameLabel, BorderLayout.NORTH);
-            playerInfo.add(scoreLabel, BorderLayout.SOUTH);
-            playerPanel.add(playerInfo);
-            playerInfo.setBackground(colorList.get(i - 1));
-        }
+        JPanel playerInfo2 = new JPanel();
+        playerInfo2.setLayout(new BorderLayout());
+        playerInfo2.setBorder(BorderFactory.createLineBorder(Color.WHITE, 15));
+        Dimension preferredSize2 = playerInfo2.getPreferredSize();
+        preferredSize2.height = 120;
+        playerInfo2.setPreferredSize(preferredSize2);
+        JLabel scoreLabel2 = new JLabel("Score: 0");
+        usernameLabel2 = new JLabel();
+        playerInfo2.add(usernameLabel2, BorderLayout.NORTH);
+        playerInfo2.add(scoreLabel2, BorderLayout.SOUTH);
+        playerPanel.add(playerInfo2);
+        playerInfo2.setBackground(colorList.get(1));
+
+        JPanel playerInfo3 = new JPanel();
+        playerInfo3.setLayout(new BorderLayout());
+        playerInfo3.setBorder(BorderFactory.createLineBorder(Color.WHITE, 15));
+        Dimension preferredSize3 = playerInfo3.getPreferredSize();
+        preferredSize3.height = 120;
+        playerInfo3.setPreferredSize(preferredSize3);
+        JLabel scoreLabel3 = new JLabel("Score: 0");
+        usernameLabel3 = new JLabel();
+        playerInfo3.add(usernameLabel3, BorderLayout.NORTH);
+        playerInfo3.add(scoreLabel3, BorderLayout.SOUTH);
+        playerPanel.add(playerInfo3);
+        playerInfo3.setBackground(colorList.get(2));
+
+        JPanel playerInfo4 = new JPanel();
+        playerInfo4.setLayout(new BorderLayout());
+        playerInfo4.setBorder(BorderFactory.createLineBorder(Color.WHITE, 15));
+        Dimension preferredSize4 = playerInfo4.getPreferredSize();
+        preferredSize4.height = 120;
+        playerInfo4.setPreferredSize(preferredSize4);
+        JLabel scoreLabel4 = new JLabel("Score: 0");
+        usernameLabel4 = new JLabel();
+        playerInfo4.add(usernameLabel4, BorderLayout.NORTH);
+        playerInfo4.add(scoreLabel4, BorderLayout.SOUTH);
+        playerPanel.add(playerInfo4);
+        playerInfo4.setBackground(colorList.get(3));
+
 
         JPanel cardPanel = new JPanel();
         cardPanel.setLayout(new BorderLayout());
@@ -156,18 +209,23 @@ public class InitializedView extends JFrame {//!!!
 
         controlPanel.add(nextTurnButton);
 
-        mainPanel.add(playerPanel, BorderLayout.NORTH);
-        mainPanel.add(cardPanel, BorderLayout.CENTER);
-        mainPanel.add(controlPanel, BorderLayout.SOUTH);
+        this.add(playerPanel, BorderLayout.NORTH);
+        this.add(cardPanel, BorderLayout.CENTER);
+        this.add(controlPanel, BorderLayout.SOUTH);
 
-        add(mainPanel);
+    }
+    public void actionPerformed(ActionEvent e) {
+        System.out.println("Click " + e.getActionCommand());
     }
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                new InitializedView().setVisible(true);
-            }
-        });
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+        InitializedState state = (InitializedState) evt.getNewValue();
+        ArrayList<String> players = state.get_players();
+        usernameLabel1.setText(players.get(0));
+        usernameLabel2.setText(players.get(1));
+        usernameLabel3.setText(players.get(2));
+        usernameLabel4.setText(players.get(3));
     }
+
 }
