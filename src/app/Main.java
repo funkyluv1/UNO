@@ -3,8 +3,10 @@ package app;
 import data_access.FileUserDataAccessObject;
 import entities.Game;
 import entities.NumberCardsDeck.NumberCardsDeckCreator;
+import entities.card.*;
 import entities.player.AIPlayerFactory;
 import entities.player.HumanPlayerFactory;
+import entities.player.Player;
 import interface_adapter.Initialized.InitializedViewModel;
 import interface_adapter.Initiation.InitiationViewModel;
 import interface_adapter.ViewManagerModel;
@@ -15,10 +17,24 @@ import view.InitiationView;
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
+import java.util.ArrayList;
 
 
 public class Main {
     static Game game;
+    static Player[] players;
+
+    public static ArrayList<NumberCard> createNumberHand(int size) {
+        ArrayList<NumberCard> hand = new ArrayList<>();
+        for (int i=0; i<size; i++) {
+            String[] randColor = {"red", "blue", "green", "yellow"};
+            int randColorIndex = (int) Math.floor(Math.random()*4);
+            int randValue = (int) Math.floor(Math.random()*9);
+            NumberCard card = new NumberCard(randValue, randColor[randColorIndex]);
+            hand.add(card);
+        }
+        return hand;
+    }
 
     public static void main(String[] args) {
         game = Game.getInstance();
@@ -54,7 +70,13 @@ public class Main {
         application.pack();
         application.setVisible(true);
 
-//        players = new ArrayList<Player>();
+
+        players = new Player[4];
+        for (int i=0; i<players.length; i++) {
+            players[i] = new Player(); // TODO: complete this
+            }
+        }
+
 //        // TODO: add Player objects to players, then shuffle players
 //        // TODO: create game object, add a while loop that updates the game object in
 //        //  each round (pre-turn, in-turn. etc.)
