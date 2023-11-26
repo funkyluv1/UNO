@@ -7,6 +7,7 @@ import interface_adapter.Initiation.InitiationController;
 import interface_adapter.Initiation.InitiationPresenter;
 import interface_adapter.Initiation.InitiationViewModel;
 import interface_adapter.ViewManagerModel;
+import use_case.PreTurn.FindPlayableCardsInterface;
 import use_case.drawcards.DrawCardsDataAccessInterface;
 import use_case.initiation.InitiationDataAccessInterface;
 import use_case.initiation.InitiationInputDataBoundary;
@@ -23,10 +24,14 @@ public class InitiationUseCaseFactory {
     private InitiationUseCaseFactory() {}
 
     public static InitiationView create(
-            ViewManagerModel viewManagerModel, InitiationViewModel initiationViewModel, InitializedViewModel initializedViewModel, FileUserDataAccessObject fileUserDataAccessObject) {
+            ViewManagerModel viewManagerModel,
+            InitiationViewModel initiationViewModel,
+            InitializedViewModel initializedViewModel,
+            FileUserDataAccessObject fileUserDataAccessObject,
+            FindPlayableCardsInterface findPlayableCardsInterface) {
 
         try {
-            InitiationController initiationController = createInitiationUseCase(viewManagerModel, initiationViewModel, initializedViewModel, fileUserDataAccessObject);
+            InitiationController initiationController = createInitiationUseCase(viewManagerModel, initiationViewModel, initializedViewModel, fileUserDataAccessObject, findPlayableCardsInterface);
             return new InitiationView(initiationController, initiationViewModel);
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, "Could not open user data file.");
@@ -35,7 +40,9 @@ public class InitiationUseCaseFactory {
         return null;
     }
 
-    private static InitiationController createInitiationUseCase(ViewManagerModel viewManagerModel, InitiationViewModel initiationViewModel, InitializedViewModel initializedViewModel, FileUserDataAccessObject userDataAccessObject) throws IOException {
+    private static InitiationController createInitiationUseCase(ViewManagerModel viewManagerModel,
+                                                                InitiationViewModel initiationViewModel, InitializedViewModel initializedViewModel,
+                                                                FileUserDataAccessObject userDataAccessObject, FindPlayableCardsInterface findPlayableCardsInterface) throws IOException {
 
         // Notice how we pass this method's parameters to the Presenter.
         InitiationOutputDataBoundary initiationOutputDataBoundary = new InitiationPresenter(viewManagerModel, initiationViewModel, initializedViewModel);
@@ -44,7 +51,7 @@ public class InitiationUseCaseFactory {
         DrawCardsDataAccessInterface drawCardsDataAccessInterface= new APIDataAccessObject();
 
         InitiationInputDataBoundary initiationInteractor = new InitiationInteractor(
-                userDataAccessObject, drawCardsDataAccessInterface, initiationOutputDataBoundary);
+                userDataAccessObject, drawCardsDataAccessInterface, initiationOutputDataBoundary, findPlayableCardsInterface);
 
         return new InitiationController(initiationInteractor);
     }

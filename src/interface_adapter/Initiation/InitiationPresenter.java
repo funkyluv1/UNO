@@ -13,9 +13,7 @@ import use_case.initiation.InitiationOutputData;
 public class InitiationPresenter implements InitiationOutputDataBoundary {
     //TODO: This instance variable is not used, do we need to keep it?
     private final InitiationViewModel initiationViewModel;
-
     private final InitializedViewModel initializedViewModel;
-
     private ViewManagerModel viewManagerModel;
 
     public InitiationPresenter(ViewManagerModel viewManagerModel,InitiationViewModel initiationViewModel, InitializedViewModel initializedViewModel){

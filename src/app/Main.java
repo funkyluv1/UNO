@@ -10,6 +10,8 @@ import entities.player.Player;
 import interface_adapter.Initialized.InitializedViewModel;
 import interface_adapter.Initiation.InitiationViewModel;
 import interface_adapter.ViewManagerModel;
+import use_case.PreTurn.FindPlayableCards;
+import use_case.PreTurn.FindPlayableCardsInterface;
 import view.InitializedView;
 import view.ViewManager;
 import view.InitiationView;
@@ -54,6 +56,8 @@ public class Main {
         InitiationViewModel initiationViewModel = new InitiationViewModel();
         InitializedViewModel initializedViewModel = new InitializedViewModel();
 
+        FindPlayableCardsInterface findPlayableCardsInterface = new FindPlayableCards();
+
         FileUserDataAccessObject userDataAccessObject;
         try {
             userDataAccessObject = new FileUserDataAccessObject("./users.csv", new AIPlayerFactory(), new HumanPlayerFactory(), new NumberCardsDeckCreator());
@@ -61,7 +65,7 @@ public class Main {
             throw new RuntimeException(e);
         }
 
-        InitiationView initiationView = InitiationUseCaseFactory.create(viewManagerModel, initiationViewModel, initializedViewModel,userDataAccessObject);
+        InitiationView initiationView = InitiationUseCaseFactory.create(viewManagerModel, initiationViewModel, initializedViewModel,userDataAccessObject, findPlayableCardsInterface);
         views.add(initiationView, initiationView.viewName);
 
         InitializedView initializedView = new InitializedView(initializedViewModel);
@@ -75,28 +79,5 @@ public class Main {
         for (int i=0; i<players.length; i++) {
             players[i] = new Player(); // TODO: complete this
             }
-        }
-
-//        // TODO: add Player objects to players, then shuffle players
-//        // TODO: create game object, add a while loop that updates the game object in
-//        //  each round (pre-turn, in-turn. etc.)
-
-//        int round = 1;
-//        while (true) { //TODO: replace true with some winning criteria
-//            Player currPlayer = players.get(round);
-//            round = round % players.size();
-//
-//            if (game.getSkipped()) {
-//                //...
-//            }
-//            if (game.getDrawCard() > 0) {
-//                //...
-//            }
-//
-//            currPlayer.preTurn(game);
-//            currPlayer.inTurn(game);
-//            currPlayer.postTurn(game);
-//
-//        }
     }
 }

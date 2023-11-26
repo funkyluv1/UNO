@@ -38,7 +38,6 @@ public class FileUserDataAccessObject implements InitiationDataAccessInterface, 
         this.aiPlayerFactory = aiPlayerFactory;
         this.humanPlayerFactory = humanPlayerFactory;
         this.numberCardsDeckFactory = numberCardsDeckFactory;
-        this.cardFactory = cardFactory;
 
         csvFile = new File(csvPath);
         BufferedReader bufferedReader = new BufferedReader(new FileReader(csvPath));
@@ -75,7 +74,6 @@ public class FileUserDataAccessObject implements InitiationDataAccessInterface, 
                     functionalCards.add(functionalCard);
                 }
                 if (rowList1[playerHeaders.get("playerType")].equals("AI")){
-
                     playerInfo.put(username, aiPlayerFactory.create(username, numberCardsArrayList, functionalCards));
                 } else {
                     playerInfo.put(username, humanPlayerFactory.create(username,numberCardsArrayList,functionalCards));
