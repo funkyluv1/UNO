@@ -3,10 +3,7 @@ package data_access;
 import entities.Game;
 import entities.NumberCardsDeck.NumberCardsDeck;
 import entities.NumberCardsDeck.NumberCardsDeckFactory;
-import entities.card.Card;
-import entities.card.CardFactory;
-import entities.card.FunctionalCard;
-import entities.card.NumberCard;
+import entities.card.*;
 import entities.player.*;
 import use_case.PostTurn.PostTurnDataAccessInterface;
 import use_case.PreTurn.PreTurnDataAccessInterface;
@@ -18,12 +15,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class FileUserDataAccessObject implements InitiationDataAccessInterface, PreTurnDataAccessInterface, PostTurnDataAccessInterface {
     private final File csvFile;
     private final AIPlayerFactory aiPlayerFactory;
     private final HumanPlayerFactory humanPlayerFactory;
     private final NumberCardsDeckFactory numberCardsDeckFactory;
+    private CardFactory cardFactory;
 
     private final Map<String, Player> playerInfo = new LinkedHashMap<>();
     private final Map<Integer, NumberCardsDeck> cardsDeck = new HashMap<>();
@@ -32,11 +32,14 @@ public class FileUserDataAccessObject implements InitiationDataAccessInterface, 
     private Game game;
 
 
-    public FileUserDataAccessObject(String csvPath, AIPlayerFactory aiPlayerFactory, HumanPlayerFactory humanPlayerFactory, NumberCardsDeckFactory numberCardsDeckFactory) throws IOException {
+    public FileUserDataAccessObject(String csvPath, AIPlayerFactory aiPlayerFactory,
+                                    HumanPlayerFactory humanPlayerFactory,
+                                    NumberCardsDeckFactory numberCardsDeckFactory) throws IOException {
         this.aiPlayerFactory = aiPlayerFactory;
         this.humanPlayerFactory = humanPlayerFactory;
         this.numberCardsDeckFactory = numberCardsDeckFactory;
-//        this.cardBuilder = cardBuilder;
+        this.cardFactory = cardFactory;
+
         csvFile = new File(csvPath);
         BufferedReader bufferedReader = new BufferedReader(new FileReader(csvPath));
         numberCardDeckHeaders.put("numberCardDeckID", 0);
@@ -57,13 +60,18 @@ public class FileUserDataAccessObject implements InitiationDataAccessInterface, 
                 String[] rowList1 = row.split(";");
                 String username = rowList1[playerHeaders.get("username")];
                 for (String i : rowList1[playerHeaders.get("numberCardsInHand")].split(",")){
-                    NumberCard numberCard = null;
-                    //TODO: Need NumberCardFactory;
+                    cardFactory = new NumberCardFactory(Integer.parseInt(i.substring(0,1)), Character.toString(i.charAt(1)));
+                    NumberCard numberCard = (NumberCard) cardFactory.createCard();
                     numberCardsArrayList.add(numberCard);
                 }
                 for (String i : rowList1[playerHeaders.get("functionalCardsInHand")].split(",")){
-                    FunctionalCard functionalCard = null;
-                    //TODO: Need FunctionalCardFactory;
+                    Pattern pattern = Pattern.compile("([a-zA-Z]+)(\\d)([a-zA-Z])");
+                    Matcher matcher = pattern.matcher(i);
+                    String type = matcher.group(1);
+                    String numericPart = matcher.group(2);
+                    String color = matcher.group(3);
+                    cardFactory = new FunctionalCardFactory(Integer.parseInt(numericPart), color, type);
+                    FunctionalCard functionalCard = (FunctionalCard) cardFactory.createCard();
                     functionalCards.add(functionalCard);
                 }
                 if (rowList1[playerHeaders.get("playerType")].equals("AI")){
