@@ -17,6 +17,8 @@ public class Game {
 
     private int currentPlayerIndex;
 
+    private Object currSelectedCard;
+
     private Game() {
         String[] randColor = {"red", "blue", "green", "yellow"};
         int randColorIndex = (int) Math.floor(Math.random()*4);
@@ -26,6 +28,7 @@ public class Game {
         isSkipped = false;
         plusN = 0;
         currentPlayerIndex = 0;
+        currSelectedCard = null;
     }
 
     public static Game getInstance() {
@@ -80,5 +83,12 @@ public class Game {
 
     public void updateCurrentPlayerIndex() {
         currentPlayerIndex += 1;
+    }
+
+    public void setCurrSelectedCard(Object card) {
+        currSelectedCard = card;
+    }
+    public Object getCurrSelectedCard() {
+        return currSelectedCard;
     }
 }
