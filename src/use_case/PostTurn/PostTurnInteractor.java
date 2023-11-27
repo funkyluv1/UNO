@@ -4,7 +4,7 @@ import entities.card.BombCard;
 import entities.card.FunctionalCard;
 import entities.card.HotPotatoCard;
 import entities.card.NumberCard;
-import use_case.drawcards.DrawCardsDataAccessInterface;
+import use_case.DrawCards.DrawCardsDataAccessInterface;
 
 import java.util.ArrayList;
 

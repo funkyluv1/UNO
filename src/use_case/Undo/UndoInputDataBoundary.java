@@ -1,5 +1,5 @@
 package use_case.Undo;
 
 public interface UndoInputDataBoundary {
-    void execute();
+    void execute(UndoInputData undoInputData);
 }

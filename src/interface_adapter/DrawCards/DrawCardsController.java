@@ -1,9 +1,9 @@
-package interface_adapter.drawcards;
+package interface_adapter.DrawCards;
 
 import entities.NumberCardsDeck.NumberCardsDeck;
 import entities.player.Player;
-import use_case.drawcards.DrawCardsInputData;
-import use_case.drawcards.DrawCardsInputDataBoundary;
+import use_case.DrawCards.DrawCardsInputData;
+import use_case.DrawCards.DrawCardsInputDataBoundary;
 
 public class DrawCardsController {
     final DrawCardsInputDataBoundary drawCardsInteractor;

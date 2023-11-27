@@ -1,5 +1,6 @@
 package app;
 
+import Assets.BackGroundMusic;
 import data_access.FileUserDataAccessObject;
 import entities.Game;
 import entities.NumberCardsDeck.NumberCardsDeckCreator;
@@ -16,6 +17,8 @@ import view.InitiationView;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.IOException;
 
 
@@ -33,6 +36,16 @@ public class Main {
         application.setLocationRelativeTo(null);
 
         CardLayout cardLayout = new CardLayout();
+
+        BackGroundMusic bgm = new BackGroundMusic();
+        bgm.play("src/Assets/M2U - Body Talk.wav");
+        application.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                bgm.stop();
+                application.dispose();
+            }
+        });
 
         // The various View objects. Only one view is visible at a time.
         JPanel views = new JPanel(cardLayout);

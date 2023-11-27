@@ -1,7 +1,17 @@
 package view;
 
+import entities.NumberCardsDeck.NumberCardsDeck;
+import entities.NumberCardsDeck.NumberCardsDeckCreator;
+import interface_adapter.DrawCards.DrawCardsController;
+import interface_adapter.DrawCards.DrawCardsViewModel;
 import interface_adapter.Initialized.InitializedState;
 import interface_adapter.Initialized.InitializedViewModel;
+import interface_adapter.SelectCard.SelectCardController;
+import interface_adapter.SelectCard.SelectCardState;
+import interface_adapter.SelectCard.SelectCardViewModel;
+import interface_adapter.Undo.UndoController;
+import use_case.SelectCard.SelectCardInputData;
+import use_case.Undo.UndoInputData;
 
 import javax.swing.*;
 import java.awt.*;
@@ -55,14 +65,23 @@ public class InitializedView extends JPanel implements ActionListener, PropertyC
 
     public final String viewName;
     private final InitializedViewModel initializedViewModel;
+    private final UndoController undoController;
+    private final DrawCardsController drawCardsController;
+    private final DrawCardsViewModel drawCardsViewModel;
+    private final SelectCardController selectCardController;
+    private final SelectCardViewModel selectCardViewModel;
 
 
-    public InitializedView(InitializedViewModel initializedViewModel) {
+    public InitializedView(InitializedViewModel initializedViewModel, DrawCardsViewModel drawCardsViewModel, UndoController undoController, DrawCardsController drawCardsController, SelectCardController selectCardController, SelectCardViewModel selectCardViewModel) {
         JLabel title = new JLabel("Initialized Screen");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
         this.viewName = "InitializedView";
         this.initializedViewModel = initializedViewModel;
-
+        this.drawCardsController = drawCardsController;
+        this.undoController = undoController;
+        this.drawCardsViewModel = drawCardsViewModel;
+        this.selectCardController = selectCardController;
+        this.selectCardViewModel = selectCardViewModel;
         setSize(1200, 1000);
 
         this.setLayout(new BorderLayout());
@@ -103,14 +122,17 @@ public class InitializedView extends JPanel implements ActionListener, PropertyC
         JPanel playpanel = new JPanel();
 
 
-        for (int i = 0; i < 3; i++) {//根据viewmodel改
-            JButton cardButton = new JButton("Card " + i);
-            cardButton.setPreferredSize(new Dimension(130, 200));
-            cardButton.setBorder(BorderFactory.createEmptyBorder());
-            cardButton.setBackground(Color.YELLOW); // fill here for the card's color
-            cardButton.setOpaque(true);
-            playpanel.add(cardButton);
+        JButton[] cardButtons = new JButton[3];
+
+        for (int i = 0; i < 3; i++) {
+            cardButtons[i] = new JButton("Card " + i);
+            cardButtons[i].setPreferredSize(new Dimension(130, 200));
+            cardButtons[i].setBorder(BorderFactory.createEmptyBorder());
+            cardButtons[i].setBackground(Color.YELLOW);
+            cardButtons[i].setOpaque(true);
+            playpanel.add(cardButtons[i]);
         }
+
         JButton getCardButton = new JButton("Get Card");
         getCardButton.setPreferredSize(new Dimension(130, 200));
         getCardButton.setBorder(BorderFactory.createEmptyBorder()); //!!!!!!这一行非常重要，如果button不去除边框就直接更改背景颜
@@ -155,6 +177,68 @@ public class InitializedView extends JPanel implements ActionListener, PropertyC
         this.add(playerPanel, BorderLayout.NORTH);
         this.add(cardPanel, BorderLayout.CENTER);
         this.add(controlPanel, BorderLayout.SOUTH);
+
+        //TODO: figure out where to put the numberCardDeck and player
+        drawCardsController.execute(initializedViewModel.getState().get_players(), numberCardsDeck,5);
+
+        undoButton.addActionListener(
+                new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        if (e.getSource().equals("Undo")) {
+                            UndoInputData inputData = new UndoInputData(selectCardViewModel.getSelectCardState().getSelectedCard());
+                            SelectCardState state = new SelectCardState();
+                            state.setSelectedCard(null);
+                            selectCardViewModel.setSelectCardState(state);
+                            undoController.execute(inputData);
+                            undoButton.setEnabled(false);
+                        }
+                    }
+                }
+        );
+
+        cardButtons[0].addActionListener(
+                new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                         if (e.getSource().equals("Card 0")) {
+                             undoButton.setEnabled(true);
+                             cardButtons[0].setBackground(new Color(255, 255, 210));
+                             SelectCardInputData inputData = new SelectCardInputData(player, drawCardsViewModel.getDrawCardsState().getNumberCard0())
+                             selectCardController.execute(inputData);
+                         }
+                    }
+                }
+        );
+
+        cardButtons[1].addActionListener(
+                new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        if (e.getSource().equals("Card 1")) {
+                            undoButton.setEnabled(true);
+                            cardButtons[1].setBackground(new Color(255, 255, 210));
+                            SelectCardInputData inputData = new SelectCardInputData(player, drawCardsViewModel.getDrawCardsState().getNumberCard0());
+                            selectCardController.execute(inputData);
+                        }
+                    }
+                }
+        );
+
+        cardButtons[2].addActionListener(
+                new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        if (e.getSource().equals("Card 2")) {
+                            undoButton.setEnabled(true);
+                            cardButtons[2].setBackground(new Color(255, 255, 210));
+                            SelectCardInputData inputData = new SelectCardInputData(player, drawCardsViewModel.getDrawCardsState().getNumberCard0())
+                            selectCardController.execute(inputData);
+                        }
+                    }
+                }
+        );
+
 
     }
     public void actionPerformed(ActionEvent e) {

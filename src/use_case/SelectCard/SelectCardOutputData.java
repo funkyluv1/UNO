@@ -1,6 +1,6 @@
 package use_case.SelectCard;
 
-import entities.card.Card;
+import entities.card.NumberCard;
 
 public class SelectCardOutputData {
     private final Object selectedCard;
@@ -9,7 +9,7 @@ public class SelectCardOutputData {
         this.selectedCard = selectedCard;
     }
 
-    public Object getSelectedCard() {
+    public NumberCard getSelectedCard() {
         return selectedCard;
     }
 }
