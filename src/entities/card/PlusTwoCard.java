@@ -4,10 +4,8 @@ public class PlusTwoCard extends FunctionalCard {
     /**
      * Constructs a new PlusTwoCard object.
      *
-     * @param value the numeric value of the card
-     * @param color the color of the card
      */
-    public PlusTwoCard(int value, String color) {
-        super(value, color, "PlusTwo");
+    public PlusTwoCard() {
+        super(20, "any", "PlusTwo");
     }
 }
