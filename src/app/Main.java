@@ -10,6 +10,8 @@ import interface_adapter.Initialized.InitializedViewModel;
 import interface_adapter.Initiation.InitiationViewModel;
 import interface_adapter.MainMeau.MainMeauViewModel;
 import interface_adapter.ViewManagerModel;
+import use_case.PreTurn.FindPlayableCards;
+import use_case.PreTurn.FindPlayableCardsInterface;
 import view.InitializedView;
 import view.MainMeauView;
 import view.ViewManager;
@@ -54,6 +56,7 @@ public class Main {
         ViewManagerModel viewManagerModel = new ViewManagerModel();
         new ViewManager(views, cardLayout, viewManagerModel);
 
+        FindPlayableCardsInterface findPlayableCardsInterface = new FindPlayableCards();
         InitiationViewModel initiationViewModel = new InitiationViewModel();
         InitializedViewModel initializedViewModel = new InitializedViewModel();
 
@@ -67,7 +70,7 @@ public class Main {
         MainMeauView mainMeauView = new MainMeauView(new MainMeauViewModel());
         views.add(mainMeauView, mainMeauView.viewName);
 
-        InitiationView initiationView = InitiationUseCaseFactory.create(viewManagerModel, initiationViewModel, initializedViewModel,userDataAccessObject);
+        InitiationView initiationView = InitiationUseCaseFactory.create(viewManagerModel, initiationViewModel, initializedViewModel,userDataAccessObject, findPlayableCardsInterface);
         views.add(initiationView, initiationView.viewName);
 
         InitializedView initializedView = new InitializedView(initializedViewModel);

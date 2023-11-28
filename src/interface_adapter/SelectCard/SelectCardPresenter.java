@@ -2,9 +2,9 @@ package interface_adapter.SelectCard;
 
 import interface_adapter.ViewManagerModel;
 import use_case.SelectCard.SelectCardOutputData;
-import use_case.SelectCard.SelectCardOutputDataBoundary;
+import use_case.SelectCard.SelectCardOutputBoundary;
 
-public class SelectCardPresenter implements SelectCardOutputDataBoundary {
+public class SelectCardPresenter implements SelectCardOutputBoundary {
     private final SelectCardViewModel selectCardViewModel;
     private ViewManagerModel viewManagerModel;
 

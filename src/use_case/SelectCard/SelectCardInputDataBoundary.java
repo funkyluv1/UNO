@@ -1,5 +1,5 @@
 package use_case.SelectCard;
 
-public interface SelectCardInputBoundary {
+public interface SelectCardInputDataBoundary {
     void execute (SelectCardInputData selectCardInputData);
 }

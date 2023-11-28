@@ -8,7 +8,7 @@ import interface_adapter.Initiation.InitiationPresenter;
 import interface_adapter.Initiation.InitiationViewModel;
 import interface_adapter.ViewManagerModel;
 import use_case.PreTurn.FindPlayableCardsInterface;
-import use_case.drawcards.DrawCardsDataAccessInterface;
+import use_case.DrawCards.DrawCardsDataAccessInterface;
 import use_case.initiation.InitiationDataAccessInterface;
 import use_case.initiation.InitiationInputDataBoundary;
 import use_case.initiation.InitiationInteractor;
