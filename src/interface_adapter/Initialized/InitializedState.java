@@ -14,6 +14,7 @@ public class InitializedState {
     private Map<String, ArrayList<NumberCard>> playerPlayableNumCards;
     private Map<String, ArrayList<FunctionalCard>> playerFunCards;
     private Map<String, ArrayList<FunctionalCard>> playerPlayableFunCards;
+    private Map<String, Integer> displayCardsFirstIndex;
 
     public InitializedState(InitializedState copy) {
 
@@ -22,22 +23,30 @@ public class InitializedState {
         playerPlayableNumCards = copy.playerPlayableNumCards;
         playerFunCards = copy.playerFunCards;
         playerPlayableFunCards = copy.playerPlayableFunCards;
+        displayCardsFirstIndex = copy.displayCardsFirstIndex;
     }
 
     // Because of the previous copy constructor, the default constructor must be explicit.
     public InitializedState() {}
 
     public ArrayList<String> get_players(){return players;}
-    public ArrayList<NumberCard> get_Number_Cards(){return playerNumCards.get(players.get(0));}
+    public ArrayList<NumberCard> get_Number_Cards(){
+        return playerNumCards.get(players.get(0));
+    }
+    public Integer getdisplayCardsFirstIndex(){
+        return displayCardsFirstIndex.get(players.get(0));
+    }
+    public int get_displayCardsFirstIndex(){return displayCardsFirstIndex.get(players.get(0));}
     public ArrayList<FunctionalCard> get_Functional_Cards(){return playerFunCards.get(players.get(0));}
     public ArrayList<NumberCard> get_Highlighted_Number_Cards(){return playerPlayableNumCards.get(players.get(0));}
     public ArrayList<FunctionalCard> get_Highlighted_Functional_Cards(){return playerPlayableFunCards.get(players.get(0));}
     public void set_players(ArrayList<String> players){this.players = players;}
     public void set_cards(Map<String, ArrayList<NumberCard>> playerNumCards, Map<String, ArrayList<NumberCard>> playerPlayableNumCards,
-                          Map<String, ArrayList<FunctionalCard>> playerFunCards, Map<String, ArrayList<FunctionalCard>> playerPlayableFunCards){
+                          Map<String, ArrayList<FunctionalCard>> playerFunCards, Map<String, ArrayList<FunctionalCard>> playerPlayableFunCards, Map<String,Integer> displayCardsFirstIndex){
         this.playerPlayableFunCards = playerPlayableFunCards;
         this.playerPlayableNumCards = playerPlayableNumCards;
         this.playerNumCards = playerNumCards;
         this.playerFunCards = playerFunCards;
+        this.displayCardsFirstIndex = displayCardsFirstIndex;
     }
 }

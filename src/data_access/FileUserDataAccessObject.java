@@ -11,10 +11,7 @@ import use_case.initiation.InitiationDataAccessInterface;
 import use_case.initiation.InitiationInputData;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -47,6 +44,7 @@ public class FileUserDataAccessObject implements InitiationDataAccessInterface, 
         playerHeaders.put("username", 1);
         playerHeaders.put("numberCardsInHand", 2);
         playerHeaders.put("functionalCardsInHand", 3);
+        playerHeaders.put("displayFirstCardIndex", 4);
 
         String row;
         if ((row = bufferedReader.readLine()) != null){
@@ -73,10 +71,12 @@ public class FileUserDataAccessObject implements InitiationDataAccessInterface, 
                     FunctionalCard functionalCard = (FunctionalCard) cardFactory.createCard();
                     functionalCards.add(functionalCard);
                 }
+                int displayFirstCardIndex = Integer.parseInt(rowList1[playerHeaders.get("displayFirstCardIndex")]);
+
                 if (rowList1[playerHeaders.get("playerType")].equals("AI")){
-                    playerInfo.put(username, aiPlayerFactory.create(username, numberCardsArrayList, functionalCards));
+                    playerInfo.put(username, aiPlayerFactory.create(username, numberCardsArrayList, functionalCards, displayFirstCardIndex));
                 } else {
-                    playerInfo.put(username, humanPlayerFactory.create(username,numberCardsArrayList,functionalCards));
+                    playerInfo.put(username, humanPlayerFactory.create(username,numberCardsArrayList,functionalCards, displayFirstCardIndex));
                 }
             }
         }
@@ -86,13 +86,13 @@ public class FileUserDataAccessObject implements InitiationDataAccessInterface, 
     public void initiate(NumberCardsDeck numberCardsDeck, InitiationInputData initiationInputData) {
         cardsDeck.put(0, numberCardsDeck);
         for (String playerName : initiationInputData.getPlayerNames()){
-            playerInfo.put(playerName, humanPlayerFactory.create(playerName, new ArrayList<NumberCard>(), new ArrayList<FunctionalCard>()));
+            playerInfo.put(playerName, humanPlayerFactory.create(playerName, new ArrayList<NumberCard>(), new ArrayList<FunctionalCard>(),2));
         };
         int i = 0;
         while (i < initiationInputData.getBotNumber()){
 //            playerFactory = new AIPlayerFactory();
-            String username = aiPlayerFactory.create("", new ArrayList<NumberCard>(), new ArrayList<FunctionalCard>()).getPlayerName();
-            playerInfo.put(username, aiPlayerFactory.create(username, new ArrayList<NumberCard>(), new ArrayList<FunctionalCard>()));
+            String username = aiPlayerFactory.create("", new ArrayList<NumberCard>(), new ArrayList<FunctionalCard>(), 0).getPlayerName();
+            playerInfo.put(username, aiPlayerFactory.create(username, new ArrayList<NumberCard>(), new ArrayList<FunctionalCard>(), 0));
         }
         this.save();
     }
@@ -118,11 +118,14 @@ public class FileUserDataAccessObject implements InitiationDataAccessInterface, 
                 String funcCards = "";
                 //TODO: need getString for FunctionalCards
 
+                // initialize index of the first displayed cards
+                int firstCardIndex = 0;
+
                 if (player instanceof AIPlayer){
                     playerType = "AI";
                 }else{playerType = "Human";}
 
-                String line = String.format("%s;%s;%s;%s", playerType, playerName, numberCards, funcCards);
+                String line = String.format("%s;%s;%s;%s;%s", playerType, playerName, numberCards, funcCards, firstCardIndex);
                 writer.write(line);
                 writer.newLine();
             }
@@ -134,9 +137,10 @@ public class FileUserDataAccessObject implements InitiationDataAccessInterface, 
     }
 
     @Override
-    public void savePlayerwithCards(String playerName, ArrayList<NumberCard> numberCards, ArrayList<FunctionalCard>functionalCards){
+    public void savePlayerwithCards(String playerName, ArrayList<NumberCard> numberCards, ArrayList<FunctionalCard>functionalCards, int displayFirstCardIndex){
         playerInfo.get(playerName).setFuncCards(functionalCards);
         playerInfo.get(playerName).setNumCards(numberCards);
+        playerInfo.get(playerName).setDisplayFirstCardIndex(displayFirstCardIndex);
         save();
     }
 //TODO: probably need to combine these two into one public function of the DAO itself (not by overriding)
@@ -169,5 +173,9 @@ public class FileUserDataAccessObject implements InitiationDataAccessInterface, 
     public Player getPlayer(int playerIndex) {
         // TODO: implement me
         return null;
+    }
+
+    public int getPlayerDisplayFirstCardIndex(String playerName){
+        return playerInfo.get(playerName).getDisplayFirstCardIndex();
     }
 }
