@@ -7,5 +7,5 @@ import entities.player.Player;
 import java.util.ArrayList;
 
 public interface PlayerFactory {
-    public Player create(String playerName, ArrayList<NumberCard> numcards, ArrayList<FunctionalCard> functionalCards);
+    public Player create(String playerName, ArrayList<NumberCard> numcards, ArrayList<FunctionalCard> functionalCards, int displayFirstCardIndex);
 }

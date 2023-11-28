@@ -139,9 +139,11 @@ public class InitializedView extends JPanel implements ActionListener, PropertyC
             usernames.get(i).setText(players.get(i));
         }
 
-            for (int i = 0; i < 3; i++) {
-                String name = initializedViewModel.getState().get_Number_Cards().get(i).getString();
-                cardNames.get(i).setText(name);
+        int startInd = initializedViewModel.getState().getdisplayCardsFirstIndex();
+        for (int i = 0; i < 3; i++) {
+            NumberCard card = initializedViewModel.getState().get_Number_Cards().get(startInd + i);
+            String name = card.getString();
+            cardNames.get(i).setText(name);
         }
     }
 
