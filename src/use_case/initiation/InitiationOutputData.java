@@ -32,5 +32,10 @@ public class InitiationOutputData {
 
     public NumberCardsDeck getNumberCardsDeck(){return this.numberCardsDeck;}
 
+    public Map<String, ArrayList<NumberCard>> getPlayerNumCards(){return this.playerNumCards;}
+    public Map<String, ArrayList<NumberCard>> getPlayerPlayableNumCards(){return this.playerPlayableNumCards;}
+    public Map<String, ArrayList<FunctionalCard>> getPlayerFunCards(){return this.playerFunCards;}
+    public Map<String, ArrayList<FunctionalCard>> getPlayerPlayableFunCards(){return this.playerPlayableFunCards;}
+
 
 }
