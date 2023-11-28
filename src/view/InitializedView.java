@@ -1,9 +1,11 @@
 package view;
 
+import entities.card.NumberCard;
 import interface_adapter.Initialized.InitializedState;
 import interface_adapter.Initialized.InitializedViewModel;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,57 +13,21 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 
-//public class InitializedView extends JPanel implements ActionListener, PropertyChangeListener {
-//    public final String viewName = "Initialized";
-//    private final InitializedViewModel initializedViewModel;
-//
-//    JLabel playername;
-//
-//    public InitializedView(InitializedViewModel initializedViewModel) {
-//        this.initializedViewModel = initializedViewModel;
-//        this.initializedViewModel.addPropertyChangeListener(this);
-//
-//        JLabel title = new JLabel("Initialized Screen");
-//        title.setAlignmentX(Component.CENTER_ALIGNMENT);
-//
-//        JLabel usernameInfo = new JLabel("Currently players: ");
-//        playername = new JLabel();
-//
-//        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-//
-//        this.add(title);
-//        this.add(usernameInfo);
-//        this.add(playername);
-//    }
-//
-//    @Override
-//    public void actionPerformed(ActionEvent e) {
-//        System.out.println("Click " + e.getActionCommand());
-//    }
-//
-//    @Override
-//    public void propertyChange(PropertyChangeEvent evt) {
-//        InitializedState state = (InitializedState) evt.getNewValue();
-//        // we don't know how many players there are, so we can't create player1, player2 ...
-//        // this is the best we can do, display all players in one string
-//        String output = "";
-//        ArrayList<String> players = state.get_players();
-//        for (int i = 0; i < players.size(); i++)
-//            output += (players.get(i) + "\n");
-//        playername.setText(output);
-//    }
-//}
 public class InitializedView extends JPanel implements ActionListener, PropertyChangeListener{
 
     public final String viewName;
     private final InitializedViewModel initializedViewModel;
 
+    ArrayList<JLabel> usernames = new ArrayList<>();
+    ArrayList<JButton> cardNames = new ArrayList<>();
 
     public InitializedView(InitializedViewModel initializedViewModel) {
         JLabel title = new JLabel("Initialized Screen");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
-        this.viewName = "InitializedView";
+
+        this.viewName = "Initialized";
         this.initializedViewModel = initializedViewModel;
+        this.initializedViewModel.addPropertyChangeListener(this);
 
         setSize(1200, 1000);
 
@@ -78,7 +44,6 @@ public class InitializedView extends JPanel implements ActionListener, PropertyC
         colorList.add(new Color(144, 238, 144));
         colorList.add(new Color(255, 224, 255));
 
-
         for (int i = 1; i <= 4; i++) {
             JPanel playerInfo = new JPanel();
             playerInfo.setLayout(new BorderLayout());
@@ -86,7 +51,8 @@ public class InitializedView extends JPanel implements ActionListener, PropertyC
             Dimension preferredSize = playerInfo.getPreferredSize();
             preferredSize.height = 120;
             playerInfo.setPreferredSize(preferredSize);
-            JLabel usernameLabel = new JLabel("PLAYER " + i + " USERNAME");//这个需要根据viewmodel来
+            JLabel usernameLabel = new JLabel("Default player name");
+            usernames.add(usernameLabel);
             JLabel scoreLabel = new JLabel("Score: 0");
             playerInfo.add(usernameLabel, BorderLayout.NORTH);
             playerInfo.add(scoreLabel, BorderLayout.SOUTH);
@@ -104,13 +70,16 @@ public class InitializedView extends JPanel implements ActionListener, PropertyC
 
 
         for (int i = 0; i < 3; i++) {//根据viewmodel改
-            JButton cardButton = new JButton("Card " + i);
+            JButton cardButton = new JButton();
             cardButton.setPreferredSize(new Dimension(130, 200));
             cardButton.setBorder(BorderFactory.createEmptyBorder());
             cardButton.setBackground(Color.YELLOW); // fill here for the card's color
             cardButton.setOpaque(true);
+            Border border = BorderFactory.createLineBorder(Color.BLUE, 2);
+            cardButton.setBorder(border);
             playpanel.add(cardButton);
-        }
+            cardNames.add(cardButton);};
+
         JButton getCardButton = new JButton("Get Card");
         getCardButton.setPreferredSize(new Dimension(130, 200));
         getCardButton.setBorder(BorderFactory.createEmptyBorder()); //!!!!!!这一行非常重要，如果button不去除边框就直接更改背景颜
@@ -164,13 +133,18 @@ public class InitializedView extends JPanel implements ActionListener, PropertyC
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         InitializedState state = (InitializedState) evt.getNewValue();
-        // we don't know how many players there are, so we can't create player1, player2 ...
-        // this is the best we can do, display all players in one string
-        String output = "";
         ArrayList<String> players = state.get_players();
-        for (int i = 0; i < players.size(); i++)
-            output += (players.get(i) + "\n");
-//        playername.setText(output);
+
+        for (int i = 0; i < players.size(); i++) {  // usernames.size() == 4
+            usernames.get(i).setText(players.get(i));
+        }
+
+        for (JButton cardName : cardNames) {
+            for (int i = 0; i < 3; i++) {
+                String name = initializedViewModel.getState().get_Number_Cards().get(i).getString();
+                cardName.setText(name);
+            }
+        }
     }
 
 }

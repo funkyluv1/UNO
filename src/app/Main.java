@@ -66,9 +66,7 @@ public class Main {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
-        MainMeauView mainMeauView = new MainMeauView(new MainMeauViewModel());
-        views.add(mainMeauView, mainMeauView.viewName);
+        
 
         InitiationView initiationView = InitiationUseCaseFactory.create(viewManagerModel, initiationViewModel, initializedViewModel,userDataAccessObject, findPlayableCardsInterface);
         views.add(initiationView, initiationView.viewName);

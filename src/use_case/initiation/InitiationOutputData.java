@@ -19,7 +19,7 @@ public class InitiationOutputData {
                                 Map<String, ArrayList<NumberCard>> playerNumCards,
                                 Map<String, ArrayList<NumberCard>> playerPlayableNumCards ,
                                 Map<String, ArrayList<FunctionalCard>> playerPlayableFunCards
-                                ){
+    ){
         this.playerNames = playerNames;
         this.numberCardsDeck = numberCardsDeck;
         this.playerFunCards = playerPlayableFunCards;
@@ -31,6 +31,11 @@ public class InitiationOutputData {
     public ArrayList<String> getPlayerNames() {return this.playerNames;}
 
     public NumberCardsDeck getNumberCardsDeck(){return this.numberCardsDeck;}
+
+    public Map<String, ArrayList<NumberCard>> getPlayerNumCards(){return this.playerNumCards;}
+    public Map<String, ArrayList<NumberCard>> getPlayerPlayableNumCards(){return this.playerPlayableNumCards;}
+    public Map<String, ArrayList<FunctionalCard>> getPlayerFunCards(){return this.playerFunCards;}
+    public Map<String, ArrayList<FunctionalCard>> getPlayerPlayableFunCards(){return this.playerPlayableFunCards;}
 
 
 }

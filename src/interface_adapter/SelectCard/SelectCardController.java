@@ -3,14 +3,14 @@ package interface_adapter.SelectCard;
 import entities.card.Card;
 import entities.player.Player;
 import use_case.SelectCard.SelectCardInputData;
-import use_case.SelectCard.SelectCardInputBoundary;
+import use_case.SelectCard.SelectCardInputDataBoundary;
 import use_case.SelectCard.SelectCardInteractor;
 
 public class SelectCardController {
 
-    final SelectCardInputBoundary selectCardInteractor;
+    final SelectCardInputDataBoundary selectCardInteractor;
 
-    public SelectCardController (SelectCardInputBoundary selectCardInteractor) {
+    public SelectCardController (SelectCardInputDataBoundary selectCardInteractor) {
         this.selectCardInteractor = selectCardInteractor;
     }
 
