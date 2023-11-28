@@ -46,7 +46,6 @@ public class PostTurnInteractor implements PostTurnInputDataBoundary{
 
     private FunctionalCard generateFuncCard() {
         int randIndex = (int) Math.floor(Math.random()*7);
-        FunctionalCard result = null;
         String[] randColors = {"red", "blue", "green", "yellow"};
         int randColorIndex = (int) Math.floor(Math.random()*4);
 
@@ -54,20 +53,20 @@ public class PostTurnInteractor implements PostTurnInputDataBoundary{
         String randColor = randColors[randColorIndex];
         switch (randIndex) {
             case 0:
-                result = new BombCard(randValue, randColor);
+                return new BombCard(randValue, randColor);
             case 1:
-                result = new HotPotatoCard(randValue, randColor);
+                return new HotPotatoCard(randValue, randColor);
             case 2:
-                result = new PlusFourCard();
+                return new PlusFourCard();
             case 3:
-                result = new PlusTwoCard();
+                return new PlusTwoCard();
             case 4:
-                result = new RandomCard();
+                return new RandomCard();
             case 5:
-                result = new SkipCard();
+                return new SkipCard();
             case 6:
-                result = new WildCard();
+                return new WildCard();
         }
-        return result;
+        return new WildCard();
     }
 }
