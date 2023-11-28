@@ -23,6 +23,8 @@ public abstract class Player {
     public String playerName;
     private ArrayList<NumberCard> numCards;
     private ArrayList<FunctionalCard> funcCards;
+
+    private int displayFirstCardIndex;
     private boolean isInGame;
 
 
@@ -37,10 +39,11 @@ public abstract class Player {
      * @param playerName the name of this player to be displayed in the game
      * @param hand the set of cards that this player is dealt with initially
      */
-    public Player(String playerName, ArrayList<NumberCard> hand) {
+    public Player(String playerName, ArrayList<NumberCard> hand, int displayFirstCardIndex) {
         this.playerName = playerName;
         this.numCards = new ArrayList<>(hand);
         this.funcCards = new ArrayList<>();
+        this.displayFirstCardIndex = displayFirstCardIndex;
         this.isInGame = true;
     }
 
@@ -89,6 +92,12 @@ public abstract class Player {
      * @param topCard the most recently played number card.
      * @param funcCards the list of functional cards played by the last player.
      */
+    public void setDisplayFirstCardIndex(int displayFirstCardIndex) {
+        displayFirstCardIndex = displayFirstCardIndex;
+    }
+    public int getDisplayFirstCardIndex() {
+        return displayFirstCardIndex;
+    }
     public void updateUsableCards(Card topCard, ArrayList<Card> funcCards) {
         // TODO: Implement me, update isUsable of each card
     }

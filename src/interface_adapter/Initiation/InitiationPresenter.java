@@ -29,7 +29,7 @@ public class InitiationPresenter implements InitiationOutputDataBoundary {
         InitializedState initializedState = initializedViewModel.getState();
         initializedState.set_players(initiationOutputData.getPlayerNames());
         initializedState.set_cards(initiationOutputData.getPlayerNumCards(), initiationOutputData.getPlayerPlayableNumCards(),
-                initiationOutputData.getPlayerFunCards(), initiationOutputData.getPlayerPlayableFunCards());
+                initiationOutputData.getPlayerFunCards(), initiationOutputData.getPlayerPlayableFunCards(), initiationOutputData.getDisplayNumCardsIndexes());
         this.initializedViewModel.setState(initializedState);
         this.initializedViewModel.firePropertyChanged();
 

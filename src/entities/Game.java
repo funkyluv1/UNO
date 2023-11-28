@@ -5,6 +5,7 @@ import entities.player.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 public class Game {
 
@@ -20,6 +21,7 @@ public class Game {
 
     private int maxCardNum;
     private Player currWinner;
+    private ArrayList<String> playersList;
 
     private Game() {
         String[] randColor = {"red", "blue", "green", "yellow"};

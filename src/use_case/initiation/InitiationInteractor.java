@@ -33,6 +33,7 @@ public class InitiationInteractor implements InitiationInputDataBoundary {
             Map<String, ArrayList<NumberCard>> playerNumCards = new HashMap<>();
             Map<String, ArrayList<NumberCard>> playerPlayableNumCards = new HashMap<>();
             Map<String, ArrayList<FunctionalCard>> playerPlayableFunCards = new HashMap<>();
+            Map<String, Integer> displayCardsFirstIndex = new HashMap<>();
 
             int initialNumberCards = 5;
             NumberCardsDeck numberCardsDeck = drawCardsDataAccessInterface.createNumberCardsDeck();
@@ -41,15 +42,18 @@ public class InitiationInteractor implements InitiationInputDataBoundary {
                 ArrayList<NumberCard> numberCards = drawCardsDataAccessInterface.drawNumberCards(numberCardsDeck, initialNumberCards);
                 playerNumCards.put(playerName, numberCards);
                 playerPlayableFunCards.put(playerName, new ArrayList<FunctionalCard>());
-                fileUserDataAccessObject.savePlayerwithCards(playerName, numberCards, new ArrayList<FunctionalCard>());
+                int displayCardsFirstIndexData = fileUserDataAccessObject.getPlayerDisplayFirstCardIndex(playerName);
+                displayCardsFirstIndex.put(playerName, displayCardsFirstIndexData);
+                fileUserDataAccessObject.savePlayerwithCards(playerName, numberCards, new ArrayList<FunctionalCard>(), displayCardsFirstIndexData);
             }
             game = Game.getInstance();
             for (String player : playerNumCards.keySet()){
                 playerPlayableNumCards.put(player,
                         findPlayableCardsInterface.findPlayableNumberCards(game.getTopCard().getColor(),playerNumCards.get(player)));
             }
+
             initiationOutputDataBoundary.prepareNewGameView(new InitiationOutputData(initiationInputData.getPlayerNames(), numberCardsDeck,
-                    playerNumCards, playerPlayableNumCards, playerPlayableFunCards));
+                    playerNumCards, playerPlayableNumCards, playerPlayableFunCards, displayCardsFirstIndex));
     };
 
 }

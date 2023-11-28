@@ -18,8 +18,8 @@ import java.util.List;
 public class HumanPlayer extends Player {
     private Card selectedCard;
 
-    public HumanPlayer(String playerName, ArrayList<NumberCard> hand){
-        super(playerName, hand);
+    public HumanPlayer(String playerName, ArrayList<NumberCard> hand, int displayFirstCardIndex){
+        super(playerName, hand, displayFirstCardIndex);
         selectedCard = null;
     }
 
