@@ -75,9 +75,9 @@ public class Main {
         application.setVisible(true);
 
 
-        players = new Player[4];
-        for (int i=0; i<players.length; i++) {
-            players[i] = new Player(); // TODO: complete this
-            }
+//        players = new Player[4];
+  //      for (int i=0; i<players.length; i++) {
+    //        players[i] = new Player(); // TODO: complete this
+      //      }
     }
 }
