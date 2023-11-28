@@ -18,6 +18,9 @@ public class InitializedView extends JPanel implements ActionListener, PropertyC
     public final String viewName;
     private final InitializedViewModel initializedViewModel;
 
+    private JPanel cardPanel;
+    JPanel cardButtonPanel;
+
     ArrayList<JLabel> usernames = new ArrayList<>();
     ArrayList<JButton> cardNames = new ArrayList<>();
 
@@ -28,6 +31,7 @@ public class InitializedView extends JPanel implements ActionListener, PropertyC
         this.viewName = "Initialized";
         this.initializedViewModel = initializedViewModel;
         this.initializedViewModel.addPropertyChangeListener(this);
+        this.cardButtonPanel = initializedViewModel.getState().get_CardButtonPanel();
 
         setSize(1200, 1000);
 
@@ -60,25 +64,11 @@ public class InitializedView extends JPanel implements ActionListener, PropertyC
             playerInfo.setBackground(colorList.get(i - 1));
         }
 
-        JPanel cardPanel = new JPanel();
+        this.cardPanel = new JPanel();
         cardPanel.setLayout(new BorderLayout());
         cardPanel.setOpaque(false);
 
         JPanel infopanel = new JPanel();
-
-        JPanel playpanel = new JPanel();
-
-
-        for (int i = 0; i < 3; i++) {//根据viewmodel改
-            JButton cardButton = new JButton();
-            cardButton.setPreferredSize(new Dimension(130, 200));
-            cardButton.setBorder(BorderFactory.createEmptyBorder());
-            cardButton.setBackground(Color.YELLOW); // fill here for the card's color
-            cardButton.setOpaque(true);
-            Border border = BorderFactory.createLineBorder(Color.BLUE, 2);
-            cardButton.setBorder(border);
-            playpanel.add(cardButton);
-            cardNames.add(cardButton);};
 
         JButton getCardButton = new JButton("Get Card");
         getCardButton.setPreferredSize(new Dimension(130, 200));
@@ -107,9 +97,7 @@ public class InitializedView extends JPanel implements ActionListener, PropertyC
         infopanel.add(whichcolorButton);
         infopanel.add(undoButton);
         infopanel.setOpaque(false);
-        playpanel.setOpaque(false);
         cardPanel.add(infopanel, BorderLayout.NORTH);
-        cardPanel.add(playpanel, BorderLayout.CENTER);
         cardPanel.setOpaque(false);
 
         JPanel controlPanel = new JPanel();
@@ -121,7 +109,6 @@ public class InitializedView extends JPanel implements ActionListener, PropertyC
 
         controlPanel.add(nextTurnButton);
 
-        this.add(playerPanel, BorderLayout.NORTH);
         this.add(cardPanel, BorderLayout.CENTER);
         this.add(controlPanel, BorderLayout.SOUTH);
 
@@ -132,17 +119,10 @@ public class InitializedView extends JPanel implements ActionListener, PropertyC
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-        InitializedState state = (InitializedState) evt.getNewValue();
-        ArrayList<String> players = state.get_players();
-
-        for (int i = 0; i < players.size(); i++) {  // usernames.size() == 4
-            usernames.get(i).setText(players.get(i));
-        }
-
-        for (int i = 0; i < 3; i++) {
-            String name = initializedViewModel.getState().get_Number_Cards().get(i).getString();
-            cardNames.get(i).setText(name);
-        }
+        this.cardButtonPanel = (JPanel) evt.getNewValue();
+        this.cardButtonPanel.setOpaque(false);
+        cardPanel.add(this.cardButtonPanel, BorderLayout.CENTER);
+        this.add(this.cardButtonPanel, BorderLayout.NORTH);
     }
 
 }

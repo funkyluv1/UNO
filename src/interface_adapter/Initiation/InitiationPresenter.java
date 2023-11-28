@@ -1,6 +1,8 @@
 package interface_adapter.Initiation;
 
 import entities.Game;
+import interface_adapter.Initialized.CardButtonPanelState;
+import interface_adapter.Initialized.CardButtonPanelViewModel;
 import interface_adapter.Initialized.InitializedState;
 import interface_adapter.Initialized.InitializedViewModel;
 import interface_adapter.ViewManagerModel;
@@ -13,12 +15,15 @@ import use_case.initiation.InitiationOutputData;
 public class InitiationPresenter implements InitiationOutputDataBoundary {
     //TODO: This instance variable is not used, do we need to keep it?
     private final InitiationViewModel initiationViewModel;
-    private final InitializedViewModel initializedViewModel;
+    private final CardButtonPanelViewModel cardButtonPanelViewModel;
     private ViewManagerModel viewManagerModel;
+    private final InitializedViewModel initializedViewModel;
 
-    public InitiationPresenter(ViewManagerModel viewManagerModel,InitiationViewModel initiationViewModel, InitializedViewModel initializedViewModel){
+    public InitiationPresenter(ViewManagerModel viewManagerModel,InitiationViewModel initiationViewModel,
+                               CardButtonPanelViewModel cardButtonPanelViewModel, InitializedViewModel initializedViewModel){
         this.viewManagerModel = viewManagerModel;
         this.initiationViewModel = initiationViewModel;
+        this.cardButtonPanelViewModel = cardButtonPanelViewModel;
         this.initializedViewModel = initializedViewModel;
     }
 
@@ -26,12 +31,13 @@ public class InitiationPresenter implements InitiationOutputDataBoundary {
     public void prepareNewGameView(InitiationOutputData initiationOutputData) {
         // On success, switch to the initialized view.
 
-        InitializedState initializedState = initializedViewModel.getState();
-        initializedState.set_players(initiationOutputData.getPlayerNames());
-        initializedState.set_cards(initiationOutputData.getPlayerNumCards(), initiationOutputData.getPlayerPlayableNumCards(),
+        CardButtonPanelState cardButtonPanelState = cardButtonPanelViewModel.getState();
+        cardButtonPanelState.set_players(initiationOutputData.getPlayerNames());
+        cardButtonPanelState.set_cards(initiationOutputData.getPlayerNumCards(), initiationOutputData.getPlayerPlayableNumCards(),
                 initiationOutputData.getPlayerFunCards(), initiationOutputData.getPlayerPlayableFunCards());
-        this.initializedViewModel.setState(initializedState);
-        this.initializedViewModel.firePropertyChanged();
+
+        this.cardButtonPanelViewModel.setState(cardButtonPanelState);
+        this.cardButtonPanelViewModel.firePropertyChanged();
 
         viewManagerModel.setActiveView(initializedViewModel.getViewName());
         viewManagerModel.firePropertyChanged();

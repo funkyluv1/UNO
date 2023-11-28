@@ -15,8 +15,9 @@ public class SelectCardInteractor implements SelectCardInputDataBoundary{
     @Override
     public void execute(SelectCardInputData selectCardInputData) {
         Card selectedCard = selectCardInputData.getSelectedCardNew();
-        selectCardDataAccessInterface.recordSelectCard(selectedCard);
-        SelectCardOutputData selectCardOutputData = new SelectCardOutputData(selectedCard);
+        //selectCardDataAccessInterface.recordSelectCard(selectedCard);
+        game.setCurrSelectedCard(selectedCard);
+        SelectCardOutputData selectCardOutputData = new SelectCardOutputData(selectedCard, selectCardInputData.getButton_index());
         selectCardOutputDataBoundary.prepareSelectCardView(selectCardOutputData);
     }
 }

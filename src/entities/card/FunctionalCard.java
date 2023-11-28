@@ -17,7 +17,6 @@ public class FunctionalCard extends Card {
         this.type = type;
     }
 
-    // TODO: modify pre-turn, in-turn, post-turn handling methods
     public static void applyFunction(FunctionalCard funcCard) {
         switch (funcCard.type) {
             case "PlusTwo":

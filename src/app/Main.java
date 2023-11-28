@@ -6,16 +6,14 @@ import entities.Game;
 import entities.NumberCardsDeck.NumberCardsDeckCreator;
 import entities.player.AIPlayerFactory;
 import entities.player.HumanPlayerFactory;
+import interface_adapter.Initialized.CardButtonPanelViewModel;
 import interface_adapter.Initialized.InitializedViewModel;
 import interface_adapter.Initiation.InitiationViewModel;
 import interface_adapter.MainMeau.MainMeauViewModel;
 import interface_adapter.ViewManagerModel;
 import use_case.PreTurn.FindPlayableCards;
 import use_case.PreTurn.FindPlayableCardsInterface;
-import view.InitializedView;
-import view.MainMeauView;
-import view.ViewManager;
-import view.InitiationView;
+import view.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -57,8 +55,7 @@ public class Main {
         new ViewManager(views, cardLayout, viewManagerModel);
 
         FindPlayableCardsInterface findPlayableCardsInterface = new FindPlayableCards();
-        InitiationViewModel initiationViewModel = new InitiationViewModel();
-        InitializedViewModel initializedViewModel = new InitializedViewModel();
+
 
         FileUserDataAccessObject userDataAccessObject;
         try {
@@ -66,9 +63,15 @@ public class Main {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        
 
-        InitiationView initiationView = InitiationUseCaseFactory.create(viewManagerModel, initiationViewModel, initializedViewModel,userDataAccessObject, findPlayableCardsInterface);
+        CardButtonPanelViewModel cardButtonPanelViewModel = new CardButtonPanelViewModel();
+        CardButtonPanel cardButtonPanel = CardButtonPanelUseCaseFactory.create(viewManagerModel, cardButtonPanelViewModel, userDataAccessObject);
+
+        InitiationViewModel initiationViewModel = new InitiationViewModel();
+        InitializedViewModel initializedViewModel = new InitializedViewModel(cardButtonPanel);
+
+
+        InitiationView initiationView = InitiationUseCaseFactory.create(viewManagerModel, initiationViewModel, cardButtonPanelViewModel,initializedViewModel, userDataAccessObject, findPlayableCardsInterface);
         views.add(initiationView, initiationView.viewName);
 
         InitializedView initializedView = new InitializedView(initializedViewModel);
