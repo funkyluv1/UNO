@@ -1,4 +1,4 @@
-package use_case.drawcards;
+package use_case.DrawCards;
 
 import java.util.ArrayList;
 import java.util.regex.Matcher;

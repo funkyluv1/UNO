@@ -1,50 +1,51 @@
 package app;
 
+import Assets.BackGroundMusic;
 import data_access.FileUserDataAccessObject;
 import entities.Game;
 import entities.NumberCardsDeck.NumberCardsDeckCreator;
-import entities.card.*;
 import entities.player.AIPlayerFactory;
 import entities.player.HumanPlayerFactory;
-import entities.player.Player;
 import interface_adapter.Initialized.InitializedViewModel;
 import interface_adapter.Initiation.InitiationViewModel;
+import interface_adapter.MainMeau.MainMeauViewModel;
 import interface_adapter.ViewManagerModel;
-import use_case.PreTurn.FindPlayableCards;
-import use_case.PreTurn.FindPlayableCardsInterface;
 import view.InitializedView;
+import view.MainMeauView;
 import view.ViewManager;
 import view.InitiationView;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.IOException;
-import java.util.ArrayList;
 
 
 public class Main {
     static Game game;
-    static Player[] players;
-
-    public static ArrayList<NumberCard> createNumberHand(int size) {
-        ArrayList<NumberCard> hand = new ArrayList<>();
-        for (int i=0; i<size; i++) {
-            String[] randColor = {"red", "blue", "green", "yellow"};
-            int randColorIndex = (int) Math.floor(Math.random()*4);
-            int randValue = (int) Math.floor(Math.random()*9);
-            NumberCard card = new NumberCard(randValue, randColor[randColorIndex]);
-            hand.add(card);
-        }
-        return hand;
-    }
 
     public static void main(String[] args) {
         game = Game.getInstance();
 
         JFrame application = new JFrame("Initiation Example");
         application.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        application.setSize(800, 600);
+
+        // Center the window on the screen
+        application.setLocationRelativeTo(null);
 
         CardLayout cardLayout = new CardLayout();
+
+        BackGroundMusic bgm = new BackGroundMusic();
+        bgm.play("src/Assets/M2U - Body Talk.wav");
+        application.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                bgm.stop();
+                application.dispose();
+            }
+        });
 
         // The various View objects. Only one view is visible at a time.
         JPanel views = new JPanel(cardLayout);
@@ -56,8 +57,6 @@ public class Main {
         InitiationViewModel initiationViewModel = new InitiationViewModel();
         InitializedViewModel initializedViewModel = new InitializedViewModel();
 
-        FindPlayableCardsInterface findPlayableCardsInterface = new FindPlayableCards();
-
         FileUserDataAccessObject userDataAccessObject;
         try {
             userDataAccessObject = new FileUserDataAccessObject("./users.csv", new AIPlayerFactory(), new HumanPlayerFactory(), new NumberCardsDeckCreator());
@@ -65,7 +64,10 @@ public class Main {
             throw new RuntimeException(e);
         }
 
-        InitiationView initiationView = InitiationUseCaseFactory.create(viewManagerModel, initiationViewModel, initializedViewModel,userDataAccessObject, findPlayableCardsInterface);
+        MainMeauView mainMeauView = new MainMeauView(new MainMeauViewModel());
+        views.add(mainMeauView, mainMeauView.viewName);
+
+        InitiationView initiationView = InitiationUseCaseFactory.create(viewManagerModel, initiationViewModel, initializedViewModel,userDataAccessObject);
         views.add(initiationView, initiationView.viewName);
 
         InitializedView initializedView = new InitializedView(initializedViewModel);
@@ -74,10 +76,27 @@ public class Main {
         application.pack();
         application.setVisible(true);
 
+//        players = new ArrayList<Player>();
+//        // TODO: add Player objects to players, then shuffle players
+//        // TODO: create game object, add a while loop that updates the game object in
+//        //  each round (pre-turn, in-turn. etc.)
 
-        players = new Player[4];
-        for (int i=0; i<players.length; i++) {
-            players[i] = new Player(); // TODO: complete this
-            }
+//        int round = 1;
+//        while (true) { //TODO: replace true with some winning criteria
+//            Player currPlayer = players.get(round);
+//            round = round % players.size();
+//
+//            if (game.getSkipped()) {
+//                //...
+//            }
+//            if (game.getDrawCard() > 0) {
+//                //...
+//            }
+//
+//            currPlayer.preTurn(game);
+//            currPlayer.inTurn(game);
+//            currPlayer.postTurn(game);
+//
+//        }
     }
 }
