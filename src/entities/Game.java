@@ -17,7 +17,6 @@ public class Game {
     private int plusN; //the total number of additional cards need to be drawn after +2 and +4 cards
 
     private int currentPlayerIndex;
-
     private Object currSelectedCard;
 
     private int maxCardNum;
