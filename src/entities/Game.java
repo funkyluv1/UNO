@@ -19,6 +19,9 @@ public class Game {
     private int currentPlayerIndex;
 
     private Object currSelectedCard;
+
+    private int maxCardNum;
+    private Player currWinner;
     private ArrayList<String> playersList;
 
     private Game() {
@@ -31,6 +34,8 @@ public class Game {
         plusN = 0;
         currentPlayerIndex = 0;
         currSelectedCard = null;
+        maxCardNum = 0;
+        currWinner = null;
     }
 
     public static Game getInstance() {
@@ -92,5 +97,21 @@ public class Game {
     }
     public Object getCurrSelectedCard() {
         return currSelectedCard;
+    }
+
+    public void setMaxCardNum(int n) {
+        maxCardNum = n;
+    }
+
+    public int getMaxCardNum() {
+        return maxCardNum;
+    }
+
+    public void setCurrWinner(Player player) {
+        currWinner = player;
+    }
+
+    public Player getCurrWinner() {
+        return currWinner;
     }
 }
