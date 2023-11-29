@@ -14,8 +14,8 @@ public class UndoInteractor implements UndoInputDataBoundary {
 
     @Override
     public void execute(UndoInputData undoInputData) {
-        UndoOutputData undoOutputData = new UndoOutputData(game.getCurrSelectedCard());
-        game.setCurrSelectedCard(null);
+        UndoOutputData undoOutputData = new UndoOutputData(game.getCurrSelectedNumberCard());
+        game.setCurrSelectedNumberCard(null);
         undoDataAccessInterface.recordUnselectCard(undoInputData.getSelectedCard());
         undoOutputDataBoundary.prepareUndoView(undoOutputData);
     }
