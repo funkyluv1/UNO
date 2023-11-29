@@ -5,6 +5,7 @@ import entities.NumberCardsDeck.NumberCardsDeck;
 import entities.NumberCardsDeck.NumberCardsDeckFactory;
 import entities.card.*;
 import entities.player.*;
+import use_case.NextTurn.NextTurnDataAccessInterface;
 import use_case.PostTurn.PostTurnDataAccessInterface;
 import use_case.PreTurn.PreTurnDataAccessInterface;
 import use_case.initiation.InitiationDataAccessInterface;
@@ -15,7 +16,7 @@ import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class FileUserDataAccessObject implements InitiationDataAccessInterface, PreTurnDataAccessInterface, PostTurnDataAccessInterface {
+public class FileUserDataAccessObject implements InitiationDataAccessInterface, PreTurnDataAccessInterface, PostTurnDataAccessInterface, NextTurnDataAccessInterface {
     private final File csvFile;
     private final AIPlayerFactory aiPlayerFactory;
     private final HumanPlayerFactory humanPlayerFactory;

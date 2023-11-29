@@ -4,39 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="437e2396-4452-4db4-b169-fce7887c553b" name="Changes" comment="Test updated">
+    <list default="true" id="437e2396-4452-4db4-b169-fce7887c553b" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_11_13_2023_7_29_PM_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023_11_17,_19_46_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023_11_18,_01_04_[Changes]/shelved.patch" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project/data_access/APIDataAccessObject.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project/data_access/APIDataAccessObject.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project/data_access/FileUserDataAccessObject.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project/data_access/FileUserDataAccessObject.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project/interface_adapter/Initialized/InitializedState.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project/interface_adapter/Initialized/InitializedState.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project/interface_adapter/Initiation/InitiationPresenter.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project/interface_adapter/Initiation/InitiationPresenter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project/interface_adapter/drawcards/DrawCardsController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project/use_case/PostTurn/PostTurnInteractor.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project/use_case/PostTurn/PostTurnInteractor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project/use_case/PreTurn/PreTurnInteractor.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project/use_case/PreTurn/PreTurnInteractor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project/use_case/SelectCard/SelectCardInteractor.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project/use_case/SelectCard/SelectCardInteractor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project/use_case/SelectCard/SelectCardOutputData.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project/use_case/SelectCard/SelectCardOutputData.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project/use_case/Undo/UndoInputDataBoundary.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project/use_case/Undo/UndoInputDataBoundary.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project/use_case/Undo/UndoInteractor.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project/use_case/Undo/UndoInteractor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project/use_case/Undo/UndoOutputDataBoundary.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project/use_case/Undo/UndoOutputDataBoundary.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project/use_case/drawcards/DrawCardsDataAccessInterface.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project/use_case/drawcards/DrawCardsInputData.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project/use_case/drawcards/DrawCardsInputDataBoundary.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project/use_case/drawcards/DrawCardsInteractor.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project/use_case/drawcards/DrawCardsOutputData.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project/use_case/drawcards/DrawCardsOutputDataBoundary.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project/use_case/drawcards/DrawCardsResponseExtractFacade.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project/use_case/initiation/InitiationInteractor.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project/use_case/initiation/InitiationInteractor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project/use_case/initiation/InitiationOutputData.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project/use_case/initiation/InitiationOutputData.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project/view/InitializedView.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project/view/InitializedView.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interface_adapter/Initialized/InitializedState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interface_adapter/Initialized/InitializedState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interface_adapter/SelectCard/SelectCardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interface_adapter/SelectCard/SelectCardController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interface_adapter/Undo/UndoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interface_adapter/Undo/UndoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interface_adapter/Undo/UndoPresenter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/use_case/initiation/InitiationInteractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/use_case/initiation/InitiationInteractor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/use_case/initiation/InitiationOutputData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/use_case/initiation/InitiationOutputData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/use_case/initiation/InitiationOutputDataBoundary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/use_case/initiation/InitiationOutputDataBoundary.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/InitializedView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/InitializedView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data_access/FileUserDataAccessObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data_access/FileUserDataAccessObject.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,6 +20,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -55,6 +29,9 @@
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 7
@@ -65,20 +42,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "Test",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;presenterb&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -105,11 +82,5 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="Initiation usecase updated" />
-    <MESSAGE value="Testing updated" />
-    <MESSAGE value="Test updated" />
-    <option name="LAST_COMMIT_MESSAGE" value="Test updated" />
   </component>
 </project>
