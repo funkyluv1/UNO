@@ -6,8 +6,8 @@ import entities.card.NumberCard;
 import java.util.ArrayList;
 
 public class HumanPlayerFactory implements PlayerFactory{
-    public HumanPlayer create(String username, ArrayList<NumberCard> numcards, ArrayList<FunctionalCard> functionalCards){
-        HumanPlayer humanPlayer = new HumanPlayer(username, numcards);
+    public HumanPlayer create(String username, ArrayList<NumberCard> numcards, ArrayList<FunctionalCard> functionalCards, int displayFirstCardIndex){
+        HumanPlayer humanPlayer = new HumanPlayer(username, numcards, displayFirstCardIndex);
         humanPlayer.setFuncCards(functionalCards);
         return humanPlayer;
     }

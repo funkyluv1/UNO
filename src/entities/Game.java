@@ -5,6 +5,7 @@ import entities.player.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 public class Game {
 
@@ -16,8 +17,11 @@ public class Game {
     private int plusN; //the total number of additional cards need to be drawn after +2 and +4 cards
 
     private int currentPlayerIndex;
-
     private Object currSelectedCard;
+
+    private int maxCardNum;
+    private Player currWinner;
+    private ArrayList<String> playersList;
 
     private Game() {
         String[] randColor = {"red", "blue", "green", "yellow"};
@@ -29,6 +33,8 @@ public class Game {
         plusN = 0;
         currentPlayerIndex = 0;
         currSelectedCard = null;
+        maxCardNum = 0;
+        currWinner = null;
     }
 
     public static Game getInstance() {
@@ -90,5 +96,21 @@ public class Game {
     }
     public Object getCurrSelectedCard() {
         return currSelectedCard;
+    }
+
+    public void setMaxCardNum(int n) {
+        maxCardNum = n;
+    }
+
+    public int getMaxCardNum() {
+        return maxCardNum;
+    }
+
+    public void setCurrWinner(Player player) {
+        currWinner = player;
+    }
+
+    public Player getCurrWinner() {
+        return currWinner;
     }
 }
