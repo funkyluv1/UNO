@@ -1,5 +1,6 @@
 package view;
 
+import interface_adapter.Confirm.ConfirmController;
 import interface_adapter.Initialized.BottomPanelViewModel;
 import interface_adapter.Initialized.CardButtonPanelState;
 import interface_adapter.Initialized.CardButtonPanelViewModel;
@@ -20,9 +21,11 @@ public class BottomPanel extends JPanel implements PropertyChangeListener {
 
     BottomPanelViewModel bottomPanelViewModel;
     JPanel bottomPanel = new JPanel();
+    JButton nextButton;
+    JButton confirmButton;
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);
 
-    public BottomPanel(BottomPanelViewModel bottomPanelViewModel, SelectCardController selectCardController){
+    public BottomPanel(BottomPanelViewModel bottomPanelViewModel, ConfirmController confirmController){
         this.bottomPanelViewModel = bottomPanelViewModel;
         this.bottomPanelViewModel.addPropertyChangeListener(this);
 
@@ -48,38 +51,35 @@ public class BottomPanel extends JPanel implements PropertyChangeListener {
                 new ActionListener() {
                     public void actionPerformed(ActionEvent evt) {
                         if (evt.getSource().equals(nextButton)) {
-                            CardButtonPanelState currentState = bottomPanelViewModel.getState();
                             //TODO: NextUseCase controller here
                         }
                     }
                 }
         );
+        confirmButton.addActionListener(
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent evt) {
+                        if (evt.getSource().equals(confirmButton)) {
+                            confirmController.execute();
+                        }
+                    }
+                }
+        );
+
+        this.nextButton = nextButton;
+        this.confirmButton = confirmButton;
         bottomPanel.add(nextButton);
         bottomPanel.add(confirmButton);
 }
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-        for (int i = 0; i < 3; i++) {
-            String name = cardButtonPanelViewModel.getState().get_Number_Cards().get(i).getString();
+        nextButton.setEnabled(bottomPanelViewModel.getState().getNextButtonEnabled());
+        confirmButton.setEnabled(bottomPanelViewModel.getState().getConfirmButtonEnabled());
 
-            if (name.charAt(1) == 'B'){cardNames.get(i).setBackground(Color.BLUE);}
-            else if (name.charAt(1) == 'R'){cardNames.get(i).setBackground(Color.RED);}
-            else if (name.charAt(1) == 'G'){cardNames.get(i).setBackground(Color.GREEN);}
-
-            cardNames.get(i).setText(name);
-
-            if (i == 0){cardNames.get(i).setEnabled(cardButtonPanelViewModel.getState().getButton1enabled());}
-            else if (i == 1){cardNames.get(i).setEnabled(cardButtonPanelViewModel.getState().getButton2enabled());}
-            else cardNames.get(i).setEnabled(cardButtonPanelViewModel.getState().getButton3enabled());
-
-            cardNames.get(0).setEnabled(false);//There are bugs in FindPlayableCards; assume the first numCard is not playable
-        }
-        cardNames.get(cardButtonPanelViewModel.getState().getButtonindexHighlighted()).setBackground(Color.CYAN);
-
-        this.firePropertyChange();
-    }
+    this.firePropertyChange();
+}
     public void addPropertyChangeListener(PropertyChangeListener listener) {
         support.addPropertyChangeListener(listener);
     }
-    public void firePropertyChange(){support.firePropertyChange("playpanel", null, this.playpanel);}
+    public void firePropertyChange(){support.firePropertyChange("bottomPanel", null, this.bottomPanel);}
 }
