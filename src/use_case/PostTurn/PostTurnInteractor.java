@@ -2,7 +2,7 @@ package use_case.PostTurn;
 
 import entities.card.*;
 import entities.player.Player;
-import use_case.drawcards.DrawCardsDataAccessInterface;
+import use_case.DrawCards.DrawCardsDataAccessInterface;
 
 import java.util.ArrayList;
 
