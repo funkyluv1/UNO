@@ -21,7 +21,6 @@ public class InitializedViewModel extends ViewModel implements PropertyChangeLis
         super("Initialized");
         this.cardButtonPanel = cardButtonPanel;
         this.cardButtonPanel.addPropertyChangeListener(this);
-        this.cardButtonPanel.addPropertyChangeListener(this);
     }
 
     public void setState(InitializedState state) {

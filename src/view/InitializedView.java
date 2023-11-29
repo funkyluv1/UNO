@@ -122,7 +122,8 @@ public class InitializedView extends JPanel implements ActionListener, PropertyC
         this.cardButtonPanel = (JPanel) evt.getNewValue();
         this.cardButtonPanel.setOpaque(false);
         cardPanel.add(this.cardButtonPanel, BorderLayout.CENTER);
-        this.add(this.cardButtonPanel, BorderLayout.NORTH);
+        this.add(this.cardButtonPanel, BorderLayout.SOUTH);
+
     }
 
 }
