@@ -6,21 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="437e2396-4452-4db4-b169-fce7887c553b" name="Changes" comment="Test updated">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project/data_access/FileUserDataAccessObject.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project/data_access/FileUserDataAccessObject.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project/use_case/SelectCard/SelectCardDataAccessInterface.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project/use_case/SelectCard/SelectCardDataAccessInterface.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project/view/CardButtonPanel$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project/view/CardButtonPanel$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project/view/CardButtonPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project/view/CardButtonPanel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/CardButtonPanelUseCaseFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/CardButtonPanelUseCaseFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data_access/FileUserDataAccessObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data_access/FileUserDataAccessObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entities/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interface_adapter/Initialized/InitializedViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interface_adapter/Initialized/InitializedViewModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interface_adapter/SelectCard/SelectCardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interface_adapter/SelectCard/SelectCardController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interface_adapter/SelectCard/SelectCardState.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interface_adapter/SelectCard/SelectCardViewModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/use_case/SelectCard/SelectCardDataAccessInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/use_case/SelectCard/SelectCardDataAccessInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/CardButtonPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/CardButtonPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users.csv" beforeDir="false" afterPath="$PROJECT_DIR$/users.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interface_adapter/Initialized/CardButtonPanelState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interface_adapter/Initialized/CardButtonPanelState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interface_adapter/Initiation/InitiationPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interface_adapter/Initiation/InitiationPresenter.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
