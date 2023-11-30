@@ -16,7 +16,7 @@ public class CardButtonPanelState{
         private Map<String, ArrayList<NumberCard>> playerPlayableNumCards;
         private Map<String, ArrayList<FunctionalCard>> playerFunCards;
         private Map<String, ArrayList<FunctionalCard>> playerPlayableFunCards;
-        private Map<String, Integer> displayNumCardsIndexes;
+        private Map<String, Integer> displayNumCardsFirstIndex;
 
         public CardButtonPanelState(CardButtonPanelState copy) {
 
@@ -25,7 +25,7 @@ public class CardButtonPanelState{
             playerPlayableNumCards = copy.playerPlayableNumCards;
             playerFunCards = copy.playerFunCards;
             playerPlayableFunCards = copy.playerPlayableFunCards;
-            displayNumCardsIndexes = copy.displayNumCardsIndexes;
+            displayNumCardsFirstIndex = copy.displayNumCardsFirstIndex;
             button1enabled = copy.button1enabled;
             button2enabled = copy.button2enabled;
             button3enabled = copy.button3enabled;
@@ -42,12 +42,12 @@ public class CardButtonPanelState{
         public ArrayList<FunctionalCard> get_Highlighted_Functional_Cards(){return playerPlayableFunCards.get(players.get(0));}
         public void set_players(ArrayList<String> players){this.players = players;}
         public void set_cards(Map<String, ArrayList<NumberCard>> playerNumCards, Map<String, ArrayList<NumberCard>> playerPlayableNumCards,
-                              Map<String, ArrayList<FunctionalCard>> playerFunCards, Map<String, ArrayList<FunctionalCard>> playerPlayableFunCards, Map<String, Integer> displayNumCardsIndexes){
+                              Map<String, ArrayList<FunctionalCard>> playerFunCards, Map<String, ArrayList<FunctionalCard>> playerPlayableFunCards, Map<String, Integer> displayNumCardsFirstIndex){
             this.playerPlayableFunCards = playerPlayableFunCards;
             this.playerPlayableNumCards = playerPlayableNumCards;
             this.playerNumCards = playerNumCards;
             this.playerFunCards = playerFunCards;
-            this.displayNumCardsIndexes = displayNumCardsIndexes;
+            this.displayNumCardsFirstIndex = displayNumCardsFirstIndex;
         }
         public void setButton1enabled(boolean flag){this.button1enabled = flag;}
         public boolean getButton1enabled(){return this.button1enabled;}
@@ -58,5 +58,10 @@ public class CardButtonPanelState{
         public boolean getButton3enabled(){return this.button3enabled;}
         public void setButtonindexHighlighted(int button){this.buttonindexHighlighted = button;}
         public int getButtonindexHighlighted(){return this.buttonindexHighlighted;}
+
+    public Integer getdisplayCardsFirstIndex(){
+            // need current player instead of setting it as the first player
+        return displayNumCardsFirstIndex.get(players.get(0));
     }
+}
 

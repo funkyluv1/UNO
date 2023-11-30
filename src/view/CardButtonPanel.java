@@ -50,7 +50,7 @@ public class CardButtonPanel extends JPanel implements PropertyChangeListener {
                         public void actionPerformed(ActionEvent evt) {
                             if (evt.getSource().equals(cardButton)) {
                                 CardButtonPanelState currentState = cardButtonPanelViewModel.getState();
-                                selectCardController.execute(currentState.get_players().get(0), cardButton.getText(),finalI );
+                                selectCardController.execute(currentState.get_players().get(0), cardButton.getText(),finalI);
                                 //TODO: the current player uses game.playerindex
                             }
                         }
@@ -72,7 +72,9 @@ public class CardButtonPanel extends JPanel implements PropertyChangeListener {
     }
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-        for (int i = 0; i < 3; i++) {
+        int startInd = cardButtonPanelViewModel.getState().getdisplayCardsFirstIndex();
+
+        for (int i = startInd; i < startInd +3; i++) {
             String name = cardButtonPanelViewModel.getState().get_Number_Cards().get(i).getString();
 
             if (name.charAt(1) == 'B'){cardNames.get(i).setBackground(Color.BLUE);}

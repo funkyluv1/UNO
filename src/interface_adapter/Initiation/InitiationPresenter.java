@@ -39,6 +39,8 @@ public class InitiationPresenter implements InitiationOutputDataBoundary {
         this.cardButtonPanelViewModel.setState(cardButtonPanelState);
         this.cardButtonPanelViewModel.firePropertyChanged();
 
+        //TODO: initiate all panel views
+
         viewManagerModel.setActiveView(initializedViewModel.getViewName());
         viewManagerModel.firePropertyChanged();
     }
