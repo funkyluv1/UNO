@@ -26,6 +26,15 @@ public class CardButtonPanel extends JPanel implements PropertyChangeListener {
         this.cardButtonPanelViewModel = cardButtonPanelViewModel;
         this.cardButtonPanelViewModel.addPropertyChangeListener(this);
 
+        // left shift button
+        JButton leftShift = new JButton("left");
+        leftShift.setPreferredSize(new Dimension(100, 50));
+        leftShift.setForeground(Color.WHITE);
+        leftShift.setBackground(Color.BLACK);
+        leftShift.setFont(new Font("Arial", Font.BOLD, 14));
+        leftShift.setOpaque(true);
+        playpanel.add(leftShift);
+
         for (int i = 0; i < 3; i++) {
             JButton cardButton = new JButton();
             cardButton.setPreferredSize(new Dimension(130, 200));
@@ -49,7 +58,16 @@ public class CardButtonPanel extends JPanel implements PropertyChangeListener {
             playpanel.add(cardButton);
             cardNames.add(cardButton);
 
-        };
+        }
+
+        // right shift button
+        JButton rightShift = new JButton("right");
+        rightShift.setPreferredSize(new Dimension(100, 50));
+        rightShift.setForeground(Color.WHITE);
+        rightShift.setBackground(Color.BLACK);
+        rightShift.setFont(new Font("Arial", Font.BOLD, 14));
+        rightShift.setOpaque(true);
+        playpanel.add(rightShift);
     }
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
