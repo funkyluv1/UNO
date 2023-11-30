@@ -1,0 +1,39 @@
+<changelist name="Uncommitted_changes_before_Checkout_at_2023-11-28_11_56_a_m__[Changes]1" date="1701190610511" recycled="true" deleted="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2023-11-28_11_56_a_m__[Changes]1/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Checkout at 2023-11-28 11:56 a.m. [Changes]" />
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/project/interface_adapter/Initialized/InitializedState.class" />
+    <option name="AFTER_PATH" value="out/production/project/interface_adapter/Initialized/InitializedState.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2023-11-28_11_56_a_m__[Changes]1/InitializedState.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/project/use_case/SelectCard/SelectCardInteractor.class" />
+    <option name="AFTER_PATH" value="out/production/project/use_case/SelectCard/SelectCardInteractor.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2023-11-28_11_56_a_m__[Changes]1/SelectCardInteractor.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/project/use_case/Undo/UndoOutputDataBoundary.class" />
+    <option name="AFTER_PATH" value="out/production/project/use_case/Undo/UndoOutputDataBoundary.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2023-11-28_11_56_a_m__[Changes]1/UndoOutputDataBoundary.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/project/use_case/initiation/InitiationOutputData.class" />
+    <option name="AFTER_PATH" value="out/production/project/use_case/initiation/InitiationOutputData.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2023-11-28_11_56_a_m__[Changes]1/InitiationOutputData.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/project/view/InitializedView.class" />
+    <option name="AFTER_PATH" value="out/production/project/view/InitializedView.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2023-11-28_11_56_a_m__[Changes]1/InitializedView.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/view/resources/background.png" />
+    <option name="AFTER_PATH" value="src/view/resources/background.png" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2023-11-28_11_56_a_m__[Changes]1/background.png" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/project/use_case/Undo/UndoInputDataBoundary.class" />
+    <option name="AFTER_PATH" value="out/production/project/use_case/Undo/UndoInputDataBoundary.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2023-11-28_11_56_a_m__[Changes]1/UndoInputDataBoundary.class" />
+  </binary>
+</changelist>

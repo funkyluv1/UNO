@@ -1,0 +1,34 @@
+<changelist name="Uncommitted_changes_before_Checkout_at_2023-11-27_10_25_p_m__[Changes]1" date="1701141951858" recycled="true" deleted="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2023-11-27_10_25_p_m__[Changes]1/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Checkout at 2023-11-27 10:25 p.m. [Changes]" />
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/project/app/Main.class" />
+    <option name="AFTER_PATH" value="out/production/project/app/Main.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2023-11-27_10_25_p_m__[Changes]1/Main.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/project/use_case/Undo/UndoInteractor.class" />
+    <option name="AFTER_PATH" value="out/production/project/use_case/Undo/UndoInteractor.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2023-11-27_10_25_p_m__[Changes]1/UndoInteractor.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/project/use_case/SelectCard/SelectCardInputData.class" />
+    <option name="AFTER_PATH" value="out/production/project/use_case/SelectCard/SelectCardInputData.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2023-11-27_10_25_p_m__[Changes]1/SelectCardInputData.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/project/view/InitializedView.class" />
+    <option name="AFTER_PATH" value="out/production/project/view/InitializedView.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2023-11-27_10_25_p_m__[Changes]1/InitializedView.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/project/use_case/SelectCard/SelectCardInteractor.class" />
+    <option name="AFTER_PATH" value="out/production/project/use_case/SelectCard/SelectCardInteractor.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2023-11-27_10_25_p_m__[Changes]1/SelectCardInteractor.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/project/use_case/SelectCard/SelectCardOutputData.class" />
+    <option name="AFTER_PATH" value="out/production/project/use_case/SelectCard/SelectCardOutputData.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2023-11-27_10_25_p_m__[Changes]1/SelectCardOutputData.class" />
+  </binary>
+</changelist>
