@@ -3,6 +3,7 @@ package view;
 import interface_adapter.Initialized.CardButtonPanelState;
 import interface_adapter.Initialized.CardButtonPanelViewModel;
 import interface_adapter.Initiation.InitiationState;
+import interface_adapter.RightShift.RightShiftController;
 import interface_adapter.SelectCard.SelectCardController;
 
 import javax.swing.*;
@@ -22,7 +23,7 @@ public class CardButtonPanel extends JPanel implements PropertyChangeListener {
     JPanel playpanel = new JPanel();
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);
 
-    public CardButtonPanel(CardButtonPanelViewModel cardButtonPanelViewModel, SelectCardController selectCardController){
+    public CardButtonPanel(CardButtonPanelViewModel cardButtonPanelViewModel, SelectCardController selectCardController, RightShiftController rightShiftController){
         this.cardButtonPanelViewModel = cardButtonPanelViewModel;
         this.cardButtonPanelViewModel.addPropertyChangeListener(this);
 
