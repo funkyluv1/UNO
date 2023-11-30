@@ -1,12 +1,12 @@
 package use_case.PostTurn;
 
-import entities.card.BombCard;
-import entities.card.FunctionalCard;
-import entities.card.HotPotatoCard;
-import entities.card.NumberCard;
+import entities.card.*;
+import entities.player.Player;
 import use_case.DrawCards.DrawCardsDataAccessInterface;
 
 import java.util.ArrayList;
+
+import static use_case.initiation.InitiationInteractor.game;
 
 public class PostTurnInteractor implements PostTurnInputDataBoundary{
     final PostTurnOutputDataBoundary postTurnOutputDataBoundary;
@@ -27,12 +27,46 @@ public class PostTurnInteractor implements PostTurnInputDataBoundary{
             if (card instanceof BombCard) {
                 numberCards.addAll(dataAccessInterface.drawNumberCards(inputData.getNumberCardsDeck(), 5));
                 functionalCards.remove(card);
-            } else if (card instanceof HotPotatoCard) {
+            }
+            else if (card instanceof HotPotatoCard) {
                 numberCards.addAll(dataAccessInterface.drawNumberCards(inputData.getNumberCardsDeck(), card.getValue()));
             }
         }
+
+        FunctionalCard reward = generateFuncCard();
+        Player winner = game.getCurrWinner();
+        ArrayList<FunctionalCard> newHand = winner.getFuncCards();
+        newHand.add(reward);
+        winner.setFuncCards(newHand);
+
         postTurnDataAccessInterface.recordPostTurnChange(functionalCards, numberCards, inputData.getCurrentPlayer());
         PostTurnOutputData outputData = new PostTurnOutputData(numberCards, functionalCards, inputData.getCurrentPlayer());
         postTurnOutputDataBoundary.preparePostTurnView(outputData);
+    }
+
+    private FunctionalCard generateFuncCard() {
+        int randIndex = (int) Math.floor(Math.random()*7);
+        String[] randColors = {"red", "blue", "green", "yellow"};
+        int randColorIndex = (int) Math.floor(Math.random()*4);
+
+        int randValue = (int) Math.floor(Math.random()*9);
+        String randColor = randColors[randColorIndex];
+        switch (randIndex) {
+            case 0:
+                return new BombCard(randValue, randColor);
+            case 1:
+                return new HotPotatoCard(randValue, randColor);
+            case 2:
+                return new PlusFourCard();
+            case 3:
+                return new PlusTwoCard();
+            case 4:
+                return new RandomCard();
+            case 5:
+                return new SkipCard();
+            case 6:
+                return new WildCard();
+        }
+        return new WildCard();
     }
 }
