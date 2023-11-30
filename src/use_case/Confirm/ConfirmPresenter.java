@@ -1,4 +1,4 @@
-package interface_adapter.Confirm;
+package use_case.Confirm;
 
 public class ConfirmPresenter {
 }
