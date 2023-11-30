@@ -3,6 +3,7 @@ package view;
 import interface_adapter.Initialized.CardButtonPanelState;
 import interface_adapter.Initialized.CardButtonPanelViewModel;
 import interface_adapter.Initiation.InitiationState;
+import interface_adapter.RightShift.RightShiftController;
 import interface_adapter.SelectCard.SelectCardController;
 
 import javax.swing.*;
@@ -22,9 +23,18 @@ public class CardButtonPanel extends JPanel implements PropertyChangeListener {
     JPanel playpanel = new JPanel();
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);
 
-    public CardButtonPanel(CardButtonPanelViewModel cardButtonPanelViewModel, SelectCardController selectCardController){
+    public CardButtonPanel(CardButtonPanelViewModel cardButtonPanelViewModel, SelectCardController selectCardController, RightShiftController rightShiftController){
         this.cardButtonPanelViewModel = cardButtonPanelViewModel;
         this.cardButtonPanelViewModel.addPropertyChangeListener(this);
+
+        // left shift button
+        JButton leftShift = new JButton("left");
+        leftShift.setPreferredSize(new Dimension(100, 50));
+        leftShift.setForeground(Color.WHITE);
+        leftShift.setBackground(Color.BLACK);
+        leftShift.setFont(new Font("Arial", Font.BOLD, 14));
+        leftShift.setOpaque(true);
+        playpanel.add(leftShift);
 
         for (int i = 0; i < 3; i++) {
             JButton cardButton = new JButton();
@@ -40,7 +50,7 @@ public class CardButtonPanel extends JPanel implements PropertyChangeListener {
                         public void actionPerformed(ActionEvent evt) {
                             if (evt.getSource().equals(cardButton)) {
                                 CardButtonPanelState currentState = cardButtonPanelViewModel.getState();
-                                selectCardController.execute(currentState.get_players().get(0), cardButton.getText(), 2);
+                                selectCardController.execute(currentState.get_players().get(0), cardButton.getText(),finalI );
                                 //TODO: the current player uses game.playerindex
                             }
                         }
@@ -49,7 +59,16 @@ public class CardButtonPanel extends JPanel implements PropertyChangeListener {
             playpanel.add(cardButton);
             cardNames.add(cardButton);
 
-        };
+        }
+
+        // right shift button
+        JButton rightShift = new JButton("right");
+        rightShift.setPreferredSize(new Dimension(100, 50));
+        rightShift.setForeground(Color.WHITE);
+        rightShift.setBackground(Color.BLACK);
+        rightShift.setFont(new Font("Arial", Font.BOLD, 14));
+        rightShift.setOpaque(true);
+        playpanel.add(rightShift);
     }
     @Override
     public void propertyChange(PropertyChangeEvent evt) {

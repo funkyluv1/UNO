@@ -4,4 +4,5 @@ import entities.card.Card;
 
 public interface SelectCardDataAccessInterface {
     void recordSelectCard(Card card);
+    void recordUnselectCard(Card card);
 }

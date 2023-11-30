@@ -7,6 +7,7 @@ import entities.NumberCardsDeck.NumberCardsDeckCreator;
 import entities.player.AIPlayerFactory;
 import entities.player.HumanPlayerFactory;
 import interface_adapter.Initialized.CardButtonPanelViewModel;
+import interface_adapter.Initialized.GetCardPanelViewModel;
 import interface_adapter.Initialized.InitializedViewModel;
 import interface_adapter.Initiation.InitiationViewModel;
 import interface_adapter.MainMeau.MainMeauViewModel;
@@ -66,6 +67,9 @@ public class Main {
 
         CardButtonPanelViewModel cardButtonPanelViewModel = new CardButtonPanelViewModel();
         CardButtonPanel cardButtonPanel = CardButtonPanelUseCaseFactory.create(viewManagerModel, cardButtonPanelViewModel, userDataAccessObject);
+
+        GetCardPanelViewModel getCardPanelViewModel = new GetCardPanelViewModel();
+        GetCardPanel getCardPanel = GetCardPanelUseCaseFactory.create(viewManagerModel, getCardPanelViewModel, userDataAccessObject);
 
         InitiationViewModel initiationViewModel = new InitiationViewModel();
         InitializedViewModel initializedViewModel = new InitializedViewModel(cardButtonPanel);

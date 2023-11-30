@@ -22,7 +22,6 @@ public class Game {
     private ArrayList<NumberCard> numCardsinRound;
     private int maxCardNum;
     private Player currWinner;
-    private ArrayList<String> playersList;
 
     private Game() {
         String[] randColor = {"red", "blue", "green", "yellow"};
