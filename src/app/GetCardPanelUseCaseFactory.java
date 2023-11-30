@@ -6,10 +6,8 @@ import interface_adapter.Initialized.GetCardPanelViewModel;
 import interface_adapter.SelectCard.SelectCardController;
 import interface_adapter.Undo.UndoController;
 import interface_adapter.ViewManagerModel;
-import use_case.Undo.UndoDataAccessInterface;
-import use_case.Undo.UndoInputDataBoundary;
-import use_case.Undo.UndoInteractor;
-import use_case.Undo.UndoOutputDataBoundary;
+import use_case.Undo.*;
+import interface_adapter.Undo.*;
 import view.GetCardPanel;
 
 import javax.swing.*;
@@ -32,7 +30,7 @@ public class GetCardPanelUseCaseFactory {
     }
 
     private static UndoController createUndoController(ViewManagerModel viewManagerModel, GetCardPanelViewModel getCardPanelViewModel, FileUserDataAccessObject fileUserDataAccessObject) {
-        UndoOutputDataBoundary undoPresenter = new UndoPresenter;
+        UndoOutputDataBoundary undoPresenter = new UndoPresenter();
 
         UndoDataAccessInterface undoDataAccessInterface = fileUserDataAccessObject;
         UndoInputDataBoundary undoIntactor = new UndoInteractor(undoPresenter, undoDataAccessInterface);
