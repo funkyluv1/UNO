@@ -50,7 +50,7 @@ public class CardButtonPanel extends JPanel implements PropertyChangeListener {
                         public void actionPerformed(ActionEvent evt) {
                             if (evt.getSource().equals(cardButton)) {
                                 CardButtonPanelState currentState = cardButtonPanelViewModel.getState();
-                                selectCardController.execute(currentState.get_players().get(0), cardButton.getText(),finalI );
+                                selectCardController.execute(currentState.get_players().get(0), cardButton.getText(),finalI);
                                 //TODO: the current player uses game.playerindex
                             }
                         }
