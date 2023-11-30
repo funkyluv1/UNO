@@ -38,7 +38,7 @@ public class CardButtonPanelUseCaseFactory {
 
         try {
             SelectCardController selectCardController = createSelectCardController(viewManagerModel,
-                    cardButtonPanelViewModel, fileUserDataAccessObject);
+                    cardButtonPanelViewModel);
             return new CardButtonPanel(cardButtonPanelViewModel, selectCardController);
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, "Could not open user data file.");
@@ -48,15 +48,12 @@ public class CardButtonPanelUseCaseFactory {
     }
 
     private static SelectCardController createSelectCardController(ViewManagerModel viewManagerModel,
-                                                                CardButtonPanelViewModel cardButtonPanelViewModel,
-                                                                FileUserDataAccessObject userDataAccessObject) throws IOException {
+                                                                CardButtonPanelViewModel cardButtonPanelViewModel) throws IOException {
 
         SelectCardOutputDataBoundary selectCardOutputDataBoundary = new SelectCardPresenter(viewManagerModel,
                 cardButtonPanelViewModel);
 
-        SelectCardDataAccessInterface selectCardDataAccessInterface = userDataAccessObject;
-
-        SelectCardInputDataBoundary selectCardInteractor = new SelectCardInteractor(selectCardOutputDataBoundary, selectCardDataAccessInterface);
+        SelectCardInputDataBoundary selectCardInteractor = new SelectCardInteractor(selectCardOutputDataBoundary);
 
         return new SelectCardController(selectCardInteractor);
     }
