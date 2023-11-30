@@ -74,6 +74,8 @@ public class Main {
         InitiationViewModel initiationViewModel = new InitiationViewModel();
         InitializedViewModel initializedViewModel = new InitializedViewModel(cardButtonPanel, bottomPanel);
 
+        InitiationViewModel initiationViewModel = new InitiationViewModel();
+        InitializedViewModel initializedViewModel = new InitializedViewModel(cardButtonPanel, getCardPanel);
 
         InitiationView initiationView = InitiationUseCaseFactory.create(viewManagerModel, initiationViewModel, cardButtonPanelViewModel,initializedViewModel, userDataAccessObject, findPlayableCardsInterface);
         views.add(initiationView, initiationView.viewName);
