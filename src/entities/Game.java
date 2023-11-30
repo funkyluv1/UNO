@@ -38,6 +38,7 @@ public class Game {
         numCardsinRound = new ArrayList<>();
         maxCardNum = 0;
         currWinner = null;
+
     }
 
     public static Game getInstance() {
