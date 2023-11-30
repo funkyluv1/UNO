@@ -1,21 +1,34 @@
 package interface_adapter.SelectCard;
 
+import data_access.StringToCardAdapter;
 import entities.card.Card;
+import entities.card.CardFactory;
+import entities.card.NumberCard;
+import entities.card.NumberCardFactory;
 import entities.player.Player;
 import use_case.SelectCard.SelectCardInputData;
-import use_case.SelectCard.SelectCardInputBoundary;
+import use_case.SelectCard.SelectCardInputDataBoundary;
 import use_case.SelectCard.SelectCardInteractor;
+
+import java.util.ArrayList;
 
 public class SelectCardController {
 
-    final SelectCardInputBoundary selectCardInteractor;
+    final SelectCardInputDataBoundary selectCardInteractor;
 
-    public SelectCardController (SelectCardInputBoundary selectCardInteractor) {
+    public SelectCardController (SelectCardInputDataBoundary selectCardInteractor) {
         this.selectCardInteractor = selectCardInteractor;
     }
 
-    public void execute (Player player, Card cardNew) {
-        SelectCardInputData selectCardInputData = new SelectCardInputData(player, cardNew);
+    public void execute (String player, String text, int button_index) {
+        Card cardNew = null;
+        if (Character.isDigit(text.charAt(0))) {
+            ArrayList<String> list = new ArrayList<>();
+            list.add(text);
+            StringToCardAdapter stringToCardAdapter = new StringToCardAdapter(list);
+            cardNew = stringToCardAdapter.convertToNumCards().get(0);//TODO: StringToCardAdapter have bugs; will change everything to Red
+        }
+        SelectCardInputData selectCardInputData = new SelectCardInputData(player, cardNew, button_index);
         selectCardInteractor.execute(selectCardInputData);
     }
 }

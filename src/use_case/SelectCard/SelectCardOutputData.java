@@ -1,25 +1,22 @@
 package use_case.SelectCard;
 
 import entities.card.Card;
-import entities.player.Player;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
 
 public class SelectCardOutputData {
+    private final Object selectedCard;
+    private final int button_index;
 
-    private final Player player;
-    private final HashMap<Card, Boolean> playerCards;
+    public SelectCardOutputData (Object selectedCard, int button_index) {
+        this.selectedCard = selectedCard;
+        this.button_index = button_index;
 
-    public SelectCardOutputData (Player player, HashMap<Card, Boolean> playerCards) {
-        this.player = player;
-        this.playerCards = playerCards;
     }
 
-    public Player getPlayer() {
-        return player;
+    public Card getSelectedCard() {
+        return (Card) selectedCard;
     }
-    public HashMap<Card, Boolean> getPlayerCards() {
-        return playerCards;
+
+    public int getButton_index(){
+        return button_index;
     }
 }

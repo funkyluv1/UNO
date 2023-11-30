@@ -2,17 +2,22 @@ package use_case.Undo;
 
 import static use_case.initiation.InitiationInteractor.game;
 
-public class UndoInteractor implements UndoInputBoundary {
+public class UndoInteractor implements UndoInputDataBoundary {
 
-    final UndoOutputBoundary undoOutputDataBoundary;
+    final UndoOutputDataBoundary undoOutputDataBoundary;
+    final UndoDataAccessInterface undoDataAccessInterface;
 
-    public UndoInteractor (UndoOutputBoundary undoOutputDataBoundary) {
+    public UndoInteractor(UndoOutputDataBoundary undoOutputDataBoundary, UndoDataAccessInterface undoDataAccessInterface) {
         this.undoOutputDataBoundary = undoOutputDataBoundary;
+        this.undoDataAccessInterface = undoDataAccessInterface;
     }
+
     @Override
-    public void execute() {
-        UndoOutputData undoOutputData = new UndoOutputData(game.getCurrSelectedCard());
-        game.setCurrSelectedCard(null);
+    public void execute(UndoInputData undoInputData) {
+        UndoOutputData undoOutputData = new UndoOutputData(game.getCurrSelectedNumberCard());
+        game.setCurrSelectedNumberCard(null);
+        undoDataAccessInterface.recordUnselectCard(undoInputData.getSelectedCard());
         undoOutputDataBoundary.prepareUndoView(undoOutputData);
     }
+
 }

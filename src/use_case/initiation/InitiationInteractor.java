@@ -6,7 +6,7 @@ import entities.NumberCardsDeck.NumberCardsDeck;
 import entities.card.FunctionalCard;
 import entities.card.NumberCard;
 import use_case.PreTurn.FindPlayableCardsInterface;
-import use_case.drawcards.DrawCardsDataAccessInterface;
+import use_case.DrawCards.DrawCardsDataAccessInterface;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -29,31 +29,30 @@ public class InitiationInteractor implements InitiationInputDataBoundary {
         this.findPlayableCardsInterface = findPlayableCardsInterface;
     }
 
-        public void execute(InitiationInputData initiationInputData){
-            Map<String, ArrayList<NumberCard>> playerNumCards = new HashMap<>();
-            Map<String, ArrayList<NumberCard>> playerPlayableNumCards = new HashMap<>();
-            Map<String, ArrayList<FunctionalCard>> playerPlayableFunCards = new HashMap<>();
-            Map<String, Integer> displayCardsFirstIndex = new HashMap<>();
+    public void execute(InitiationInputData initiationInputData){
+        Map<String, ArrayList<NumberCard>> playerNumCards = new HashMap<>();
+        Map<String, ArrayList<NumberCard>> playerPlayableNumCards = new HashMap<>();
+        Map<String, ArrayList<FunctionalCard>> playerPlayableFunCards = new HashMap<>();
+        Map<String, Integer> displayCardsFirstIndex = new HashMap<>();
 
-            int initialNumberCards = 5;
-            NumberCardsDeck numberCardsDeck = drawCardsDataAccessInterface.createNumberCardsDeck();
-            fileUserDataAccessObject.initiate(numberCardsDeck, initiationInputData);
-            for (String playerName : initiationInputData.getPlayerNames()){
-                ArrayList<NumberCard> numberCards = drawCardsDataAccessInterface.drawNumberCards(numberCardsDeck, initialNumberCards);
-                playerNumCards.put(playerName, numberCards);
-                playerPlayableFunCards.put(playerName, new ArrayList<FunctionalCard>());
-                int displayCardsFirstIndexData = fileUserDataAccessObject.getPlayerDisplayFirstCardIndex(playerName);
-                displayCardsFirstIndex.put(playerName, displayCardsFirstIndexData);
-                fileUserDataAccessObject.savePlayerwithCards(playerName, numberCards, new ArrayList<FunctionalCard>(), displayCardsFirstIndexData);
-            }
-            game = Game.getInstance();
-            for (String player : playerNumCards.keySet()){
-                playerPlayableNumCards.put(player,
-                        findPlayableCardsInterface.findPlayableNumberCards(game.getTopCard().getColor(),playerNumCards.get(player)));
-            }
-
-            initiationOutputDataBoundary.prepareNewGameView(new InitiationOutputData(initiationInputData.getPlayerNames(), numberCardsDeck,
-                    playerNumCards, playerPlayableNumCards, playerPlayableFunCards, displayCardsFirstIndex));
+        int initialNumberCards = 5;
+        NumberCardsDeck numberCardsDeck = drawCardsDataAccessInterface.createNumberCardsDeck();
+        fileUserDataAccessObject.initiate(numberCardsDeck, initiationInputData);
+        for (String playerName : initiationInputData.getPlayerNames()){
+            ArrayList<NumberCard> numberCards = drawCardsDataAccessInterface.drawNumberCards(numberCardsDeck, initialNumberCards);
+            playerNumCards.put(playerName, numberCards);
+            playerPlayableFunCards.put(playerName, new ArrayList<FunctionalCard>());
+            int displayCardsFirstIndexData = fileUserDataAccessObject.getPlayerDisplayFirstCardIndex(playerName);
+            displayCardsFirstIndex.put(playerName, displayCardsFirstIndexData);
+            fileUserDataAccessObject.savePlayerwithCards(playerName, numberCards, new ArrayList<FunctionalCard>(),  displayCardsFirstIndexData);
+        }
+        game = Game.getInstance();
+        for (String player : playerNumCards.keySet()){
+            playerPlayableNumCards.put(player,
+                    findPlayableCardsInterface.findPlayableNumberCards(game.getTopCard().getColor(),playerNumCards.get(player)));
+        }
+        initiationOutputDataBoundary.prepareNewGameView(new InitiationOutputData(initiationInputData.getPlayerNames(), numberCardsDeck,
+                playerNumCards, playerPlayableNumCards, playerPlayableFunCards,  displayCardsFirstIndex));
     };
 
 }
