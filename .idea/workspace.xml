@@ -5,58 +5,32 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="437e2396-4452-4db4-b169-fce7887c553b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/out/production/project/app/InitiationUseCaseFactory.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/project/app/Main.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/project/interface_adapter/SelectCard/SelectCardController.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/project/interface_adapter/SelectCard/SelectCardPresenter.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/project/interface_adapter/Undo/UndoController.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/project/interface_adapter/Undo/UndoPresenter.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/project/use_case/Confirm/ConfirmInputData.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/project/use_case/Confirm/ConfirmInputDataBoundary.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/project/use_case/Confirm/ConfirmInputDataInteractor.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/project/use_case/Confirm/ConfirmOutputData.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/project/use_case/Confirm/ConfirmOutputDataBoundary.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/project/use_case/Confirm/ConfirmPresenter.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/project/use_case/SelectCard/SelectCardInputBoundary.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/project/use_case/SelectCard/SelectCardOutputBoundary.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/project/use_case/Undo/UndoInputBoundary.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/project/use_case/Undo/UndoOutputBoundary.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/project/use_case/Undo/UndoOutputData.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Project.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_27_2023_10_26_PM_[Changes]/shelved.patch" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_27_2023_10_26_PM_[Changes]/shelved.patch" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_27_2023_10_26_PM_[Changes]1/shelved.patch" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_27_2023_10_26_PM_[Changes]1/shelved.patch" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_28_2023_1_04_AM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_28_2023_1_04_AM__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_18_2023_10_00_PM_[Changes]/shelved.patch" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_18_2023_10_00_PM_[Changes]/shelved.patch" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_18_2023_10_00_PM_[Changes]1/shelved.patch" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_18_2023_10_00_PM_[Changes]1/shelved.patch" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_18_2023_10_00_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_18_2023_10_00_PM__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_18_2023_10_39_PM_[Changes]/shelved.patch" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_18_2023_10_39_PM_[Changes]/shelved.patch" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_18_2023_10_39_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_18_2023_10_39_PM__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023_11_11,_00_18_[Changes]/shelved.patch" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023_11_11,_00_18_[Changes]/shelved.patch" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023_11_11__00_18__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023_11_11__00_18__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023_11_17,_19_46_[Changes]/shelved.patch" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023_11_17,_19_46_[Changes]/shelved.patch" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023_11_18,_01_04_[Changes]/shelved.patch" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023_11_18,_01_04_[Changes]/shelved.patch" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023_11_18,_23_10_[Changes]/shelved.patch" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023_11_18,_23_10_[Changes]/shelved.patch" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/project/data_access/FileUserDataAccessObject.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project/data_access/FileUserDataAccessObject.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/project/entities/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project/entities/Game.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project/entities/player/AIPlayer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project/entities/player/AIPlayer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project/entities/player/AIPlayerFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project/entities/player/AIPlayerFactory.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project/entities/player/HumanPlayer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project/entities/player/HumanPlayer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project/entities/player/HumanPlayerFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project/entities/player/HumanPlayerFactory.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project/entities/player/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project/entities/player/Player.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project/entities/player/PlayerFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project/entities/player/PlayerFactory.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project/interface_adapter/Initialized/InitializedState.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project/interface_adapter/Initialized/InitializedState.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project/interface_adapter/Initiation/InitiationPresenter.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project/interface_adapter/Initiation/InitiationPresenter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project/interface_adapter/inTurn/InTurnPresenter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project/use_case/SelectCard/SelectCardInputDataBoundary.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project/use_case/SelectCard/SelectCardOutputDataBoundary.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project/use_case/Undo/UndoInputDataBoundary.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project/use_case/Undo/UndoOutputDataBoundary.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project/use_case/initiation/InitiationDataAccessInterface.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project/use_case/initiation/InitiationDataAccessInterface.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project/use_case/initiation/InitiationInteractor.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project/use_case/initiation/InitiationInteractor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project/use_case/initiation/InitiationOutputData.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project/use_case/initiation/InitiationOutputData.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project/view/InitializedView.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project/view/InitializedView.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data_access/FileUserDataAccessObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data_access/FileUserDataAccessObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entities/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entities/player/AIPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/player/AIPlayer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entities/player/AIPlayerFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/player/AIPlayerFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entities/player/HumanPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/player/HumanPlayer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entities/player/HumanPlayerFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/player/HumanPlayerFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entities/player/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/player/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entities/player/PlayerFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/player/PlayerFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interface_adapter/Initialized/InitializedState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interface_adapter/Initialized/InitializedState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interface_adapter/Initiation/InitiationPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interface_adapter/Initiation/InitiationPresenter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/use_case/initiation/InitiationDataAccessInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/use_case/initiation/InitiationDataAccessInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/use_case/initiation/InitiationInteractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/use_case/initiation/InitiationInteractor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/use_case/initiation/InitiationOutputData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/use_case/initiation/InitiationOutputData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/InitializedView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/InitializedView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users.csv" beforeDir="false" afterPath="$PROJECT_DIR$/users.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project/entities/card/PlusFourCard.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project/entities/card/PlusFourCard.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project/entities/card/PlusTwoCard.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project/entities/card/PlusTwoCard.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project/entities/card/RandomCard.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project/entities/card/RandomCard.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project/entities/card/SkipCard.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project/entities/card/SkipCard.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project/entities/card/WildCard.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project/entities/card/WildCard.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project/use_case/Confirm/ConfirmPresenter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project/use_case/PostTurn/PostTurnInputData.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project/use_case/PostTurn/PostTurnInputData.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project/use_case/PostTurn/PostTurnInteractor.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project/use_case/PostTurn/PostTurnInteractor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/use_case/PostTurn/PostTurnInteractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/use_case/PostTurn/PostTurnInteractor.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,7 +67,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "Cynthia",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
