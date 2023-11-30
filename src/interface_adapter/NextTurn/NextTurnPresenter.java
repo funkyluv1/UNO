@@ -40,10 +40,6 @@ public class NextTurnPresenter {
         this.cardButtonPanelViewModel.setState(cardButtonPanelState);
         this.cardButtonPanelViewModel.firePropertyChanged();
 
-        viewManagerModel.setActiveView(initializedViewModel.getViewName());
-        viewManagerModel.firePropertyChanged();
-
-
 
     }
 
