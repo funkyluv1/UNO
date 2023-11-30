@@ -34,7 +34,7 @@ public class InitiationPresenter implements InitiationOutputDataBoundary {
         CardButtonPanelState cardButtonPanelState = cardButtonPanelViewModel.getState();
         cardButtonPanelState.set_players(initiationOutputData.getPlayerNames());
         cardButtonPanelState.set_cards(initiationOutputData.getPlayerNumCards(), initiationOutputData.getPlayerPlayableNumCards(),
-                initiationOutputData.getPlayerFunCards(), initiationOutputData.getPlayerPlayableFunCards());
+                initiationOutputData.getPlayerFunCards(), initiationOutputData.getPlayerPlayableFunCards(), initiationOutputData.getDisplayNumCardsIndexes());
 
         this.cardButtonPanelViewModel.setState(cardButtonPanelState);
         this.cardButtonPanelViewModel.firePropertyChanged();
