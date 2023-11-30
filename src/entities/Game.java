@@ -17,7 +17,7 @@ public class Game {
 
     private int currentPlayerIndex;
 
-    private Object currSelectedCard;
+    private Card currSelectedCard;
 
     private Game() {
         String[] randColor = {"red", "blue", "green", "yellow"};
@@ -85,10 +85,10 @@ public class Game {
         currentPlayerIndex += 1;
     }
 
-    public void setCurrSelectedCard(Object card) {
+    public void setCurrSelectedCard(Card card) {
         currSelectedCard = card;
     }
-    public Object getCurrSelectedCard() {
+    public Card getCurrSelectedCard() {
         return currSelectedCard;
     }
 }

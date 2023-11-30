@@ -4,6 +4,7 @@ import entities.Game;
 import interface_adapter.ViewModel;
 import interface_adapter.Initiation.InitiationState;
 import view.CardButtonPanel;
+import view.GetCardPanel;
 
 import javax.swing.*;
 import java.beans.PropertyChangeEvent;
@@ -13,14 +14,16 @@ import java.beans.PropertyChangeSupport;
 public class InitializedViewModel extends ViewModel implements PropertyChangeListener{
     public final String TITLE_LABEL = "Initialized View";
     private CardButtonPanel cardButtonPanel;
+    private GetCardPanel getCardPanel;
     private JPanel playpanel;
     private InitializedState state = new InitializedState();
 
-    public InitializedViewModel(CardButtonPanel cardButtonPanel) {
+    public InitializedViewModel(CardButtonPanel cardButtonPanel, GetCardPanel getCardPanel) {
 
         super("Initialized");
         this.cardButtonPanel = cardButtonPanel;
         this.cardButtonPanel.addPropertyChangeListener(this);
+        this.getCardPanel = getCardPanel;
     }
 
     public void setState(InitializedState state) {

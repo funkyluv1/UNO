@@ -7,6 +7,7 @@ import entities.NumberCardsDeck.NumberCardsDeckCreator;
 import entities.player.AIPlayerFactory;
 import entities.player.HumanPlayerFactory;
 import interface_adapter.Initialized.CardButtonPanelViewModel;
+import interface_adapter.Initialized.GetCardPanelViewModel;
 import interface_adapter.Initialized.InitializedViewModel;
 import interface_adapter.Initiation.InitiationViewModel;
 import interface_adapter.MainMeau.MainMeauViewModel;
@@ -46,14 +47,15 @@ public class Main {
                 application.dispose();
             }
         });
-
+        Image backgroundImage = new ImageIcon("path/to/background.jpg").getImage();
+        JLabel background = new JLabel(new ImageIcon(backgroundImage));
         // The various View objects. Only one view is visible at a time.
         JPanel views = new JPanel(cardLayout);
         application.add(views);
 
         ViewManagerModel viewManagerModel = new ViewManagerModel();
         new ViewManager(views, cardLayout, viewManagerModel);
-
+//
         FindPlayableCardsInterface findPlayableCardsInterface = new FindPlayableCards();
 
 
@@ -67,8 +69,10 @@ public class Main {
         CardButtonPanelViewModel cardButtonPanelViewModel = new CardButtonPanelViewModel();
         CardButtonPanel cardButtonPanel = CardButtonPanelUseCaseFactory.create(viewManagerModel, cardButtonPanelViewModel, userDataAccessObject);
 
+        GetCardPanelViewModel getCardPanelViewModel = new GetCardPanelViewModel();
+        GetCardPanel getCardPanel = GetCardPanelUseCaseFactory.create(viewManagerModel, getCardPanelViewModel, userDataAccessObject);
         InitiationViewModel initiationViewModel = new InitiationViewModel();
-        InitializedViewModel initializedViewModel = new InitializedViewModel(cardButtonPanel);
+        InitializedViewModel initializedViewModel = new InitializedViewModel(cardButtonPanel, getCardPanel);
 
 
         InitiationView initiationView = InitiationUseCaseFactory.create(viewManagerModel, initiationViewModel, cardButtonPanelViewModel,initializedViewModel, userDataAccessObject, findPlayableCardsInterface);
