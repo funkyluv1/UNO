@@ -1,4 +1,5 @@
 package use_case.Confirm;
 
-public class ConfirmOutputDataBoundary {
+public interface ConfirmOutputDataBoundary {
+    public void prepareSuccessView();
 }
