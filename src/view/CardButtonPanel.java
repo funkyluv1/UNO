@@ -2,7 +2,7 @@ package view;
 
 import interface_adapter.Initialized.CardButtonPanelState;
 import interface_adapter.Initialized.CardButtonPanelViewModel;
-import interface_adapter.Initiation.InitiationState;
+import interface_adapter.RightShift.RightShiftController;
 import interface_adapter.SelectCard.SelectCardController;
 
 import javax.swing.*;
@@ -22,9 +22,17 @@ public class CardButtonPanel extends JPanel implements PropertyChangeListener {
     JPanel playpanel = new JPanel();
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);
 
-    public CardButtonPanel(CardButtonPanelViewModel cardButtonPanelViewModel, SelectCardController selectCardController){
+    public CardButtonPanel(CardButtonPanelViewModel cardButtonPanelViewModel, SelectCardController selectCardController, RightShiftController rightShiftController){
         this.cardButtonPanelViewModel = cardButtonPanelViewModel;
         this.cardButtonPanelViewModel.addPropertyChangeListener(this);
+
+        JButton leftShiftButton = new JButton();
+        leftShiftButton.setPreferredSize(new Dimension(50, 50));
+        leftShiftButton.setBorder(BorderFactory.createEmptyBorder());
+        leftShiftButton.setBackground(Color.BLACK); // fill here for the card's color
+        leftShiftButton.setOpaque(true);
+        Border border = BorderFactory.createLineBorder(Color.BLUE, 2);
+        leftShiftButton.setBorder(border);
 
         for (int i = 0; i < 3; i++) {
             JButton cardButton = new JButton();
@@ -32,7 +40,7 @@ public class CardButtonPanel extends JPanel implements PropertyChangeListener {
             cardButton.setBorder(BorderFactory.createEmptyBorder());
             cardButton.setBackground(Color.YELLOW); // fill here for the card's color
             cardButton.setOpaque(true);
-            Border border = BorderFactory.createLineBorder(Color.BLUE, 2);
+            //Border border = BorderFactory.createLineBorder(Color.BLUE, 2);
             cardButton.setBorder(border);
             int finalI = i;
             cardButton.addActionListener(
@@ -40,19 +48,44 @@ public class CardButtonPanel extends JPanel implements PropertyChangeListener {
                         public void actionPerformed(ActionEvent evt) {
                             if (evt.getSource().equals(cardButton)) {
                                 CardButtonPanelState currentState = cardButtonPanelViewModel.getState();
-                                selectCardController.execute(currentState.get_players().get(0), cardButton.getText(), 2);
+                                selectCardController.execute(currentState.get_players().get(0), cardButton.getText(), finalI);
                                 //TODO: the current player uses game.playerindex
                             }
                         }
                     }
             );
+
             playpanel.add(cardButton);
             cardNames.add(cardButton);
+        }
+        JButton rightShiftButton = new JButton();
+        rightShiftButton.setPreferredSize(new Dimension(50, 50));
+        rightShiftButton.setBorder(BorderFactory.createEmptyBorder());
+        rightShiftButton.setBackground(Color.BLACK); // fill here for the card's color
+        rightShiftButton.setOpaque(true);
+        //Border border = BorderFactory.createLineBorder(Color.BLUE, 2);
+        rightShiftButton.setBorder(border);
 
-        };
+        playpanel.add(leftShiftButton);
+        cardNames.add(leftShiftButton);
+        playpanel.add(rightShiftButton);
+        cardNames.add(rightShiftButton);
+
+        rightShiftButton.addActionListener(
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent evt) {
+                        if (evt.getSource().equals(rightShiftButton)) {
+                            CardButtonPanelState currentState = cardButtonPanelViewModel.getState();
+                            rightShiftController.execute(currentState.get_players().get(0));
+                        }
+                    }
+                }
+        );
+
     }
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
+        // property change for the three card panels
         for (int i = 0; i < 3; i++) {
             String name = cardButtonPanelViewModel.getState().get_Number_Cards().get(i).getString();
 
@@ -69,6 +102,9 @@ public class CardButtonPanel extends JPanel implements PropertyChangeListener {
             cardNames.get(0).setEnabled(false);//There are bugs in FindPlayableCards; assume the first numCard is not playable
         }
         cardNames.get(cardButtonPanelViewModel.getState().getButtonindexHighlighted()).setBackground(Color.CYAN);
+
+        // property change for rightshift
+
 
         this.firePropertyChange();
     }

@@ -67,6 +67,8 @@ public class Main {
         CardButtonPanelViewModel cardButtonPanelViewModel = new CardButtonPanelViewModel();
         CardButtonPanel cardButtonPanel = CardButtonPanelUseCaseFactory.create(viewManagerModel, cardButtonPanelViewModel, userDataAccessObject);
 
+
+
         InitiationViewModel initiationViewModel = new InitiationViewModel();
         InitializedViewModel initializedViewModel = new InitializedViewModel(cardButtonPanel);
 
