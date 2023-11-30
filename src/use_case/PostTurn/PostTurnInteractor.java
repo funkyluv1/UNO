@@ -21,6 +21,7 @@ public class PostTurnInteractor implements PostTurnInputDataBoundary{
 
     @Override
     public void execute(PostTurnInputData inputData) {
+        int currPlayerIndex = inputData.getCurrPlayerIndex();
         ArrayList<FunctionalCard> functionalCards = inputData.getFuncCards();
         ArrayList<NumberCard> numberCards = inputData.getNumberCards();
         for (FunctionalCard card: functionalCards){
@@ -33,11 +34,16 @@ public class PostTurnInteractor implements PostTurnInputDataBoundary{
             }
         }
 
-        FunctionalCard reward = generateFuncCard();
-        Player winner = game.getCurrWinner();
-        ArrayList<FunctionalCard> newHand = winner.getFuncCards();
-        newHand.add(reward);
-        winner.setFuncCards(newHand);
+
+        if (currPlayerIndex == 3) {
+            FunctionalCard reward = generateFuncCard();
+            Player winner = game.getCurrWinner();
+            ArrayList<FunctionalCard> newHand = winner.getFuncCards();
+            newHand.add(reward);
+            winner.setFuncCards(newHand);
+
+            game.setMaxCardNum(-1);
+        }
 
         postTurnDataAccessInterface.recordPostTurnChange(functionalCards, numberCards, inputData.getCurrentPlayer());
         PostTurnOutputData outputData = new PostTurnOutputData(numberCards, functionalCards, inputData.getCurrentPlayer());

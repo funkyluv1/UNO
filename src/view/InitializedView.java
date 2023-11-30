@@ -20,6 +20,7 @@ public class InitializedView extends JPanel implements ActionListener, PropertyC
 
     private JPanel cardPanel;
     JPanel cardButtonPanel;
+    JPanel bottomPanel;
 
     ArrayList<JLabel> usernames = new ArrayList<>();
     ArrayList<JButton> cardNames = new ArrayList<>();
@@ -32,6 +33,7 @@ public class InitializedView extends JPanel implements ActionListener, PropertyC
         this.initializedViewModel = initializedViewModel;
         this.initializedViewModel.addPropertyChangeListener(this);
         this.cardButtonPanel = initializedViewModel.getState().get_CardButtonPanel();
+        this.bottomPanel = initializedViewModel.getState().getBottomPanel();
 
         setSize(1200, 1000);
 
@@ -119,10 +121,25 @@ public class InitializedView extends JPanel implements ActionListener, PropertyC
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
+        ArrayList<JPanel> panels = (ArrayList<JPanel>) evt.getNewValue();
+        int i = 0;
+        for (JPanel panel : panels){
+            if (i == 3){this.cardButtonPanel = panel;}
+            else if (i == 5){this.bottomPanel = panel;}
+            i += 1;
+        }
+
+
+
         this.cardButtonPanel = (JPanel) evt.getNewValue();
         this.cardButtonPanel.setOpaque(false);
         cardPanel.add(this.cardButtonPanel, BorderLayout.CENTER);
         this.add(this.cardButtonPanel, BorderLayout.SOUTH);
+
+        this.bottomPanel = (JPanel) evt.getNewValue();
+        this.bottomPanel.setOpaque(false);
+        bottomPanel.add(this.bottomPanel, BorderLayout.CENTER);
+        this.add(this.bottomPanel, BorderLayout.SOUTH);
 
     }
 
