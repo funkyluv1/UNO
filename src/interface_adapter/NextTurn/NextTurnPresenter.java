@@ -29,10 +29,13 @@ public class NextTurnPresenter {
     public void prepare_view(NextTurnOutputData nextTurnOutputData){
         CardButtonPanelState cardButtonPanelState = cardButtonPanelViewModel.getState();
         PlayerPanelState playerPanelState = playerPanelViewModel.getState();
+        if (nextTurnOutputData.getPlayer_index() == 3){
+            //change color
+        }
         //functional card view的state
 //        cardButtonPanelState.set_players(nextTurnOutputData.getName());
         cardButtonPanelState.set_cards(nextTurnOutputData.getPlayerNumberCards(),nextTurnOutputData.getPlayerPlayableNumberCards(),
-                nextTurnOutputData.getPlayerPlayableFuncrCards(),nextTurnOutputData.getPlayerPlayableFuncrCards());
+                nextTurnOutputData.getPlayerPlayableFuncrCards(),nextTurnOutputData.getPlayerPlayableFuncrCards(), nextTurnOutputData.getPlayerwithindex());
         playerPanelState.setCurrent_player_index(nextTurnOutputData.getPlayer_index());
         this.playerPanelViewModel.setState(playerPanelState);
         this.playerPanelViewModel.firePropertyChanged();

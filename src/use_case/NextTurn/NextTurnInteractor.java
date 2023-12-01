@@ -4,6 +4,7 @@ import data_access.FileUserDataAccessObject;
 import entities.card.Card;
 import entities.card.FunctionalCard;
 import entities.card.NumberCard;
+import entities.player.Player;
 import use_case.PreTurn.FindPlayableCardsInterface;
 
 import java.util.ArrayList;
@@ -28,6 +29,15 @@ public class NextTurnInteractor implements NextTurnInputDataBoundary{
     public void execute(NextTurnInputData nextTurnInputData){
         int player_index = nextTurnInputData.getPlayer_index();
         String name = fileUserDataAccessObject.getPlayer(nextTurnInputData.getPlayer_index()).getPlayerName();
+        ArrayList<String> players = new ArrayList<String>();
+        for (int b = 0; b < 3; b++){
+            players.add(fileUserDataAccessObject.getPlayer(b).getPlayerName());
+        }
+        Map<String, Integer> playerwithindex = new HashMap<String, Integer>();
+        for (int a = 0; a < 3; a ++){
+            playerwithindex.put(players.get(a), 0);
+        }
+
         ArrayList<NumberCard> number_cards = fileUserDataAccessObject.getPlayer(nextTurnInputData.getPlayer_index()).getNumberCards();
         ArrayList<FunctionalCard> fun_cards = fileUserDataAccessObject.getPlayer(nextTurnInputData.getPlayer_index()).getFuncCards();
 
@@ -56,6 +66,6 @@ public class NextTurnInteractor implements NextTurnInputDataBoundary{
 //            }
 //            fun_cards = fun_cards_empty;
 //        }
-        nextTurn_presenter.prepare_view(new NextTurnOutputData(player_index, playerNumCards, playerFunCards, playerPlayableNumCards, playerPlayableFunCards));
+        nextTurn_presenter.prepare_view(new NextTurnOutputData(player_index, playerNumCards, playerFunCards, playerPlayableNumCards, playerPlayableFunCards, playerwithindex));
     }
 }

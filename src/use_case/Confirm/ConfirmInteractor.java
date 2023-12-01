@@ -1,6 +1,7 @@
 package use_case.Confirm;
 
 import entities.card.*;
+import entities.player.Player;
 import use_case.SelectCard.*;
 
 import java.util.ArrayList;
@@ -14,9 +15,10 @@ public class ConfirmInteractor implements ConfirmInputDataBoundary{
         this.confirmOutputDataBoundary = confirmOutputDataBoundary;
     }
     @Override
-    public void execute() {
+    public void execute(ConfirmInputData confirmInputData) {
         NumberCard selectedNumCard = (NumberCard) game.getCurrSelectedNumberCard();
         ArrayList<FunctionalCard> selectedFunCard = game.getCurrSelectedFunCard();
+        int currPlayerIndex = confirmInputData.getCurrPlayerIndex();
 
         game.setCurrSelectedNumberCard(null);
         game.addNumCardsinRound(selectedNumCard);
@@ -36,6 +38,13 @@ public class ConfirmInteractor implements ConfirmInputDataBoundary{
             }
             //TODO: PotatoCard/ BombCard needed to be implemented
         }
+
+        int currMax = game.getMaxCardNum();
+        if (selectedNumCard.getValue() > currMax) {
+            game.setMaxCardNum(selectedNumCard.getValue());
+            game.setCurrWinner(currPlayerIndex);
+        }
+
         confirmOutputDataBoundary.prepareSuccessView();
     }
 
