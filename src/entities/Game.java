@@ -34,7 +34,7 @@ public class Game {
         isSkipped = false;
         plusN = 0;
         currentPlayerIndex = 1;
-        currSelectedFunCard = null;
+        currSelectedFunCard = new ArrayList<>();
         currSelectedNumberCard = null;
         numCardsinRound = new ArrayList<>();
         maxCardNum = 0;
@@ -110,6 +110,9 @@ public class Game {
     }
     public void setCurrSelectedFunCard(ArrayList<FunctionalCard> cards){
         currSelectedFunCard = cards;
+    }
+    public void addCurrSelectedFunCard(FunctionalCard card){
+        currSelectedFunCard.add(card);
     }
     public ArrayList<FunctionalCard> getCurrSelectedFunCard(){
         return currSelectedFunCard;
