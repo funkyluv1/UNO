@@ -6,9 +6,7 @@ import entities.Game;
 import entities.NumberCardsDeck.NumberCardsDeckCreator;
 import entities.player.AIPlayerFactory;
 import entities.player.HumanPlayerFactory;
-import interface_adapter.Initialized.CardButtonPanelViewModel;
-import interface_adapter.Initialized.GetCardPanelViewModel;
-import interface_adapter.Initialized.InitializedViewModel;
+import interface_adapter.Initialized.*;
 import interface_adapter.Initiation.InitiationViewModel;
 import interface_adapter.MainMeau.MainMeauViewModel;
 import interface_adapter.ViewManagerModel;
@@ -74,8 +72,11 @@ public class Main {
         InitiationViewModel initiationViewModel = new InitiationViewModel();
         InitializedViewModel initializedViewModel = new InitializedViewModel(cardButtonPanel);
 
+        BottomPanelViewModel bottomPanelViewModel = new BottomPanelViewModel();
+        PlayerPanelViewModel playerPanelViewModel = new PlayerPanelViewModel();
 
-        InitiationView initiationView = InitiationUseCaseFactory.create(viewManagerModel, initiationViewModel, cardButtonPanelViewModel,initializedViewModel, userDataAccessObject, findPlayableCardsInterface);
+        InitiationView initiationView = InitiationUseCaseFactory.create(viewManagerModel, initiationViewModel, cardButtonPanelViewModel,initializedViewModel, userDataAccessObject, findPlayableCardsInterface,
+                getCardPanelViewModel, bottomPanelViewModel, playerPanelViewModel);
         views.add(initiationView, initiationView.viewName);
 
         InitializedView initializedView = new InitializedView(initializedViewModel);
