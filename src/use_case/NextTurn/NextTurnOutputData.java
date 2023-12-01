@@ -14,7 +14,7 @@ public class NextTurnOutputData {
     final Map<String, ArrayList<NumberCard>> playerplayablenumbercard;
     final Map<String, ArrayList<FunctionalCard>> playerplayablefunccard;
 
-    final Map<String, Integer> playerwithindex
+    final Map<String, Integer> playerwithindex;
 
     public NextTurnOutputData(int player_index, Map<String, ArrayList<NumberCard>> playernumcards,
                               Map<String, ArrayList<FunctionalCard>> playerfunccards,
