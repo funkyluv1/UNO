@@ -10,4 +10,6 @@ public class GetCardState {
 
     public NumberCard getNumberCard() {return this.numberCard;}
 
+    public void setNumberCard(NumberCard numberCard) {this.numberCard = numberCard;}
+
 }

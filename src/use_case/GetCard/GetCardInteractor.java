@@ -5,16 +5,12 @@ import entities.card.NumberCardFactory;
 
 import java.util.concurrent.ThreadLocalRandom;
 
-public class GetCardInteractor {
+public class GetCardInteractor implements GetCardInputDataBoundary{
 
     public GetCardInteractor(){};
 
 
-    public static void main(String[] args) {
-        GetCardInteractor.execute();
-    }
-
-    public static void execute() {
+    public void execute(GetCardInputData player) {
         int randomNum = ThreadLocalRandom.current().nextInt(1,  10 + 1);
         int randomcol = ThreadLocalRandom.current().nextInt(1, 5);
         String randomColor;
