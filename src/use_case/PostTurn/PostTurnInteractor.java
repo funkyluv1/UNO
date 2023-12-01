@@ -1,5 +1,6 @@
 package use_case.PostTurn;
 
+import entities.NumberCardsDeck.NumberCardsDeck;
 import entities.card.*;
 import entities.player.Player;
 import use_case.DrawCards.DrawCardsDataAccessInterface;
@@ -21,16 +22,17 @@ public class PostTurnInteractor implements PostTurnInputDataBoundary{
 
     @Override
     public void execute(PostTurnInputData inputData) {
+        NumberCardsDeck numberCardsDeck = game.getNumberCardDeck();
         int currPlayerIndex = inputData.getCurrPlayerIndex();
         ArrayList<FunctionalCard> functionalCards = inputData.getFuncCards();
         ArrayList<NumberCard> numberCards = inputData.getNumberCards();
         for (FunctionalCard card: functionalCards){
             if (card instanceof BombCard) {
-                numberCards.addAll(dataAccessInterface.drawNumberCards(inputData.getNumberCardsDeck(), 5));
+                numberCards.addAll(dataAccessInterface.drawNumberCards(numberCardsDeck, 5));
                 functionalCards.remove(card);
             }
             else if (card instanceof HotPotatoCard) {
-                numberCards.addAll(dataAccessInterface.drawNumberCards(inputData.getNumberCardsDeck(), card.getValue()));
+                numberCards.addAll(dataAccessInterface.drawNumberCards(numberCardsDeck, card.getValue()));
             }
         }
 
