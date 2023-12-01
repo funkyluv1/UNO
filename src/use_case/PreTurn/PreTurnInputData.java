@@ -8,18 +8,10 @@ import java.util.ArrayList;
 
 public class PreTurnInputData {
     final private int currentPlayerIndex;
-    final private NumberCardsDeck numberCardsDeck;
     private int plusN = 0;
-//TODO: probably need playerIndex
-    public PreTurnInputData(NumberCardsDeck numberCardsDeck, int currentPlayerIndex) {
-        this.numberCardsDeck = numberCardsDeck;
+    public PreTurnInputData(int currentPlayerIndex) {
         this.currentPlayerIndex = currentPlayerIndex;
     }
-
-    public NumberCardsDeck getNumberCardsDeck() {
-        return numberCardsDeck;
-    }
-
     public int getCurrentPlayerIndex() {
         return currentPlayerIndex;
     }
