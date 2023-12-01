@@ -4,20 +4,20 @@ import entities.player.*;
 import entities.card.*;
 
 public class SelectCardInputData{
-    private final Player player;
     private final Card selectedCard;
+    private final int button_index;
 
-    public SelectCardInputData (Player player, Card cardNew) {
-        this.player = player;
+    public SelectCardInputData (Card cardNew, int button_index) {
         selectedCard = cardNew;
-    }
-
-    public Player getPlayer() {
-        return player;
+        this.button_index = button_index;
     }
 
     public Card getSelectedCardNew() {
         return selectedCard;
+    }
+
+    public int getButton_index(){
+        return button_index;
     }
 
 }

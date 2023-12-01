@@ -2,9 +2,8 @@ package data_access;
 
 import entities.NumberCardsDeck.NumberCardsDeck;
 import entities.card.NumberCard;
-import entities.card.NumberCardFactory;
-import use_case.drawcards.DrawCardsDataAccessInterface;
-import use_case.drawcards.DrawCardsResponseExtractFacade;
+import use_case.DrawCards.DrawCardsDataAccessInterface;
+import use_case.DrawCards.DrawCardsResponseExtractFacade;
 
 import java.util.ArrayList;
 

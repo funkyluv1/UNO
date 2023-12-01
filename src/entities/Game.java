@@ -5,6 +5,7 @@ import entities.player.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 public class Game {
 
@@ -16,8 +17,11 @@ public class Game {
     private int plusN; //the total number of additional cards need to be drawn after +2 and +4 cards
 
     private int currentPlayerIndex;
-
-    private Object currSelectedCard;
+    private Object currSelectedNumberCard;
+    private ArrayList<FunctionalCard> currSelectedFunCard;
+    private ArrayList<NumberCard> numCardsinRound;
+    private int maxCardNum;
+    private String currWinnerStr;
 
     private Game() {
         String[] randColor = {"red", "blue", "green", "yellow"};
@@ -27,8 +31,13 @@ public class Game {
         drawCard = 0;
         isSkipped = false;
         plusN = 0;
-        currentPlayerIndex = 0;
-        currSelectedCard = null;
+        currentPlayerIndex = 1;
+        currSelectedFunCard = null;
+        currSelectedNumberCard = null;
+        numCardsinRound = new ArrayList<>();
+        maxCardNum = 0;
+        currWinnerStr = "";
+
     }
 
     public static Game getInstance() {
@@ -85,10 +94,38 @@ public class Game {
         currentPlayerIndex += 1;
     }
 
-    public void setCurrSelectedCard(Object card) {
-        currSelectedCard = card;
+    public void setCurrSelectedNumberCard(Object card) {
+        currSelectedNumberCard = card;
     }
-    public Object getCurrSelectedCard() {
-        return currSelectedCard;
+    public Object getCurrSelectedNumberCard() {
+        return currSelectedNumberCard;
+    }
+    public void setCurrSelectedFunCard(ArrayList<FunctionalCard> cards){
+        currSelectedFunCard = cards;
+    }
+    public ArrayList<FunctionalCard> getCurrSelectedFunCard(){
+        return currSelectedFunCard;
+    }
+
+    public void addNumCardsinRound(NumberCard card){
+        numCardsinRound.add(card);
+    }
+    public ArrayList<NumberCard> getNumCardsinRound(){
+        return numCardsinRound;
+    }
+    public void setMaxCardNum(int n) {
+        maxCardNum = n;
+    }
+
+    public int getMaxCardNum() {
+        return maxCardNum;
+    }
+
+    public void setCurrWinner(String winnerStr) {
+        currWinnerStr = winnerStr;
+    }
+
+    public String getCurrWinnerStr() {
+        return currWinnerStr;
     }
 }

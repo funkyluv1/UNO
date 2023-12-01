@@ -1,19 +1,25 @@
 package app;
 
+import Assets.BackGroundMusic;
 import data_access.FileUserDataAccessObject;
 import entities.Game;
 import entities.NumberCardsDeck.NumberCardsDeckCreator;
 import entities.player.AIPlayerFactory;
 import entities.player.HumanPlayerFactory;
+import interface_adapter.Initialized.CardButtonPanelViewModel;
+import interface_adapter.Initialized.GetCardPanelViewModel;
 import interface_adapter.Initialized.InitializedViewModel;
 import interface_adapter.Initiation.InitiationViewModel;
+import interface_adapter.MainMeau.MainMeauViewModel;
 import interface_adapter.ViewManagerModel;
-import view.InitializedView;
-import view.ViewManager;
-import view.InitiationView;
+import use_case.PreTurn.FindPlayableCards;
+import use_case.PreTurn.FindPlayableCardsInterface;
+import view.*;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.IOException;
 
 
@@ -25,8 +31,22 @@ public class Main {
 
         JFrame application = new JFrame("Initiation Example");
         application.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        application.setSize(800, 600);
+
+        // Center the window on the screen
+        application.setLocationRelativeTo(null);
 
         CardLayout cardLayout = new CardLayout();
+
+        BackGroundMusic bgm = new BackGroundMusic();
+        bgm.play("src/Assets/M2U - Body Talk.wav");
+        application.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                bgm.stop();
+                application.dispose();
+            }
+        });
 
         // The various View objects. Only one view is visible at a time.
         JPanel views = new JPanel(cardLayout);
@@ -35,8 +55,8 @@ public class Main {
         ViewManagerModel viewManagerModel = new ViewManagerModel();
         new ViewManager(views, cardLayout, viewManagerModel);
 
-        InitiationViewModel initiationViewModel = new InitiationViewModel();
-        InitializedViewModel initializedViewModel = new InitializedViewModel();
+        FindPlayableCardsInterface findPlayableCardsInterface = new FindPlayableCards();
+
 
         FileUserDataAccessObject userDataAccessObject;
         try {
@@ -45,7 +65,17 @@ public class Main {
             throw new RuntimeException(e);
         }
 
-        InitiationView initiationView = InitiationUseCaseFactory.create(viewManagerModel, initiationViewModel, initializedViewModel,userDataAccessObject);
+        CardButtonPanelViewModel cardButtonPanelViewModel = new CardButtonPanelViewModel();
+        CardButtonPanel cardButtonPanel = CardButtonPanelUseCaseFactory.create(viewManagerModel, cardButtonPanelViewModel, userDataAccessObject);
+
+        GetCardPanelViewModel getCardPanelViewModel = new GetCardPanelViewModel();
+        //GetCardPanel getCardPanel = GetCardPanelUseCaseFactory.create(viewManagerModel, getCardPanelViewModel, userDataAccessObject);
+
+        InitiationViewModel initiationViewModel = new InitiationViewModel();
+        InitializedViewModel initializedViewModel = new InitializedViewModel(cardButtonPanel);
+
+
+        InitiationView initiationView = InitiationUseCaseFactory.create(viewManagerModel, initiationViewModel, cardButtonPanelViewModel,initializedViewModel, userDataAccessObject, findPlayableCardsInterface);
         views.add(initiationView, initiationView.viewName);
 
         InitializedView initializedView = new InitializedView(initializedViewModel);

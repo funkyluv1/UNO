@@ -23,8 +23,8 @@ public class AIPlayer extends Player {
      * @param playerName the name of this player to be displayed in the game
      * @param hand the set of cards that this player is dealt with initially
      */
-    public AIPlayer(String playerName, ArrayList<NumberCard> hand){
-        super(playerName, hand);
+    public AIPlayer(String playerName, ArrayList<NumberCard> hand, int displayFirstCardIndex){
+        super(playerName, hand, displayFirstCardIndex);
     }
 
     /**
