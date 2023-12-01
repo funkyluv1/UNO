@@ -12,12 +12,9 @@ public class PostTurnInputData {
     final private ArrayList<FunctionalCard> functionalCards;
     final private ArrayList<NumberCard> numberCards;
     final private String currentPlayer;
-    final private NumberCardsDeck numberCardsDeck;
-
-    public PostTurnInputData(int currPlayerIndex, ArrayList<FunctionalCard> functionalCards, ArrayList<NumberCard> numberCards, NumberCardsDeck numberCardsDeck, String currentPlayer) {
+    public PostTurnInputData(int currPlayerIndex, ArrayList<FunctionalCard> functionalCards, ArrayList<NumberCard> numberCards, String currentPlayer) {
         this.currPlayerIndex = currPlayerIndex;
         this.functionalCards = functionalCards;
-        this.numberCardsDeck = numberCardsDeck;
         this.numberCards = numberCards;
         this.currentPlayer = currentPlayer;
     }
@@ -30,9 +27,6 @@ public class PostTurnInputData {
         return numberCards;
     }
 
-    public NumberCardsDeck getNumberCardsDeck() {
-        return numberCardsDeck;
-    }
 
     public String getCurrentPlayer() {
         return currentPlayer;

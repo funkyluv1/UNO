@@ -5,7 +5,13 @@ import entities.card.Card;
 import entities.card.FunctionalCard;
 import entities.card.NumberCard;
 import entities.player.Player;
+import use_case.PostTurn.PostTurnInputData;
+import use_case.PostTurn.PostTurnInputDataBoundary;
+import use_case.PostTurn.PostTurnInteractor;
 import use_case.PreTurn.FindPlayableCardsInterface;
+import use_case.PreTurn.PreTurnInputData;
+import use_case.PreTurn.PreTurnInputDataBoundary;
+import use_case.PreTurn.PreTurnInteractor;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -13,16 +19,21 @@ import java.util.Map;
 
 import static use_case.initiation.InitiationInteractor.game;
 
-public class NextTurnInteractor implements NextTurnInputDataBoundary{
+public class NextTurnInteractor implements NextTurnInputDataBoundary {
     final NextTurnDataAccessInterface fileUserDataAccessObject;
     final NextTurnOutputDataBoundary nextTurn_presenter;
     final FindPlayableCardsInterface findPlayableCardsInterface;
+    final PostTurnInteractor postTurnInteractor;
+    final PreTurnInteractor preTurnInteractor;
 
     public NextTurnInteractor(NextTurnDataAccessInterface fileUserDataAccessObject, NextTurnOutputDataBoundary nextTurn_presenter,
-                              FindPlayableCardsInterface findPlayableCardsInterface){
+                              FindPlayableCardsInterface findPlayableCardsInterface, PostTurnInteractor postTurnInteractor,
+                              PreTurnInteractor preTurnInteractor){
         this.fileUserDataAccessObject = fileUserDataAccessObject;
         this.nextTurn_presenter = nextTurn_presenter;
         this.findPlayableCardsInterface = findPlayableCardsInterface;
+        this.postTurnInteractor = postTurnInteractor;
+        this.preTurnInteractor = preTurnInteractor;
     }
 
 
@@ -40,6 +51,17 @@ public class NextTurnInteractor implements NextTurnInputDataBoundary{
 
         ArrayList<NumberCard> number_cards = fileUserDataAccessObject.getPlayer(nextTurnInputData.getPlayer_index()).getNumberCards();
         ArrayList<FunctionalCard> fun_cards = fileUserDataAccessObject.getPlayer(nextTurnInputData.getPlayer_index()).getFuncCards();
+
+
+        // call post turn
+        PostTurnInputData postTurnInputData = new PostTurnInputData(player_index, fun_cards, number_cards, name);
+        postTurnInteractor.execute(postTurnInputData);
+
+        // call pre turn
+        PreTurnInputData preTurnInputData = new PreTurnInputData(player_index + 1);
+        preTurnInteractor.execute(preTurnInputData);
+
+        player_index = game.getCurrentPlayerIndex();
 
         Map<String, ArrayList<NumberCard>> playerNumCards = new HashMap<String, ArrayList<NumberCard>>();
         playerNumCards.put(name, number_cards);
