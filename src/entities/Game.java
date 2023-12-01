@@ -21,7 +21,7 @@ public class Game {
     private ArrayList<FunctionalCard> currSelectedFunCard;
     private ArrayList<NumberCard> numCardsinRound;
     private int maxCardNum;
-    private int currWinnerIndex;
+    private String currWinnerStr;
 
     private Game() {
         String[] randColor = {"red", "blue", "green", "yellow"};
@@ -36,7 +36,7 @@ public class Game {
         currSelectedNumberCard = null;
         numCardsinRound = new ArrayList<>();
         maxCardNum = 0;
-        currWinnerIndex = 0;
+        currWinnerStr = "";
 
     }
 
@@ -121,11 +121,11 @@ public class Game {
         return maxCardNum;
     }
 
-    public void setCurrWinner(int playerIndex) {
-        currWinnerIndex = playerIndex;
+    public void setCurrWinner(String winnerStr) {
+        currWinnerStr = winnerStr;
     }
 
-    public int getCurrWinnerIndex() {
-        return currWinnerIndex;
+    public String getCurrWinnerStr() {
+        return currWinnerStr;
     }
 }
