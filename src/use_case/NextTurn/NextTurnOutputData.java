@@ -14,20 +14,25 @@ public class NextTurnOutputData {
     final Map<String, ArrayList<NumberCard>> playerplayablenumbercard;
     final Map<String, ArrayList<FunctionalCard>> playerplayablefunccard;
 
+    final Map<String, Integer> playerwithindex
+
     public NextTurnOutputData(int player_index, Map<String, ArrayList<NumberCard>> playernumcards,
                               Map<String, ArrayList<FunctionalCard>> playerfunccards,
                               Map<String, ArrayList<NumberCard>> playerplayablenumbercard,
-                              Map<String, ArrayList<FunctionalCard>> playerplayablefunccard){
+                              Map<String, ArrayList<FunctionalCard>> playerplayablefunccard, Map<String, Integer> playerwithindex){
         this.player_index = player_index;
         this.playernumcards = playernumcards;
         this.playerfunccards = playerfunccards;
         this.playerplayablefunccard = playerplayablefunccard;
         this.playerplayablenumbercard = playerplayablenumbercard;
+        this.playerwithindex = playerwithindex;
     }
 
     public int getPlayer_index(){
         return this.player_index;
     }
+
+    public Map<String, Integer> getPlayerwithindex(){return this.playerwithindex;}
 
     public Map<String, ArrayList<NumberCard>> getPlayerNumberCards(){
         return this.playernumcards;
