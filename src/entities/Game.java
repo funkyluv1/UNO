@@ -12,6 +12,7 @@ public class Game {
     private static Game instance;
     private NumberCard topCard;
     private ArrayList<Card> funcCardList;
+    private NumberCardDeck numberCardDeck;
     private int drawCard;
     private boolean isSkipped;
     private int plusN; //the total number of additional cards need to be drawn after +2 and +4 cards
@@ -128,4 +129,6 @@ public class Game {
     public String getCurrWinnerStr() {
         return currWinnerStr;
     }
+    public NumberCardDeck getNumberCardDeck(){return this.numberCardDeck;}
+    public void setNumberCardDeck(NumberCardDeck numberCardDeck){this.numberCardDeck = numberCardDeck;}
 }

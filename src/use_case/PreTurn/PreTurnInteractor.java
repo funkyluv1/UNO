@@ -37,7 +37,7 @@ public class PreTurnInteractor implements PreTurnInputDataBoundary {
             }
         }
 
-        NumberCardsDeck numberCardsDeck = currentInputData.getNumberCardsDeck();
+        NumberCardDeck numberCardsDeck = game.getNumberCardDeck();
         PreTurnInputData nextInputData = new PreTurnInputData(numberCardsDeck, currentInputData.getCurrentPlayerIndex() + 1);
         if (game.getPlusN() > 0 && !hasPlusCard) { //previousPlayer played a plusCard, and the currentPlayer doesnt have a plus card
             numberCards.addAll(dataAccessInterface.drawNumberCards(numberCardsDeck, game.getPlusN()));
