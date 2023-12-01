@@ -1,4 +1,4 @@
-package use_case.Confirm;
+package interface_adapter.Confirm;
 
 import interface_adapter.Initialized.BottomPanelState;
 import interface_adapter.Initialized.BottomPanelViewModel;

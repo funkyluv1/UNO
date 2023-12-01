@@ -152,6 +152,11 @@ public class FileUserDataAccessObject implements InitiationDataAccessInterface, 
         save();
     }
 
+    @Override
+    public void recordRoundChange(int winnerIndex, FunctionalCard reward) {
+        // TODO: implement me!
+    }
+
 
     @Override
     public ArrayList<NumberCard> getNumberCards(String player) {

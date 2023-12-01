@@ -3,14 +3,14 @@ package use_case.Confirm;
 import entities.player.Player;
 
 public class ConfirmInputData {
-    private Player currPlayer;
+    private int currPlayerIndex;
 
-    public ConfirmInputData(Player player) {
-        currPlayer = player;
+    public ConfirmInputData(int currPlayerIndex) {
+        this.currPlayerIndex = currPlayerIndex;
     }
 
-    public Player getCurrPlayer() {
-        return currPlayer;
+    public int getCurrPlayerIndex() {
+        return currPlayerIndex;
     }
 
 }
