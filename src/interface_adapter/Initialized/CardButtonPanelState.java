@@ -59,9 +59,9 @@ public class CardButtonPanelState{
         public void setButtonindexHighlighted(int button){this.buttonindexHighlighted = button;}
         public int getButtonindexHighlighted(){return this.buttonindexHighlighted;}
 
-    public Integer getdisplayCardsFirstIndex(){
+        public Integer getdisplayCardsFirstIndex(){
             // need current player instead of setting it as the first player
-        return displayNumCardsFirstIndex.get(players.get(0));
-    }
+                return displayNumCardsFirstIndex.get(players.get(0));
+        }
 }
 
