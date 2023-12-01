@@ -1,5 +1,6 @@
 package entities;
 
+import entities.NumberCardsDeck.NumberCardsDeck;
 import entities.card.*;
 import entities.player.*;
 
@@ -12,7 +13,7 @@ public class Game {
     private static Game instance;
     private NumberCard topCard;
     private ArrayList<Card> funcCardList;
-    private NumberCardDeck numberCardDeck;
+    private NumberCardsDeck numberCardDeck;
     private int drawCard;
     private boolean isSkipped;
     private int plusN; //the total number of additional cards need to be drawn after +2 and +4 cards
@@ -129,6 +130,6 @@ public class Game {
     public String getCurrWinnerStr() {
         return currWinnerStr;
     }
-    public NumberCardDeck getNumberCardDeck(){return this.numberCardDeck;}
-    public void setNumberCardDeck(NumberCardDeck numberCardDeck){this.numberCardDeck = numberCardDeck;}
+    public NumberCardsDeck getNumberCardDeck(){return this.numberCardDeck;}
+    public void setNumberCardDeck(NumberCardsDeck numberCardDeck){this.numberCardDeck = numberCardDeck;}
 }
