@@ -154,8 +154,10 @@ public class FileUserDataAccessObject implements InitiationDataAccessInterface, 
     }
 
     @Override
-    public void recordRoundChange(int winnerIndex, FunctionalCard reward) {
-        // TODO: implement me!
+    public void recordRoundChange(String currentPlayer, FunctionalCard reward) {
+        ArrayList<FunctionalCard> hand = playerInfo.get(currentPlayer).getFuncCards();
+        hand.add(reward);
+        playerInfo.get(currentPlayer).setFuncCards(hand);
     }
 
 

@@ -9,5 +9,5 @@ import java.util.ArrayList;
 public interface PostTurnDataAccessInterface {
     void recordPostTurnChange(ArrayList<FunctionalCard> functionalCards, ArrayList<NumberCard> numberCards, String currentPlayer);
 
-    void recordRoundChange(int winnerIndex, FunctionalCard reward);
+    void recordRoundChange(String currentPlayer, FunctionalCard reward);
 }

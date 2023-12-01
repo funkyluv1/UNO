@@ -40,13 +40,13 @@ public class PostTurnInteractor implements PostTurnInputDataBoundary{
             Object [] randGenerate = generateFuncCard();
             FunctionalCard reward = (FunctionalCard) randGenerate[0];
             String cardName = (String) randGenerate[1];
-            int winnerIndex = game.getCurrWinnerIndex();
-            postTurnDataAccessInterface.recordRoundChange(winnerIndex, reward);
+            String winnerStr = game.getCurrWinnerStr();
+            postTurnDataAccessInterface.recordRoundChange(winnerStr, reward);
 
             game.setMaxCardNum(-1);
-            game.setCurrWinner(0);
+            game.setCurrWinner("");
 
-            winnerClarification = "Player " + (winnerIndex + 1) + " received a " + cardName + "!";
+            winnerClarification = "Player " + winnerStr + " received a " + cardName + "!";
         }
 
         postTurnDataAccessInterface.recordPostTurnChange(functionalCards, numberCards, inputData.getCurrentPlayer());
