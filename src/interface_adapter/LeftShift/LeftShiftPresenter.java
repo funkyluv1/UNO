@@ -1,4 +1,4 @@
-package interface_adapter.RightShift;
+package interface_adapter.LeftShift;
 
 import interface_adapter.Initialized.CardButtonPanelState;
 import interface_adapter.Initialized.CardButtonPanelViewModel;

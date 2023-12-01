@@ -15,7 +15,6 @@ public class ConfirmController {
     public ConfirmController (ConfirmInputDataBoundary confirmInputDataBoundary) {
         this.confirmInputDataBoundary = confirmInputDataBoundary;
     }
-
     public void execute () {
         confirmInputDataBoundary.execute();
     }
