@@ -74,9 +74,7 @@ public class CardButtonPanelUseCaseFactory {
         RightShiftOutputDataBoundary rightShiftOutputDataBoundary = new RightShiftPresenter(viewManagerModel,
                 cardButtonPanelViewModel);
 
-        RightShiftDataAccessInterface rightShiftDataAccessInterface = userDataAccessObject;
-
-        RightShiftInputDataBoundary rightShiftInteractor = new RightShiftInteractor(rightShiftOutputDataBoundary, rightShiftDataAccessInterface);
+        RightShiftInputDataBoundary rightShiftInteractor = new RightShiftInteractor(userDataAccessObject, rightShiftOutputDataBoundary);
 
         return new RightShiftController(rightShiftInteractor);
     }

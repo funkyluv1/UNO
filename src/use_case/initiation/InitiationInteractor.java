@@ -41,7 +41,7 @@ public class InitiationInteractor implements InitiationInputDataBoundary {
         for (String playerName : initiationInputData.getPlayerNames()){
             ArrayList<NumberCard> numberCards = drawCardsDataAccessInterface.drawNumberCards(numberCardsDeck, initialNumberCards);
             playerNumCards.put(playerName, numberCards);
-            playerPlayableFunCards.put(playerName, new ArrayList<FunctionalCard>());
+            playerPlayableFunCards.put(playerName, new ArrayList<>());
             int displayCardsFirstIndexData = fileUserDataAccessObject.getPlayerDisplayFirstCardIndex(playerName);
             displayCardsFirstIndex.put(playerName, displayCardsFirstIndexData);
             fileUserDataAccessObject.savePlayerwithCards(playerName, numberCards, new ArrayList<FunctionalCard>(),  displayCardsFirstIndexData);

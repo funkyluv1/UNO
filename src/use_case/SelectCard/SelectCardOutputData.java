@@ -9,7 +9,6 @@ public class SelectCardOutputData {
     public SelectCardOutputData (Object selectedCard, int button_index) {
         this.selectedCard = selectedCard;
         this.button_index = button_index;
-
     }
 
     public Card getSelectedCard() {

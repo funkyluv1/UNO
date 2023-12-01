@@ -5,4 +5,8 @@ public class RightShiftInputData {
     public RightShiftInputData(String player) {
         this.player = player;
     }
+
+    public String getPlayer() {
+        return player;
+    }
 }
