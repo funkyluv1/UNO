@@ -24,7 +24,7 @@ public class NextTurnInteractor implements NextTurnInputDataBoundary {
     final NextTurnOutputDataBoundary nextTurn_presenter;
     final FindPlayableCardsInterface findPlayableCardsInterface;
     final PostTurnInteractor postTurnInteractor;
-    final PreTurnInteractor preTurnInteractor
+    final PreTurnInteractor preTurnInteractor;
 
     public NextTurnInteractor(NextTurnDataAccessInterface fileUserDataAccessObject, NextTurnOutputDataBoundary nextTurn_presenter,
                               FindPlayableCardsInterface findPlayableCardsInterface, PostTurnInteractor postTurnInteractor,
@@ -33,7 +33,7 @@ public class NextTurnInteractor implements NextTurnInputDataBoundary {
         this.nextTurn_presenter = nextTurn_presenter;
         this.findPlayableCardsInterface = findPlayableCardsInterface;
         this.postTurnInteractor = postTurnInteractor;
-        this.preTurnInteractor = preTurnInteractor
+        this.preTurnInteractor = preTurnInteractor;
     }
 
 
