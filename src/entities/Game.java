@@ -91,7 +91,13 @@ public class Game {
     }
 
     public void updateCurrentPlayerIndex() {
-        currentPlayerIndex += 1;
+        if (currentPlayerIndex == 3){
+            currentPlayerIndex = 0;
+        }
+        else{
+            currentPlayerIndex += 1;
+        }
+
     }
 
     public void setCurrSelectedNumberCard(Object card) {
