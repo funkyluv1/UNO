@@ -4,50 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="437e2396-4452-4db4-b169-fce7887c553b" name="Changes" comment="Test updated">
-      <change afterPath="$PROJECT_DIR$/src/view/GetCardPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_28_2023_1_04_AM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_28_2023_1_04_AM__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2023-11-27_10_06_p_m___Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2023-11-27_10_06_p_m___Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2023-11-27_10_25_p_m___Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2023-11-27_10_25_p_m___Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2023-11-27_10_25_p_m___Changes_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2023-11-27_10_25_p_m___Changes_1.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2023-11-27_10_53_p_m___Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2023-11-27_10_53_p_m___Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2023-11-27_9_58_p_m___Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2023-11-27_9_58_p_m___Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2023-11-27_9_58_p_m___Changes_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2023-11-27_9_58_p_m___Changes_1.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2023-11-28_11_56_a_m___Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2023-11-28_11_56_a_m___Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2023-11-28_11_56_a_m___Changes_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2023-11-28_11_56_a_m___Changes_1.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2023-11-28_11_57_a_m___Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2023-11-28_11_57_a_m___Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_18_2023_10_00_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_18_2023_10_00_PM__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_18_2023_10_39_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_18_2023_10_39_PM__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_29_2023_11_21_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_29_2023_11_21_PM__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023_11_11__00_18__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023_11_11__00_18__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023_11_29__14_56__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023_11_29__14_56__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023_11_29__14_56__Changes_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023_11_29__14_56__Changes_1.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023_11_29__16_25__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023_11_29__16_25__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023_11_29__20_08__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023_11_29__20_08__Changes_.xml" afterDir="false" />
+    <list default="true" id="437e2396-4452-4db4-b169-fce7887c553b" name="Changes" comment="CardButtonPanel &amp; RightShift Usecase completed">
+      <change afterPath="$PROJECT_DIR$/src/app/GetCardPanelUseCaseFactory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data_access/FileUserDataAccessObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data_access/FileUserDataAccessObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data_access/StringToCardAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data_access/StringToCardAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entities/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entities/card/Card.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/card/Card.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entities/card/FunctionalCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/card/FunctionalCard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interface_adapter/Initialized/CardButtonPanelState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interface_adapter/Initialized/CardButtonPanelState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interface_adapter/Initialized/GetCardPanelState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interface_adapter/Initialized/GetCardPanelState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interface_adapter/Initialized/PlayerPanelState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interface_adapter/Initialized/PlayerPanelState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interface_adapter/Initiation/InitiationPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interface_adapter/Initiation/InitiationPresenter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interface_adapter/RightShift/RightShiftController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interface_adapter/RightShift/RightShiftController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interface_adapter/RightShift/RightShiftPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interface_adapter/RightShift/RightShiftPresenter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interface_adapter/SelectCard/SelectCardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interface_adapter/SelectCard/SelectCardController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interface_adapter/SelectCard/SelectCardPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interface_adapter/SelectCard/SelectCardPresenter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/interface_adapter/Undo/UndoPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interface_adapter/Undo/UndoPresenter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interface_adapter/preTurn/PreTurnPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interface_adapter/preTurn/PreTurnPresenter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/use_case/PreTurn/PreTurnInteractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/use_case/PreTurn/PreTurnInteractor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/use_case/RightShift/RightShiftInputData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/use_case/RightShift/RightShiftInputData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/use_case/RightShift/RightShiftInteractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/use_case/RightShift/RightShiftInteractor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/use_case/RightShift/RightShiftOutputData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/use_case/RightShift/RightShiftOutputData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/use_case/SelectCard/SelectCardInputData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/use_case/SelectCard/SelectCardInputData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/use_case/initiation/InitiationInteractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/use_case/initiation/InitiationInteractor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/CardButtonPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/CardButtonPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interface_adapter/postTurn/PostTurnPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interface_adapter/postTurn/PostTurnPresenter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interface_adapter/postTurn/PostTurnViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interface_adapter/postTurn/PostTurnViewModel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,8 +69,17 @@
       <workItem from="1700366067168" duration="2615000" />
       <workItem from="1700525759262" duration="897000" />
       <workItem from="1701306946029" duration="3574000" />
-      <workItem from="1701395907336" duration="12005000" />
+      <workItem from="1701395907336" duration="12625000" />
     </task>
+    <task id="LOCAL-00001" summary="CardButtonPanel &amp; RightShift Usecase completed">
+      <option name="closed" value="true" />
+      <created>1701414491437</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1701414491437</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -141,6 +113,7 @@
     <MESSAGE value="Testing updated" />
     <MESSAGE value="Test updated" />
     <MESSAGE value="I dont know what they are" />
-    <option name="LAST_COMMIT_MESSAGE" value="I dont know what they are" />
+    <MESSAGE value="CardButtonPanel &amp; RightShift Usecase completed" />
+    <option name="LAST_COMMIT_MESSAGE" value="CardButtonPanel &amp; RightShift Usecase completed" />
   </component>
 </project>

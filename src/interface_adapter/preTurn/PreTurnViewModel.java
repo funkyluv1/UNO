@@ -24,4 +24,5 @@ public class PreTurnViewModel extends ViewModel {
     public PreTurnState getState() {
         return state;
     }
+    public void setState(PreTurnState state){this.state = state;}
 }
