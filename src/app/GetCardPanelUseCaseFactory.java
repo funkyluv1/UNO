@@ -5,6 +5,7 @@ import interface_adapter.Initialized.CardButtonPanelViewModel;
 import interface_adapter.Initialized.GetCardPanelViewModel;
 import interface_adapter.SelectCard.SelectCardController;
 import interface_adapter.Undo.UndoController;
+import interface_adapter.Undo.UndoPresenter;
 import interface_adapter.ViewManagerModel;
 import use_case.Undo.UndoDataAccessInterface;
 import use_case.Undo.UndoInputDataBoundary;
@@ -22,20 +23,16 @@ public class GetCardPanelUseCaseFactory {
             ViewManagerModel viewManagerModel,
             GetCardPanelViewModel getCardPanelViewModel,
             FileUserDataAccessObject fileUserDataAccessObject) {
-        try {
-            UndoController undoController = createUndoController(viewManagerModel, getCardPanelViewModel, fileUserDataAccessObject);
-        } catch (IOException e) {
-            JOptionPane.showMessageDialog(null, "Could not open user data file.");
-        }
+        UndoController undoController = createUndoController(viewManagerModel, getCardPanelViewModel, fileUserDataAccessObject);
 
-        return null;
+        return new GetCardPanel(getCardPanelViewModel, undoController);
     }
 
     private static UndoController createUndoController(ViewManagerModel viewManagerModel, GetCardPanelViewModel getCardPanelViewModel, FileUserDataAccessObject fileUserDataAccessObject) {
-        UndoOutputDataBoundary undoPresenter = new UndoPresente;
+        UndoOutputDataBoundary undoOutputDataBoundary = new UndoPresenter(viewManagerModel, getCardPanelViewModel);
 
         UndoDataAccessInterface undoDataAccessInterface = fileUserDataAccessObject;
-        UndoInputDataBoundary undoIntactor = new UndoInteractor(undoPresenter, undoDataAccessInterface);
+        UndoInputDataBoundary undoIntactor = new UndoInteractor(undoOutputDataBoundary, undoDataAccessInterface);
         return new UndoController(undoIntactor);
     }
 }

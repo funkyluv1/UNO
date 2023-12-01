@@ -7,6 +7,8 @@ import entities.card.*;
 import entities.player.*;
 import use_case.PostTurn.PostTurnDataAccessInterface;
 import use_case.PreTurn.PreTurnDataAccessInterface;
+import use_case.SelectCard.SelectCardDataAccessInterface;
+import use_case.Undo.UndoDataAccessInterface;
 import use_case.initiation.InitiationDataAccessInterface;
 import use_case.initiation.InitiationInputData;
 
@@ -15,7 +17,7 @@ import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class FileUserDataAccessObject implements InitiationDataAccessInterface, PreTurnDataAccessInterface, PostTurnDataAccessInterface {
+public class FileUserDataAccessObject implements InitiationDataAccessInterface, PreTurnDataAccessInterface, PostTurnDataAccessInterface, UndoDataAccessInterface, SelectCardDataAccessInterface {
     private final File csvFile;
     private final AIPlayerFactory aiPlayerFactory;
     private final HumanPlayerFactory humanPlayerFactory;
@@ -177,5 +179,15 @@ public class FileUserDataAccessObject implements InitiationDataAccessInterface, 
 
     public int getPlayerDisplayFirstCardIndex(String playerName){
         return playerInfo.get(playerName).getDisplayFirstCardIndex();
+    }
+
+    @Override
+    public void recordUnselectCard(Card card) {
+
+    }
+
+    @Override
+    public void recordSelectCard(Card card) {
+
     }
 }
