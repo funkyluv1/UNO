@@ -62,17 +62,21 @@ public class NextTurnInteractor implements NextTurnInputDataBoundary {
         preTurnInteractor.execute(preTurnInputData);
 
         player_index = game.getCurrentPlayerIndex();
+        number_cards = fileUserDataAccessObject.getPlayer(nextTurnInputData.getPlayer_index()).getNumberCards();
+        fun_cards = fileUserDataAccessObject.getPlayer(nextTurnInputData.getPlayer_index()).getFuncCards();
+        ArrayList<NumberCard> playerplablenumcards = findPlayableCardsInterface.findPlayableNumberCards(game.getTopCard().getColor(), number_cards);
 
-        Map<String, ArrayList<NumberCard>> playerNumCards = new HashMap<String, ArrayList<NumberCard>>();
-        playerNumCards.put(name, number_cards);
-        Map<String, ArrayList<FunctionalCard>> playerFunCards = new HashMap<String, ArrayList<FunctionalCard>>();
-        playerFunCards.put(name, fun_cards);
-        Map<String, ArrayList<NumberCard>> playerPlayableNumCards = new HashMap<String, ArrayList<NumberCard>>();
-        playerPlayableNumCards.put(name, findPlayableCardsInterface.findPlayableNumberCards(game.getTopCard().getColor(), number_cards));
-        Map<String, ArrayList<FunctionalCard>> playerPlayableFunCards = new HashMap<String, ArrayList<FunctionalCard>>();
-        playerPlayableFunCards.put(name, findPlayableCardsInterface.findPlayableFunctionalCards(game.getTopCard().getColor(), fun_cards));
 
-        playerNumCards.put(name, number_cards);
+//        Map<String, ArrayList<NumberCard>> playerNumCards = new HashMap<String, ArrayList<NumberCard>>();
+//        playerNumCards.put(name, number_cards);
+//        Map<String, ArrayList<FunctionalCard>> playerFunCards = new HashMap<String, ArrayList<FunctionalCard>>();
+//        playerFunCards.put(name, fun_cards);
+//        Map<String, ArrayList<NumberCard>> playerPlayableNumCards = new HashMap<String, ArrayList<NumberCard>>();
+//        playerPlayableNumCards.put(name, findPlayableCardsInterface.findPlayableNumberCards(game.getTopCard().getColor(), number_cards));
+//        Map<String, ArrayList<FunctionalCard>> playerPlayableFunCards = new HashMap<String, ArrayList<FunctionalCard>>();
+//        playerPlayableFunCards.put(name, findPlayableCardsInterface.findPlayableFunctionalCards(game.getTopCard().getColor(), fun_cards));
+//
+//        playerNumCards.put(name, number_cards);
 //        if (number_cards.size() > 3){
 //            ArrayList<NumberCard> number_cards_empty = new ArrayList<NumberCard>();
 //            for (int i = 0; i < 3; i++){
@@ -88,6 +92,6 @@ public class NextTurnInteractor implements NextTurnInputDataBoundary {
 //            }
 //            fun_cards = fun_cards_empty;
 //        }
-        nextTurn_presenter.prepare_view(new NextTurnOutputData(player_index, playerNumCards, playerFunCards, playerPlayableNumCards, playerPlayableFunCards, playerwithindex));
+        nextTurn_presenter.prepare_view(new NextTurnOutputData(player_index, number_cards, fun_cards, playerplablenumcards));
     }
 }
