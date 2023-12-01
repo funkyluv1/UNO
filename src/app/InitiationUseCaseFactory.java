@@ -2,8 +2,7 @@ package app;
 
 import data_access.APIDataAccessObject;
 import data_access.FileUserDataAccessObject;
-import interface_adapter.Initialized.CardButtonPanelViewModel;
-import interface_adapter.Initialized.InitializedViewModel;
+import interface_adapter.Initialized.*;
 import interface_adapter.Initiation.InitiationController;
 import interface_adapter.Initiation.InitiationPresenter;
 import interface_adapter.Initiation.InitiationViewModel;
@@ -30,12 +29,13 @@ public class InitiationUseCaseFactory {
             CardButtonPanelViewModel cardButtonPanelViewModel,
             InitializedViewModel initializedViewModel,
             FileUserDataAccessObject fileUserDataAccessObject,
-            FindPlayableCardsInterface findPlayableCardsInterface) {
+            FindPlayableCardsInterface findPlayableCardsInterface, GetCardPanelViewModel getCardPanelViewModel, BottomPanelViewModel bottomPanelViewModel,
+            PlayerPanelViewModel playerPanelViewModel) {
 
         try {
             InitiationController initiationController = createInitiationUseCase(viewManagerModel,
                     initiationViewModel, cardButtonPanelViewModel, fileUserDataAccessObject,
-                    findPlayableCardsInterface,initializedViewModel);
+                    findPlayableCardsInterface,initializedViewModel, getCardPanelViewModel, bottomPanelViewModel, playerPanelViewModel);
             return new InitiationView(initiationController, initiationViewModel);
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, "Could not open user data file.");
@@ -47,11 +47,12 @@ public class InitiationUseCaseFactory {
     private static InitiationController createInitiationUseCase(ViewManagerModel viewManagerModel,
                                                                 InitiationViewModel initiationViewModel, CardButtonPanelViewModel cardButtonPanelViewModel,
                                                                 FileUserDataAccessObject userDataAccessObject, FindPlayableCardsInterface findPlayableCardsInterface,
-                                                                InitializedViewModel initializedViewModel) throws IOException {
+                                                                InitializedViewModel initializedViewModel, GetCardPanelViewModel getCardPanelViewModel, BottomPanelViewModel bottomPanelViewModel,
+                                                                PlayerPanelViewModel playerPanelViewModel) throws IOException {
 
         // Notice how we pass this method's parameters to the Presenter.
         InitiationOutputDataBoundary initiationOutputDataBoundary = new InitiationPresenter(viewManagerModel,
-                initiationViewModel, cardButtonPanelViewModel, initializedViewModel);
+                cardButtonPanelViewModel, initializedViewModel, getCardPanelViewModel, bottomPanelViewModel, playerPanelViewModel);
 
         // enetity classe
         DrawCardsDataAccessInterface drawCardsDataAccessInterface= new APIDataAccessObject();
