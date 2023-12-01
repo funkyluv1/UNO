@@ -34,17 +34,13 @@ public class PostTurnInteractor implements PostTurnInputDataBoundary{
             }
         }
 
-        // TODO: likely move this part to Round Use Case when it's created
-        // ???
-        // reward a functional card to round winner
         if (currPlayerIndex == 3) {
             FunctionalCard reward = generateFuncCard();
-            Player winner = game.getCurrWinner();
-            ArrayList<FunctionalCard> newHand = winner.getFuncCards();
-            newHand.add(reward);
-            winner.setFuncCards(newHand);
+            int winnerIndex = game.getCurrWinnerIndex();
+            postTurnDataAccessInterface.recordRoundChange(winnerIndex, reward);
 
             game.setMaxCardNum(-1);
+            game.setCurrWinner(0);
         }
 
         postTurnDataAccessInterface.recordPostTurnChange(functionalCards, numberCards, inputData.getCurrentPlayer());
