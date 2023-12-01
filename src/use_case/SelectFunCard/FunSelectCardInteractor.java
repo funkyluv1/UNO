@@ -1,6 +1,8 @@
 package use_case.SelectFunCard;
 
 import entities.card.Card;
+import use_case.SelectCard.SelectCardOutputData;
+import use_case.SelectCard.SelectCardOutputDataBoundary;
 
 import static use_case.initiation.InitiationInteractor.game;
 
