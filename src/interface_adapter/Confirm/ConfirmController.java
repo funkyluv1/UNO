@@ -10,14 +10,14 @@ import java.util.ArrayList;
 
 public class ConfirmController {
 
-        final ConfirmInputDataBoundary confirmInputDataBoundary;
+    final ConfirmInputDataBoundary confirmInputDataBoundary;
 
-        public ConfirmController (ConfirmInputDataBoundary confirmInputDataBoundary) {
-            this.confirmInputDataBoundary = confirmInputDataBoundary;
-        }
+    public ConfirmController (ConfirmInputDataBoundary confirmInputDataBoundary) {
+        this.confirmInputDataBoundary = confirmInputDataBoundary;
+    }
 
-        public void execute () {
-            confirmInputDataBoundary.execute();
+    public void execute () {
+        confirmInputDataBoundary.execute();
     }
 
 }

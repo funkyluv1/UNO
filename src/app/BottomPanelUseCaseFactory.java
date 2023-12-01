@@ -1,21 +1,12 @@
 package app;
 
-import data_access.FileUserDataAccessObject;
-import interface_adapter.Confirm.ConfirmController;
 import interface_adapter.Confirm.ConfirmPresenter;
 import interface_adapter.Initialized.BottomPanelViewModel;
-import interface_adapter.Initialized.CardButtonPanelViewModel;
-import interface_adapter.SelectCard.SelectCardController;
-import interface_adapter.SelectCard.SelectCardPresenter;
 import interface_adapter.ViewManagerModel;
 import use_case.Confirm.ConfirmInputDataBoundary;
 import use_case.Confirm.ConfirmInteractor;
 import use_case.Confirm.ConfirmOutputDataBoundary;
-import use_case.SelectCard.SelectCardInputDataBoundary;
-import use_case.SelectCard.SelectCardInteractor;
-import use_case.SelectCard.SelectCardOutputDataBoundary;
 import view.BottomPanel;
-import view.CardButtonPanel;
 
 import javax.swing.*;
 import java.io.IOException;

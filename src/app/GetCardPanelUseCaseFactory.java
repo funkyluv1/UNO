@@ -28,7 +28,9 @@ public class GetCardPanelUseCaseFactory {
         return new GetCardPanel(getCardPanelViewModel, undoController);
     }
 
-    private static UndoController createUndoController(ViewManagerModel viewManagerModel, GetCardPanelViewModel getCardPanelViewModel, FileUserDataAccessObject fileUserDataAccessObject) {
+    private static UndoController createUndoController(ViewManagerModel viewManagerModel,
+                                                       GetCardPanelViewModel getCardPanelViewModel,
+                                                       FileUserDataAccessObject fileUserDataAccessObject) {
         UndoOutputDataBoundary undoOutputDataBoundary = new UndoPresenter(viewManagerModel, getCardPanelViewModel);
 
         UndoDataAccessInterface undoDataAccessInterface = fileUserDataAccessObject;

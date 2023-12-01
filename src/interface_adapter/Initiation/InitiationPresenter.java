@@ -59,7 +59,6 @@ public class InitiationPresenter implements InitiationOutputDataBoundary {
             cardButtonPanelState.setRightButtonEnabled(false);
             cardButtonPanelState.setLeftButtonEnabled(false);
         }
-
         this.cardButtonPanelViewModel.setState(cardButtonPanelState);
         this.cardButtonPanelViewModel.firePropertyChanged();
 
@@ -70,6 +69,10 @@ public class InitiationPresenter implements InitiationOutputDataBoundary {
 
         this.getCardPanelViewModel.firePropertyChanged();
 
+        BottomPanelState bottomPanelState = bottomPanelViewModel.getState();
+        bottomPanelState.setConfirmButtonEnabled(false);
+        bottomPanelState.setNextButtonEnabled(false);
+        bottomPanelViewModel.setState(bottomPanelState);
         this.bottomPanelViewModel.firePropertyChanged();
 
         //TODO: Wait for the last panel;

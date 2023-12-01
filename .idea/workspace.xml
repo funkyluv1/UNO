@@ -4,13 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="437e2396-4452-4db4-b169-fce7887c553b" name="Changes" comment="CardButtonPanel &amp; RightShift Usecase completed">
-      <change afterPath="$PROJECT_DIR$/src/app/GetCardPanelUseCaseFactory.java" afterDir="false" />
+    <list default="true" id="437e2396-4452-4db4-b169-fce7887c553b" name="Changes" comment="Enable playableCards in CardButtonPanel after Undo in UndoPresenter">
+      <change afterPath="$PROJECT_DIR$/src/interface_adapter/Confirm/ConfirmController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/interface_adapter/LeftShift/LeftShiftController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/interface_adapter/LeftShift/LeftShiftPresenter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/use_case/LeftShift/LeftShiftInputData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/use_case/LeftShift/LeftShiftInputDataBoundary.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/use_case/LeftShift/LeftShiftInteractor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/use_case/LeftShift/LeftShiftOutputData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/use_case/LeftShift/LeftShiftOutputDataBoundary.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data_access/FileUserDataAccessObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data_access/FileUserDataAccessObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interface_adapter/Undo/UndoPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interface_adapter/Undo/UndoPresenter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interface_adapter/postTurn/PostTurnPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interface_adapter/postTurn/PostTurnPresenter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interface_adapter/postTurn/PostTurnViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interface_adapter/postTurn/PostTurnViewModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/BottomPanelUseCaseFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/BottomPanelUseCaseFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/GetCardPanelUseCaseFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/GetCardPanelUseCaseFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interface_adapter/Confirm/ConfirmPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interface_adapter/Confirm/ConfirmPresenter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interface_adapter/Initiation/InitiationPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interface_adapter/Initiation/InitiationPresenter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/use_case/Confirm/ConfirmController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/use_case/RightShift/RightShiftInteractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/use_case/RightShift/RightShiftInteractor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/use_case/RightShift/RightShiftOutputData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/use_case/RightShift/RightShiftOutputData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/BottomPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/BottomPanel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,6 +32,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -69,7 +81,7 @@
       <workItem from="1700366067168" duration="2615000" />
       <workItem from="1700525759262" duration="897000" />
       <workItem from="1701306946029" duration="3574000" />
-      <workItem from="1701395907336" duration="12625000" />
+      <workItem from="1701395907336" duration="14963000" />
     </task>
     <task id="LOCAL-00001" summary="CardButtonPanel &amp; RightShift Usecase completed">
       <option name="closed" value="true" />
@@ -79,7 +91,23 @@
       <option name="project" value="LOCAL" />
       <updated>1701414491437</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Commit Tony's updates from Test branch">
+      <option name="closed" value="true" />
+      <created>1701415137461</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1701415137461</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Enable playableCards in CardButtonPanel after Undo in UndoPresenter">
+      <option name="closed" value="true" />
+      <created>1701415391283</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1701415391283</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -114,6 +142,8 @@
     <MESSAGE value="Test updated" />
     <MESSAGE value="I dont know what they are" />
     <MESSAGE value="CardButtonPanel &amp; RightShift Usecase completed" />
-    <option name="LAST_COMMIT_MESSAGE" value="CardButtonPanel &amp; RightShift Usecase completed" />
+    <MESSAGE value="Commit Tony's updates from Test branch" />
+    <MESSAGE value="Enable playableCards in CardButtonPanel after Undo in UndoPresenter" />
+    <option name="LAST_COMMIT_MESSAGE" value="Enable playableCards in CardButtonPanel after Undo in UndoPresenter" />
   </component>
 </project>
