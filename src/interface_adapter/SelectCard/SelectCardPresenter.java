@@ -21,11 +21,18 @@ public class SelectCardPresenter implements SelectCardOutputDataBoundary {
         CardButtonPanelState cardButtonPanelState = cardButtonPanelViewModel.getState();
         cardButtonPanelState.setButtonindexHighlighted(selectCardOutputData.getButton_index());
 
-        cardButtonPanelState.setButton1enabled(false);
-        cardButtonPanelState.setButton2enabled(false);
-        cardButtonPanelState.setButton3enabled(false);
+        cardButtonPanelState.setOneCardSelected(true);
+        //Player is not allowed to LeftShift/Rightshift after a card is selected.
+        cardButtonPanelState.setLeftButtonEnabled(false);
+        cardButtonPanelState.setRightButtonEnabled(false);
+//        cardButtonPanelState.setButton1enabled(false);
+//        cardButtonPanelState.setButton2enabled(false);
+//        cardButtonPanelState.setButton3enabled(false);
 
         cardButtonPanelViewModel.setState(cardButtonPanelState);
         cardButtonPanelViewModel.firePropertyChanged();
+
+        viewManagerModel.setActiveView("Initialized");
+        viewManagerModel.firePropertyChanged();
     }
 }

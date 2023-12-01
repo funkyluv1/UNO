@@ -26,7 +26,5 @@ public class PostTurnViewModel extends ViewModel {
         return state;
     }
 
-    public void setState(PostTurnState state) {
-        this.state = state;
-    }
+    public void setState(PostTurnState state){this.state = state;}
 }

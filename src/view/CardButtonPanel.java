@@ -1,8 +1,10 @@
 package view;
 
+import entities.card.NumberCard;
 import interface_adapter.Initialized.CardButtonPanelState;
 import interface_adapter.Initialized.CardButtonPanelViewModel;
 import interface_adapter.Initiation.InitiationState;
+import interface_adapter.RightShift.RightShiftController;
 import interface_adapter.SelectCard.SelectCardController;
 
 import javax.swing.*;
@@ -20,9 +22,11 @@ public class CardButtonPanel extends JPanel implements PropertyChangeListener {
     CardButtonPanelViewModel cardButtonPanelViewModel;
     ArrayList<JButton> cardNames = new ArrayList<>();
     JPanel playpanel = new JPanel();
+    JButton leftButton;
+    JButton rightButton;
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);
 
-    public CardButtonPanel(CardButtonPanelViewModel cardButtonPanelViewModel, SelectCardController selectCardController){
+    public CardButtonPanel(CardButtonPanelViewModel cardButtonPanelViewModel, SelectCardController selectCardController, RightShiftController rightShiftController){
         this.cardButtonPanelViewModel = cardButtonPanelViewModel;
         this.cardButtonPanelViewModel.addPropertyChangeListener(this);
 
@@ -33,7 +37,20 @@ public class CardButtonPanel extends JPanel implements PropertyChangeListener {
         leftShift.setBackground(Color.BLACK);
         leftShift.setFont(new Font("Arial", Font.BOLD, 14));
         leftShift.setOpaque(true);
+        leftShift.setEnabled(false);
         playpanel.add(leftShift);
+        this.leftButton = leftShift;
+
+        // right shift button
+        JButton rightShift = new JButton("right");
+        rightShift.setPreferredSize(new Dimension(100, 50));
+        rightShift.setForeground(Color.WHITE);
+        rightShift.setBackground(Color.BLACK);
+        rightShift.setFont(new Font("Arial", Font.BOLD, 14));
+        rightShift.setOpaque(true);
+        rightShift.setEnabled(false);
+        playpanel.add(rightShift);
+        this.rightButton = rightShift;
 
         for (int i = 0; i < 3; i++) {
             JButton cardButton = new JButton();
@@ -49,8 +66,7 @@ public class CardButtonPanel extends JPanel implements PropertyChangeListener {
                         public void actionPerformed(ActionEvent evt) {
                             if (evt.getSource().equals(cardButton)) {
                                 CardButtonPanelState currentState = cardButtonPanelViewModel.getState();
-                                selectCardController.execute(currentState.get_players().get(0), cardButton.getText(), 2);
-                                //TODO: the current player uses game.playerindex
+                                selectCardController.execute(cardButton.getText(),finalI);
                             }
                         }
                     }
@@ -60,33 +76,47 @@ public class CardButtonPanel extends JPanel implements PropertyChangeListener {
 
         }
 
-        // right shift button
-        JButton rightShift = new JButton("right");
-        rightShift.setPreferredSize(new Dimension(100, 50));
-        rightShift.setForeground(Color.WHITE);
-        rightShift.setBackground(Color.BLACK);
-        rightShift.setFont(new Font("Arial", Font.BOLD, 14));
-        rightShift.setOpaque(true);
-        playpanel.add(rightShift);
     }
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-        for (int i = 0; i < 3; i++) {
+        ArrayList<String> playableNumCardsString = new ArrayList<>();
+        for (NumberCard numberCard : cardButtonPanelViewModel.getState().get_Highlighted_Number_Cards()){
+            playableNumCardsString.add(numberCard.getString());
+        }
+
+        int startInd = cardButtonPanelViewModel.getState().getdisplayCardsFirstIndex();
+        int card_with_value;
+        if (cardButtonPanelViewModel.getState().get_Number_Cards().size() >= 3){
+            card_with_value = 3;
+        } else {card_with_value = cardButtonPanelViewModel.getState().get_Number_Cards().size();}
+
+        for (int i = startInd; i < startInd + card_with_value; i++) {
             String name = cardButtonPanelViewModel.getState().get_Number_Cards().get(i).getString();
 
-            if (name.charAt(1) == 'B'){cardNames.get(i).setBackground(Color.BLUE);}
-            else if (name.charAt(1) == 'R'){cardNames.get(i).setBackground(Color.RED);}
-            else if (name.charAt(1) == 'G'){cardNames.get(i).setBackground(Color.GREEN);}
+            // CardButton: default is Disabled; Enable playable Card;
+            cardNames.get(i - startInd).setText(name);
+            if (playableNumCardsString.contains(name)){
+                cardNames.get(i - startInd).setEnabled(true);
+            }
+//          TODO: probably don't need highlight any more; contrast between Enabled and Disabled Button is distinguishable
+//          cardNames.get(cardButtonPanelViewModel.getState().getButtonindexHighlighted()).setBackground(Color.CYAN);
 
-            cardNames.get(i).setText(name);
+            if (name.charAt(1) == 'B'){cardNames.get(i - startInd).setBackground(Color.BLUE);}
+            else if (name.charAt(1) == 'R'){cardNames.get(i - startInd).setBackground(Color.RED);}
+            else if (name.charAt(1) == 'G'){cardNames.get(i - startInd).setBackground(Color.GREEN);}
 
-            if (i == 0){cardNames.get(i).setEnabled(cardButtonPanelViewModel.getState().getButton1enabled());}
-            else if (i == 1){cardNames.get(i).setEnabled(cardButtonPanelViewModel.getState().getButton2enabled());}
-            else cardNames.get(i).setEnabled(cardButtonPanelViewModel.getState().getButton3enabled());
+            //If someone has selected one card beforehand, then disable the enabled playable card.
+            if (cardButtonPanelViewModel.getState().getOneCardsSelected()){
+                cardNames.get(i - startInd).setEnabled(false);
+            }
 
-            cardNames.get(0).setEnabled(false);//There are bugs in FindPlayableCards; assume the first numCard is not playable
+//            if (i == startInd){cardNames.get(i - startInd).setEnabled(cardButtonPanelViewModel.getState().getButton1enabled());}
+//            else if (i == startInd + 1){cardNames.get(i - startInd).setEnabled(cardButtonPanelViewModel.getState().getButton2enabled());}
+//            else cardNames.get(i - startInd).setEnabled(cardButtonPanelViewModel.getState().getButton3enabled());
+
         }
-        cardNames.get(cardButtonPanelViewModel.getState().getButtonindexHighlighted()).setBackground(Color.CYAN);
+        leftButton.setEnabled(cardButtonPanelViewModel.getState().getLeftButtonEnabled());
+        rightButton.setEnabled(cardButtonPanelViewModel.getState().getRightButtonEnabled());
 
         this.firePropertyChange();
     }

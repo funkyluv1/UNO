@@ -2,10 +2,6 @@ package view;
 
 import interface_adapter.Confirm.ConfirmController;
 import interface_adapter.Initialized.BottomPanelViewModel;
-import interface_adapter.Initialized.CardButtonPanelState;
-import interface_adapter.Initialized.CardButtonPanelViewModel;
-import interface_adapter.Initiation.InitiationState;
-import interface_adapter.SelectCard.SelectCardController;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -15,7 +11,6 @@ import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
-import java.util.ArrayList;
 
 public class BottomPanel extends JPanel implements PropertyChangeListener {
 

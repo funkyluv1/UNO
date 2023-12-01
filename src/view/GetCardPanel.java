@@ -1,5 +1,6 @@
 package view;
 
+import entities.card.Card;
 import interface_adapter.Initialized.GetCardPanelState;
 import interface_adapter.Initialized.GetCardPanelViewModel;
 import interface_adapter.Undo.UndoController;
@@ -43,7 +44,7 @@ public class GetCardPanel extends JPanel implements PropertyChangeListener {
                     @Override
                     public void actionPerformed(ActionEvent evt) {
                         if(evt.getSource().equals(undoButton)) {
-                            UndoInputData inputData = new UndoInputData(game.getCurrSelectedCard());
+                            UndoInputData inputData = new UndoInputData((Card) game.getCurrSelectedNumberCard());
                             undoController.execute(inputData);
                             GetCardPanelState state = new GetCardPanelState();
                             state.setUndoEnabled(false);

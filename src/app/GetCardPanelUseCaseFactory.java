@@ -22,14 +22,18 @@ public class GetCardPanelUseCaseFactory {
     public static GetCardPanel create(
             ViewManagerModel viewManagerModel,
             GetCardPanelViewModel getCardPanelViewModel,
+            CardButtonPanelViewModel cardButtonPanelViewModel,
             FileUserDataAccessObject fileUserDataAccessObject) {
-        UndoController undoController = createUndoController(viewManagerModel, getCardPanelViewModel, fileUserDataAccessObject);
+        UndoController undoController = createUndoController(viewManagerModel, getCardPanelViewModel, cardButtonPanelViewModel, fileUserDataAccessObject);
 
         return new GetCardPanel(getCardPanelViewModel, undoController);
     }
 
-    private static UndoController createUndoController(ViewManagerModel viewManagerModel, GetCardPanelViewModel getCardPanelViewModel, FileUserDataAccessObject fileUserDataAccessObject) {
-        UndoOutputDataBoundary undoOutputDataBoundary = new UndoPresenter(viewManagerModel, getCardPanelViewModel);
+    private static UndoController createUndoController(ViewManagerModel viewManagerModel,
+                                                       GetCardPanelViewModel getCardPanelViewModel,
+                                                       CardButtonPanelViewModel cardButtonPanelViewModel,
+                                                       FileUserDataAccessObject fileUserDataAccessObject) {
+        UndoOutputDataBoundary undoOutputDataBoundary = new UndoPresenter(viewManagerModel, getCardPanelViewModel, cardButtonPanelViewModel);
 
         UndoDataAccessInterface undoDataAccessInterface = fileUserDataAccessObject;
         UndoInputDataBoundary undoIntactor = new UndoInteractor(undoOutputDataBoundary, undoDataAccessInterface);

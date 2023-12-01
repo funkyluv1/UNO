@@ -5,10 +5,12 @@ import entities.NumberCardsDeck.NumberCardsDeck;
 import entities.NumberCardsDeck.NumberCardsDeckFactory;
 import entities.card.*;
 import entities.player.*;
-import use_case.PostTurn.PostTurnDataAccessInterface;
-import use_case.PreTurn.PreTurnDataAccessInterface;
 import use_case.SelectCard.SelectCardDataAccessInterface;
 import use_case.Undo.UndoDataAccessInterface;
+import use_case.NextTurn.NextTurnDataAccessInterface;
+import use_case.PostTurn.PostTurnDataAccessInterface;
+import use_case.PreTurn.PreTurnDataAccessInterface;
+import use_case.RightShift.RightShiftDataAccessInterface;
 import use_case.initiation.InitiationDataAccessInterface;
 import use_case.initiation.InitiationInputData;
 
@@ -17,7 +19,9 @@ import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class FileUserDataAccessObject implements InitiationDataAccessInterface, PreTurnDataAccessInterface, PostTurnDataAccessInterface, UndoDataAccessInterface, SelectCardDataAccessInterface {
+public class FileUserDataAccessObject implements InitiationDataAccessInterface,
+        PreTurnDataAccessInterface, PostTurnDataAccessInterface, RightShiftDataAccessInterface,
+        NextTurnDataAccessInterface, UndoDataAccessInterface, SelectCardDataAccessInterface {
     private final File csvFile;
     private final AIPlayerFactory aiPlayerFactory;
     private final HumanPlayerFactory humanPlayerFactory;
@@ -153,6 +157,13 @@ public class FileUserDataAccessObject implements InitiationDataAccessInterface, 
         save();
     }
 
+    @Override
+    public void recordRoundChange(String currentPlayer, FunctionalCard reward) {
+        ArrayList<FunctionalCard> hand = playerInfo.get(currentPlayer).getFuncCards();
+        hand.add(reward);
+        playerInfo.get(currentPlayer).setFuncCards(hand);
+    }
+
 
     @Override
     public ArrayList<NumberCard> getNumberCards(String player) {
@@ -173,7 +184,13 @@ public class FileUserDataAccessObject implements InitiationDataAccessInterface, 
 
     @Override
     public Player getPlayer(int playerIndex) {
-        // TODO: implement me
+        int i = 0;
+        int currplayerIndex = playerIndex % 4;
+        for (String userName : playerInfo.keySet()){
+            if (i == currplayerIndex){
+                return playerInfo.get(userName);}
+            i += 1;
+        }
         return null;
     }
 
@@ -182,12 +199,17 @@ public class FileUserDataAccessObject implements InitiationDataAccessInterface, 
     }
 
     @Override
-    public void recordUnselectCard(Card card) {
-
+    public void incrementCurrentPlayerFirstCardIndex(String playerName) {
+        playerInfo.get(playerName).setDisplayFirstCardIndex(playerInfo.get(playerName).getDisplayFirstCardIndex() + 1);
     }
 
     @Override
     public void recordSelectCard(Card card) {
+        
+    }
+
+    @Override
+    public void recordUnselectCard(Card card) {
 
     }
 }

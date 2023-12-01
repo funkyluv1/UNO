@@ -47,15 +47,14 @@ public class Main {
                 application.dispose();
             }
         });
-        Image backgroundImage = new ImageIcon("path/to/background.jpg").getImage();
-        JLabel background = new JLabel(new ImageIcon(backgroundImage));
+
         // The various View objects. Only one view is visible at a time.
         JPanel views = new JPanel(cardLayout);
         application.add(views);
 
         ViewManagerModel viewManagerModel = new ViewManagerModel();
         new ViewManager(views, cardLayout, viewManagerModel);
-//
+
         FindPlayableCardsInterface findPlayableCardsInterface = new FindPlayableCards();
 
 
@@ -70,9 +69,10 @@ public class Main {
         CardButtonPanel cardButtonPanel = CardButtonPanelUseCaseFactory.create(viewManagerModel, cardButtonPanelViewModel, userDataAccessObject);
 
         GetCardPanelViewModel getCardPanelViewModel = new GetCardPanelViewModel();
-        GetCardPanel getCardPanel = GetCardPanelUseCaseFactory.create(viewManagerModel, getCardPanelViewModel, userDataAccessObject);
+        //GetCardPanel getCardPanel = GetCardPanelUseCaseFactory.create(viewManagerModel, getCardPanelViewModel, userDataAccessObject);
+
         InitiationViewModel initiationViewModel = new InitiationViewModel();
-        InitializedViewModel initializedViewModel = new InitializedViewModel(cardButtonPanel, getCardPanel);
+        InitializedViewModel initializedViewModel = new InitializedViewModel(cardButtonPanel);
 
 
         InitiationView initiationView = InitiationUseCaseFactory.create(viewManagerModel, initiationViewModel, cardButtonPanelViewModel,initializedViewModel, userDataAccessObject, findPlayableCardsInterface);

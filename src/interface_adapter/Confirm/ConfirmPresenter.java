@@ -13,21 +13,30 @@ public class ConfirmPresenter implements ConfirmOutputDataBoundary {
 
     private final BottomPanelViewModel bottomPanelViewModel;
     private ViewManagerModel viewManagerModel;
+    private final CardButtonPanelViewModel cardButtonPanelViewModel;
 
-    public ConfirmPresenter(ViewManagerModel viewManagerModel, BottomPanelViewModel bottomPanelViewModel){
+    public ConfirmPresenter(ViewManagerModel viewManagerModel, BottomPanelViewModel bottomPanelViewModel,
+                            CardButtonPanelViewModel cardButtonPanelViewModel){
         this.viewManagerModel = viewManagerModel;
         this.bottomPanelViewModel = bottomPanelViewModel;
+        this.cardButtonPanelViewModel = cardButtonPanelViewModel;
     }
+
 
     @Override
     public void prepareSuccessView() {
         BottomPanelState bottomPanelState = bottomPanelViewModel.getState();
-
         bottomPanelState.setConfirmButtonEnabled(false);
-        //TODO: disable CardButtonPanel's buttons; need an interface
-
         bottomPanelViewModel.setState(bottomPanelState);
         bottomPanelViewModel.firePropertyChanged();
+
+        CardButtonPanelState cardButtonPanelState = cardButtonPanelViewModel.getState();
+        cardButtonPanelState.setOneCardSelected(true);
+        cardButtonPanelViewModel.setState(cardButtonPanelState);
+        cardButtonPanelViewModel.firePropertyChanged();
+
+        viewManagerModel.setActiveView("Initialized");
+        viewManagerModel.firePropertyChanged();
     }
 
 }

@@ -24,7 +24,7 @@ public abstract class Card {
      * Constructs a new Card object.
      *
      * @param value the numeric value of the card
-     * @param color the color of the card
+     * @param color the color of the card, the first initial of Color, i.e. "Y","G","R","B"
      */
     public Card(int value, String color) {
         this.value = value;

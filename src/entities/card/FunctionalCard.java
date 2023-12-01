@@ -38,4 +38,6 @@ public class FunctionalCard extends Card {
     public String getType() {
         return type;
     }
+
+    public String getString(){return type + this.getValue() + this.getColor();}
 }

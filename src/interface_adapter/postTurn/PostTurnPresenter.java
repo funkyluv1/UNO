@@ -21,6 +21,7 @@ public class PostTurnPresenter implements PostTurnOutputDataBoundary {
         postTurnState.setFunctionalCards(outputData.getFunctionalCards());
         postTurnState.setNumberCards(outputData.getNumberCards());
         postTurnViewModel.setState(postTurnState);
+
         viewManagerModel.setActiveView(postTurnViewModel.getViewName());
         viewManagerModel.firePropertyChanged();
     }

@@ -18,7 +18,9 @@ public class PreTurnPresenter implements PreTurnOutputDataBoundary {
     public void preparePreTurnView(PreTurnOutputData outputData) {
         PreTurnState preTurnState = preTurnViewModel.getState();
         preTurnState.setNumberCards(outputData.getNumberCards());
+
         preTurnViewModel.setState(preTurnState);
+        //TODO: need to initialize all Panels
         viewManagerModel.setActiveView(preTurnViewModel.getViewName());
         viewManagerModel.firePropertyChanged();
     }

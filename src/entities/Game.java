@@ -1,5 +1,6 @@
 package entities;
 
+import entities.NumberCardsDeck.NumberCardsDeck;
 import entities.card.*;
 import entities.player.*;
 
@@ -12,6 +13,7 @@ public class Game {
     private static Game instance;
     private NumberCard topCard;
     private ArrayList<Card> funcCardList;
+    private NumberCardsDeck numberCardDeck;
     private int drawCard;
     private boolean isSkipped;
     private int plusN; //the total number of additional cards need to be drawn after +2 and +4 cards
@@ -21,8 +23,7 @@ public class Game {
     private ArrayList<FunctionalCard> currSelectedFunCard;
     private ArrayList<NumberCard> numCardsinRound;
     private int maxCardNum;
-    private Player currWinner;
-    private ArrayList<String> playersList;
+    private String currWinnerStr;
 
     private Game() {
         String[] randColor = {"red", "blue", "green", "yellow"};
@@ -32,12 +33,13 @@ public class Game {
         drawCard = 0;
         isSkipped = false;
         plusN = 0;
-        currentPlayerIndex = 0;
+        currentPlayerIndex = 1;
         currSelectedFunCard = null;
         currSelectedNumberCard = null;
         numCardsinRound = new ArrayList<>();
         maxCardNum = 0;
-        currWinner = null;
+        currWinnerStr = "";
+
     }
 
     public static Game getInstance() {
@@ -121,11 +123,13 @@ public class Game {
         return maxCardNum;
     }
 
-    public void setCurrWinner(Player player) {
-        currWinner = player;
+    public void setCurrWinner(String winnerStr) {
+        currWinnerStr = winnerStr;
     }
 
-    public Player getCurrWinner() {
-        return currWinner;
+    public String getCurrWinnerStr() {
+        return currWinnerStr;
     }
+    public NumberCardsDeck getNumberCardDeck(){return this.numberCardDeck;}
+    public void setNumberCardDeck(NumberCardsDeck numberCardDeck){this.numberCardDeck = numberCardDeck;}
 }
