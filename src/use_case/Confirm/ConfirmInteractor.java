@@ -18,7 +18,7 @@ public class ConfirmInteractor implements ConfirmInputDataBoundary{
     public void execute(ConfirmInputData confirmInputData) {
         NumberCard selectedNumCard = (NumberCard) game.getCurrSelectedNumberCard();
         ArrayList<FunctionalCard> selectedFunCard = game.getCurrSelectedFunCard();
-        Player currPlayer = confirmInputData.getCurrPlayer();
+        int currPlayerIndex = confirmInputData.getCurrPlayerIndex();
 
         game.setCurrSelectedNumberCard(null);
         game.addNumCardsinRound(selectedNumCard);
@@ -42,7 +42,7 @@ public class ConfirmInteractor implements ConfirmInputDataBoundary{
         int currMax = game.getMaxCardNum();
         if (selectedNumCard.getValue() > currMax) {
             game.setMaxCardNum(selectedNumCard.getValue());
-            game.setCurrWinner(currPlayer);
+            game.setCurrWinner(currPlayerIndex);
         }
 
         confirmOutputDataBoundary.prepareSuccessView();
