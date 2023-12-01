@@ -3,8 +3,8 @@ package interface_adapter.Initialized;
 import entities.card.NumberCard;
 
 public class GetCardPanelState {
-    private boolean undoEnabled = true;
-    private boolean getCardEnabled = true;
+    private boolean undoEnabled = false;
+    private boolean getCardEnabled = false;
 
     private NumberCard topCard = null;
 

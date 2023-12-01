@@ -3,16 +3,14 @@ package interface_adapter.Initialized;
 import java.util.ArrayList;
 
 public class PlayerPanelState {
-    int current_player_index;
-
+    int current_player_index = 0;
     ArrayList<String> player;
     public PlayerPanelState(PlayerPanelState copy) {
 
          current_player_index = copy.current_player_index;
          player = copy.player;
-
     }
-    public PlayerPanelState() {}
+    public PlayerPanelState(){}
 
     public int getCurrent_player_index(){return current_player_index;}
 

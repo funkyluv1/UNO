@@ -52,7 +52,7 @@ public class InitiationInteractor implements InitiationInputDataBoundary {
                     findPlayableCardsInterface.findPlayableNumberCards(game.getTopCard().getColor(),playerNumCards.get(player)));
         }
         initiationOutputDataBoundary.prepareNewGameView(new InitiationOutputData(initiationInputData.getPlayerNames(), numberCardsDeck,
-                playerNumCards, playerPlayableNumCards, playerPlayableFunCards,  displayCardsFirstIndex));
+                playerNumCards, playerPlayableNumCards, playerPlayableFunCards, displayCardsFirstIndex));
     };
 
 }

@@ -31,7 +31,7 @@ public class Game {
         drawCard = 0;
         isSkipped = false;
         plusN = 0;
-        currentPlayerIndex = 0;
+        currentPlayerIndex = 1;
         currSelectedFunCard = null;
         currSelectedNumberCard = null;
         numCardsinRound = new ArrayList<>();

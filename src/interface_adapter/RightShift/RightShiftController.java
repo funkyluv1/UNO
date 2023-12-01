@@ -1,7 +1,10 @@
 package interface_adapter.RightShift;
 
+import entities.card.NumberCard;
 import use_case.RightShift.RightShiftInputData;
 import use_case.RightShift.RightShiftInputDataBoundary;
+
+import java.util.ArrayList;
 
 public class RightShiftController {
     final RightShiftInputDataBoundary rightShiftInteractor;
@@ -10,8 +13,8 @@ public class RightShiftController {
         this.rightShiftInteractor = rightShiftInteractor;
     }
 
-    public void execute (String player) {
-        RightShiftInputData rightShiftInputData = new RightShiftInputData(player);
+    public void execute (ArrayList<NumberCard> playerNumCards, int displaycardIndex) {
+        RightShiftInputData rightShiftInputData = new RightShiftInputData(playerNumCards, displaycardIndex);
         rightShiftInteractor.execute(rightShiftInputData);
     }
 }

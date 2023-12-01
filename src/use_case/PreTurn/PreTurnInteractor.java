@@ -54,6 +54,7 @@ public class PreTurnInteractor implements PreTurnInputDataBoundary {
         else {
             PreTurnOutputData outputData = new PreTurnOutputData(numberCards, currentPlayer.getPlayerName());
             preTurnOutputDataBoundary.preparePreTurnView(outputData);
+            //TODO: might delete preTurnPresenter;
         }
     }
 }

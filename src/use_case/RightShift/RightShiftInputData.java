@@ -1,12 +1,17 @@
 package use_case.RightShift;
 
+import entities.card.NumberCard;
+
+import java.util.ArrayList;
+
 public class RightShiftInputData {
-    public String player;
-    public RightShiftInputData(String player) {
-        this.player = player;
+    public int displayCardFirstIndex;
+    public ArrayList<NumberCard> playerNumcards;
+    public RightShiftInputData(ArrayList<NumberCard> playerNumCards, int displayCardFirstIndex) {
+        this.displayCardFirstIndex = displayCardFirstIndex;
+        this.playerNumcards = playerNumCards;
     }
 
-    public String getPlayer() {
-        return player;
-    }
+    public int getDisplayCardFirstIndex() {return displayCardFirstIndex;}
+    public ArrayList<NumberCard> getPlayerNumcards(){return playerNumcards;}
 }

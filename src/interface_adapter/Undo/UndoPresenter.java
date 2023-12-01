@@ -19,6 +19,6 @@ public class UndoPresenter implements UndoOutputDataBoundary {
 
     @Override
     public void prepareUndoView(UndoOutputData undoOutputData) {
-
+        //TODO: set OneCardSelected as false
     }
 }

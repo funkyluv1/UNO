@@ -178,7 +178,13 @@ public class FileUserDataAccessObject implements InitiationDataAccessInterface, 
 
     @Override
     public Player getPlayer(int playerIndex) {
-        // TODO: implement me
+        int i = 0;
+        int currplayerIndex = playerIndex % 4;
+        for (String userName : playerInfo.keySet()){
+            if (i == currplayerIndex){
+                return playerInfo.get(userName);}
+            i += 1;
+        }
         return null;
     }
 
