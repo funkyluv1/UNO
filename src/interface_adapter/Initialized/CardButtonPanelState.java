@@ -62,7 +62,6 @@ public class CardButtonPanelState{
         public boolean getLeftButtonEnabled(){return this.leftButtonEnabled;};
         public void setDisplayNumCardsFirstIndex(int flag){this.displayNumCardsFirstIndex = flag;};
         public Integer getdisplayCardsFirstIndex(){
-                // need current player instead of setting it as the first player
             return displayNumCardsFirstIndex;
         }
         public void setOneCardSelected(boolean flag){this.oneCardSelected = flag;};
