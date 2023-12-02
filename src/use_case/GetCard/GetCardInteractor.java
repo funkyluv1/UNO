@@ -7,7 +7,11 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class GetCardInteractor implements GetCardInputDataBoundary{
 
-    public GetCardInteractor(){};
+    final GetCardDataAccessInterface getCardDataAccessObject;
+
+    public GetCardInteractor(GetCardDataAccessInterface getCardDataAccessObject){
+        this.getCardDataAccessObject = getCardDataAccessObject;
+    };
 
 
     public void execute(GetCardInputData player) {
@@ -23,6 +27,9 @@ public class GetCardInteractor implements GetCardInputDataBoundary{
         }
 
         NumberCard card = (new NumberCardFactory(randomNum, randomColor)).createCard();
+
+
+
 
 
     }

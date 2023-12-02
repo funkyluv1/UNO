@@ -1,5 +1,6 @@
 package entities;
 
+import entities.NumberCardsDeck.NumberCardsDeck;
 import entities.card.FunctionalCard;
 import entities.card.NumberCard;
 import junit.framework.TestCase;
@@ -7,11 +8,7 @@ import junit.framework.TestCase;
 import java.util.ArrayList;
 
 public class GameTest extends TestCase {
-    private Game game;
-
-    public void init(){
-        game = new Game();
-    }
+    private Game game = new Game();
 
     public void testGetInstance() {
         assertTrue(game.getInstance() != null);
@@ -23,7 +20,6 @@ public class GameTest extends TestCase {
     }
 
     public void testSetTopCard() {
-
     }
 
     public void testGetFuncCard() {
@@ -88,29 +84,63 @@ public class GameTest extends TestCase {
     }
 
     public void testGetCurrSelectedFunCardInitialValue() {
-        assertTrue(game.getCurrSelectedFunCard() instanceof ArrayList<>());
-
+        ArrayList<FunctionalCard> cards = new ArrayList<FunctionalCard>();
+        assertEquals(game.getCurrSelectedFunCard().getClass(), cards.getClass());
+        assertTrue(game.getCurrSelectedFunCard().isEmpty());
     }
 
     public void testSetCurrSelectedFunCard() {
         assertTrue(game.getCurrSelectedFunCard().isEmpty());
+        ArrayList<FunctionalCard> cards = new ArrayList<FunctionalCard>();
+        FunctionalCard card1 = new FunctionalCard(0, "Red", "PlusTwo");
+        FunctionalCard card2 = new FunctionalCard(0, "Blue", "PlusFour");
+        cards.add(card1);
+        cards.add(card2);
+        game.setCurrSelectedFunCard(cards);
+        assertEquals(game.getCurrSelectedFunCard().get(0), card1);
+        assertEquals(game.getCurrSelectedFunCard().get(1), card2);
     }
 
+    public void testGetNumCardsinRoundInitialValue() {
+        ArrayList<NumberCard> cards = new ArrayList<NumberCard>();
+        assertEquals(game.getNumCardsinRound().getClass(), cards.getClass());
+        assertTrue(game.getNumCardsinRound().isEmpty());
+    }
     public void testAddNumCardsinRound() {
+        ArrayList<NumberCard> cards = new ArrayList<NumberCard>();
+        assertEquals(game.getNumCardsinRound().getClass(), cards.getClass());
+        assertTrue(game.getNumCardsinRound().isEmpty());
+
+        NumberCard card1 = new NumberCard(1, "Yellow");
+        NumberCard card2 = new NumberCard(2, "Blue");
+        game.addNumCardsinRound(card1);
+        game.addNumCardsinRound(card2);
+        assertEquals(game.getNumCardsinRound().get(0), card1);
+        assertEquals(game.getNumCardsinRound().get(0), card2);
     }
 
-    public void testGetNumCardsinRound() {
+    public void testGetMaxCardNumInitialValue() {
+        assertEquals(game.getMaxCardNum(), 0);
     }
 
     public void testSetMaxCardNum() {
+        assertEquals(game.getMaxCardNum(), 0);
+        game.setMaxCardNum(1);
+        assertEquals(game.getMaxCardNum(), 1);
     }
-
-    public void testGetMaxCardNum() {
+    public void testGetCurrWinnerStrInitialValue() {
+        assertEquals(game.getCurrWinnerStr(), "");
     }
 
     public void testSetCurrWinner() {
+        assertEquals(game.getCurrWinnerStr(), "");
+        game.setCurrWinner("John");
+        assertEquals(game.getCurrWinnerStr(), "John");
     }
 
-    public void testGetCurrWinnerStr() {
+    public void testSetGetNumberCardDeck(){
+        NumberCardsDeck cardDeck = new NumberCardsDeck("random id", 3);
+
     }
+
 }
