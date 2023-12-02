@@ -99,7 +99,6 @@ public class Game {
         else{
             currentPlayerIndex += 1;
         }
-
     }
 
     public void setCurrSelectedNumberCard(Object card) {
