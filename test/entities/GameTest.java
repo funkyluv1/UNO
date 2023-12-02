@@ -140,7 +140,8 @@ public class GameTest extends TestCase {
 
     public void testSetGetNumberCardDeck(){
         NumberCardsDeck cardDeck = new NumberCardsDeck("random id", 3);
-
+        game.setNumberCardDeck(cardDeck);
+        assertEquals(game.getNumberCardDeck(), cardDeck);
     }
 
 }
