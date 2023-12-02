@@ -49,8 +49,6 @@ public class InitializedState {
     public void setBottomPanel(BottomPanel bottomPanel){this.bottomPanel = bottomPanel;}
     public JPanel getBottomPanel(){return this.bottomPanel;}
 
-
-
     public JPanel getPlayerPanel() {return this.playerPanel;}
     public JPanel getcardButtonPanel(){return this.getcardButtonPanel();}
 

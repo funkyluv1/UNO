@@ -68,14 +68,19 @@ public class Main {
         CardButtonPanelViewModel cardButtonPanelViewModel = new CardButtonPanelViewModel();
         CardButtonPanel cardButtonPanel = CardButtonPanelUseCaseFactory.create(viewManagerModel, cardButtonPanelViewModel, userDataAccessObject);
 
+        BottomPanelViewModel bottomPanelViewModel = new BottomPanelViewModel();
+        BottomPanel bottomPanel = BottomPanelUseCaseFactory.create(viewManagerModel, bottomPanelViewModel, cardButtonPanelViewModel);
+
+        PlayerPanelViewModel playerPanelViewModel = new PlayerPanelViewModel();
+
         GetCardPanelViewModel getCardPanelViewModel = new GetCardPanelViewModel();
         GetCardPanel getCardPanel = GetCardPanelUseCaseFactory.create(viewManagerModel, getCardPanelViewModel, cardButtonPanelViewModel, userDataAccessObject);
 
-        InitiationViewModel initiationViewModel = new InitiationViewModel();
-        InitializedViewModel initializedViewModel = new InitializedViewModel(cardButtonPanel);
+        FunCardButtonPanelViewModel funCardButtonPanelViewModel = new FunCardButtonPanelViewModel();
+        FunCardButtonPanel funCardButtonPanel = FunCardButtonPanelUseCaseFactory.create(viewManagerModel);
 
-        BottomPanelViewModel bottomPanelViewModel = new BottomPanelViewModel();
-        PlayerPanelViewModel playerPanelViewModel = new PlayerPanelViewModel();
+        InitiationViewModel initiationViewModel = new InitiationViewModel();
+        InitializedViewModel initializedViewModel = new InitializedViewModel(cardButtonPanel, bottomPanel, playerPanel, getCardPanel, funCardButtonPanel);
 
         InitiationView initiationView = InitiationUseCaseFactory.create(viewManagerModel, initiationViewModel, cardButtonPanelViewModel,initializedViewModel, userDataAccessObject, findPlayableCardsInterface,
                 getCardPanelViewModel, bottomPanelViewModel, playerPanelViewModel);
