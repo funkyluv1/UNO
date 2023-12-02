@@ -25,7 +25,7 @@ public class Game {
     private int maxCardNum;
     private String currWinnerStr;
 
-    private Game() {
+    public Game() {
         String[] randColor = {"red", "blue", "green", "yellow"};
         int randColorIndex = (int) Math.floor(Math.random()*4);
         int randValue = (int) Math.floor(Math.random()*9);
@@ -39,7 +39,6 @@ public class Game {
         numCardsinRound = new ArrayList<>();
         maxCardNum = 0;
         currWinnerStr = "";
-
     }
 
     public static Game getInstance() {
@@ -99,7 +98,6 @@ public class Game {
         else{
             currentPlayerIndex += 1;
         }
-
     }
 
     public void setCurrSelectedNumberCard(Object card) {

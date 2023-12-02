@@ -2,21 +2,19 @@ package use_case.SelectFunCard;
 
 import entities.card.Card;
 
-public class FunSelectCardInputData{
-    private final Card selectedCard;
-    private final int button_index;
+public class FunSelectCardInputData {
+    private Card selectedCardNew;
+    private int buttonIndex;
 
-    public FunSelectCardInputData (Card cardNew, int button_index) {
-        selectedCard = cardNew;
-        this.button_index = button_index;
+    public FunSelectCardInputData(Card selectedCardNew, int buttonIndex) {
+        this.selectedCardNew = selectedCardNew;
+        this.buttonIndex = buttonIndex;
     }
-
     public Card getSelectedCardNew() {
-        return selectedCard;
+        return selectedCardNew;
     }
 
-    public int getButton_index(){
-        return button_index;
+    public int getButtonIndex() {
+        return buttonIndex;
     }
-
 }
