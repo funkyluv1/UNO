@@ -11,7 +11,7 @@ public class FunCardButtonPanelState {
     private ArrayList<String> players;
     private ArrayList<FunctionalCard> playerFunCards;
     private ArrayList<FunctionalCard> playerPlayableFunCards;
-    private ArrayList<FunctionalCard> currselectedCards;
+    private ArrayList<FunctionalCard> currselectedCards = new ArrayList<>();
     private int displayFunCardsFirstIndex;
     public FunCardButtonPanelState(FunCardButtonPanelState copy) {
 

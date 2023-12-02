@@ -29,13 +29,14 @@ public class InitiationUseCaseFactory {
             CardButtonPanelViewModel cardButtonPanelViewModel,
             InitializedViewModel initializedViewModel,
             FileUserDataAccessObject fileUserDataAccessObject,
+            FunCardButtonPanelViewModel funCardButtonPanelViewModel,
             FindPlayableCardsInterface findPlayableCardsInterface, GetCardPanelViewModel getCardPanelViewModel, BottomPanelViewModel bottomPanelViewModel,
             PlayerPanelViewModel playerPanelViewModel) {
 
         try {
             InitiationController initiationController = createInitiationUseCase(viewManagerModel,
                     initiationViewModel, cardButtonPanelViewModel, fileUserDataAccessObject,
-                    findPlayableCardsInterface,initializedViewModel, getCardPanelViewModel, bottomPanelViewModel, playerPanelViewModel);
+                    findPlayableCardsInterface,initializedViewModel, getCardPanelViewModel, bottomPanelViewModel, playerPanelViewModel, funCardButtonPanelViewModel);
             return new InitiationView(initiationController, initiationViewModel);
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, "Could not open user data file.");
@@ -48,11 +49,11 @@ public class InitiationUseCaseFactory {
                                                                 InitiationViewModel initiationViewModel, CardButtonPanelViewModel cardButtonPanelViewModel,
                                                                 FileUserDataAccessObject userDataAccessObject, FindPlayableCardsInterface findPlayableCardsInterface,
                                                                 InitializedViewModel initializedViewModel, GetCardPanelViewModel getCardPanelViewModel, BottomPanelViewModel bottomPanelViewModel,
-                                                                PlayerPanelViewModel playerPanelViewModel) throws IOException {
+                                                                PlayerPanelViewModel playerPanelViewModel, FunCardButtonPanelViewModel funCardButtonPanelViewModel) throws IOException {
 
         // Notice how we pass this method's parameters to the Presenter.
         InitiationOutputDataBoundary initiationOutputDataBoundary = new InitiationPresenter(viewManagerModel,
-                cardButtonPanelViewModel, initializedViewModel, getCardPanelViewModel, bottomPanelViewModel, playerPanelViewModel);
+                cardButtonPanelViewModel, initializedViewModel, getCardPanelViewModel, bottomPanelViewModel,playerPanelViewModel,funCardButtonPanelViewModel);
 
         // enetity classe
         DrawCardsDataAccessInterface drawCardsDataAccessInterface= new APIDataAccessObject();
