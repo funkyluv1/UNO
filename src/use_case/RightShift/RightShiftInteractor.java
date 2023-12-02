@@ -23,6 +23,9 @@ public class RightShiftInteractor implements RightShiftInputDataBoundary{
             rightShiftActive = false;
         }
         RightShiftOutputData rightShiftOutputData = new RightShiftOutputData(rightShiftActive);
-        rightShiftOutputDataBoundary.prepareSuccessView(rightShiftOutputData);
+        if (rightShiftInputData.getFlag_for_func()){
+            rightShiftOutputDataBoundary.prepareSuccessView(rightShiftOutputData);
+        }
+        else {rightShiftOutputDataBoundary.prepareSuccessView(rightShiftOutputData, true);}
     }
 }

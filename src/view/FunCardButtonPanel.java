@@ -1,5 +1,6 @@
 package view;
 
+import entities.card.Card;
 import entities.card.FunctionalCard;
 import entities.card.NumberCard;
 import interface_adapter.Initialized.CardButtonPanelState;
@@ -45,6 +46,16 @@ public class FunCardButtonPanel extends JPanel implements PropertyChangeListener
         leftShift.setFont(new Font("Arial", Font.BOLD, 14));
         leftShift.setOpaque(true);
         leftShift.setEnabled(false);
+        leftShift.addActionListener(
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent evt) {
+                        if (evt.getSource().equals(leftShift)) {
+                            FunCardButtonPanelState currentState = funCardButtonPanelViewModel.getState();
+                            leftShiftController.execute(currentState.getdisplayCardsFirstIndex(), true);
+                        }
+                    }
+                }
+        );
         playpanel.add(leftShift);
         this.leftButton = leftShift;
 
@@ -56,6 +67,18 @@ public class FunCardButtonPanel extends JPanel implements PropertyChangeListener
         rightShift.setFont(new Font("Arial", Font.BOLD, 14));
         rightShift.setOpaque(true);
         rightShift.setEnabled(false);
+        rightShift.addActionListener(
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent evt) {
+                        if (evt.getSource().equals(rightShift)) {
+                            FunCardButtonPanelState currentState = funCardButtonPanelViewModel.getState();
+                            ArrayList<Card> cardList = new ArrayList<>();
+                            cardList.addAll(currentState.get_Fun_Cards());
+                            rightShiftController.execute(cardList, currentState.getdisplayCardsFirstIndex(), true);
+                        }
+                    }
+                }
+        );
         playpanel.add(rightShift);
         this.rightButton = rightShift;
 
@@ -73,7 +96,11 @@ public class FunCardButtonPanel extends JPanel implements PropertyChangeListener
                         public void actionPerformed(ActionEvent evt) {
                             if (evt.getSource().equals(cardButton)) {
                                 FunCardButtonPanelState currentState = funCardButtonPanelViewModel.getState();
-                                selectFuncCardController.execute(cardButton.getText(),finalI);
+                                ArrayList<String> selectedCards = new ArrayList<>();
+                                for (FunctionalCard functionalCard : currentState.get_Selected_Fun_Cards()){
+                                    selectedCards.add(functionalCard.getString());
+                                }
+                                selectFuncCardController.execute(cardButton.getText(), selectedCards, finalI);
                             }
                         }
                     }

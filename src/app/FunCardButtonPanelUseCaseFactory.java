@@ -1,6 +1,7 @@
 package app;
 
 import data_access.FileUserDataAccessObject;
+import interface_adapter.Initialized.CardButtonPanelViewModel;
 import interface_adapter.Initialized.FunCardButtonPanelViewModel;
 import interface_adapter.LeftShift.LeftShiftController;
 import interface_adapter.LeftShift.LeftShiftPresenter;
@@ -25,13 +26,13 @@ public class FunCardButtonPanelUseCaseFactory {
 
      }
 
-     public static FunCardButtonPanel create (ViewManagerModel viewManagerModel,
+     public static FunCardButtonPanel create (ViewManagerModel viewManagerModel,CardButtonPanelViewModel cardButtonPanelViewModel,
                                               FunCardButtonPanelViewModel funCardButtonPanelViewModel,
                                               FileUserDataAccessObject fileUserDataAccessObject) {
          try {
              SelectFuncCardController selectFuncCardController = createSelectFuncCardController(viewManagerModel, funCardButtonPanelViewModel);
-             RightShiftController rightShiftController = createRightShiftController(viewManagerModel, funCardButtonPanelViewModel, fileUserDataAccessObject);
-             LeftShiftController leftShiftController = createLeftShiftController(viewManagerModel, funCardButtonPanelViewModel);
+             RightShiftController rightShiftController = createRightShiftController(viewManagerModel, funCardButtonPanelViewModel, cardButtonPanelViewModel, fileUserDataAccessObject);
+             LeftShiftController leftShiftController = createLeftShiftController(viewManagerModel, cardButtonPanelViewModel, funCardButtonPanelViewModel);
              return new FunCardButtonPanel(funCardButtonPanelViewModel, selectFuncCardController, rightShiftController, leftShiftController);
          }
          catch (Exception e) {
@@ -52,9 +53,10 @@ public class FunCardButtonPanelUseCaseFactory {
 
     private static RightShiftController createRightShiftController(ViewManagerModel viewManagerModel,
                                                                    FunCardButtonPanelViewModel funCardButtonPanelViewModel,
+                                                                   CardButtonPanelViewModel cardButtonPanelViewModel,
                                                                    FileUserDataAccessObject userDataAccessObject) {
 
-        RightShiftOutputDataBoundary rightShiftOutputDataBoundary = new RightShiftPresenter(viewManagerModel,
+        RightShiftOutputDataBoundary rightShiftOutputDataBoundary = new RightShiftPresenter(viewManagerModel, cardButtonPanelViewModel,
                 funCardButtonPanelViewModel);
 
         RightShiftInputDataBoundary rightShiftInteractor = new RightShiftInteractor(userDataAccessObject, rightShiftOutputDataBoundary);
@@ -62,10 +64,10 @@ public class FunCardButtonPanelUseCaseFactory {
         return new RightShiftController(rightShiftInteractor);
     }
 
-    private static LeftShiftController createLeftShiftController(ViewManagerModel viewManagerModel,
+    private static LeftShiftController createLeftShiftController(ViewManagerModel viewManagerModel, CardButtonPanelViewModel cardButtonPanelViewModel,
                                                                  FunCardButtonPanelViewModel funCardButtonPanelViewModel) {
 
-        LeftShiftOutputDataBoundary leftShiftOutputDataBoundary = new LeftShiftPresenter(viewManagerModel,
+        LeftShiftOutputDataBoundary leftShiftOutputDataBoundary = new LeftShiftPresenter(viewManagerModel, cardButtonPanelViewModel,
                 funCardButtonPanelViewModel);
 
         LeftShiftInputDataBoundary leftShiftInteractor = new LeftShiftInteractor(leftShiftOutputDataBoundary);
