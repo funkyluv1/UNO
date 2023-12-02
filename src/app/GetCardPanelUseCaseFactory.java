@@ -36,7 +36,7 @@ public class GetCardPanelUseCaseFactory {
         UndoOutputDataBoundary undoOutputDataBoundary = new UndoPresenter(viewManagerModel, getCardPanelViewModel, cardButtonPanelViewModel);
 
         UndoDataAccessInterface undoDataAccessInterface = fileUserDataAccessObject;
-        UndoInputDataBoundary undoIntactor = new UndoInteractor(undoOutputDataBoundary, undoDataAccessInterface);
-        return new UndoController(undoIntactor);
+        UndoInputDataBoundary undoInteractor = new UndoInteractor(undoOutputDataBoundary, undoDataAccessInterface);
+        return new UndoController(undoInteractor);
     }
 }

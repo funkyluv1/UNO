@@ -71,13 +71,15 @@ public class FileUserDataAccessObject implements InitiationDataAccessInterface,
                 }
                 for (String i : rowList1[playerHeaders.get("functionalCardsInHand")].split(",")){
                     Pattern pattern = Pattern.compile("([a-zA-Z]+)(\\d)([a-zA-Z])");
-                    Matcher matcher = pattern.matcher(i);
-                    String type = matcher.group(1);
-                    String numericPart = matcher.group(2);
-                    String color = matcher.group(3);
-                    cardFactory = new FunctionalCardFactory(Integer.parseInt(numericPart), color, type);
-                    FunctionalCard functionalCard = (FunctionalCard) cardFactory.createCard();
-                    functionalCards.add(functionalCard);
+                    if (pattern.matcher(i).matches()) {
+                        Matcher matcher = pattern.matcher(i);
+                        String type = matcher.group(1);
+                        String numericPart = matcher.group(2);
+                        String color = matcher.group(3);
+                        cardFactory = new FunctionalCardFactory(Integer.parseInt(numericPart), color, type);
+                        FunctionalCard functionalCard = (FunctionalCard) cardFactory.createCard();
+                        functionalCards.add(functionalCard);
+                    }
                 }
                 int displayFirstCardIndex = Integer.parseInt(rowList1[playerHeaders.get("displayFirstCardIndex")]);
 
