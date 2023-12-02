@@ -50,7 +50,7 @@ public class InitializedState {
     public JPanel getBottomPanel(){return this.bottomPanel;}
 
     public JPanel getPlayerPanel() {return this.playerPanel;}
-    public JPanel getcardButtonPanel(){return this.getcardButtonPanel();}
+    public JPanel getcardButtonPanel(){return this.getCardPanel;}
 
     public JPanel getFunCardButtonPanel(){return this.funCardButtonPanel;}
 }

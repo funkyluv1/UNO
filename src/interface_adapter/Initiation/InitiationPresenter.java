@@ -13,6 +13,8 @@ import view.GetCardPanel;
 
 import java.util.ArrayList;
 
+import static use_case.initiation.InitiationInteractor.game;
+
 public class InitiationPresenter implements InitiationOutputDataBoundary {
     private final PlayerPanelViewModel playerPanelViewModel;
     private final GetCardPanelViewModel getCardPanelViewModel;
@@ -67,6 +69,8 @@ public class InitiationPresenter implements InitiationOutputDataBoundary {
         this.playerPanelViewModel.setState(playerPanelState);
         this.playerPanelViewModel.firePropertyChanged();
 
+        GetCardPanelState getCardPanelState = getCardPanelViewModel.getState();
+        getCardPanelState.setTopCard(game.getTopCard());
         this.getCardPanelViewModel.firePropertyChanged();
 
         BottomPanelState bottomPanelState = bottomPanelViewModel.getState();
