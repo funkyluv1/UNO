@@ -7,14 +7,18 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class GetCardInteractor implements GetCardInputDataBoundary{
 
+    final GetCardOutputDataBoundary getCardOutputDataBoundary;
     final GetCardDataAccessInterface getCardDataAccessObject;
 
-    public GetCardInteractor(GetCardDataAccessInterface getCardDataAccessObject){
+    public GetCardInteractor(GetCardOutputDataBoundary getCardOutputDataBoundary, GetCardDataAccessInterface getCardDataAccessObject){
+        this.getCardOutputDataBoundary = getCardOutputDataBoundary;
         this.getCardDataAccessObject = getCardDataAccessObject;
     };
 
 
-    public void execute(GetCardInputData player) {
+    public void execute(GetCardInputData getCardInputData) {
+        String currPlayer = getCardInputData.getPlayerName();
+
         int randomNum = ThreadLocalRandom.current().nextInt(1,  10 + 1);
         int randomcol = ThreadLocalRandom.current().nextInt(1, 5);
         String randomColor = "";
@@ -28,9 +32,9 @@ public class GetCardInteractor implements GetCardInputDataBoundary{
 
         NumberCard card = (new NumberCardFactory(randomNum, randomColor)).createCard();
 
+        getCardDataAccessObject.getCard(currPlayer, card);
 
-
-
-
+        GetCardOutputData getCardOutputData = new GetCardOutputData(card);
+        getCardOutputDataBoundary.prepareNewGameView(getCardOutputData);
     }
 }
