@@ -4,6 +4,7 @@ import entities.card.NumberCard;
 import interface_adapter.Initialized.CardButtonPanelState;
 import interface_adapter.Initialized.CardButtonPanelViewModel;
 import interface_adapter.Initiation.InitiationState;
+import interface_adapter.LeftShift.LeftShiftController;
 import interface_adapter.RightShift.RightShiftController;
 import interface_adapter.SelectCard.SelectCardController;
 
@@ -26,7 +27,8 @@ public class CardButtonPanel extends JPanel implements PropertyChangeListener {
     JButton rightButton;
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);
 
-    public CardButtonPanel(CardButtonPanelViewModel cardButtonPanelViewModel, SelectCardController selectCardController, RightShiftController rightShiftController){
+    public CardButtonPanel(CardButtonPanelViewModel cardButtonPanelViewModel, SelectCardController selectCardController,
+                           RightShiftController rightShiftController, LeftShiftController leftShiftController){
         this.cardButtonPanelViewModel = cardButtonPanelViewModel;
         this.cardButtonPanelViewModel.addPropertyChangeListener(this);
 
@@ -38,8 +40,18 @@ public class CardButtonPanel extends JPanel implements PropertyChangeListener {
         leftShift.setFont(new Font("Arial", Font.BOLD, 14));
         leftShift.setOpaque(true);
         leftShift.setEnabled(false);
-        playpanel.add(leftShift);
+        leftShift.addActionListener(
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent evt) {
+                        if (evt.getSource().equals(leftShift)) {
+                            CardButtonPanelState currentState = cardButtonPanelViewModel.getState();
+                            leftShiftController.execute(currentState.getdisplayCardsFirstIndex());
+                        }
+                    }
+                }
+        );
         this.leftButton = leftShift;
+        playpanel.add(this.leftButton);
 
         // right shift button
         JButton rightShift = new JButton("right");
@@ -49,8 +61,19 @@ public class CardButtonPanel extends JPanel implements PropertyChangeListener {
         rightShift.setFont(new Font("Arial", Font.BOLD, 14));
         rightShift.setOpaque(true);
         rightShift.setEnabled(false);
-        playpanel.add(rightShift);
+        rightShift.addActionListener(
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent evt) {
+                        if (evt.getSource().equals(rightShift)) {
+                            CardButtonPanelState currentState = cardButtonPanelViewModel.getState();
+                            rightShiftController.execute(currentState.get_Number_Cards(), currentState.getdisplayCardsFirstIndex());
+                        }
+                    }
+                }
+        );
         this.rightButton = rightShift;
+        playpanel.add(this.rightButton);
+
 
         for (int i = 0; i < 3; i++) {
             JButton cardButton = new JButton();
