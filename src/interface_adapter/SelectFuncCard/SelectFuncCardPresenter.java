@@ -1,16 +1,17 @@
-    package interface_adapter.SelectFuncCard;
+package interface_adapter.SelectFuncCard;
 
-    import interface_adapter.Initialized.CardButtonPanelState;
-    import interface_adapter.Initialized.CardButtonPanelViewModel;
-    import interface_adapter.Initialized.FunCardButtonPanelState;
-    import interface_adapter.Initialized.FunCardButtonPanelViewModel;
-    import interface_adapter.ViewManagerModel;
-    import use_case.SelectCard.SelectCardOutputData;
-    import use_case.SelectCard.SelectCardOutputDataBoundary;
-    import use_case.SelectFuncCard.SelectFuncCardOutputData;
-    import use_case.SelectFuncCard.SelectFuncCardOutputDataBoundary;
+import interface_adapter.Initialized.CardButtonPanelState;
+import interface_adapter.Initialized.CardButtonPanelViewModel;
+import interface_adapter.Initialized.FunCardButtonPanelState;
+import interface_adapter.Initialized.FunCardButtonPanelViewModel;
+import interface_adapter.ViewManagerModel;
+import use_case.SelectCard.SelectCardOutputData;
+import use_case.SelectCard.SelectCardOutputDataBoundary;
+import use_case.SelectFuncCard.SelectFuncCardOutputData;
+import use_case.SelectFuncCard.SelectFuncCardOutputDataBoundary;
 
-    public class SelectFuncCardPresenter implements SelectFuncCardOutputDataBoundary {
+public class SelectFuncCardPresenter implements SelectFuncCardOutputDataBoundary {
+
     private final FunCardButtonPanelViewModel funCardButtonPanelViewModel;
     private ViewManagerModel viewManagerModel;
 
@@ -18,7 +19,6 @@
         this.viewManagerModel = viewManagerModel;
         this.funCardButtonPanelViewModel = funCardButtonPanelViewModel;
     }
-
     @Override
     public void prepareSelectCardView(SelectFuncCardOutputData selectFuncCardOutputData) {
         FunCardButtonPanelState funCardButtonPanelState = funCardButtonPanelViewModel.getState();
@@ -31,4 +31,5 @@
         viewManagerModel.setActiveView("Initialized");
         viewManagerModel.firePropertyChanged();
     }
+
 }
