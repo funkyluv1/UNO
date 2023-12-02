@@ -49,8 +49,12 @@ public class InitializedState {
     public void setBottomPanel(BottomPanel bottomPanel){this.bottomPanel = bottomPanel;}
     public JPanel getBottomPanel(){return this.bottomPanel;}
 
-    public JPanel getPlayerPanel() {return this.playerPanel;}
-    public JPanel getcardButtonPanel(){return this.getCardPanel;}
+    public void setPlayerPanel(PlayerPanel playerPanel){this.playerPanel = playerPanel;}
+
+    public JPanel getPlayerPanel(){return this.playerPanel;}
+    public void setgetCardButtonPanel(GetCardPanel getCardPanel){this.getCardPanel = getCardPanel;}
+    public JPanel getgetcardButtonPanel(){return this.getCardPanel;}
+    public void setFunCardButtonPanel(FunCardButtonPanel funCardButtonPanel){this.funCardButtonPanel = funCardButtonPanel;}
 
     public JPanel getFunCardButtonPanel(){return this.funCardButtonPanel;}
 }
