@@ -19,11 +19,13 @@ public class InitializedView extends JPanel implements ActionListener, PropertyC
     private final InitializedViewModel initializedViewModel;
 
     private JPanel cardPanel;
+    JPanel bigPanel;
     JPanel cardButtonPanel;
     JPanel bottomPanel;
     JPanel playerPanel;
     JPanel getCardPanel;
     JPanel funCardPanel;
+    ArrayList<Color> colorList;
 
     ArrayList<JLabel> usernames = new ArrayList<>();
     ArrayList<JButton> cardNames = new ArrayList<>();
@@ -47,78 +49,89 @@ public class InitializedView extends JPanel implements ActionListener, PropertyC
         Color darkRed = new Color(218, 40, 40);
         this.setBackground(darkRed);
 
-        JPanel playerPanel = new JPanel();
-        playerPanel.setLayout(new GridLayout(1, 4, 10, 10));
-        playerPanel.setOpaque(false);
-        ArrayList<Color> colorList = new ArrayList<>();
+//        JPanel playerPanel = new JPanel();
+  //      playerPanel.setLayout(new GridLayout(1, 4, 10, 10));
+   //     playerPanel.setOpaque(false);
+        this.colorList = new ArrayList<>();
         colorList.add(new Color(173, 216, 230));
         colorList.add(new Color(255, 255, 210));
         colorList.add(new Color(144, 238, 144));
         colorList.add(new Color(255, 224, 255));
 
-        for (int i = 1; i <= 4; i++) {
-            JPanel playerInfo = new JPanel();
-            playerInfo.setLayout(new BorderLayout());
-            playerInfo.setBorder(BorderFactory.createLineBorder(Color.WHITE, 15));
-            Dimension preferredSize = playerInfo.getPreferredSize();
-            preferredSize.height = 120;
-            playerInfo.setPreferredSize(preferredSize);
-            JLabel usernameLabel = new JLabel("Default player name");
-            usernames.add(usernameLabel);
-            JLabel scoreLabel = new JLabel("Score: 0");
-            playerInfo.add(usernameLabel, BorderLayout.NORTH);
-            playerInfo.add(scoreLabel, BorderLayout.SOUTH);
-            playerPanel.add(playerInfo);
-            playerInfo.setBackground(colorList.get(i - 1));
-        }
+        JPanel bigPanel = new JPanel();
+        this.bigPanel = bigPanel;
+        bigPanel.setLayout(new BorderLayout());
+        this.add(this.playerPanel, BorderLayout.NORTH);
+        this.add(this.bottomPanel, BorderLayout.SOUTH);
 
-        this.cardPanel = new JPanel();
-        cardPanel.setLayout(new BorderLayout());
-        cardPanel.setOpaque(false);
+        bigPanel.add(this.getCardPanel, BorderLayout.NORTH);
+        bigPanel.add(this.cardButtonPanel, BorderLayout.WEST);
+        bigPanel.add(this.funCardPanel, BorderLayout.EAST);
 
-        JPanel infopanel = new JPanel();
-
-        JButton getCardButton = new JButton("Get Card");
-        getCardButton.setPreferredSize(new Dimension(130, 200));
-        getCardButton.setBorder(BorderFactory.createEmptyBorder()); //!!!!!!这一行非常重要，如果button不去除边框就直接更改背景颜
-        //色，将会出现只有边上一圈改变了颜色的现象
-
-        getCardButton.setForeground(Color.WHITE);
-
-        // 设置按钮背景颜色为黑色
-        getCardButton.setBackground(Color.BLACK);
-
-        // 设置按钮文本的字体为粗体
-        getCardButton.setFont(new Font("Arial", Font.BOLD, 14));
-
-        // 对于某些外观和感觉（如Mac OS的默认外观），需要这个设置才能使背景颜色生效
-        getCardButton.setOpaque(true);
+        this.add(bigPanel, BorderLayout.CENTER);
 
 
-        JButton undoButton = new JButton("Undo");
-        JButton whichcolorButton = new JButton();
-        whichcolorButton.setPreferredSize(new Dimension(130, 200));
-        whichcolorButton.setBorder(BorderFactory.createEmptyBorder());
-        whichcolorButton.setOpaque(true);
-        whichcolorButton.setBackground(Color.BLUE); //需要改这里！！！这个地方展示了正在play的颜色！！！
-        infopanel.add(getCardButton);
-        infopanel.add(whichcolorButton);
-        infopanel.add(undoButton);
-        infopanel.setOpaque(false);
-        cardPanel.add(infopanel, BorderLayout.NORTH);
-        cardPanel.setOpaque(false);
-
-        JPanel controlPanel = new JPanel();
-        controlPanel.setLayout(new FlowLayout());
-        controlPanel.setOpaque(false);
-
-        JButton nextTurnButton = new JButton("Next Turn");
-
-
-        controlPanel.add(nextTurnButton);
-
-        this.add(cardPanel, BorderLayout.CENTER);
-        this.add(controlPanel, BorderLayout.SOUTH);
+//        for (int i = 1; i <= 4; i++) {
+//            JPanel playerInfo = new JPanel();
+//            playerInfo.setLayout(new BorderLayout());
+//            playerInfo.setBorder(BorderFactory.createLineBorder(Color.WHITE, 15));
+//            Dimension preferredSize = playerInfo.getPreferredSize();
+//            preferredSize.height = 120;
+//            playerInfo.setPreferredSize(preferredSize);
+//            JLabel usernameLabel = new JLabel("Default player name");
+//            usernames.add(usernameLabel);
+//            playerInfo.add(usernameLabel, BorderLayout.NORTH);
+//            playerPanel.add(playerInfo);
+//            playerInfo.setBackground(colorList.get(i - 1));
+//        }
+//
+//        /**this.cardPanel = new JPanel();
+//        cardPanel.setLayout(new BorderLayout());
+//        cardPanel.setOpaque(false);**/
+//
+//        /**JPanel infopanel = new JPanel();
+//
+//        JButton getCardButton = new JButton("Get Card");
+//        getCardButton.setPreferredSize(new Dimension(130, 200));
+//        getCardButton.setBorder(BorderFactory.createEmptyBorder()); //!!!!!!这一行非常重要，如果button不去除边框就直接更改背景颜
+//        //色，将会出现只有边上一圈改变了颜色的现象
+//
+//        getCardButton.setForeground(Color.WHITE);
+//
+//        // 设置按钮背景颜色为黑色
+//        getCardButton.setBackground(Color.BLACK);
+//
+//        // 设置按钮文本的字体为粗体
+//        getCardButton.setFont(new Font("Arial", Font.BOLD, 14));
+//
+//        // 对于某些外观和感觉（如Mac OS的默认外观），需要这个设置才能使背景颜色生效
+//        getCardButton.setOpaque(true);**/
+//
+//
+//        JButton undoButton = new JButton("Undo");
+//        JButton whichcolorButton = new JButton();
+//        whichcolorButton.setPreferredSize(new Dimension(130, 200));
+//        whichcolorButton.setBorder(BorderFactory.createEmptyBorder());
+//        whichcolorButton.setOpaque(true);
+//        whichcolorButton.setBackground(Color.BLUE); //需要改这里！！！这个地方展示了正在play的颜色！！！
+//        infopanel.add(getCardButton);
+//        infopanel.add(whichcolorButton);
+//        infopanel.add(undoButton);
+//        infopanel.setOpaque(false);
+//        cardPanel.add(infopanel, BorderLayout.NORTH);
+//        cardPanel.setOpaque(false);
+//
+//        JPanel controlPanel = new JPanel();
+//        controlPanel.setLayout(new FlowLayout());
+//        controlPanel.setOpaque(false);
+//
+//        JButton nextTurnButton = new JButton("Next Turn");
+//
+//
+//        controlPanel.add(nextTurnButton);
+//
+//        this.add(cardPanel, BorderLayout.CENTER);
+//        this.add(controlPanel, BorderLayout.SOUTH);
 
     }
     public void actionPerformed(ActionEvent e) {
@@ -138,13 +151,15 @@ public class InitializedView extends JPanel implements ActionListener, PropertyC
             i += 1;
         }
 
-//        this.cardButtonPanel.setOpaque(false);
-//        cardPanel.add(this.cardButtonPanel, BorderLayout.CENTER);
-//        this.add(this.cardButtonPanel, BorderLayout.SOUTH);
-//
-//        this.bottomPanel.setOpaque(false);
-//        bottomPanel.add(this.bottomPanel, BorderLayout.CENTER);
-//        this.add(this.bottomPanel, BorderLayout.SOUTH);
+        bigPanel.setOpaque(false);
+        playerPanel.setOpaque(false);
+        getCardPanel.setOpaque(false);
+        funCardPanel.setOpaque(false);
+        bottomPanel.setOpaque(false);
+        cardButtonPanel.setOpaque(false);
+
+
+
 
     }
 

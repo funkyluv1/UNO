@@ -24,18 +24,23 @@ public class BottomPanel extends JPanel implements PropertyChangeListener {
         this.bottomPanelViewModel = bottomPanelViewModel;
         this.bottomPanelViewModel.addPropertyChangeListener(this);
 
+        this.setLayout(new FlowLayout());
         JButton nextButton = new JButton("Next");
         nextButton.setPreferredSize(new Dimension(130, 200));
         nextButton.setBorder(BorderFactory.createEmptyBorder());
         nextButton.setBackground(Color.GRAY); // fill here for the card's color
         nextButton.setOpaque(true);
+        this.nextButton = nextButton;
+        this.add(nextButton);
 
 
         JButton confirmButton = new JButton("Confirm");
-        nextButton.setPreferredSize(new Dimension(130, 200));
-        nextButton.setBorder(BorderFactory.createEmptyBorder());
-        nextButton.setBackground(Color.GRAY); // fill here for the card's color
-        nextButton.setOpaque(true);
+        confirmButton.setPreferredSize(new Dimension(130, 200));
+        confirmButton.setBorder(BorderFactory.createEmptyBorder());
+        confirmButton.setBackground(Color.GRAY); // fill here for the card's color
+        confirmButton.setOpaque(true);
+        this.confirmButton = confirmButton;
+        this.add(confirmButton);
 
         Border border = BorderFactory.createLineBorder(Color.BLACK, 2);
 
@@ -70,6 +75,7 @@ public class BottomPanel extends JPanel implements PropertyChangeListener {
     public void propertyChange(PropertyChangeEvent evt) {
         nextButton.setEnabled(bottomPanelViewModel.getState().getNextButtonEnabled());
         confirmButton.setEnabled(bottomPanelViewModel.getState().getConfirmButtonEnabled());
+        this.setOpaque(false);
 
     this.firePropertyChange();
 }

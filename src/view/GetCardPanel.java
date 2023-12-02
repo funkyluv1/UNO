@@ -30,12 +30,10 @@ public class GetCardPanel extends JPanel implements PropertyChangeListener {
         this.getCardViewModel.addPropertyChangeListener(this);
         this.undoController = undoController;
 
-
         undoButton = new JButton("Undo");
         undoButton.setPreferredSize(new Dimension(150, 60));
-        undoButton.setBackground(Color.WHITE);
-        undoButton.setForeground(Color.BLACK);
-        undoButton.setFont(new Font("Arial", Font.BOLD, 14));
+        undoButton.setBackground(Color.BLACK);
+        undoButton.setForeground(Color.WHITE);
         undoButton.setOpaque(true);
         panel.add(undoButton);
 
@@ -61,7 +59,9 @@ public class GetCardPanel extends JPanel implements PropertyChangeListener {
         getCardButton = new JButton();
         getCardButton.setPreferredSize(new Dimension(130, 200));
         getCardButton.setBorder(BorderFactory.createEmptyBorder());
-        getCardButton.setBackground(Color.GREEN); // fill here for the card's color
+        getCardButton.setBackground(Color.BLACK);
+        getCardButton.setForeground(Color.WHITE);
+        getCardButton.setFont(new Font("Arial", Font.BOLD, 14));
         getCardButton.setOpaque(true);
         panel.add(getCardButton);
 
