@@ -30,7 +30,7 @@ public class PlayerPanel extends JPanel implements PropertyChangeListener {
 
     public void propertyChange(PropertyChangeEvent evt){
         ArrayList<String> players = playerPanelViewModel.getState().getPlayer();
-        PlayerPanel.setLayout(new FlowLayout());
+        this.setLayout(new FlowLayout());
 //        ArrayList<Color> colorList = new ArrayList<>();
 //        colorList.add(new Color(173, 216, 230));
 //        colorList.add(new Color(255, 255, 210));

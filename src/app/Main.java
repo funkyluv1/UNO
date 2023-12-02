@@ -71,6 +71,7 @@ public class Main {
         BottomPanel bottomPanel = BottomPanelUseCaseFactory.create(viewManagerModel, bottomPanelViewModel, cardButtonPanelViewModel);
 
         PlayerPanelViewModel playerPanelViewModel = new PlayerPanelViewModel();
+        PlayerPanel playerPanel = PlayerPanelUseCaseFactory.create(viewManagerModel, playerPanelViewModel);
 
         GetCardPanelViewModel getCardPanelViewModel = new GetCardPanelViewModel();
         GetCardPanel getCardPanel = GetCardPanelUseCaseFactory.create(viewManagerModel, getCardPanelViewModel, cardButtonPanelViewModel, userDataAccessObject);

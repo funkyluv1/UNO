@@ -140,7 +140,6 @@ public class Game {
     public NumberCardsDeck getNumberCardDeck(){
         return this.numberCardDeck;
     }
-
     public void setNumberCardDeck(NumberCardsDeck numberCardDeck){
         this.numberCardDeck = numberCardDeck;
     }

@@ -35,6 +35,7 @@ public class InitializedViewModel extends ViewModel implements PropertyChangeLis
         panels.add(funCardButtonPanel);
         panels.add(bottomPanel);
 
+
         this.cardButtonPanel = cardButtonPanel;
         this.cardButtonPanel.addPropertyChangeListener(this);
         this.bottomPanel = bottomPanel;
