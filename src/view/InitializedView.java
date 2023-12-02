@@ -130,18 +130,21 @@ public class InitializedView extends JPanel implements ActionListener, PropertyC
         ArrayList<JPanel> panels = (ArrayList<JPanel>) evt.getNewValue();
         int i = 0;
         for (JPanel panel : panels){
-            if (i == 0){this.cardButtonPanel = panel;}
-            else if (i == 1){this.bottomPanel = panel;}
+            if (i == 0){this.playerPanel = panel;}
+            else if (i == 1){this.getCardPanel = panel;}
+            else if (i == 2){this.cardButtonPanel = panel;}
+            else if (i == 3){this.funCardPanel = panel;}
+            else if (i == 4){this.bottomPanel = panel;}
             i += 1;
         }
 
-        this.cardButtonPanel.setOpaque(false);
-        cardPanel.add(this.cardButtonPanel, BorderLayout.CENTER);
-        this.add(this.cardButtonPanel, BorderLayout.SOUTH);
-
-        this.bottomPanel.setOpaque(false);
-        bottomPanel.add(this.bottomPanel, BorderLayout.CENTER);
-        this.add(this.bottomPanel, BorderLayout.SOUTH);
+//        this.cardButtonPanel.setOpaque(false);
+//        cardPanel.add(this.cardButtonPanel, BorderLayout.CENTER);
+//        this.add(this.cardButtonPanel, BorderLayout.SOUTH);
+//
+//        this.bottomPanel.setOpaque(false);
+//        bottomPanel.add(this.bottomPanel, BorderLayout.CENTER);
+//        this.add(this.bottomPanel, BorderLayout.SOUTH);
 
     }
 
