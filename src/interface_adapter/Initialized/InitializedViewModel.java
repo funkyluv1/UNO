@@ -3,8 +3,7 @@ package interface_adapter.Initialized;
 import entities.Game;
 import interface_adapter.ViewModel;
 import interface_adapter.Initiation.InitiationState;
-import view.BottomPanel;
-import view.CardButtonPanel;
+import view.*;
 
 import javax.swing.*;
 import java.beans.PropertyChangeEvent;
@@ -22,15 +21,30 @@ public class InitializedViewModel extends ViewModel implements PropertyChangeLis
     private BottomPanel bottomPanel;
     private InitializedState state = new InitializedState();
 
-    public InitializedViewModel(CardButtonPanel cardButtonPanel) {
+    private PlayerPanel playerPanel;
+    private GetCardPanel getCardPanel;
+    private FunCardButtonPanel funCardButtonPanel;
+
+    public InitializedViewModel(CardButtonPanel cardButtonPanel, BottomPanel bottomPanel, PlayerPanel playerPanel,
+                                GetCardPanel getCardPanel, FunCardButtonPanel funCardButtonPanel) {
 
         super("Initialized");
+        panels.add(playerPanel);
+        panels.add(getCardPanel);
         panels.add(cardButtonPanel);
+        panels.add(funCardButtonPanel);
         panels.add(bottomPanel);
+
         this.cardButtonPanel = cardButtonPanel;
         this.cardButtonPanel.addPropertyChangeListener(this);
-        //this.bottomPanel = bottomPanel;
-        //this.bottomPanel.addPropertyChangeListener(this);
+        this.bottomPanel = bottomPanel;
+        this.bottomPanel.addPropertyChangeListener(this);
+        this.playerPanel = playerPanel;
+        this.playerPanel.addPropertyChangeListener(this);
+        this.getCardPanel = getCardPanel;
+        this.getCardPanel.addPropertyChangeListener(this);
+        this.funCardButtonPanel = funCardButtonPanel;
+        this.funCardButtonPanel.addPropertyChangeListener(this);
     }
 
     public void setState(InitializedState state) {
