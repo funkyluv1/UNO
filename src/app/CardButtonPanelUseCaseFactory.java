@@ -7,11 +7,16 @@ import interface_adapter.Initialized.InitializedViewModel;
 import interface_adapter.Initiation.InitiationController;
 import interface_adapter.Initiation.InitiationPresenter;
 import interface_adapter.Initiation.InitiationViewModel;
+import interface_adapter.LeftShift.LeftShiftController;
+import interface_adapter.LeftShift.LeftShiftPresenter;
 import interface_adapter.RightShift.RightShiftController;
 import interface_adapter.RightShift.RightShiftPresenter;
 import interface_adapter.SelectCard.SelectCardController;
 import interface_adapter.SelectCard.SelectCardPresenter;
 import interface_adapter.ViewManagerModel;
+import use_case.LeftShift.LeftShiftInputDataBoundary;
+import use_case.LeftShift.LeftShiftInteractor;
+import use_case.LeftShift.LeftShiftOutputDataBoundary;
 import use_case.PreTurn.FindPlayableCardsInterface;
 import use_case.DrawCards.DrawCardsDataAccessInterface;
 import use_case.RightShift.RightShiftDataAccessInterface;
@@ -44,10 +49,11 @@ public class CardButtonPanelUseCaseFactory {
 
         try {
             SelectCardController selectCardController = createSelectCardController(viewManagerModel,
-                    cardButtonPanelViewModel, fileUserDataAccessObject);
+                    cardButtonPanelViewModel);
             RightShiftController rightShiftController = createRightShiftController(viewManagerModel,
                     cardButtonPanelViewModel, fileUserDataAccessObject);
-            return new CardButtonPanel(cardButtonPanelViewModel, selectCardController, rightShiftController);
+            LeftShiftController leftShiftController = createLeftShiftController(viewManagerModel, cardButtonPanelViewModel);
+            return new CardButtonPanel(cardButtonPanelViewModel, selectCardController, rightShiftController, leftShiftController);
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, "Could not open user data file.");
         }
@@ -56,8 +62,7 @@ public class CardButtonPanelUseCaseFactory {
     }
 
     private static SelectCardController createSelectCardController(ViewManagerModel viewManagerModel,
-                                                                CardButtonPanelViewModel cardButtonPanelViewModel,
-                                                                FileUserDataAccessObject userDataAccessObject) throws IOException {
+                                                                CardButtonPanelViewModel cardButtonPanelViewModel) throws IOException {
 
         SelectCardOutputDataBoundary selectCardOutputDataBoundary = new SelectCardPresenter(viewManagerModel,
                 cardButtonPanelViewModel);
@@ -77,6 +82,17 @@ public class CardButtonPanelUseCaseFactory {
         RightShiftInputDataBoundary rightShiftInteractor = new RightShiftInteractor(userDataAccessObject, rightShiftOutputDataBoundary);
 
         return new RightShiftController(rightShiftInteractor);
+    }
+
+    private static LeftShiftController createLeftShiftController(ViewManagerModel viewManagerModel,
+                                                                   CardButtonPanelViewModel cardButtonPanelViewModel) throws IOException {
+
+        LeftShiftOutputDataBoundary leftShiftOutputDataBoundary = new LeftShiftPresenter(viewManagerModel,
+                cardButtonPanelViewModel);
+
+        LeftShiftInputDataBoundary leftShiftInteractor = new LeftShiftInteractor(leftShiftOutputDataBoundary);
+
+        return new LeftShiftController(leftShiftInteractor);
     }
 
 }

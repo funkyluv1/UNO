@@ -8,7 +8,6 @@ import entities.player.AIPlayerFactory;
 import entities.player.HumanPlayerFactory;
 import interface_adapter.Initialized.*;
 import interface_adapter.Initiation.InitiationViewModel;
-import interface_adapter.MainMeau.MainMeauViewModel;
 import interface_adapter.ViewManagerModel;
 import use_case.PreTurn.FindPlayableCards;
 import use_case.PreTurn.FindPlayableCardsInterface;
@@ -77,7 +76,7 @@ public class Main {
         GetCardPanel getCardPanel = GetCardPanelUseCaseFactory.create(viewManagerModel, getCardPanelViewModel, cardButtonPanelViewModel, userDataAccessObject);
 
         FunCardButtonPanelViewModel funCardButtonPanelViewModel = new FunCardButtonPanelViewModel();
-        FunCardButtonPanel funCardButtonPanel = FunCardButtonPanelUseCaseFactory.create(viewManagerModel);
+        FunCardButtonPanel funCardButtonPanel = FunCardButtonPanelUseCaseFactory.create(viewManagerModel, funCardButtonPanelViewModel, userDataAccessObject);
 
         InitiationViewModel initiationViewModel = new InitiationViewModel();
         InitializedViewModel initializedViewModel = new InitializedViewModel(cardButtonPanel, bottomPanel, playerPanel, getCardPanel, funCardButtonPanel);
