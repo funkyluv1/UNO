@@ -21,7 +21,7 @@ import java.util.regex.Pattern;
 
 public class FileUserDataAccessObject implements InitiationDataAccessInterface,
         PreTurnDataAccessInterface, PostTurnDataAccessInterface, RightShiftDataAccessInterface,
-        NextTurnDataAccessInterface, UndoDataAccessInterface, SelectCardDataAccessInterface, SelectFuncCardDataAccessInterface {
+        NextTurnDataAccessInterface, UndoDataAccessInterface, SelectCardDataAccessInterface {
     private final File csvFile;
     private final AIPlayerFactory aiPlayerFactory;
     private final HumanPlayerFactory humanPlayerFactory;
