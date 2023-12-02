@@ -9,7 +9,7 @@ import interface_adapter.Initialized.FunCardButtonPanelViewModel;
 import interface_adapter.Initiation.InitiationState;
 import interface_adapter.LeftShift.LeftShiftController;
 import interface_adapter.RightShift.RightShiftController;
-import interface_adapter.SelectCard.SelectCardController;
+import interface_adapter.SelectFuncCard.SelectFuncCardController;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -31,7 +31,7 @@ public class FunCardButtonPanel extends JPanel implements PropertyChangeListener
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);
 
     public FunCardButtonPanel(FunCardButtonPanelViewModel funCardButtonPanelViewModel,
-                              SelectCardController selectCardController,
+                              SelectFuncCardController selectFuncCardController,
                               RightShiftController rightShiftController,
                               LeftShiftController leftShiftController){
         this.funCardButtonPanelViewModel = funCardButtonPanelViewModel;
@@ -73,7 +73,7 @@ public class FunCardButtonPanel extends JPanel implements PropertyChangeListener
                         public void actionPerformed(ActionEvent evt) {
                             if (evt.getSource().equals(cardButton)) {
                                 FunCardButtonPanelState currentState = funCardButtonPanelViewModel.getState();
-                                selectCardController.execute(cardButton.getText(),finalI);
+                                selectFuncCardController.execute(cardButton.getText(),finalI);
                             }
                         }
                     }

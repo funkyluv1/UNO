@@ -23,7 +23,8 @@ public class BottomPanelUseCaseFactory {
         try {
             ConfirmController confirmController = createConfirmController(viewManagerModel, bottomPanelViewModel, cardButtonPanelViewModel, currPlayerIndex, currPlayer);
             return new BottomPanel(bottomPanelViewModel, confirmController);
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             JOptionPane.showMessageDialog(null, "Could not open user data file.");
         }
 
