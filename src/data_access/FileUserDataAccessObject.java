@@ -217,7 +217,9 @@ public class FileUserDataAccessObject implements InitiationDataAccessInterface,
     }
 
     @Override
-    public void getCard(String playerName, NumberCard numberCard) {
-        // for getcaard
+    public void getCard(String player, NumberCard card) {
+        ArrayList<NumberCard> hand = playerInfo.get(player).getNumberCards();
+        hand.add(card);
+        playerInfo.get(player).setNumCards(hand);
     }
 }
