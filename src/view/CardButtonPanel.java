@@ -1,5 +1,6 @@
 package view;
 
+import entities.card.Card;
 import entities.card.NumberCard;
 import interface_adapter.Initialized.CardButtonPanelState;
 import interface_adapter.Initialized.CardButtonPanelViewModel;
@@ -45,7 +46,7 @@ public class CardButtonPanel extends JPanel implements PropertyChangeListener {
                     public void actionPerformed(ActionEvent evt) {
                         if (evt.getSource().equals(leftShift)) {
                             CardButtonPanelState currentState = cardButtonPanelViewModel.getState();
-                            leftShiftController.execute(currentState.getdisplayCardsFirstIndex());
+                            leftShiftController.execute(currentState.getdisplayCardsFirstIndex(), false);
                         }
                     }
                 }
@@ -66,7 +67,9 @@ public class CardButtonPanel extends JPanel implements PropertyChangeListener {
                     public void actionPerformed(ActionEvent evt) {
                         if (evt.getSource().equals(rightShift)) {
                             CardButtonPanelState currentState = cardButtonPanelViewModel.getState();
-                            rightShiftController.execute(currentState.get_Number_Cards(), currentState.getdisplayCardsFirstIndex());
+                            ArrayList<Card> cardsList = new ArrayList<>();
+                            cardsList.addAll(currentState.get_Number_Cards());
+                            rightShiftController.execute(cardsList, currentState.getdisplayCardsFirstIndex(), false);
                         }
                     }
                 }
