@@ -29,10 +29,12 @@ public class Main {
 
         JFrame application = new JFrame("Initiation Example");
         application.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        application.setSize(800, 600);
-
-        // Center the window on the screen
-        application.setLocationRelativeTo(null);
+        application.setPreferredSize(new Dimension(1200, 750));
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        int centerX = (screenSize.width - application.getWidth()) / 6;
+        int centerY = (screenSize.height - application.getHeight()) / 6;
+        application.setLocation(centerX, centerY);
+        application.setResizable(false);
 
         CardLayout cardLayout = new CardLayout();
 
@@ -66,14 +68,19 @@ public class Main {
         CardButtonPanelViewModel cardButtonPanelViewModel = new CardButtonPanelViewModel();
         CardButtonPanel cardButtonPanel = CardButtonPanelUseCaseFactory.create(viewManagerModel, cardButtonPanelViewModel, userDataAccessObject);
 
+        BottomPanelViewModel bottomPanelViewModel = new BottomPanelViewModel();
+        BottomPanel bottomPanel = BottomPanelUseCaseFactory.create(viewManagerModel, bottomPanelViewModel, cardButtonPanelViewModel);
+
+        PlayerPanelViewModel playerPanelViewModel = new PlayerPanelViewModel();
+
         GetCardPanelViewModel getCardPanelViewModel = new GetCardPanelViewModel();
         GetCardPanel getCardPanel = GetCardPanelUseCaseFactory.create(viewManagerModel, getCardPanelViewModel, cardButtonPanelViewModel, userDataAccessObject);
 
-        InitiationViewModel initiationViewModel = new InitiationViewModel();
-        InitializedViewModel initializedViewModel = new InitializedViewModel(cardButtonPanel);
+        FunCardButtonPanelViewModel funCardButtonPanelViewModel = new FunCardButtonPanelViewModel();
+        FunCardButtonPanel funCardButtonPanel = FunCardButtonPanelUseCaseFactory.create(viewManagerModel);
 
-        BottomPanelViewModel bottomPanelViewModel = new BottomPanelViewModel();
-        PlayerPanelViewModel playerPanelViewModel = new PlayerPanelViewModel();
+        InitiationViewModel initiationViewModel = new InitiationViewModel();
+        InitializedViewModel initializedViewModel = new InitializedViewModel(cardButtonPanel, bottomPanel, playerPanel, getCardPanel, funCardButtonPanel);
 
         InitiationView initiationView = InitiationUseCaseFactory.create(viewManagerModel, initiationViewModel, cardButtonPanelViewModel,initializedViewModel, userDataAccessObject, findPlayableCardsInterface,
                 getCardPanelViewModel, bottomPanelViewModel, playerPanelViewModel);
@@ -81,6 +88,12 @@ public class Main {
 
         InitializedView initializedView = new InitializedView(initializedViewModel);
         views.add(initializedView, initializedView.viewName);
+
+        MainMenuView mainMenuView = MainMenuUseCaseFactory.create(viewManagerModel, initiationViewModel);
+        views.add(mainMenuView, mainMenuView.viewName);
+
+        viewManagerModel.setActiveView(mainMenuView.viewName);
+        viewManagerModel.firePropertyChanged();
 
         application.pack();
         application.setVisible(true);

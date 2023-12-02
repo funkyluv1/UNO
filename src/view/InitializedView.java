@@ -21,6 +21,9 @@ public class InitializedView extends JPanel implements ActionListener, PropertyC
     private JPanel cardPanel;
     JPanel cardButtonPanel;
     JPanel bottomPanel;
+    JPanel playerPanel;
+    JPanel getCardPanel;
+    JPanel funCardPanel;
 
     ArrayList<JLabel> usernames = new ArrayList<>();
     ArrayList<JButton> cardNames = new ArrayList<>();
@@ -34,6 +37,9 @@ public class InitializedView extends JPanel implements ActionListener, PropertyC
         this.initializedViewModel.addPropertyChangeListener(this);
         this.cardButtonPanel = initializedViewModel.getState().get_CardButtonPanel();
         this.bottomPanel = initializedViewModel.getState().getBottomPanel();
+        this.playerPanel = initializedViewModel.getState().getPlayerPanel();
+        this.getCardPanel = initializedViewModel.getState().getcardButtonPanel();
+        this.funCardPanel = initializedViewModel.getState().getFunCardButtonPanel();
 
         setSize(1200, 1000);
 

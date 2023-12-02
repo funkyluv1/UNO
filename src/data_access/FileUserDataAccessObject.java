@@ -5,6 +5,7 @@ import entities.NumberCardsDeck.NumberCardsDeck;
 import entities.NumberCardsDeck.NumberCardsDeckFactory;
 import entities.card.*;
 import entities.player.*;
+import use_case.GetCard.GetCardDataAccessInterface;
 import use_case.SelectCard.SelectCardDataAccessInterface;
 import use_case.Undo.UndoDataAccessInterface;
 import use_case.NextTurn.NextTurnDataAccessInterface;
@@ -21,7 +22,7 @@ import java.util.regex.Pattern;
 
 public class FileUserDataAccessObject implements InitiationDataAccessInterface,
         PreTurnDataAccessInterface, PostTurnDataAccessInterface, RightShiftDataAccessInterface,
-        NextTurnDataAccessInterface, UndoDataAccessInterface, SelectCardDataAccessInterface {
+        NextTurnDataAccessInterface, UndoDataAccessInterface, SelectCardDataAccessInterface, GetCardDataAccessInterface {
     private final File csvFile;
     private final AIPlayerFactory aiPlayerFactory;
     private final HumanPlayerFactory humanPlayerFactory;
@@ -69,13 +70,15 @@ public class FileUserDataAccessObject implements InitiationDataAccessInterface,
                 }
                 for (String i : rowList1[playerHeaders.get("functionalCardsInHand")].split(",")){
                     Pattern pattern = Pattern.compile("([a-zA-Z]+)(\\d)([a-zA-Z])");
-                    Matcher matcher = pattern.matcher(i);
-                    String type = matcher.group(1);
-                    String numericPart = matcher.group(2);
-                    String color = matcher.group(3);
-                    cardFactory = new FunctionalCardFactory(Integer.parseInt(numericPart), color, type);
-                    FunctionalCard functionalCard = (FunctionalCard) cardFactory.createCard();
-                    functionalCards.add(functionalCard);
+                    if (pattern.matcher(i).matches()) {
+                        Matcher matcher = pattern.matcher(i);
+                        String type = matcher.group(1);
+                        String numericPart = matcher.group(2);
+                        String color = matcher.group(3);
+                        cardFactory = new FunctionalCardFactory(Integer.parseInt(numericPart), color, type);
+                        FunctionalCard functionalCard = (FunctionalCard) cardFactory.createCard();
+                        functionalCards.add(functionalCard);
+                    }
                 }
                 int displayFirstCardIndex = Integer.parseInt(rowList1[playerHeaders.get("displayFirstCardIndex")]);
 
@@ -211,5 +214,10 @@ public class FileUserDataAccessObject implements InitiationDataAccessInterface,
     @Override
     public void recordUnselectCard(Card card) {
 
+    }
+
+    @Override
+    public void getCard(String playerName, NumberCard numberCard) {
+        // for getcaard
     }
 }
