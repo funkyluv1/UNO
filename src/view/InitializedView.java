@@ -34,6 +34,7 @@ public class InitializedView extends JPanel implements ActionListener, PropertyC
         this.initializedViewModel.addPropertyChangeListener(this);
         this.cardButtonPanel = initializedViewModel.getState().get_CardButtonPanel();
         this.bottomPanel = initializedViewModel.getState().getBottomPanel();
+        this.funCardButtonPanel = initializedViewModel.getState().getFun();
 
         setSize(1200, 1000);
 
@@ -107,7 +108,6 @@ public class InitializedView extends JPanel implements ActionListener, PropertyC
         controlPanel.setOpaque(false);
 
         JButton nextTurnButton = new JButton("Next Turn");
-
 
         controlPanel.add(nextTurnButton);
 

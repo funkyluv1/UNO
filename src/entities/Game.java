@@ -137,6 +137,11 @@ public class Game {
     public String getCurrWinnerStr() {
         return currWinnerStr;
     }
-    public NumberCardsDeck getNumberCardDeck(){return this.numberCardDeck;}
-    public void setNumberCardDeck(NumberCardsDeck numberCardDeck){this.numberCardDeck = numberCardDeck;}
+    public NumberCardsDeck getNumberCardDeck(){
+        return this.numberCardDeck;
+    }
+
+    public void setNumberCardDeck(NumberCardsDeck numberCardDeck){
+        this.numberCardDeck = numberCardDeck;
+    }
 }
