@@ -24,7 +24,6 @@ public class PostTurnState {
     public void setFunctionalCards(ArrayList<FunctionalCard> functionalCards) {
         this.functionalCards = functionalCards;
     }
-
     public void setNumberCards(ArrayList<NumberCard> numberCards) {
         this.numberCards = numberCards;
     }

@@ -1,9 +1,11 @@
 package data_access;
 
+import entities.card.FunctionalCard;
 import entities.card.NumberCard;
 import entities.card.NumberCardFactory;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 public class StringToCardAdapter {
     private ArrayList<String> cardInfo;
@@ -42,5 +44,9 @@ public class StringToCardAdapter {
             }
         }
         return output;
+    }
+
+    public ArrayList<FunctionalCard> convertToFuncCards() {
+        return null;
     }
 }

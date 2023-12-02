@@ -18,16 +18,18 @@ public class SelectFuncCardController {
 
     public void execute(String cardNewText, ArrayList<String> cardsOldText, int button_index, ArrayList<Integer> selectedIndices) {
         FunctionalCard cardNew = null;
-        ArrayList<FunctionalCard> cardsOld = new ArrayList<>();
 
-        if (Character.isDigit(text.charAt(0))) {
+        if (Character.isDigit(cardNewText.charAt(0))) {
             ArrayList<String> list = new ArrayList<>();
-            list.add(text);
+            list.add(cardNewText);
             StringToCardAdapter stringToCardAdapter = new StringToCardAdapter(list);
-            cardNew = stringToCardAdapter.convertToNumCards().get(0);//TODO: StringToCardAdapter have bugs; will change everything to Red
+            cardNew = stringToCardAdapter.convertToFuncCards().get(0);
         }
 
-        SelectFuncCardInputData selectCardInputData = new SelectFuncCardInputData(cardNew, cardsOld, button_index, selectedIndices);
+        StringToCardAdapter stringToCardAdapter = new StringToCardAdapter(cardsOldText);
+        ArrayList<FunctionalCard> cardsOld = stringToCardAdapter.convertToFuncCards();
+
+        SelectFuncCardInputData selectCardInputData = new SelectFuncCardInputData(cardNew, cardsOld, button_index);
         selectFuncCardInteractor.execute(selectCardInputData);
     }
 }

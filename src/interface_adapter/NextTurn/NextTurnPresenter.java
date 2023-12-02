@@ -34,8 +34,7 @@ public class NextTurnPresenter {
         }
         //functional card view的state
 //        cardButtonPanelState.set_players(nextTurnOutputData.getName());
-        cardButtonPanelState.set_cards(nextTurnOutputData.getPlayerNumberCards(),nextTurnOutputData.getPlayerPlayableNumberCards(),
-                nextTurnOutputData.getPlayerPlayableFuncrCards(),nextTurnOutputData.getPlayerPlayableFuncrCards(), nextTurnOutputData.getPlayerwithindex());
+        cardButtonPanelState.set_cards(nextTurnOutputData.getnumcards(), nextTurnOutputData.getPlayerplayablenumcards(), 0);
         playerPanelState.setCurrent_player_index(nextTurnOutputData.getPlayer_index());
         this.playerPanelViewModel.setState(playerPanelState);
         this.playerPanelViewModel.firePropertyChanged();

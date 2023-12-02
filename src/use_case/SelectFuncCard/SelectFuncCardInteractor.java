@@ -19,13 +19,11 @@ public class SelectFuncCardInteractor implements SelectFuncCardInputDataBoundary
         FunctionalCard newCard = selectCardInputData.getNewCard();
         ArrayList<FunctionalCard> selectedCards = selectCardInputData.getSelectedCards();
         int newButtonIndex = selectCardInputData.getButton_index();
-        ArrayList<Integer> selectedIndices = selectCardInputData.getSelectedIndices();
 
         selectedCards.add(newCard);
         game.setCurrSelectedFunCard(selectedCards);
-        selectedIndices.add(newButtonIndex);
 
-        SelectFuncCardOutputData selectCardOutputData = new SelectFuncCardOutputData(selectedCards, selectedIndices);
+        SelectFuncCardOutputData selectCardOutputData = new SelectFuncCardOutputData(selectedCards, newButtonIndex);
         selectCardOutputDataBoundary.prepareSelectCardView(selectCardOutputData);
     }
 }
