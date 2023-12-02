@@ -65,7 +65,7 @@ public class NextTurnInteractor implements NextTurnInputDataBoundary {
         number_cards = fileUserDataAccessObject.getPlayer(nextTurnInputData.getPlayer_index()).getNumberCards();
         fun_cards = fileUserDataAccessObject.getPlayer(nextTurnInputData.getPlayer_index()).getFuncCards();
         ArrayList<NumberCard> playerplablenumcards = findPlayableCardsInterface.findPlayableNumberCards(game.getTopCard().getColor(), number_cards);
-
+        ArrayList<FunctionalCard> playerplablefuncards = findPlayableCardsInterface.findPlayableFunctionalCards(game.getTopCard().getColor(), fun_cards);
 
 //        Map<String, ArrayList<NumberCard>> playerNumCards = new HashMap<String, ArrayList<NumberCard>>();
 //        playerNumCards.put(name, number_cards);
@@ -92,6 +92,6 @@ public class NextTurnInteractor implements NextTurnInputDataBoundary {
 //            }
 //            fun_cards = fun_cards_empty;
 //        }
-        nextTurn_presenter.prepare_view(new NextTurnOutputData(player_index, number_cards, fun_cards, playerplablenumcards));
+        nextTurn_presenter.prepare_view(new NextTurnOutputData(player_index, number_cards, fun_cards, playerplablenumcards, playerplablefuncards));
     }
 }
