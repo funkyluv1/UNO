@@ -17,9 +17,11 @@ import static use_case.initiation.InitiationInteractor.game;
 public class BottomPanel extends JPanel implements PropertyChangeListener {
 
     BottomPanelViewModel bottomPanelViewModel;
-    JPanel bottomPanel = new JPanel();
+    Panel panel = new Panel(5);
+
     JButton nextButton;
     JButton confirmButton;
+    private int ID = 5;
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);
 
     public BottomPanel(BottomPanelViewModel bottomPanelViewModel, ConfirmController confirmController){
@@ -28,7 +30,7 @@ public class BottomPanel extends JPanel implements PropertyChangeListener {
 
         this.setLayout(new FlowLayout());
         JButton nextButton = new JButton("Next");
-        nextButton.setPreferredSize(new Dimension(130, 200));
+        nextButton.setPreferredSize(new Dimension(140, 50));
         nextButton.setBorder(BorderFactory.createEmptyBorder());
         nextButton.setBackground(Color.GRAY); // fill here for the card's color
         nextButton.setOpaque(true);
@@ -37,7 +39,7 @@ public class BottomPanel extends JPanel implements PropertyChangeListener {
 
 
         JButton confirmButton = new JButton("Confirm");
-        confirmButton.setPreferredSize(new Dimension(130, 200));
+        confirmButton.setPreferredSize(new Dimension(140, 50));
         confirmButton.setBorder(BorderFactory.createEmptyBorder());
         confirmButton.setBackground(Color.GRAY); // fill here for the card's color
         confirmButton.setOpaque(true);
@@ -70,19 +72,21 @@ public class BottomPanel extends JPanel implements PropertyChangeListener {
 
         this.nextButton = nextButton;
         this.confirmButton = confirmButton;
-        bottomPanel.add(nextButton);
-        bottomPanel.add(confirmButton);
+        panel.add(nextButton);
+        panel.add(confirmButton);
 }
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         nextButton.setEnabled(bottomPanelViewModel.getState().getNextButtonEnabled());
         confirmButton.setEnabled(bottomPanelViewModel.getState().getConfirmButtonEnabled());
-        this.setOpaque(false);
+//        this.setOpaque(true);
 
     this.firePropertyChange();
 }
     public void addPropertyChangeListener(PropertyChangeListener listener) {
         support.addPropertyChangeListener(listener);
     }
-    public void firePropertyChange(){support.firePropertyChange("bottomPanel", null, this.bottomPanel);}
+    public void firePropertyChange(){support.firePropertyChange("panel", null, this.panel);}
+
+    public int getID(){return this.ID;}
 }

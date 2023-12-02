@@ -23,9 +23,10 @@ public class CardButtonPanel extends JPanel implements PropertyChangeListener {
 
     CardButtonPanelViewModel cardButtonPanelViewModel;
     ArrayList<JButton> cardNames = new ArrayList<>();
-    JPanel playpanel = new JPanel();
+    Panel playpanel = new Panel(3);
     JButton leftButton;
     JButton rightButton;
+    private int id = 3;
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);
 
     public CardButtonPanel(CardButtonPanelViewModel cardButtonPanelViewModel, SelectCardController selectCardController,
@@ -35,7 +36,7 @@ public class CardButtonPanel extends JPanel implements PropertyChangeListener {
 
         // left shift button
         JButton leftShift = new JButton("left");
-        leftShift.setPreferredSize(new Dimension(100, 50));
+        leftShift.setPreferredSize(new Dimension(20, 30));
         leftShift.setForeground(Color.WHITE);
         leftShift.setBackground(Color.BLACK);
         leftShift.setFont(new Font("Arial", Font.BOLD, 14));
@@ -56,7 +57,7 @@ public class CardButtonPanel extends JPanel implements PropertyChangeListener {
 
         // right shift button
         JButton rightShift = new JButton("right");
-        rightShift.setPreferredSize(new Dimension(100, 50));
+        rightShift.setPreferredSize(new Dimension(20, 30));
         rightShift.setForeground(Color.WHITE);
         rightShift.setBackground(Color.BLACK);
         rightShift.setFont(new Font("Arial", Font.BOLD, 14));
@@ -80,7 +81,7 @@ public class CardButtonPanel extends JPanel implements PropertyChangeListener {
 
         for (int i = 0; i < 3; i++) {
             JButton cardButton = new JButton();
-            cardButton.setPreferredSize(new Dimension(130, 200));
+            cardButton.setPreferredSize(new Dimension(100, 100));
             cardButton.setBorder(BorderFactory.createEmptyBorder());
             cardButton.setBackground(Color.YELLOW); // fill here for the card's color
             cardButton.setOpaque(true);
@@ -150,4 +151,6 @@ public class CardButtonPanel extends JPanel implements PropertyChangeListener {
         support.addPropertyChangeListener(listener);
     }
     public void firePropertyChange(){support.firePropertyChange("playpanel", null, this.playpanel);}
+    public int getID(){return this.id;}
+
 }
