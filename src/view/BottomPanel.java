@@ -12,6 +12,8 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
+import static use_case.initiation.InitiationInteractor.game;
+
 public class BottomPanel extends JPanel implements PropertyChangeListener {
 
     BottomPanelViewModel bottomPanelViewModel;
@@ -60,7 +62,7 @@ public class BottomPanel extends JPanel implements PropertyChangeListener {
                 new ActionListener() {
                     public void actionPerformed(ActionEvent evt) {
                         if (evt.getSource().equals(confirmButton)) {
-                            confirmController.execute();
+                            confirmController.execute(game.getCurrentPlayerIndex());
                         }
                     }
                 }

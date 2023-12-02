@@ -12,13 +12,12 @@ import java.util.ArrayList;
 public class ConfirmController {
 
     final ConfirmInputDataBoundary confirmInputDataBoundary;
-    final ConfirmInputData confirmInputData;
 
-    public ConfirmController (ConfirmInputDataBoundary confirmInputDataBoundary, ConfirmInputData confirmInputData) {
+    public ConfirmController (ConfirmInputDataBoundary confirmInputDataBoundary) {
         this.confirmInputDataBoundary = confirmInputDataBoundary;
-        this.confirmInputData = confirmInputData;
     }
-    public void execute () {
+    public void execute (int currPlayerIndex) {
+        ConfirmInputData confirmInputData = new ConfirmInputData(currPlayerIndex);
         confirmInputDataBoundary.execute(confirmInputData);
     }
 

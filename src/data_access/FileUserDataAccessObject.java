@@ -5,6 +5,7 @@ import entities.NumberCardsDeck.NumberCardsDeck;
 import entities.NumberCardsDeck.NumberCardsDeckFactory;
 import entities.card.*;
 import entities.player.*;
+import use_case.Confirm.ConfirmDataAccessInterface;
 import use_case.GetCard.GetCardDataAccessInterface;
 import use_case.SelectCard.SelectCardDataAccessInterface;
 import use_case.Undo.UndoDataAccessInterface;
@@ -22,7 +23,7 @@ import java.util.regex.Pattern;
 
 public class FileUserDataAccessObject implements InitiationDataAccessInterface,
         PreTurnDataAccessInterface, PostTurnDataAccessInterface, RightShiftDataAccessInterface,
-        NextTurnDataAccessInterface, UndoDataAccessInterface, SelectCardDataAccessInterface, GetCardDataAccessInterface {
+        NextTurnDataAccessInterface, UndoDataAccessInterface, SelectCardDataAccessInterface, GetCardDataAccessInterface, ConfirmDataAccessInterface {
     private final File csvFile;
     private final AIPlayerFactory aiPlayerFactory;
     private final HumanPlayerFactory humanPlayerFactory;
@@ -221,5 +222,10 @@ public class FileUserDataAccessObject implements InitiationDataAccessInterface,
         ArrayList<NumberCard> hand = playerInfo.get(player).getNumberCards();
         hand.add(card);
         playerInfo.get(player).setNumCards(hand);
+    }
+
+    @Override
+    public String get_specific_player_with_index(int player_index) {
+        return playerInfo.get(player_index).playerName;
     }
 }
