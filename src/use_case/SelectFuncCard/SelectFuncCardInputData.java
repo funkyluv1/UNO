@@ -9,13 +9,11 @@ public class SelectFuncCardInputData {
     private final FunctionalCard newCard;
     private final ArrayList<FunctionalCard> selectedCards;
     private final int button_index;
-    private final ArrayList<Integer> selectedIndices;
 
-    public SelectFuncCardInputData(FunctionalCard cardNew, ArrayList<FunctionalCard> cardsOld, int button_index, ArrayList<Integer> selectedIndices) {
+    public SelectFuncCardInputData(FunctionalCard cardNew, ArrayList<FunctionalCard> cardsOld, int button_index) {
         newCard = cardNew;
         selectedCards = cardsOld;
         this.button_index = button_index;
-        this.selectedIndices = selectedIndices;
     }
 
     public FunctionalCard getNewCard() {
@@ -29,7 +27,4 @@ public class SelectFuncCardInputData {
         return button_index;
     }
 
-    public ArrayList<Integer> getSelectedIndices() {
-        return selectedIndices;
-    }
 }

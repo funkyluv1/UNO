@@ -7,18 +7,18 @@ import java.util.ArrayList;
 
 public class SelectFuncCardOutputData {
     private final ArrayList<FunctionalCard> selectedCards;
-    private final ArrayList<Integer> selectedIndices;
+    private final Integer button_Index;
 
-    public SelectFuncCardOutputData(ArrayList<FunctionalCard> selectedCards, ArrayList<Integer> selectedIndices) {
+    public SelectFuncCardOutputData(ArrayList<FunctionalCard> selectedCards, Integer button_index) {
         this.selectedCards = selectedCards;
-        this.selectedIndices = selectedIndices;
+        this.button_Index = button_index;
     }
 
     public ArrayList<FunctionalCard> getSelectedCards() {
         return selectedCards;
     }
 
-    public ArrayList<Integer> getSelectedIndices() {
-        return selectedIndices;
+    public Integer getButton_Index() {
+        return button_Index;
     }
 }

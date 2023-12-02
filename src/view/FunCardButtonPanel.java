@@ -85,8 +85,12 @@ public class FunCardButtonPanel extends JPanel implements PropertyChangeListener
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         ArrayList<String> playableFunCardsString = new ArrayList<>();
-        for (FunctionalCard functionalCard : funCardButtonPanelViewModel.getState().get_Highlighted_Fun_Cards()){
+        ArrayList<String> selectedFunCardsString = new ArrayList<>();
+        for (FunctionalCard functionalCard : funCardButtonPanelViewModel.getState().get_Playable_Fun_Cards()){
             playableFunCardsString.add(functionalCard.getString());
+        }
+        for (FunctionalCard functionalCard : funCardButtonPanelViewModel.getState().get_Selected_Fun_Cards()){
+            selectedFunCardsString.add(functionalCard.getString());
         }
 
         int startInd = funCardButtonPanelViewModel.getState().getdisplayCardsFirstIndex();
@@ -98,15 +102,13 @@ public class FunCardButtonPanel extends JPanel implements PropertyChangeListener
         for (int i = startInd; i < startInd + card_with_value; i++) {
             String name = funCardButtonPanelViewModel.getState().get_Fun_Cards().get(i).getString();
 
-            // CardButton: default is Disabled; Enable playable Card;
             cardNames.get(i - startInd).setText(name);
             if (playableFunCardsString.contains(name)){
                 cardNames.get(i - startInd).setEnabled(true);
             }
 
-            //If someone has selected one card beforehand, then disable the enabled playable card.
-            if (funCardButtonPanelViewModel.getState().getOneCardsSelected()){
-                cardNames.get(i - startInd).setEnabled(false);
+            if (selectedFunCardsString.contains(name)){
+                cardNames.get(i - startInd).setBackground(Color.YELLOW);
             }
         }
         leftButton.setEnabled(funCardButtonPanelViewModel.getState().getLeftButtonEnabled());

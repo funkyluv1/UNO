@@ -17,7 +17,7 @@ public class FunSelectCardInteractor implements FunSelectCardInputDataBoundary {
     public void execute(FunSelectCardInputData selectCardInputData) {
         Card selectedCard = selectCardInputData.getSelectedCardNew();
         game.setCurrSelectedNumberCard(selectedCard);
-        SelectCardOutputData selectCardOutputData = new SelectCardOutputData(selectedCard, selectCardInputData.getButton_index());
+        SelectCardOutputData selectCardOutputData = new SelectCardOutputData(selectedCard, selectCardInputData.getButtonIndex());
         selectCardOutputDataBoundary.prepareSelectCardView(selectCardOutputData);
     }
 }
