@@ -14,7 +14,7 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
 public class InitiationView extends JPanel implements ActionListener, PropertyChangeListener {
-    public final String viewName =  "game view";
+    public final String viewName =  "initiation";
     private final InitiationViewModel initiationViewModel;
 
     final JTextField playernameInputField = new JTextField(15);
