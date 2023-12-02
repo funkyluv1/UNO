@@ -16,7 +16,7 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
 public class GetCardPanel extends JPanel implements PropertyChangeListener {
-    JPanel panel = new JPanel();
+    Panel panel = new Panel(2);
     Game game;
     JButton getCardButton;
     JButton undoButton;
@@ -24,6 +24,7 @@ public class GetCardPanel extends JPanel implements PropertyChangeListener {
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);
     private final GetCardPanelViewModel getCardViewModel;
     private final UndoController undoController;
+    private int id = 2;
 
     public GetCardPanel(GetCardPanelViewModel getCardPanelViewModel, UndoController undoController) {
         this.getCardViewModel = getCardPanelViewModel;
@@ -31,7 +32,7 @@ public class GetCardPanel extends JPanel implements PropertyChangeListener {
         this.undoController = undoController;
 
         undoButton = new JButton("Undo");
-        undoButton.setPreferredSize(new Dimension(150, 60));
+        undoButton.setPreferredSize(new Dimension(20, 40));
         undoButton.setBackground(Color.BLACK);
         undoButton.setForeground(Color.WHITE);
         undoButton.setOpaque(true);
@@ -57,7 +58,7 @@ public class GetCardPanel extends JPanel implements PropertyChangeListener {
         panel.add(topCard);
 
         getCardButton = new JButton();
-        getCardButton.setPreferredSize(new Dimension(130, 200));
+        getCardButton.setPreferredSize(new Dimension(20, 40));
         getCardButton.setBorder(BorderFactory.createEmptyBorder());
         getCardButton.setBackground(Color.BLACK);
         getCardButton.setForeground(Color.WHITE);
@@ -94,5 +95,7 @@ public class GetCardPanel extends JPanel implements PropertyChangeListener {
         support.addPropertyChangeListener(listener);
     }
     public void firePropertyChange(){support.firePropertyChange("panel", null, this.panel);}
+
+    public int getID(){return this.id;}
 
 }

@@ -16,14 +16,14 @@ public class InitializedViewModel extends ViewModel implements PropertyChangeLis
     public final String TITLE_LABEL = "Initialized View";
 
     private ArrayList<JPanel> panels = new ArrayList<>();
-    private CardButtonPanel cardButtonPanel;
+    private JPanel cardButtonPanel;
     private JPanel playpanel;
-    private BottomPanel bottomPanel;
+    private JPanel bottomPanel;
     private InitializedState state = new InitializedState();
 
-    private PlayerPanel playerPanel;
-    private GetCardPanel getCardPanel;
-    private FunCardButtonPanel funCardButtonPanel;
+    private JPanel playerPanel;
+    private JPanel getCardPanel;
+    private JPanel funCardButtonPanel;
 
     public InitializedViewModel(CardButtonPanel cardButtonPanel, BottomPanel bottomPanel, PlayerPanel playerPanel,
                                 GetCardPanel getCardPanel, FunCardButtonPanel funCardButtonPanel) {
@@ -70,7 +70,28 @@ public class InitializedViewModel extends ViewModel implements PropertyChangeLis
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-        this.playpanel = (JPanel) evt.getNewValue();
+        Panel panel = (Panel) evt.getNewValue();
+        if (panel.getId() == 1){
+            panels.remove(this.playerPanel);
+            panels.add((JPanel) panel);
+            this.playerPanel = (JPanel) panel;
+        } else if (panel.getId() == 2){
+            panels.remove(this.getCardPanel);
+            panels.add((JPanel) panel);
+            this.getCardPanel = (JPanel) panel;
+        }else if (panel.getId() == 3){
+            panels.remove(this.cardButtonPanel);
+            panels.add((JPanel) panel);
+            this.cardButtonPanel = (JPanel) panel;
+        }else if (panel.getId() == 4){
+            panels.remove(this.funCardButtonPanel);
+            panels.add((JPanel) panel);
+            this.funCardButtonPanel = (JPanel) panel;
+        } else {
+            panels.remove(this.bottomPanel);
+            panels.add((JPanel) panel);
+            this.bottomPanel = (JPanel) panel;
+        }
         this.firePropertyChanged();
     }
 }

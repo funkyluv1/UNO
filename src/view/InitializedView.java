@@ -24,6 +24,8 @@ public class InitializedView extends JPanel implements ActionListener, PropertyC
     JPanel playerPanel;
     JPanel getCardPanel;
     JPanel funCardPanel;
+    JLabel jLabel;
+    ArrayList<Color> colorList;
 
     JLabel label;
 
@@ -40,6 +42,14 @@ public class InitializedView extends JPanel implements ActionListener, PropertyC
         this.playerPanel = new JPanel();
         this.getCardPanel = new JPanel();
         this.funCardPanel = new JPanel();
+        this.bigPanel = new JPanel();
+
+        bigPanel.add(cardButtonPanel);
+        add(bottomPanel);
+        add(playerPanel);
+        bigPanel.add(funCardPanel);
+        bigPanel.add(getCardPanel);
+        add(bigPanel);
 
         cardButtonPanel.setBackground(Color.BLUE);
         bottomPanel.setBackground(Color.RED);
@@ -81,14 +91,75 @@ public class InitializedView extends JPanel implements ActionListener, PropertyC
     public void propertyChange(PropertyChangeEvent evt) {
         ArrayList<JPanel> panels = (ArrayList<JPanel>) evt.getNewValue();
         int i = 0;
+        for (JPanel panel : panels) {
+            if (i == 0) {
+                this.remove(playerPanel);
+                playerPanel = panel;
+            } else if (i == 1) {
+                bigPanel.remove(getCardPanel);
+                getCardPanel = panel;
+            } else if (i == 2) {
+                bigPanel.remove(cardButtonPanel);
+                cardButtonPanel = panel;
+            } else if (i == 3) {
+                this.remove(funCardPanel);
+                bigPanel.remove(funCardPanel);
+                funCardPanel = panel;
+            } else if (i == 4) {
+                this.remove(bottomPanel);
+                bottomPanel = panel;
+            }
+
         for (JPanel panel : panels){
             if (i == 0){playerPanel = panel;}
             else if (i == 1){getCardPanel = panel;}
             else if (i == 2){cardButtonPanel = panel;}
             else if (i == 3){funCardPanel = panel;}
             else if (i == 4){bottomPanel = panel;}
+
             i += 1;
         }
+        setSize(1200, 1000);
+        this.setLayout(new BorderLayout());
+        Color darkRed = new Color(218, 40, 40);
+        this.setBackground(Color.CYAN);
+
+        bigPanel.setLayout(new BorderLayout());
+        playerPanel.setPreferredSize(new Dimension(1200, 100));
+        playerPanel.setBackground(Color.red);
+
+        bigPanel.setPreferredSize(new Dimension(1200, 700));
+        getCardPanel.setPreferredSize(new Dimension(1200, 200));
+        getCardPanel.setBackground(Color.yellow);
+        cardButtonPanel.setPreferredSize(new Dimension(600, 200));
+        cardButtonPanel.setBackground(Color.black);
+        funCardPanel.setPreferredSize(new Dimension(600, 200));
+        funCardPanel.setBackground(Color.green);
+        bottomPanel.setPreferredSize(new Dimension(1200, 100));
+        bottomPanel.setBackground(Color.BLUE);
+
+        this.add(playerPanel, BorderLayout.NORTH);
+        this.add(bottomPanel, BorderLayout.SOUTH);
+        this.add(bigPanel, BorderLayout.CENTER);
+        bigPanel.add(getCardPanel, BorderLayout.NORTH);
+        bigPanel.add(cardButtonPanel, BorderLayout.WEST);
+        bigPanel.add(funCardPanel, BorderLayout.EAST);
+
+//        bigPanel.add(this.getCardPanel, BorderLayout.NORTH);
+//        bigPanel.add(this.cardButtonPanel, BorderLayout.WEST);
+//        bigPanel.add(this.funCardPanel, BorderLayout.EAST);
+//        getCardPanel.setPreferredSize(new Dimension(1200, 300));
+//        cardButtonPanel.setPreferredSize(new Dimension(600, 150));
+//        funCardPanel.setPreferredSize(new Dimension(600, 150));
+//        this.add(bigPanel, BorderLayout.CENTER);
+
+//        bigPanel.setOpaque(false);
+//        playerPanel.setOpaque(false);
+//        getCardPanel.setOpaque(false);
+//        funCardPanel.setOpaque(true);
+//        bottomPanel.setOpaque(true);
+//        cardButtonPanel.setOpaque(true);
+
 
         // set text changes the jlabel content
         label.setText("Changed");

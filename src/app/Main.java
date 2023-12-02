@@ -98,28 +98,5 @@ public class Main {
 
         application.pack();
         application.setVisible(true);
-
-//        players = new ArrayList<Player>();
-//        // TODO: add Player objects to players, then shuffle players
-//        // TODO: create game object, add a while loop that updates the game object in
-//        //  each round (pre-turn, in-turn. etc.)
-
-//        int round = 1;
-//        while (true) { //TODO: replace true with some winning criteria
-//            Player currPlayer = players.get(round);
-//            round = round % players.size();
-//
-//            if (game.getSkipped()) {
-//                //...
-//            }
-//            if (game.getDrawCard() > 0) {
-//                //...
-//            }
-//
-//            currPlayer.preTurn(game);
-//            currPlayer.inTurn(game);
-//            currPlayer.postTurn(game);
-//
-//        }
     }
 }
