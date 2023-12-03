@@ -20,14 +20,17 @@ public class NextTurnPresenter implements NextTurnOutputDataBoundary {
     private final FunCardButtonPanelViewModel funCardButtonPanelViewModel;
 
     private final BottomPanelViewModel bottomPanelViewModel;
+    private final GetCardPanelViewModel getCardPanelViewModel;
 
     public NextTurnPresenter(PlayerPanelViewModel playerPanelViewModel, CardButtonPanelViewModel cardButtonPanelViewModel, ViewManagerModel viewManagerModel,
-                             FunCardButtonPanelViewModel funCardButtonPanelViewModel, BottomPanelViewModel bottomPanelViewModel){
+                             FunCardButtonPanelViewModel funCardButtonPanelViewModel, BottomPanelViewModel bottomPanelViewModel,
+                             GetCardPanelViewModel getCardPanelViewModel){
         this.playerPanelViewModel = playerPanelViewModel;
         this.funCardButtonPanelViewModel = funCardButtonPanelViewModel;
         this.cardButtonPanelViewModel = cardButtonPanelViewModel;
         this.viewManagerModel = viewManagerModel;
         this.bottomPanelViewModel = bottomPanelViewModel;
+        this.getCardPanelViewModel = getCardPanelViewModel;
     }
 
     public void prepare_view(NextTurnOutputData nextTurnOutputData){
@@ -43,10 +46,16 @@ public class NextTurnPresenter implements NextTurnOutputDataBoundary {
         this.playerPanelViewModel.setState(playerPanelState);
         this.playerPanelViewModel.firePropertyChanged();
 
+        GetCardPanelState getCardPanelState = getCardPanelViewModel.getState();
+        if (nextTurnOutputData.getPlayerplayablenumcards().equals(new ArrayList<>())){
+            getCardPanelState.setGetCardEnabled(true);
+        } else {getCardPanelState.setGetCardEnabled(false);}
+        getCardPanelState.setUndoEnabled(false);
+        getCardPanelViewModel.setState(getCardPanelState);
+        getCardPanelViewModel.firePropertyChanged();
+
         funCardButtonPanelState.set_cards(nextTurnOutputData.getFunctionalCards(),nextTurnOutputData.getPlayerplayablefuncards(), 0);
         funCardButtonPanelState.setAllButtonDisable(false);
-
-
         this.funCardButtonPanelViewModel.setState(funCardButtonPanelState);
         this.funCardButtonPanelViewModel.firePropertyChanged();
 
