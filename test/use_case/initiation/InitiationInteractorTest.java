@@ -47,15 +47,15 @@ public class InitiationInteractorTest extends TestCase {
 
         //DrawCardsInputData drawCardsInputData = new DrawCardsInputData(, numberCardsDeckFactory.create("Jason", 3));
 
-        InitiationDataAccessInterface dao = new FileUserDataAccessObject(csvPath, aiPlayerFactory, humanPlayerFactory, numberCardsDeckFactory);
+        FileUserDataAccessObject dao = new FileUserDataAccessObject(csvPath, aiPlayerFactory, humanPlayerFactory, numberCardsDeckFactory);
 
         // this creates a successPresenter that tests whether the test case is as we expect
         InitiationOutputDataBoundary successPresenter = new InitiationOutputDataBoundary() {
             @Override
             public void prepareNewGameView(InitiationOutputData initiationOutputData) {
-                public void prepareSuccessView(InitiationOutputData outputData){
+                    assertEquals("Jason", initiationOutputData.getPlayerNames().get(0));
+                    assertEquals(dao.get_specific_player_with_index(0), "Jason");
 
-                }
             }
         };
 
@@ -78,6 +78,7 @@ public class InitiationInteractorTest extends TestCase {
         };
 
         FindPlayableCardsInterface findPlayableCardsInterface = new FindPlayableCardsInterface() {
+            // seems like this interface does not need to be initialized
             @Override
             public ArrayList<NumberCard> findPlayableNumberCards(String roundColor, ArrayList<NumberCard> numberCards) {
                 return null;
@@ -89,7 +90,7 @@ public class InitiationInteractorTest extends TestCase {
             }
         };
 
-        InitiationInputDataBoundary interactor = new InitiationInteractor(dao, drawCardsDataAccessInterface,successPresenter, findPlayableCardsInterface);
+        InitiationInputDataBoundary interactor = new InitiationInteractor((FileUserDataAccessObject) dao, drawCardsDataAccessInterface,successPresenter, findPlayableCardsInterface);
 
 
         interactor.execute(initiationInputData);
