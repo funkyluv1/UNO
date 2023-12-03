@@ -10,16 +10,18 @@ import static use_case.initiation.InitiationInteractor.game;
 
 public class ConfirmInteractor implements ConfirmInputDataBoundary{
     final ConfirmOutputDataBoundary confirmOutputDataBoundary;
+    final ConfirmDataAccessInterface confirmDataAccessInterface;
 
-    public ConfirmInteractor(ConfirmOutputDataBoundary confirmOutputDataBoundary) {
+    public ConfirmInteractor(ConfirmOutputDataBoundary confirmOutputDataBoundary, ConfirmDataAccessInterface confirmDataAccessInterface) {
         this.confirmOutputDataBoundary = confirmOutputDataBoundary;
+        this.confirmDataAccessInterface = confirmDataAccessInterface;
     }
     @Override
     public void execute(ConfirmInputData confirmInputData) {
         NumberCard selectedNumCard = (NumberCard) game.getCurrSelectedNumberCard();
         ArrayList<FunctionalCard> selectedFunCard = game.getCurrSelectedFunCard();
         int currPlayerIndex = confirmInputData.getCurrPlayerIndex();
-        String currPlayer = confirmInputData.getCurrPlayer();
+        String currPlayer = confirmDataAccessInterface.get_specific_player_with_index(currPlayerIndex);
 
         game.setCurrSelectedNumberCard(null);
         game.addNumCardsinRound(selectedNumCard);

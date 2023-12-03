@@ -1,5 +1,6 @@
 package view;
 
+import entities.card.Card;
 import entities.card.FunctionalCard;
 import entities.card.NumberCard;
 import interface_adapter.Initialized.CardButtonPanelState;
@@ -9,7 +10,7 @@ import interface_adapter.Initialized.FunCardButtonPanelViewModel;
 import interface_adapter.Initiation.InitiationState;
 import interface_adapter.LeftShift.LeftShiftController;
 import interface_adapter.RightShift.RightShiftController;
-import interface_adapter.SelectCard.SelectCardController;
+import interface_adapter.SelectFuncCard.SelectFuncCardController;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -25,13 +26,14 @@ public class FunCardButtonPanel extends JPanel implements PropertyChangeListener
 
     FunCardButtonPanelViewModel funCardButtonPanelViewModel;
     ArrayList<JButton> cardNames = new ArrayList<>();
-    JPanel playpanel = new JPanel();
+    Panel playpanel = new Panel(4);
     JButton leftButton;
     JButton rightButton;
+    private int id = 4;
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);
 
     public FunCardButtonPanel(FunCardButtonPanelViewModel funCardButtonPanelViewModel,
-                              SelectCardController selectCardController,
+                              SelectFuncCardController selectFuncCardController,
                               RightShiftController rightShiftController,
                               LeftShiftController leftShiftController){
         this.funCardButtonPanelViewModel = funCardButtonPanelViewModel;
@@ -39,29 +41,51 @@ public class FunCardButtonPanel extends JPanel implements PropertyChangeListener
 
         // left shift button
         JButton leftShift = new JButton("left");
-        leftShift.setPreferredSize(new Dimension(100, 50));
+        leftShift.setPreferredSize(new Dimension(50, 60));
         leftShift.setForeground(Color.WHITE);
         leftShift.setBackground(Color.BLACK);
         leftShift.setFont(new Font("Arial", Font.BOLD, 14));
         leftShift.setOpaque(true);
         leftShift.setEnabled(false);
+        leftShift.addActionListener(
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent evt) {
+                        if (evt.getSource().equals(leftShift)) {
+                            FunCardButtonPanelState currentState = funCardButtonPanelViewModel.getState();
+                            leftShiftController.execute(currentState.getdisplayCardsFirstIndex(), true);
+                        }
+                    }
+                }
+        );
         playpanel.add(leftShift);
         this.leftButton = leftShift;
 
         // right shift button
         JButton rightShift = new JButton("right");
-        rightShift.setPreferredSize(new Dimension(100, 50));
+        rightShift.setPreferredSize(new Dimension(50, 60));
         rightShift.setForeground(Color.WHITE);
         rightShift.setBackground(Color.BLACK);
         rightShift.setFont(new Font("Arial", Font.BOLD, 14));
         rightShift.setOpaque(true);
         rightShift.setEnabled(false);
+        rightShift.addActionListener(
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent evt) {
+                        if (evt.getSource().equals(rightShift)) {
+                            FunCardButtonPanelState currentState = funCardButtonPanelViewModel.getState();
+                            ArrayList<Card> cardList = new ArrayList<>();
+                            cardList.addAll(currentState.get_Fun_Cards());
+                            rightShiftController.execute(cardList, currentState.getdisplayCardsFirstIndex(), true);
+                        }
+                    }
+                }
+        );
         playpanel.add(rightShift);
         this.rightButton = rightShift;
 
         for (int i = 0; i < 3; i++) {
             JButton cardButton = new JButton();
-            cardButton.setPreferredSize(new Dimension(130, 200));
+            cardButton.setPreferredSize(new Dimension(100, 100));
             cardButton.setBorder(BorderFactory.createEmptyBorder());
             cardButton.setBackground(Color.YELLOW); // fill here for the card's color
             cardButton.setOpaque(true);
@@ -73,7 +97,11 @@ public class FunCardButtonPanel extends JPanel implements PropertyChangeListener
                         public void actionPerformed(ActionEvent evt) {
                             if (evt.getSource().equals(cardButton)) {
                                 FunCardButtonPanelState currentState = funCardButtonPanelViewModel.getState();
-                                selectCardController.execute(cardButton.getText(),finalI);
+                                ArrayList<String> selectedCards = new ArrayList<>();
+                                for (FunctionalCard functionalCard : currentState.get_Selected_Fun_Cards()){
+                                    selectedCards.add(functionalCard.getString());
+                                }
+                                selectFuncCardController.execute(cardButton.getText(), selectedCards, finalI);
                             }
                         }
                     }
@@ -85,8 +113,12 @@ public class FunCardButtonPanel extends JPanel implements PropertyChangeListener
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         ArrayList<String> playableFunCardsString = new ArrayList<>();
-        for (FunctionalCard functionalCard : funCardButtonPanelViewModel.getState().get_Highlighted_Fun_Cards()){
+        ArrayList<String> selectedFunCardsString = new ArrayList<>();
+        for (FunctionalCard functionalCard : funCardButtonPanelViewModel.getState().get_Playable_Fun_Cards()){
             playableFunCardsString.add(functionalCard.getString());
+        }
+        for (FunctionalCard functionalCard : funCardButtonPanelViewModel.getState().get_Selected_Fun_Cards()){
+            selectedFunCardsString.add(functionalCard.getString());
         }
 
         int startInd = funCardButtonPanelViewModel.getState().getdisplayCardsFirstIndex();
@@ -98,15 +130,13 @@ public class FunCardButtonPanel extends JPanel implements PropertyChangeListener
         for (int i = startInd; i < startInd + card_with_value; i++) {
             String name = funCardButtonPanelViewModel.getState().get_Fun_Cards().get(i).getString();
 
-            // CardButton: default is Disabled; Enable playable Card;
             cardNames.get(i - startInd).setText(name);
             if (playableFunCardsString.contains(name)){
                 cardNames.get(i - startInd).setEnabled(true);
             }
 
-            //If someone has selected one card beforehand, then disable the enabled playable card.
-            if (funCardButtonPanelViewModel.getState().getOneCardsSelected()){
-                cardNames.get(i - startInd).setEnabled(false);
+            if (selectedFunCardsString.contains(name)){
+                cardNames.get(i - startInd).setBackground(Color.YELLOW);
             }
         }
         leftButton.setEnabled(funCardButtonPanelViewModel.getState().getLeftButtonEnabled());
@@ -118,4 +148,6 @@ public class FunCardButtonPanel extends JPanel implements PropertyChangeListener
         support.addPropertyChangeListener(listener);
     }
     public void firePropertyChange(){support.firePropertyChange("playpanel", null, this.playpanel);}
+    public int getID(){return this.id;}
+
 }

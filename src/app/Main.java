@@ -6,11 +6,8 @@ import entities.Game;
 import entities.NumberCardsDeck.NumberCardsDeckCreator;
 import entities.player.AIPlayerFactory;
 import entities.player.HumanPlayerFactory;
-import interface_adapter.Initialized.CardButtonPanelViewModel;
-import interface_adapter.Initialized.GetCardPanelViewModel;
-import interface_adapter.Initialized.InitializedViewModel;
+import interface_adapter.Initialized.*;
 import interface_adapter.Initiation.InitiationViewModel;
-import interface_adapter.MainMeau.MainMeauViewModel;
 import interface_adapter.ViewManagerModel;
 import use_case.PreTurn.FindPlayableCards;
 import use_case.PreTurn.FindPlayableCardsInterface;
@@ -31,10 +28,12 @@ public class Main {
 
         JFrame application = new JFrame("Initiation Example");
         application.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        application.setSize(800, 600);
-
-        // Center the window on the screen
-        application.setLocationRelativeTo(null);
+        application.setPreferredSize(new Dimension(1200, 750));
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        int centerX = (screenSize.width - application.getWidth()) / 6;
+        int centerY = (screenSize.height - application.getHeight()) / 6;
+        application.setLocation(centerX, centerY);
+        application.setResizable(false);
 
         CardLayout cardLayout = new CardLayout();
 
@@ -65,46 +64,39 @@ public class Main {
             throw new RuntimeException(e);
         }
 
+        // viewmodels
         CardButtonPanelViewModel cardButtonPanelViewModel = new CardButtonPanelViewModel();
-        CardButtonPanel cardButtonPanel = CardButtonPanelUseCaseFactory.create(viewManagerModel, cardButtonPanelViewModel, userDataAccessObject);
-
+        FunCardButtonPanelViewModel funCardButtonPanelViewModel = new FunCardButtonPanelViewModel();
+        BottomPanelViewModel bottomPanelViewModel = new BottomPanelViewModel();
+        PlayerPanelViewModel playerPanelViewModel = new PlayerPanelViewModel();
         GetCardPanelViewModel getCardPanelViewModel = new GetCardPanelViewModel();
-        //GetCardPanel getCardPanel = GetCardPanelUseCaseFactory.create(viewManagerModel, getCardPanelViewModel, userDataAccessObject);
+
+        // panels (views)
+        BottomPanel bottomPanel = BottomPanelUseCaseFactory.create(viewManagerModel, bottomPanelViewModel, cardButtonPanelViewModel, userDataAccessObject);
+        PlayerPanel playerPanel = PlayerPanelUseCaseFactory.create(viewManagerModel, playerPanelViewModel);
+        GetCardPanel getCardPanel = GetCardPanelUseCaseFactory.create(viewManagerModel, getCardPanelViewModel, cardButtonPanelViewModel, userDataAccessObject);
+        FunCardButtonPanel funCardButtonPanel = FunCardButtonPanelUseCaseFactory.create(viewManagerModel, cardButtonPanelViewModel, funCardButtonPanelViewModel, userDataAccessObject);
+        CardButtonPanel cardButtonPanel = CardButtonPanelUseCaseFactory.create(viewManagerModel, funCardButtonPanelViewModel, cardButtonPanelViewModel, userDataAccessObject);
+
+
 
         InitiationViewModel initiationViewModel = new InitiationViewModel();
-        InitializedViewModel initializedViewModel = new InitializedViewModel(cardButtonPanel);
+        InitializedViewModel initializedViewModel = new InitializedViewModel(cardButtonPanel, bottomPanel, playerPanel, getCardPanel, funCardButtonPanel);
 
-
-        InitiationView initiationView = InitiationUseCaseFactory.create(viewManagerModel, initiationViewModel, cardButtonPanelViewModel,initializedViewModel, userDataAccessObject, findPlayableCardsInterface);
+        InitiationView initiationView = InitiationUseCaseFactory.create(viewManagerModel, initiationViewModel, cardButtonPanelViewModel,initializedViewModel, userDataAccessObject,  funCardButtonPanelViewModel,
+                findPlayableCardsInterface, getCardPanelViewModel, bottomPanelViewModel, playerPanelViewModel);
         views.add(initiationView, initiationView.viewName);
 
         InitializedView initializedView = new InitializedView(initializedViewModel);
         views.add(initializedView, initializedView.viewName);
 
+        MainMenuView mainMenuView = MainMenuUseCaseFactory.create(viewManagerModel, initiationViewModel);
+        views.add(mainMenuView, mainMenuView.viewName);
+
+        viewManagerModel.setActiveView(mainMenuView.viewName);
+        viewManagerModel.firePropertyChanged();
+
         application.pack();
         application.setVisible(true);
-
-//        players = new ArrayList<Player>();
-//        // TODO: add Player objects to players, then shuffle players
-//        // TODO: create game object, add a while loop that updates the game object in
-//        //  each round (pre-turn, in-turn. etc.)
-
-//        int round = 1;
-//        while (true) { //TODO: replace true with some winning criteria
-//            Player currPlayer = players.get(round);
-//            round = round % players.size();
-//
-//            if (game.getSkipped()) {
-//                //...
-//            }
-//            if (game.getDrawCard() > 0) {
-//                //...
-//            }
-//
-//            currPlayer.preTurn(game);
-//            currPlayer.inTurn(game);
-//            currPlayer.postTurn(game);
-//
-//        }
     }
 }

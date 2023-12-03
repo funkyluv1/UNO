@@ -15,7 +15,10 @@ public class LeftShiftInteractor implements LeftShiftInputDataBoundary {
             leftShiftActive = true;
         }
         LeftShiftOutputData leftShiftOutputData = new LeftShiftOutputData(leftShiftActive);
-        leftShiftOutputDataBoundary.prepareSuccessView(leftShiftOutputData);
+        if (leftShiftInputData.getFlag_For_Func()){
+            leftShiftOutputDataBoundary.prepareSuccessView(leftShiftOutputData, leftShiftInputData.getFlag_For_Func());
+        }
+        else {leftShiftOutputDataBoundary.prepareSuccessView(leftShiftOutputData);}
     }
 
 }

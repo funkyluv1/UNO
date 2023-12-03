@@ -3,8 +3,7 @@ package interface_adapter.Initialized;
 import entities.Game;
 import interface_adapter.ViewModel;
 import interface_adapter.Initiation.InitiationState;
-import view.BottomPanel;
-import view.CardButtonPanel;
+import view.*;
 
 import javax.swing.*;
 import java.beans.PropertyChangeEvent;
@@ -17,20 +16,36 @@ public class InitializedViewModel extends ViewModel implements PropertyChangeLis
     public final String TITLE_LABEL = "Initialized View";
 
     private ArrayList<JPanel> panels = new ArrayList<>();
-    private CardButtonPanel cardButtonPanel;
+    private JPanel cardButtonPanel;
     private JPanel playpanel;
-    private BottomPanel bottomPanel;
+    private JPanel bottomPanel;
     private InitializedState state = new InitializedState();
 
-    public InitializedViewModel(CardButtonPanel cardButtonPanel) {
+    private JPanel playerPanel;
+    private JPanel getCardPanel;
+    private JPanel funCardButtonPanel;
+
+    public InitializedViewModel(CardButtonPanel cardButtonPanel, BottomPanel bottomPanel, PlayerPanel playerPanel,
+                                GetCardPanel getCardPanel, FunCardButtonPanel funCardButtonPanel) {
 
         super("Initialized");
+        panels.add(playerPanel);
+        panels.add(getCardPanel);
         panels.add(cardButtonPanel);
+        panels.add(funCardButtonPanel);
         panels.add(bottomPanel);
+
+
         this.cardButtonPanel = cardButtonPanel;
         this.cardButtonPanel.addPropertyChangeListener(this);
-        //this.bottomPanel = bottomPanel;
-        //this.bottomPanel.addPropertyChangeListener(this);
+        this.bottomPanel = bottomPanel;
+        this.bottomPanel.addPropertyChangeListener(this);
+        this.playerPanel = playerPanel;
+        this.playerPanel.addPropertyChangeListener(this);
+        this.getCardPanel = getCardPanel;
+        this.getCardPanel.addPropertyChangeListener(this);
+        this.funCardButtonPanel = funCardButtonPanel;
+        this.funCardButtonPanel.addPropertyChangeListener(this);
     }
 
     public void setState(InitializedState state) {
@@ -55,7 +70,28 @@ public class InitializedViewModel extends ViewModel implements PropertyChangeLis
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-        this.playpanel = (JPanel) evt.getNewValue();
+        Panel panel = (Panel) evt.getNewValue();
+        if (panel.getId() == 1){
+            panels.remove(this.playerPanel);
+            panels.add(0, (JPanel) panel);
+            this.playerPanel = (JPanel) panel;
+        } else if (panel.getId() == 2){
+            panels.remove(this.getCardPanel);
+            panels.add(1, (JPanel) panel);
+            this.getCardPanel = (JPanel) panel;
+        }else if (panel.getId() == 3){
+            panels.remove(this.cardButtonPanel);
+            panels.add(2, (JPanel) panel);
+            this.cardButtonPanel = (JPanel) panel;
+        }else if (panel.getId() == 4){
+            panels.remove(this.funCardButtonPanel);
+            panels.add(3, (JPanel) panel);
+            this.funCardButtonPanel = (JPanel) panel;
+        } else {
+            panels.remove(this.bottomPanel);
+            panels.add(4, (JPanel) panel);
+            this.bottomPanel = (JPanel) panel;
+        }
         this.firePropertyChanged();
     }
 }

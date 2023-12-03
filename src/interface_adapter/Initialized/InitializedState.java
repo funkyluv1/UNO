@@ -4,8 +4,7 @@ import entities.Game;
 import entities.card.FunctionalCard;
 import entities.card.NumberCard;
 import entities.player.Player;
-import view.BottomPanel;
-import view.CardButtonPanel;
+import view.*;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -18,6 +17,11 @@ import java.util.Map;
 public class InitializedState {
     private CardButtonPanel cardButtonPanel;
     private BottomPanel bottomPanel;
+
+    private PlayerPanel playerPanel;
+    private GetCardPanel getCardPanel;
+
+    private FunCardButtonPanel funCardButtonPanel;
     private ArrayList<String> players;
     private Map<String, ArrayList<NumberCard>> playerNumCards;
     private Map<String, ArrayList<NumberCard>> playerPlayableNumCards;
@@ -27,11 +31,15 @@ public class InitializedState {
     public InitializedState(InitializedState copy) {
         bottomPanel = copy.bottomPanel;
         cardButtonPanel = copy.cardButtonPanel;
+        playerPanel = copy.playerPanel;
+        getCardPanel = copy.getCardPanel;
+        funCardButtonPanel = copy.funCardButtonPanel;
         players = copy.players;
         playerNumCards = copy.playerNumCards;
         playerPlayableNumCards = copy.playerPlayableNumCards;
         playerFunCards = copy.playerFunCards;
         playerPlayableFunCards = copy.playerPlayableFunCards;
+
     }
 
     // Because of the previous copy constructor, the default constructor must be explicit.
@@ -40,4 +48,13 @@ public class InitializedState {
     public JPanel get_CardButtonPanel(){return this.cardButtonPanel;}
     public void setBottomPanel(BottomPanel bottomPanel){this.bottomPanel = bottomPanel;}
     public JPanel getBottomPanel(){return this.bottomPanel;}
+
+    public void setPlayerPanel(PlayerPanel playerPanel){this.playerPanel = playerPanel;}
+
+    public JPanel getPlayerPanel(){return this.playerPanel;}
+    public void setgetCardButtonPanel(GetCardPanel getCardPanel){this.getCardPanel = getCardPanel;}
+    public JPanel getgetcardButtonPanel(){return this.getCardPanel;}
+    public void setFunCardButtonPanel(FunCardButtonPanel funCardButtonPanel){this.funCardButtonPanel = funCardButtonPanel;}
+
+    public JPanel getFunCardButtonPanel(){return this.funCardButtonPanel;}
 }

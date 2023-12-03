@@ -25,7 +25,7 @@ public class Game {
     private int maxCardNum;
     private String currWinnerStr;
 
-    private Game() {
+    public Game() {
         String[] randColor = {"red", "blue", "green", "yellow"};
         int randColorIndex = (int) Math.floor(Math.random()*4);
         int randValue = (int) Math.floor(Math.random()*9);
@@ -39,7 +39,6 @@ public class Game {
         numCardsinRound = new ArrayList<>();
         maxCardNum = 0;
         currWinnerStr = "";
-
     }
 
     public static Game getInstance() {
@@ -93,7 +92,12 @@ public class Game {
     }
 
     public void updateCurrentPlayerIndex() {
-        currentPlayerIndex += 1;
+        if (currentPlayerIndex == 3){
+            currentPlayerIndex = 0;
+        }
+        else{
+            currentPlayerIndex += 1;
+        }
     }
 
     public void setCurrSelectedNumberCard(Object card) {
@@ -133,6 +137,10 @@ public class Game {
     public String getCurrWinnerStr() {
         return currWinnerStr;
     }
-    public NumberCardsDeck getNumberCardDeck(){return this.numberCardDeck;}
-    public void setNumberCardDeck(NumberCardsDeck numberCardDeck){this.numberCardDeck = numberCardDeck;}
+    public NumberCardsDeck getNumberCardDeck(){
+        return this.numberCardDeck;
+    }
+    public void setNumberCardDeck(NumberCardsDeck numberCardDeck){
+        this.numberCardDeck = numberCardDeck;
+    }
 }

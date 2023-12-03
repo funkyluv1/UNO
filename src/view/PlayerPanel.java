@@ -19,7 +19,8 @@ public class PlayerPanel extends JPanel implements PropertyChangeListener {
 
     ArrayList<JPanel> playernames = new ArrayList<JPanel>();
 
-    JPanel PlayerPanel = new JPanel();
+    Panel PlayerPanel = new Panel(1);
+    private int ID = 1;
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);
 
     public PlayerPanel(PlayerPanelViewModel playerPanelViewModel){
@@ -30,7 +31,7 @@ public class PlayerPanel extends JPanel implements PropertyChangeListener {
 
     public void propertyChange(PropertyChangeEvent evt){
         ArrayList<String> players = playerPanelViewModel.getState().getPlayer();
-        PlayerPanel.setLayout(new BorderLayout());
+        this.setLayout(new FlowLayout());
 //        ArrayList<Color> colorList = new ArrayList<>();
 //        colorList.add(new Color(173, 216, 230));
 //        colorList.add(new Color(255, 255, 210));
@@ -65,4 +66,6 @@ public class PlayerPanel extends JPanel implements PropertyChangeListener {
         support.addPropertyChangeListener(listener);
     }
     public void firePropertyChange(){support.firePropertyChange("PlayerPanel", null, this.PlayerPanel);}
+    public int getID(){return this.ID;}
+
 }
