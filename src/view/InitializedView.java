@@ -13,7 +13,7 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 
-public class InitializedView extends JPanel implements ActionListener, PropertyChangeListener{
+public class InitializedView extends JPanel implements ActionListener, PropertyChangeListener {
 
     public final String viewName;
     private final InitializedViewModel initializedViewModel;
@@ -63,8 +63,8 @@ public class InitializedView extends JPanel implements ActionListener, PropertyC
         this.setLayout(new BorderLayout());
 
 //        JPanel playerPanel = new JPanel();
-  //      playerPanel.setLayout(new GridLayout(1, 4, 10, 10));
-   //     playerPanel.setOpaque(false);
+        //      playerPanel.setLayout(new GridLayout(1, 4, 10, 10));
+        //     playerPanel.setOpaque(false);
 
         bigPanel = new JPanel();
         bigPanel.setLayout(new BorderLayout());
@@ -83,6 +83,7 @@ public class InitializedView extends JPanel implements ActionListener, PropertyC
         this.add(this.bottomPanel, BorderLayout.SOUTH);
 
     }
+
     public void actionPerformed(ActionEvent e) {
         System.out.println("Click " + e.getActionCommand());
     }
@@ -110,17 +111,17 @@ public class InitializedView extends JPanel implements ActionListener, PropertyC
                 bottomPanel = panel;
             }
 
-            for (JPanel panel2 : panels) {
+            for (JPanel panel0 : panels) {
                 if (i == 0) {
-                    playerPanel = panel2;
+                    playerPanel = panel0;
                 } else if (i == 1) {
-                    getCardPanel = panel2;
+                    getCardPanel = panel0;
                 } else if (i == 2) {
-                    cardButtonPanel = panel2;
+                    cardButtonPanel = panel0;
                 } else if (i == 3) {
-                    funCardPanel = panel2;
+                    funCardPanel = panel0;
                 } else if (i == 4) {
-                    bottomPanel = panel2;
+                    bottomPanel = panel0;
                 }
 
                 i += 1;
@@ -205,5 +206,4 @@ public class InitializedView extends JPanel implements ActionListener, PropertyC
 
         g2d.dispose();
     }
-
 }

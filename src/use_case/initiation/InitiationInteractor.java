@@ -14,7 +14,7 @@ import java.util.Map;
 
 public class InitiationInteractor implements InitiationInputDataBoundary {
     public static Game game;
-    final FileUserDataAccessObject fileUserDataAccessObject;
+    final InitiationDataAccessInterface fileUserDataAccessObject;
     final InitiationOutputDataBoundary initiationOutputDataBoundary;
     final DrawCardsDataAccessInterface drawCardsDataAccessInterface;
     final FindPlayableCardsInterface findPlayableCardsInterface;
