@@ -116,7 +116,7 @@ public class GameTest extends TestCase {
         game.addNumCardsinRound(card1);
         game.addNumCardsinRound(card2);
         assertEquals(game.getNumCardsinRound().get(0), card1);
-        assertEquals(game.getNumCardsinRound().get(0), card2);
+        assertEquals(game.getNumCardsinRound().get(1), card2);
     }
 
     public void testGetMaxCardNumInitialValue() {
