@@ -25,7 +25,7 @@ public class ConfirmInteractor implements ConfirmInputDataBoundary{
 
         game.setCurrSelectedNumberCard(null);
         game.addNumCardsinRound(selectedNumCard);
-        game.setCurrSelectedFunCard(null);
+        game.setCurrSelectedFunCard(new ArrayList<>());
 
         for (FunctionalCard functionalCard : selectedFunCard){
             if (functionalCard instanceof PlusTwoCard){

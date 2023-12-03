@@ -23,7 +23,7 @@ public class PostTurnInteractor implements PostTurnInputDataBoundary{
 
     @Override
     public void execute(PostTurnInputData inputData) {
-        NumberCardsDeck numberCardsDeck = game.getNumberCardDeck();
+        NumberCardsDeck numberCardsDeck = game.getNumberCardDeck();//TODO: NumberCardDeck hasn't been set up in Game
         int currPlayerIndex = inputData.getCurrPlayerIndex();
         ArrayList<FunctionalCard> functionalCards = inputData.getFuncCards();
         ArrayList<NumberCard> numberCards = inputData.getNumberCards();

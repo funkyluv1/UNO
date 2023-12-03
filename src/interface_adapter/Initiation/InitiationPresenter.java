@@ -22,10 +22,7 @@ public class InitiationPresenter implements InitiationOutputDataBoundary {
     private final BottomPanelViewModel bottomPanelViewModel;
     private final CardButtonPanelViewModel cardButtonPanelViewModel;
     private final FunCardButtonPanelViewModel funCardButtonPanelViewModel;
-
-
-    //TODO: missing one Panel for FunctionalCards buttons
-    private ViewManagerModel viewManagerModel;
+    private final ViewManagerModel viewManagerModel;
     private final InitializedViewModel initializedViewModel;
 
     public InitiationPresenter(ViewManagerModel viewManagerModel,
@@ -44,6 +41,8 @@ public class InitiationPresenter implements InitiationOutputDataBoundary {
     @Override
     public void prepareNewGameView(InitiationOutputData initiationOutputData) {
         // On success, switch to the initialized view.
+        ArrayList<String> playerNames = initiationOutputData.getPlayerNames();
+
         PlayerPanelState playerPanelState = playerPanelViewModel.getState();
         playerPanelState.setPlayer(initiationOutputData.getPlayerNames());
         this.playerPanelViewModel.setState(playerPanelState);
@@ -51,10 +50,15 @@ public class InitiationPresenter implements InitiationOutputDataBoundary {
 
         GetCardPanelState getCardPanelState = getCardPanelViewModel.getState();
         getCardPanelState.setTopCard(game.getTopCard());
+        if (initiationOutputData.getPlayerPlayableNumCards().get(playerNames.get(0)).equals(new ArrayList<>())){
+            getCardPanelState.setGetCardEnabled(true);
+        } else {getCardPanelState.setGetCardEnabled(false);}
+        getCardPanelState.setUndoEnabled(false);
+        getCardPanelViewModel.setState(getCardPanelState);
         this.getCardPanelViewModel.firePropertyChanged();
 
         CardButtonPanelState cardButtonPanelState = cardButtonPanelViewModel.getState();
-        ArrayList<String> playerNames = initiationOutputData.getPlayerNames();
+
 
         cardButtonPanelState.set_players(playerNames);
         cardButtonPanelState.set_cards(initiationOutputData.getPlayerNumCards().get(playerNames.get(0)),
@@ -68,7 +72,8 @@ public class InitiationPresenter implements InitiationOutputDataBoundary {
         if (cardButtonPanelState.get_Number_Cards().size() > 3){
             cardButtonPanelState.setRightButtonEnabled(true);
             cardButtonPanelState.setLeftButtonEnabled(false);
-        } else {
+        }
+        else {
             cardButtonPanelState.setRightButtonEnabled(false);
             cardButtonPanelState.setLeftButtonEnabled(false);
         }

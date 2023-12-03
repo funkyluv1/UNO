@@ -19,37 +19,63 @@ public class NextTurnPresenter implements NextTurnOutputDataBoundary {
 
     private final FunCardButtonPanelViewModel funCardButtonPanelViewModel;
 
+    private final BottomPanelViewModel bottomPanelViewModel;
+    private final GetCardPanelViewModel getCardPanelViewModel;
+
     public NextTurnPresenter(PlayerPanelViewModel playerPanelViewModel, CardButtonPanelViewModel cardButtonPanelViewModel, ViewManagerModel viewManagerModel,
-                             FunCardButtonPanelViewModel funCardButtonPanelViewModel){
+                             FunCardButtonPanelViewModel funCardButtonPanelViewModel, BottomPanelViewModel bottomPanelViewModel,
+                             GetCardPanelViewModel getCardPanelViewModel){
         this.playerPanelViewModel = playerPanelViewModel;
         this.funCardButtonPanelViewModel = funCardButtonPanelViewModel;
         this.cardButtonPanelViewModel = cardButtonPanelViewModel;
         this.viewManagerModel = viewManagerModel;
-
+        this.bottomPanelViewModel = bottomPanelViewModel;
+        this.getCardPanelViewModel = getCardPanelViewModel;
     }
 
     public void prepare_view(NextTurnOutputData nextTurnOutputData){
         CardButtonPanelState cardButtonPanelState = cardButtonPanelViewModel.getState();
-        cardButtonPanelState.setOneCardSelected(false);
+        BottomPanelState bottomPanelState = bottomPanelViewModel.getState();
         PlayerPanelState playerPanelState = playerPanelViewModel.getState();
         FunCardButtonPanelState funCardButtonPanelState = funCardButtonPanelViewModel.getState();
+
         if (nextTurnOutputData.getPlayer_index() == 3){
             //change color
         }
-        funCardButtonPanelState.set_cards(nextTurnOutputData.getFunctionalCards(),nextTurnOutputData.getPlayerplayablefuncards(), 0);
-        funCardButtonPanelState.setAllButtonDisable(false);
-        cardButtonPanelState.set_cards(nextTurnOutputData.getnumcards(), nextTurnOutputData.getPlayerplayablenumcards(), 0);
         playerPanelState.setCurrent_player_index(nextTurnOutputData.getPlayer_index());
         this.playerPanelViewModel.setState(playerPanelState);
         this.playerPanelViewModel.firePropertyChanged();
 
+        GetCardPanelState getCardPanelState = getCardPanelViewModel.getState();
+        if (nextTurnOutputData.getPlayerplayablenumcards().equals(new ArrayList<>())){
+            getCardPanelState.setGetCardEnabled(true);
+        } else {getCardPanelState.setGetCardEnabled(false);}
+        getCardPanelState.setUndoEnabled(false);
+        getCardPanelViewModel.setState(getCardPanelState);
+        getCardPanelViewModel.firePropertyChanged();
+
+        funCardButtonPanelState.set_cards(nextTurnOutputData.getFunctionalCards(),nextTurnOutputData.getPlayerplayablefuncards(), 0);
+        funCardButtonPanelState.setAllButtonDisable(false);
         this.funCardButtonPanelViewModel.setState(funCardButtonPanelState);
         this.funCardButtonPanelViewModel.firePropertyChanged();
 
+        cardButtonPanelState.set_cards(nextTurnOutputData.getnumcards(), nextTurnOutputData.getPlayerplayablenumcards(), 0);
+        cardButtonPanelState.setOneCardSelected(false);
+        if (cardButtonPanelState.get_Number_Cards().size() > 3){
+            cardButtonPanelState.setRightButtonEnabled(true);
+            cardButtonPanelState.setLeftButtonEnabled(false);
+        }
+        else {
+            cardButtonPanelState.setRightButtonEnabled(false);
+            cardButtonPanelState.setLeftButtonEnabled(false);
+        }
         this.cardButtonPanelViewModel.setState(cardButtonPanelState);
         this.cardButtonPanelViewModel.firePropertyChanged();
 
-
+        bottomPanelState.setConfirmButtonEnabled(false);
+        bottomPanelState.setNextButtonEnabled(false);
+        bottomPanelViewModel.setState(bottomPanelState);
+        this.bottomPanelViewModel.firePropertyChanged();
     }
 
 }
