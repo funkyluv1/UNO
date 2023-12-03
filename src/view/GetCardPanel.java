@@ -17,7 +17,7 @@ import java.beans.PropertyChangeSupport;
 
 public class GetCardPanel extends JPanel implements PropertyChangeListener {
     Panel panel = new Panel(2);
-    Game game;
+    Game game = Game.getInstance();
     JButton getCardButton;
     JButton undoButton;
     JLabel topCard;
@@ -32,7 +32,7 @@ public class GetCardPanel extends JPanel implements PropertyChangeListener {
         this.undoController = undoController;
 
         undoButton = new JButton("Undo");
-        undoButton.setPreferredSize(new Dimension(20, 40));
+        undoButton.setPreferredSize(new Dimension(100, 40));
         undoButton.setBackground(Color.BLACK);
         undoButton.setForeground(Color.WHITE);
         undoButton.setOpaque(true);
@@ -55,14 +55,16 @@ public class GetCardPanel extends JPanel implements PropertyChangeListener {
 
         ImageIcon icon = new ImageIcon("");
         topCard = new JLabel(icon);
+        topCard.setPreferredSize(new Dimension(100, 150));
         panel.add(topCard);
 
         getCardButton = new JButton();
-        getCardButton.setPreferredSize(new Dimension(20, 40));
+        getCardButton.setPreferredSize(new Dimension(100, 150));
+        getCardButton.setText("Get Card");
         getCardButton.setBorder(BorderFactory.createEmptyBorder());
         getCardButton.setBackground(Color.BLACK);
         getCardButton.setForeground(Color.WHITE);
-        getCardButton.setFont(new Font("Arial", Font.BOLD, 14));
+        getCardButton.setFont(new Font("Arial", Font.BOLD, 15));
         getCardButton.setOpaque(true);
         panel.add(getCardButton);
 

@@ -73,23 +73,23 @@ public class InitializedViewModel extends ViewModel implements PropertyChangeLis
         Panel panel = (Panel) evt.getNewValue();
         if (panel.getId() == 1){
             panels.remove(this.playerPanel);
-            panels.add((JPanel) panel);
+            panels.add(0, (JPanel) panel);
             this.playerPanel = (JPanel) panel;
         } else if (panel.getId() == 2){
             panels.remove(this.getCardPanel);
-            panels.add((JPanel) panel);
+            panels.add(1, (JPanel) panel);
             this.getCardPanel = (JPanel) panel;
         }else if (panel.getId() == 3){
             panels.remove(this.cardButtonPanel);
-            panels.add((JPanel) panel);
+            panels.add(2, (JPanel) panel);
             this.cardButtonPanel = (JPanel) panel;
         }else if (panel.getId() == 4){
             panels.remove(this.funCardButtonPanel);
-            panels.add((JPanel) panel);
+            panels.add(3, (JPanel) panel);
             this.funCardButtonPanel = (JPanel) panel;
         } else {
             panels.remove(this.bottomPanel);
-            panels.add((JPanel) panel);
+            panels.add(4, (JPanel) panel);
             this.bottomPanel = (JPanel) panel;
         }
         this.firePropertyChanged();
