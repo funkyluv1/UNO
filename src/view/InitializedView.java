@@ -87,7 +87,7 @@ public class InitializedView extends JPanel implements ActionListener, PropertyC
         bigPanel.setLayout(new BorderLayout());
         playerPanel.setPreferredSize(new Dimension(1200, 100));
         playerPanel.setBounds(0,0,1200,100);
-        playerPanel.setBackground(Color.red);
+        playerPanel.setBackground(Color.WHITE);
 
         bigPanel.setPreferredSize(new Dimension(1200, 600));
         bigPanel.setBounds(0, 100, 1200,800);

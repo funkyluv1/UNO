@@ -6,7 +6,8 @@ import entities.card.NumberCard;
 import java.util.ArrayList;
 
 public interface DrawCardsDataAccessInterface {
-    public NumberCardsDeck createNumberCardsDeck();
+//    public NumberCardsDeck createNumberCardsDeck();
+    public NumberCardsDeck returnNumberCardsDeck();
     public void reshuffleNumberCardsDeck(NumberCardsDeck numberCardsDeck);
     ArrayList<NumberCard> drawNumberCards(NumberCardsDeck numberCardsDeck, int drawNumber);
 }

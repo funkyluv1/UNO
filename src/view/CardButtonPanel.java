@@ -84,9 +84,6 @@ public class CardButtonPanel extends JPanel implements PropertyChangeListener {
         this.rightButton = rightShift;
         playpanel.add(this.rightButton);
 
-
-
-
     }
     @Override
     public void propertyChange(PropertyChangeEvent evt) {

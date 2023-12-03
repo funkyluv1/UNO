@@ -22,9 +22,9 @@ public class GetCardPanel extends JPanel implements PropertyChangeListener {
     Game game = Game.getInstance();
     JButton getCardButton;
     JButton undoButton;
-    JLabel topCard;
+    CardButton topCard;
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);
-    private final GetCardPanelViewModel getCardViewModel;
+    private final GetCardPanelViewModel getCardPanelViewModel;
     private final UndoController undoController;
     private final GetCardController getCardController;
     private int id = 2;
@@ -32,18 +32,18 @@ public class GetCardPanel extends JPanel implements PropertyChangeListener {
     private CardButtonPanelViewModel cardButtonPanelViewModel;
 
     public GetCardPanel(GetCardPanelViewModel getCardPanelViewModel, UndoController undoController, GetCardController getCardController, BottomPanelViewModel bottomPanelViewModel, CardButtonPanelViewModel cardButtonPanelViewModel) {
-        this.getCardViewModel = getCardPanelViewModel;
-        this.getCardViewModel.addPropertyChangeListener(this);
+        this.getCardPanelViewModel = getCardPanelViewModel;
+        this.getCardPanelViewModel.addPropertyChangeListener(this);
         this.undoController = undoController;
         this.bottomPanelViewModel = bottomPanelViewModel;
         this.getCardController = getCardController;
         this.cardButtonPanelViewModel = cardButtonPanelViewModel;
 
-        undoButton = new JButton("Undo");
-        undoButton.setPreferredSize(new Dimension(100, 40));
-        undoButton.setBackground(Color.BLACK);
-        undoButton.setForeground(Color.WHITE);
-        undoButton.setOpaque(true);
+        undoButton = new TextButton("Undo");
+//        undoButton.setPreferredSize(new Dimension(100, 40));
+//        undoButton.setBackground(Color.BLACK);
+//        undoButton.setForeground(Color.WHITE);
+//        undoButton.setOpaque(true);
         panel.add(undoButton);
 
         undoButton.addActionListener(
@@ -62,19 +62,17 @@ public class GetCardPanel extends JPanel implements PropertyChangeListener {
                 }
         );
 
-        ImageIcon icon = new ImageIcon("");
-        topCard = new JLabel(icon);
-        topCard.setPreferredSize(new Dimension(100, 150));
+        topCard = new CardButton();
         panel.add(topCard);
 
-        getCardButton = new JButton();
-        getCardButton.setPreferredSize(new Dimension(100, 150));
-        getCardButton.setText("Get Card");
-        getCardButton.setBorder(BorderFactory.createEmptyBorder());
-        getCardButton.setBackground(Color.BLACK);
-        getCardButton.setForeground(Color.WHITE);
-        getCardButton.setFont(new Font("Arial", Font.BOLD, 15));
-        getCardButton.setOpaque(true);
+        getCardButton = new CardButton();
+//        getCardButton.setPreferredSize(new Dimension(100, 150));
+        getCardButton.setText("<html> Get<br>Card</html>");
+//        getCardButton.setBorder(BorderFactory.createEmptyBorder());
+//        getCardButton.setBackground(Color.BLACK);
+//        getCardButton.setForeground(Color.WHITE);
+        getCardButton.setFont(new Font("Arial", Font.BOLD, 22));
+        getCardButton.setOpaque(false);
         panel.add(getCardButton);
 
         getCardButton.addActionListener(
@@ -84,7 +82,10 @@ public class GetCardPanel extends JPanel implements PropertyChangeListener {
                         if(e.getSource() == getCardButton) {
 
                             getCardController.execute(game.getCurrentPlayerIndex());
-                            getCardButton.setEnabled(false);
+                            GetCardPanelState getCardPanelState = getCardPanelViewModel.getState();
+                            getCardPanelState.setGetCardEnabled(false);
+                            getCardPanelViewModel.setState(getCardPanelState);
+                            getCardPanelViewModel.firePropertyChanged();
 
                             BottomPanelState bottomPanelState = bottomPanelViewModel.getState();
                             bottomPanelState.setNextButtonEnabled(true);
@@ -104,14 +105,20 @@ public class GetCardPanel extends JPanel implements PropertyChangeListener {
     }
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-        getCardButton.setEnabled(this.getCardViewModel.getState().isGetCardEnabled());
-        undoButton.setEnabled(this.getCardViewModel.getState().isUndoEnabled());
-        String name = getCardViewModel.getState().getTopCard().getString();
 
-        if (name.charAt(1) == 'B'){topCard.setBackground(Color.BLUE);}
-        else if (name.charAt(1) == 'R'){topCard.setBackground(Color.RED);}
-        else if (name.charAt(1) == 'G'){topCard.setBackground(Color.GREEN);}
+        getCardButton.setEnabled(this.getCardPanelViewModel.getState().isGetCardEnabled());
+
+        if (cardButtonPanelViewModel.getState().getPlayerPlayableNumCards() != null) {
+            getCardButton.setEnabled(cardButtonPanelViewModel.getState().getPlayerPlayableNumCards().isEmpty());
+        }
+
+        undoButton.setEnabled(this.getCardPanelViewModel.getState().isUndoEnabled());
+        String name = getCardPanelViewModel.getState().getTopCard().getString();
+
+
         topCard.setText(name);
+        topCard.setEnabled(false);
+
 
         this.firePropertyChange();
     }

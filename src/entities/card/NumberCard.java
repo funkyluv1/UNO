@@ -6,5 +6,5 @@ public class NumberCard extends Card {
         String id = "number_card_" + color + "_" + Integer.toString(value);
         super.changeID(Integer.toString(value));
     }
-    public String getString(){return String.valueOf(this.getValue()) + this.getColor().charAt(0);}
+    public String getString(){return String.valueOf(this.getValue()) + Character.toUpperCase(this.getColor().charAt(0));}
 }

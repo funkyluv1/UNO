@@ -72,8 +72,8 @@ public class InitiationInteractorTest extends TestCase {
         DrawCardsDataAccessInterface drawCardsDataAccessInterface = new DrawCardsDataAccessInterface() {
             APIDataAccessObject apidao = new APIDataAccessObject();
             @Override
-            public NumberCardsDeck createNumberCardsDeck() {
-                return apidao.createNumberCardsDeck();
+            public NumberCardsDeck returnNumberCardsDeck() {
+                return apidao.returnNumberCardsDeck();
             }
 
             @Override

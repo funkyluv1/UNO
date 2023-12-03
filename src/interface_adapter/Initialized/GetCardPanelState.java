@@ -4,7 +4,7 @@ import entities.card.NumberCard;
 
 public class GetCardPanelState {
     private boolean undoEnabled = false;
-    private boolean getCardEnabled = false;
+    private boolean getCardEnabled = true;
 
     private NumberCard topCard = null;
 

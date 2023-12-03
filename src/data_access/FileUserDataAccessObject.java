@@ -238,8 +238,4 @@ public class FileUserDataAccessObject implements InitiationDataAccessInterface,
         playerInfo.get(player).setNumCards(hand);
     }
 
-    @Override
-    public NumberCardsDeck getNumberCardsDeck() {
-        return game.getNumberCardDeck();
-    }
 }

@@ -30,10 +30,12 @@ public class PreTurnInteractor implements PreTurnInputDataBoundary {
         ArrayList<FunctionalCard> plusCards = new ArrayList<>();
         boolean hasPlusCard = false;
 
-        for (FunctionalCard functionalCard : functionalCards){
-            if (functionalCard.getType().equals("PlusTwo") || functionalCard.getType().equals("PlusFour")){
-                plusCards.add(functionalCard);
-                hasPlusCard = true;
+        if (functionalCards != null) {
+            for (FunctionalCard functionalCard : functionalCards) {
+                if (functionalCard.getType().equals("PlusTwo") || functionalCard.getType().equals("PlusFour")) {
+                    plusCards.add(functionalCard);
+                    hasPlusCard = true;
+                }
             }
         }
 

@@ -37,9 +37,28 @@ public class PlayerPanel extends JPanel implements PropertyChangeListener {
 //        colorList.add(new Color(255, 255, 210));
 //        colorList.add(new Color(144, 238, 144));
 //        colorList.add(new Color(255, 224, 255));
+
         for (int i = 0; i <= 3; i++) {
             JPanel playerInfo = new JPanel();
-            playerInfo.setBorder(BorderFactory.createLineBorder(Color.WHITE, 15));
+            playerInfo.setFont(new Font("Comic Sans MS", Font.BOLD, 24));
+            playerInfo.setForeground(Color.WHITE);
+
+            switch (i) {
+                case 0:
+                    playerInfo.setBackground(Color.RED);
+                    break;
+                case 1:
+                    playerInfo.setBackground(Color.GREEN);
+                    break;
+                case 2:
+                    playerInfo.setBackground(Color.BLUE);
+                    break;
+                case 3:
+                    playerInfo.setBackground(Color.YELLOW);
+                    break;
+            }
+
+            playerInfo.setBorder(BorderFactory.createLineBorder(Color.WHITE, 10));
             Dimension preferredSize = playerInfo.getPreferredSize();
             preferredSize.height = 120;
             preferredSize.width = 280;
@@ -47,7 +66,7 @@ public class PlayerPanel extends JPanel implements PropertyChangeListener {
             JLabel usernameLabel = new JLabel(players.get(i));
             playerInfo.add(usernameLabel);
             PlayerPanel.add(playerInfo);
-            playerInfo.setBackground(Color.WHITE);
+//            playerInfo.setBackground(Color.WHITE);
             playernames.add(playerInfo);
         }
 

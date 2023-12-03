@@ -6,5 +6,5 @@ import entities.card.NumberCard;
 public interface GetCardDataAccessInterface {
 
     void recordGetCard(int index, NumberCard numberCard);
-    NumberCardsDeck getNumberCardsDeck();
+
 }

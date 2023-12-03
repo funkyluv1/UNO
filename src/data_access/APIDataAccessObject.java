@@ -8,10 +8,17 @@ import use_case.DrawCards.DrawCardsResponseExtractFacade;
 import java.util.ArrayList;
 
 public class APIDataAccessObject implements DrawCardsDataAccessInterface {
+
+    private NumberCardsDeck numberCardsDeck;
     public APIDataAccessObject() {
+        this.numberCardsDeck = createNumberCardsDeck();
     }
 
     @Override
+    public NumberCardsDeck returnNumberCardsDeck() {
+        return numberCardsDeck;
+    }
+
     public NumberCardsDeck createNumberCardsDeck() {
 
         String apiUrl = "https://deckofcardsapi.com/api/deck/new/shuffle/?cards=AS,AH,AC,AD,2S,2D,2C,2H,3S,3H,3C,3D,4S,4C,4D,4H,5S,5H,5C,5D,6S,6H,6C,6D,7S,7H,7C,7D,8S,8H,8C,8D,9C,9D,9S,9H,10S,10H,10C,10D";
