@@ -1,8 +1,10 @@
 package use_case.GetCard;
 
+import entities.NumberCardsDeck.NumberCardsDeck;
 import entities.card.NumberCard;
 
 public interface GetCardDataAccessInterface {
 
-    void getCard(String playerName, NumberCard numberCard);
+    void recordGetCard(int index, NumberCard numberCard);
+    NumberCardsDeck getNumberCardsDeck();
 }

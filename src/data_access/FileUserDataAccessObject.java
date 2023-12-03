@@ -224,15 +224,21 @@ public class FileUserDataAccessObject implements InitiationDataAccessInterface,
     }
 
     @Override
-    public void getCard(String player, NumberCard card) {
+    public String get_specific_player_with_index(int player_index) {
+        ArrayList<String> usernames = new ArrayList<>(playerInfo.keySet());
+        return playerInfo.get(usernames.get(player_index % 4)).playerName;
+    }
+
+    @Override
+    public void recordGetCard(int index, NumberCard numberCard) {
+        String player = get_specific_player_with_index(index);
         ArrayList<NumberCard> hand = playerInfo.get(player).getNumberCards();
-        hand.add(card);
+        hand.add(numberCard);
         playerInfo.get(player).setNumCards(hand);
     }
 
     @Override
-    public String get_specific_player_with_index(int player_index) {
-        ArrayList<String> usernames = new ArrayList<>(playerInfo.keySet());
-        return playerInfo.get(usernames.get(player_index % 4)).playerName;
+    public NumberCardsDeck getNumberCardsDeck() {
+        return game.getNumberCardDeck();
     }
 }

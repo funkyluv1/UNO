@@ -66,5 +66,13 @@ public class CardButtonPanelState{
         }
         public void setOneCardSelected(boolean flag){this.oneCardSelected = flag;};
         public boolean getOneCardsSelected(){return this.oneCardSelected;};
+
+        public void setPlayerNumCards(ArrayList<NumberCard> playerNumCards) {
+            this.playerNumCards = playerNumCards;
+        }
+
+        public ArrayList<NumberCard> getPlayerNumCards() {
+            return playerNumCards;
+        }
 }
 

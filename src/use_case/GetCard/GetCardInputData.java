@@ -2,12 +2,12 @@ package use_case.GetCard;
 
 public class GetCardInputData {
 
-    private final String playerName;
+    private final int index;
 
-    public GetCardInputData(String playerName) {
-        this.playerName = playerName;
+    public GetCardInputData(int index) {
+        this.index = index;
     }
 
-    public String getPlayerName() {return this.playerName;}
+    public int getindex() {return this.index;}
 
 }

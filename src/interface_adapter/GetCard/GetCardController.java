@@ -13,8 +13,8 @@ public class GetCardController {
         this.getCardInteractor = getCardInteractor;
     }
 
-    public void execute(String player) {
-        GetCardInputData inputData = new GetCardInputData(player);
+    public void execute(int index) {
+        GetCardInputData inputData = new GetCardInputData(index);
         this.getCardInteractor.execute(inputData);
     }
 
