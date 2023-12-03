@@ -4,11 +4,17 @@ import entities.NumberCardsDeck.NumberCardsDeck;
 import entities.card.FunctionalCard;
 import entities.card.NumberCard;
 import junit.framework.TestCase;
+import org.junit.Before;
 
 import java.util.ArrayList;
 
 public class GameTest extends TestCase {
     private Game game = new Game();
+
+    @Before
+    public void init(){
+
+    }
 
     public void testGetInstance() {
         assertTrue(game.getInstance() != null);
