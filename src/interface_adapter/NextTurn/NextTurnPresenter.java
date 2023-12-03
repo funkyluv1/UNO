@@ -19,17 +19,20 @@ public class NextTurnPresenter implements NextTurnOutputDataBoundary {
 
     private final FunCardButtonPanelViewModel funCardButtonPanelViewModel;
 
+    private final BottomPanelViewModel bottomPanelViewModel;
+
     public NextTurnPresenter(PlayerPanelViewModel playerPanelViewModel, CardButtonPanelViewModel cardButtonPanelViewModel, ViewManagerModel viewManagerModel,
-                             FunCardButtonPanelViewModel funCardButtonPanelViewModel){
+                             FunCardButtonPanelViewModel funCardButtonPanelViewModel, BottomPanelViewModel bottomPanelViewModel){
         this.playerPanelViewModel = playerPanelViewModel;
         this.funCardButtonPanelViewModel = funCardButtonPanelViewModel;
         this.cardButtonPanelViewModel = cardButtonPanelViewModel;
         this.viewManagerModel = viewManagerModel;
-
+        this.bottomPanelViewModel = bottomPanelViewModel;
     }
 
     public void prepare_view(NextTurnOutputData nextTurnOutputData){
         CardButtonPanelState cardButtonPanelState = cardButtonPanelViewModel.getState();
+        BottomPanelState bottomPanelState = bottomPanelViewModel.getState();
         cardButtonPanelState.setOneCardSelected(false);
         PlayerPanelState playerPanelState = playerPanelViewModel.getState();
         FunCardButtonPanelState funCardButtonPanelState = funCardButtonPanelViewModel.getState();
@@ -46,9 +49,21 @@ public class NextTurnPresenter implements NextTurnOutputDataBoundary {
         this.funCardButtonPanelViewModel.setState(funCardButtonPanelState);
         this.funCardButtonPanelViewModel.firePropertyChanged();
 
+        if (cardButtonPanelState.get_Number_Cards().size() > 3){
+            cardButtonPanelState.setRightButtonEnabled(true);
+            cardButtonPanelState.setLeftButtonEnabled(false);
+        }
+        else {
+            cardButtonPanelState.setRightButtonEnabled(false);
+            cardButtonPanelState.setLeftButtonEnabled(false);
+        }
         this.cardButtonPanelViewModel.setState(cardButtonPanelState);
         this.cardButtonPanelViewModel.firePropertyChanged();
 
+        bottomPanelState.setConfirmButtonEnabled(false);
+        bottomPanelState.setNextButtonEnabled(false);
+        bottomPanelViewModel.setState(bottomPanelState);
+        this.bottomPanelViewModel.firePropertyChanged();
 
     }
 
