@@ -50,6 +50,7 @@ public class UndoPresenter implements UndoOutputDataBoundary {
 
         BottomPanelState bottomPanelState = bottomPanelViewModel.getState();
         bottomPanelState.setNextButtonEnabled(false);
+        bottomPanelState.setConfirmButtonEnabled(false);
         bottomPanelViewModel.setState(bottomPanelState);
         bottomPanelViewModel.firePropertyChanged();
 
