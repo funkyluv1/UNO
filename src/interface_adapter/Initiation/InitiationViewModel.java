@@ -6,7 +6,7 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 public class InitiationViewModel extends ViewModel {
     public static final String TITLE_LABEL = "Initiation View";
-    public static final String INITIATION_BUTTON_LABEL = "Initiation";
+    public static final String INITIATION_BUTTON_LABEL = "Initiate!";
 
     private InitiationState state = new InitiationState();
 

@@ -17,7 +17,7 @@ import java.beans.PropertyChangeSupport;
 
 public class GetCardPanel extends JPanel implements PropertyChangeListener {
     Panel panel = new Panel(2);
-    Game game;
+    Game game = Game.getInstance();
     JButton getCardButton;
     JButton undoButton;
     JLabel topCard;
