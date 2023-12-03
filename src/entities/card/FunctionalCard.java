@@ -3,7 +3,7 @@ package entities.card;
 import entities.player.Player;
 
 public class FunctionalCard extends Card {
-    String type;
+    private final String type;
     /**
      * Constructs a new Card object, with its value attribute set to [value], color
      * attribute set to [color], player attribute initialized to null, isUsable
