@@ -43,7 +43,7 @@ public class ConfirmPresenter implements ConfirmOutputDataBoundary {
         funCardButtonPanelViewModel.firePropertyChanged();
 
         GetCardPanelState getCardPanelState = getCardPanelViewModel.getState();
-        getCardPanelState.setUndoEnabled(false);
+        getCardPanelState.setUndoEnabled(true);
         getCardPanelState.setGetCardEnabled(false);
         getCardPanelViewModel.setState(getCardPanelState);
         getCardPanelViewModel.firePropertyChanged();

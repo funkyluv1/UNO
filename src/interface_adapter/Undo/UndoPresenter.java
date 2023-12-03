@@ -1,37 +1,49 @@
 package interface_adapter.Undo;
 
-import interface_adapter.Initialized.CardButtonPanelState;
-import interface_adapter.Initialized.CardButtonPanelViewModel;
-import interface_adapter.Initialized.GetCardPanelState;
-import interface_adapter.Initialized.GetCardPanelViewModel;
+import interface_adapter.GetCard.GetCardViewModel;
+import interface_adapter.Initialized.*;
 import interface_adapter.ViewManagerModel;
+import use_case.GetCard.GetCardOutputData;
+import use_case.GetCard.GetCardOutputDataBoundary;
 import use_case.Undo.UndoOutputData;
 import use_case.Undo.UndoOutputDataBoundary;
-import view.CardButtonPanel;
 
 public class UndoPresenter implements UndoOutputDataBoundary {
-    final private GetCardPanelViewModel getCardPanelViewModel;
-    final private CardButtonPanelViewModel cardButtonPanelViewModel;
+
     private ViewManagerModel viewManagerModel;
+    private GetCardPanelViewModel getCardPanelViewModel;
+    private CardButtonPanelViewModel cardButtonPanelViewModel;
+    private FunCardButtonPanelViewModel funCardButtonPanelViewModel;
 
     public UndoPresenter(ViewManagerModel viewManagerModel, GetCardPanelViewModel getCardPanelViewModel,
-                         CardButtonPanelViewModel cardButtonPanelViewModel) {
+                            CardButtonPanelViewModel cardButtonPanelViewModel, FunCardButtonPanelViewModel funCardButtonPanelViewModel) {
         this.viewManagerModel = viewManagerModel;
         this.getCardPanelViewModel = getCardPanelViewModel;
+        this.funCardButtonPanelViewModel = funCardButtonPanelViewModel;
         this.cardButtonPanelViewModel = cardButtonPanelViewModel;
     }
-
     @Override
     public void prepareUndoView(UndoOutputData undoOutputData) {
-        GetCardPanelState state = getCardPanelViewModel.getState();
-        state.setUndoEnabled(false);
-        getCardPanelViewModel.setState(state);
+        GetCardPanelState getCardPanelState = getCardPanelViewModel.getState();
+        getCardPanelState.setUndoEnabled(false);
+        getCardPanelViewModel.setState(getCardPanelState);
         getCardPanelViewModel.firePropertyChanged();
 
         CardButtonPanelState cardButtonPanelState = cardButtonPanelViewModel.getState();
         cardButtonPanelState.setOneCardSelected(false);
+        if (cardButtonPanelState.getdisplayCardsFirstIndex() > 0){
+            cardButtonPanelState.setLeftButtonEnabled(true);
+        } else {cardButtonPanelState.setLeftButtonEnabled(false);}
+        if (cardButtonPanelState.getdisplayCardsFirstIndex() + 3 >= cardButtonPanelState.get_Number_Cards().size()){
+            cardButtonPanelState.setRightButtonEnabled(false);}
+        else {cardButtonPanelState.setRightButtonEnabled(true);}
         cardButtonPanelViewModel.setState(cardButtonPanelState);
         cardButtonPanelViewModel.firePropertyChanged();
+
+        FunCardButtonPanelState funCardButtonPanelState = funCardButtonPanelViewModel.getState();
+        funCardButtonPanelState.setAllButtonDisable(false);
+        funCardButtonPanelViewModel.setState(funCardButtonPanelState);
+        funCardButtonPanelViewModel.firePropertyChanged();
 
         viewManagerModel.setActiveView("Initialized");
         viewManagerModel.firePropertyChanged();

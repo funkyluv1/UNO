@@ -11,9 +11,9 @@ public class LeftShiftInteractor implements LeftShiftInputDataBoundary {
     }
     @Override
     public void execute(LeftShiftInputData leftShiftInputData) {
-        if (leftShiftInputData.getDisplayCardFirstIndex() > 0){
+        if (leftShiftInputData.getDisplayCardFirstIndex() > 1){
             leftShiftActive = true;
-        }
+        } else {leftShiftActive = false;};
         LeftShiftOutputData leftShiftOutputData = new LeftShiftOutputData(leftShiftActive);
         if (leftShiftInputData.getFlag_For_Func()){
             leftShiftOutputDataBoundary.prepareSuccessView(leftShiftOutputData, leftShiftInputData.getFlag_For_Func());

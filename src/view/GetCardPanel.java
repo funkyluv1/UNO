@@ -45,9 +45,6 @@ public class GetCardPanel extends JPanel implements PropertyChangeListener {
                         if(evt.getSource().equals(undoButton)) {
                             UndoInputData inputData = new UndoInputData((Card) game.getCurrSelectedNumberCard());
                             undoController.execute(inputData);
-                            GetCardPanelState state = new GetCardPanelState();
-                            state.setUndoEnabled(false);
-                            getCardPanelViewModel.setState(state);
                         }
                     }
                 }

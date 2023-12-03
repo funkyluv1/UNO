@@ -19,9 +19,9 @@ public class RightShiftInteractor implements RightShiftInputDataBoundary{
     }
 
     public void execute(RightShiftInputData rightShiftInputData) {
-        if (rightShiftInputData.getDisplayCardFirstIndex() + 3 >= rightShiftInputData.getPlayerNumcards().size()){
+        if (rightShiftInputData.getDisplayCardFirstIndex() + 4 >= rightShiftInputData.getPlayerNumcards().size()){
             rightShiftActive = false;
-        }
+        } else {rightShiftActive = true;}
         RightShiftOutputData rightShiftOutputData = new RightShiftOutputData(rightShiftActive);
         if (!rightShiftInputData.getFlag_for_func()){
             rightShiftOutputDataBoundary.prepareSuccessView(rightShiftOutputData);
