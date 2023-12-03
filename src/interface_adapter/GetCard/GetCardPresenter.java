@@ -1,5 +1,8 @@
 package interface_adapter.GetCard;
 
+import interface_adapter.Initialized.CardButtonPanelViewModel;
+import interface_adapter.Initialized.FunCardButtonPanelViewModel;
+import interface_adapter.Initialized.GetCardPanelState;
 import interface_adapter.ViewManagerModel;
 import use_case.GetCard.GetCardOutputData;
 import use_case.GetCard.GetCardOutputDataBoundary;

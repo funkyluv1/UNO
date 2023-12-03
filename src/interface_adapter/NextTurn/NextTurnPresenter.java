@@ -5,10 +5,11 @@ import entities.card.NumberCard;
 import interface_adapter.Initialized.*;
 import interface_adapter.ViewManagerModel;
 import use_case.NextTurn.NextTurnOutputData;
+import use_case.NextTurn.NextTurnOutputDataBoundary;
 
 import java.util.ArrayList;
 
-public class NextTurnPresenter {
+public class NextTurnPresenter implements NextTurnOutputDataBoundary {
     private final PlayerPanelViewModel playerPanelViewModel;
 
     private final CardButtonPanelViewModel cardButtonPanelViewModel;

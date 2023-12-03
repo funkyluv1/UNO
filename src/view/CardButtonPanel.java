@@ -116,7 +116,7 @@ public class CardButtonPanel extends JPanel implements PropertyChangeListener {
             cardNames.get(i - startInd).setText(name);
             if (playableNumCardsString.contains(name)){
                 cardNames.get(i - startInd).setEnabled(true);
-            }
+            } else {cardNames.get(i - startInd).setEnabled(false);}
 //          TODO: probably don't need highlight any more; contrast between Enabled and Disabled Button is distinguishable
 //          cardNames.get(cardButtonPanelViewModel.getState().getButtonindexHighlighted()).setBackground(Color.CYAN);
 

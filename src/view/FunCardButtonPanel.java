@@ -135,6 +135,10 @@ public class FunCardButtonPanel extends JPanel implements PropertyChangeListener
                 cardNames.get(i - startInd).setEnabled(true);
             }
 
+            if (funCardButtonPanelViewModel.getState().getAllButtonDisable()){
+                cardNames.get(i - startInd).setEnabled(false);
+            }
+
             if (selectedFunCardsString.contains(name)){
                 cardNames.get(i - startInd).setBackground(Color.YELLOW);
             }
