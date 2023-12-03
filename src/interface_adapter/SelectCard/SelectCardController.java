@@ -26,8 +26,8 @@ public class SelectCardController {
         if (Character.isDigit(text.charAt(0))) {
             ArrayList<String> list = new ArrayList<>();
             list.add(text);
-            StringToCardConverter stringToCardAdapter = new StringToCardConverter(list);
-            cardNew = stringToCardAdapter.convertToNumCards().get(0);//TODO: StringToCardAdapter have bugs; will change everything to Red
+            StringToCardConverter stringToCardConverter = new StringToCardConverter(list);
+            cardNew = stringToCardConverter.convertToNumCards().get(0);//TODO: StringToCardAdapter have bugs; will change everything to Red
         }
         SelectCardInputData selectCardInputData = new SelectCardInputData(cardNew, button_index);
         selectCardInteractor.execute(selectCardInputData);

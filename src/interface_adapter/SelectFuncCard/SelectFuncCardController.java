@@ -26,12 +26,12 @@ public class SelectFuncCardController {
         if (Character.isDigit(cardNewText.charAt(0))) {
             ArrayList<String> list = new ArrayList<>();
             list.add(cardNewText);
-            StringToCardConverter stringToCardAdapter = new StringToCardConverter(list);
-            cardNew = stringToCardAdapter.convertToFuncCards().get(0);
+            StringToCardConverter stringToCardConverter = new StringToCardConverter(list);
+            cardNew = stringToCardConverter.convertToFuncCards().get(0);
         }
 
-        StringToCardConverter stringToCardAdapter = new StringToCardConverter(cardsOldText);
-        ArrayList<FunctionalCard> cardsOld = stringToCardAdapter.convertToFuncCards();
+        StringToCardConverter stringToCardConverter = new StringToCardConverter(cardsOldText);
+        ArrayList<FunctionalCard> cardsOld = stringToCardConverter.convertToFuncCards();
 
         SelectFuncCardInputData selectCardInputData = new SelectFuncCardInputData(cardNew, cardsOld, button_index);
         selectFuncCardInteractor.execute(selectCardInputData);
