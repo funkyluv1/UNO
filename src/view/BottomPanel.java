@@ -56,7 +56,7 @@ public class BottomPanel extends JPanel implements PropertyChangeListener {
                 new ActionListener() {
                     public void actionPerformed(ActionEvent evt) {
                         if (evt.getSource().equals(nextButton)) {
-                            nextTurnController.execute((game.getCurrentPlayerIndex() + 1)%4);
+                            nextTurnController.execute(game.getCurrentPlayerIndex() % 4);
                         }
                     }
                 }

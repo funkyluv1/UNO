@@ -2,37 +2,27 @@ package use_case.GetCard;
 
 import entities.card.NumberCard;
 import entities.card.NumberCardFactory;
+import use_case.DrawCards.DrawCardsDataAccessInterface;
 
-import java.util.concurrent.ThreadLocalRandom;
+import java.util.*;
+
 
 public class GetCardInteractor implements GetCardInputDataBoundary{
 
     final GetCardOutputDataBoundary getCardOutputDataBoundary;
     final GetCardDataAccessInterface getCardDataAccessObject;
+    final DrawCardsDataAccessInterface drawCardsDataAccessInterface;
 
-    public GetCardInteractor(GetCardOutputDataBoundary getCardOutputDataBoundary, GetCardDataAccessInterface getCardDataAccessObject){
+    public GetCardInteractor(GetCardOutputDataBoundary getCardOutputDataBoundary, GetCardDataAccessInterface getCardDataAccessObject, DrawCardsDataAccessInterface drawCardsDataAccessInterface){
         this.getCardOutputDataBoundary = getCardOutputDataBoundary;
         this.getCardDataAccessObject = getCardDataAccessObject;
+        this.drawCardsDataAccessInterface = drawCardsDataAccessInterface;
     };
 
 
     public void execute(GetCardInputData getCardInputData) {
-        String currPlayer = getCardInputData.getPlayerName();
 
-        int randomNum = ThreadLocalRandom.current().nextInt(1,  10 + 1);
-        int randomcol = ThreadLocalRandom.current().nextInt(1, 5);
-        String randomColor = "";
-
-        switch (randomcol) {
-            case 1 -> randomColor = "R";
-            case 2 -> randomColor = "G";
-            case 3 -> randomColor = "B";
-            case 4 -> randomColor = "Y";
-        }
-
-        NumberCard card = (new NumberCardFactory(randomNum, randomColor)).createCard();
-
-        getCardDataAccessObject.getCard(currPlayer, card);
+        NumberCard card = drawCardsDataAccessInterface.drawNumberCards(getCardDataAccessObject.getNumberCardsDeck(), 1).get(0);
 
         GetCardOutputData getCardOutputData = new GetCardOutputData(card);
         getCardOutputDataBoundary.prepareNewGameView(getCardOutputData);

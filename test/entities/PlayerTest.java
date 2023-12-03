@@ -4,7 +4,6 @@ import entities.card.Card;
 import entities.card.FunctionalCard;
 import entities.card.NumberCard;
 import entities.player.HumanPlayer;
-import entities.player.HumanPlayerFactory;
 import entities.player.Player;
 import junit.framework.TestCase;
 import org.junit.jupiter.api.Test;

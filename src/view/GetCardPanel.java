@@ -1,8 +1,9 @@
 package view;
 
 import entities.card.Card;
-import interface_adapter.Initialized.GetCardPanelState;
-import interface_adapter.Initialized.GetCardPanelViewModel;
+import entities.card.NumberCard;
+import interface_adapter.GetCard.GetCardController;
+import interface_adapter.Initialized.*;
 import interface_adapter.Undo.UndoController;
 import entities.Game;
 import use_case.Undo.UndoInputData;
@@ -14,6 +15,7 @@ import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.util.ArrayList;
 
 public class GetCardPanel extends JPanel implements PropertyChangeListener {
     Panel panel = new Panel(2);
@@ -24,12 +26,18 @@ public class GetCardPanel extends JPanel implements PropertyChangeListener {
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);
     private final GetCardPanelViewModel getCardViewModel;
     private final UndoController undoController;
+    private final GetCardController getCardController;
     private int id = 2;
+    private BottomPanelViewModel bottomPanelViewModel;
+    private CardButtonPanelViewModel cardButtonPanelViewModel;
 
-    public GetCardPanel(GetCardPanelViewModel getCardPanelViewModel, UndoController undoController) {
+    public GetCardPanel(GetCardPanelViewModel getCardPanelViewModel, UndoController undoController, GetCardController getCardController, BottomPanelViewModel bottomPanelViewModel, CardButtonPanelViewModel cardButtonPanelViewModel) {
         this.getCardViewModel = getCardPanelViewModel;
         this.getCardViewModel.addPropertyChangeListener(this);
         this.undoController = undoController;
+        this.bottomPanelViewModel = bottomPanelViewModel;
+        this.getCardController = getCardController;
+        this.cardButtonPanelViewModel = cardButtonPanelViewModel;
 
         undoButton = new JButton("Undo");
         undoButton.setPreferredSize(new Dimension(100, 40));
@@ -45,6 +53,10 @@ public class GetCardPanel extends JPanel implements PropertyChangeListener {
                         if(evt.getSource().equals(undoButton)) {
                             UndoInputData inputData = new UndoInputData((Card) game.getCurrSelectedNumberCard());
                             undoController.execute(inputData);
+                            GetCardPanelState state = new GetCardPanelState();
+                            state.setUndoEnabled(false);
+                            getCardPanelViewModel.setState(state);
+                            getCardPanelViewModel.firePropertyChanged();
                         }
                     }
                 }
@@ -70,8 +82,21 @@ public class GetCardPanel extends JPanel implements PropertyChangeListener {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         if(e.getSource() == getCardButton) {
-                            //TODO: Need getCard use case
-//                            getCardController.execute();
+
+                            getCardController.execute(game.getCurrentPlayerIndex());
+                            getCardButton.setEnabled(false);
+
+                            BottomPanelState bottomPanelState = bottomPanelViewModel.getState();
+                            bottomPanelState.setNextButtonEnabled(true);
+                            bottomPanelViewModel.setState(bottomPanelState);
+                            bottomPanelViewModel.firePropertyChanged();
+
+                            CardButtonPanelState cardButtonPanelState = cardButtonPanelViewModel.getState();
+                            ArrayList<NumberCard> cards = cardButtonPanelState.getPlayerNumCards();
+                            cards.add(getCardPanelViewModel.getState().getNumberCard());
+                            cardButtonPanelState.setPlayerNumCards(cards);
+                            cardButtonPanelViewModel.setState(cardButtonPanelState);
+                            cardButtonPanelViewModel.firePropertyChanged();
                         }
                     }
                 }

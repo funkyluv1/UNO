@@ -224,15 +224,33 @@ public class FileUserDataAccessObject implements InitiationDataAccessInterface,
     }
 
     @Override
-    public void getCard(String player, NumberCard card) {
+    public String get_specific_player_with_index(int player_index) {
+        ArrayList<String> usernames = new ArrayList<>(playerInfo.keySet());
+        return playerInfo.get(usernames.get(player_index % 4)).playerName;
+    }
+
+    @Override
+    public void play_Card_and_update_DAO(String playerName, NumberCard numberCard, ArrayList<FunctionalCard> functionalCards) {
+        ArrayList<NumberCard> numberCards = playerInfo.get(playerName).getNumberCards();
+        ArrayList<FunctionalCard> currPlayerFuncCard = getFunctionalCards(playerName);
+
+        numberCards.remove(numberCard);
+        for (FunctionalCard functionalCard : functionalCards){
+            currPlayerFuncCard.remove(functionalCard);
+        }
+        recordPostTurnChange(currPlayerFuncCard, numberCards, playerName);
+    }
+
+    @Override
+    public void recordGetCard(int index, NumberCard numberCard) {
+        String player = get_specific_player_with_index(index);
         ArrayList<NumberCard> hand = playerInfo.get(player).getNumberCards();
-        hand.add(card);
+        hand.add(numberCard);
         playerInfo.get(player).setNumCards(hand);
     }
 
     @Override
-    public String get_specific_player_with_index(int player_index) {
-        ArrayList<String> usernames = new ArrayList<>(playerInfo.keySet());
-        return playerInfo.get(usernames.get(player_index % 4)).playerName;
+    public NumberCardsDeck getNumberCardsDeck() {
+        return game.getNumberCardDeck();
     }
 }

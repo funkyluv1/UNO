@@ -8,6 +8,8 @@ public class GetCardPanelState {
 
     private NumberCard topCard = null;
 
+    private NumberCard numberCard = null;
+
     public GetCardPanelState(GetCardPanelState copy){
         this.undoEnabled = copy.undoEnabled;
         this.getCardEnabled = copy.getCardEnabled;
@@ -39,4 +41,8 @@ public class GetCardPanelState {
     public NumberCard getTopCard() {
         return topCard;
     }
+
+    public NumberCard getNumberCard() {return this.numberCard;}
+
+    public void setNumberCard(NumberCard numberCard) {this.numberCard = numberCard;}
 }
