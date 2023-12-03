@@ -110,40 +110,46 @@ public class InitializedView extends JPanel implements ActionListener, PropertyC
                 bottomPanel = panel;
             }
 
-        for (JPanel panel : panels){
-            if (i == 0){playerPanel = panel;}
-            else if (i == 1){getCardPanel = panel;}
-            else if (i == 2){cardButtonPanel = panel;}
-            else if (i == 3){funCardPanel = panel;}
-            else if (i == 4){bottomPanel = panel;}
+            for (JPanel panel2 : panels) {
+                if (i == 0) {
+                    playerPanel = panel2;
+                } else if (i == 1) {
+                    getCardPanel = panel2;
+                } else if (i == 2) {
+                    cardButtonPanel = panel2;
+                } else if (i == 3) {
+                    funCardPanel = panel2;
+                } else if (i == 4) {
+                    bottomPanel = panel2;
+                }
 
-            i += 1;
-        }
-        setSize(1200, 1000);
-        this.setLayout(new BorderLayout());
-        Color darkRed = new Color(218, 40, 40);
-        this.setBackground(Color.CYAN);
+                i += 1;
+            }
+            setSize(1200, 1000);
+            this.setLayout(new BorderLayout());
+            Color darkRed = new Color(218, 40, 40);
+            this.setBackground(Color.CYAN);
 
-        bigPanel.setLayout(new BorderLayout());
-        playerPanel.setPreferredSize(new Dimension(1200, 100));
-        playerPanel.setBackground(Color.red);
+            bigPanel.setLayout(new BorderLayout());
+            playerPanel.setPreferredSize(new Dimension(1200, 100));
+            playerPanel.setBackground(Color.red);
 
-        bigPanel.setPreferredSize(new Dimension(1200, 700));
-        getCardPanel.setPreferredSize(new Dimension(1200, 200));
-        getCardPanel.setBackground(Color.yellow);
-        cardButtonPanel.setPreferredSize(new Dimension(600, 200));
-        cardButtonPanel.setBackground(Color.black);
-        funCardPanel.setPreferredSize(new Dimension(600, 200));
-        funCardPanel.setBackground(Color.green);
-        bottomPanel.setPreferredSize(new Dimension(1200, 100));
-        bottomPanel.setBackground(Color.BLUE);
+            bigPanel.setPreferredSize(new Dimension(1200, 700));
+            getCardPanel.setPreferredSize(new Dimension(1200, 200));
+            getCardPanel.setBackground(Color.yellow);
+            cardButtonPanel.setPreferredSize(new Dimension(600, 200));
+            cardButtonPanel.setBackground(Color.black);
+            funCardPanel.setPreferredSize(new Dimension(600, 200));
+            funCardPanel.setBackground(Color.green);
+            bottomPanel.setPreferredSize(new Dimension(1200, 100));
+            bottomPanel.setBackground(Color.BLUE);
 
-        this.add(playerPanel, BorderLayout.NORTH);
-        this.add(bottomPanel, BorderLayout.SOUTH);
-        this.add(bigPanel, BorderLayout.CENTER);
-        bigPanel.add(getCardPanel, BorderLayout.NORTH);
-        bigPanel.add(cardButtonPanel, BorderLayout.WEST);
-        bigPanel.add(funCardPanel, BorderLayout.EAST);
+            this.add(playerPanel, BorderLayout.NORTH);
+            this.add(bottomPanel, BorderLayout.SOUTH);
+            this.add(bigPanel, BorderLayout.CENTER);
+            bigPanel.add(getCardPanel, BorderLayout.NORTH);
+            bigPanel.add(cardButtonPanel, BorderLayout.WEST);
+            bigPanel.add(funCardPanel, BorderLayout.EAST);
 
 //        bigPanel.add(this.getCardPanel, BorderLayout.NORTH);
 //        bigPanel.add(this.cardButtonPanel, BorderLayout.WEST);
@@ -161,17 +167,43 @@ public class InitializedView extends JPanel implements ActionListener, PropertyC
 //        cardButtonPanel.setOpaque(true);
 
 
-        // set text changes the jlabel content
-        label.setText("Changed");
-        // whereas assigning our jlabel object to reference another jlable object does not change nything
-        label = new JLabel("not changed");
+            // set text changes the jlabel content
+            label.setText("Changed");
+            // whereas assigning our jlabel object to reference another jlable object does not change nything
+            label = new JLabel("not changed");
 
-        bigPanel.setOpaque(false);
-        playerPanel.setOpaque(false);
-        getCardPanel.setOpaque(false);
-        funCardPanel.setOpaque(false);
-        bottomPanel.setOpaque(false);
-        cardButtonPanel.setOpaque(false);
+            bigPanel.setOpaque(false);
+            playerPanel.setOpaque(false);
+            getCardPanel.setOpaque(false);
+            funCardPanel.setOpaque(false);
+            bottomPanel.setOpaque(false);
+            cardButtonPanel.setOpaque(false);
+        }
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+
+        super.paintComponent(g);
+        g.setColor(Color.WHITE);
+        setBackground(Color.RED);
+        Graphics2D g2d = (Graphics2D) g.create();
+
+        int centerX = getWidth() / 2;
+        int centerY = getHeight() / 2;
+        int width = 1100; // Width of the oval
+        int height = 600; // Height of the oval
+
+        // Set the center of rotation
+        g2d.rotate(Math.toRadians(-30), centerX, centerY);
+
+        // Draw the tilted oval
+        g2d.fillOval(centerX - width / 2, centerY - height / 2, width, height);
+
+        g2d.setColor(Color.RED);
+        g2d.fillOval((centerX - width / 2) + 30, (centerY - height / 2) + 30, 1040, 540);
+
+        g2d.dispose();
     }
 
 }

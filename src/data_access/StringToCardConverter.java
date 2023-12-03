@@ -6,14 +6,13 @@ import entities.card.NumberCard;
 import entities.card.NumberCardFactory;
 
 import java.util.ArrayList;
-import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class StringToCardAdapter {
+public class StringToCardConverter {
     private final ArrayList<String> cardInfo;
 
-    public StringToCardAdapter(ArrayList<String> cardInfo){
+    public StringToCardConverter(ArrayList<String> cardInfo){
         this.cardInfo = cardInfo;
     }
 
