@@ -1,6 +1,5 @@
 package use_case.initiation;
 
-import data_access.APIAccess;
 import data_access.APIDataAccessObject;
 import data_access.FileUserDataAccessObject;
 import entities.NumberCardsDeck.NumberCardsDeck;
@@ -11,9 +10,6 @@ import entities.player.AIPlayerFactory;
 import entities.player.HumanPlayerFactory;
 import junit.framework.TestCase;
 import use_case.DrawCards.DrawCardsDataAccessInterface;
-import use_case.DrawCards.DrawCardsInputData;
-import use_case.DrawCards.DrawCardsResponseExtractFacade;
-import use_case.PreTurn.FindPlayableCards;
 import use_case.PreTurn.FindPlayableCardsInterface;
 
 import java.io.IOException;
@@ -103,5 +99,6 @@ public class InitiationInteractorTest extends TestCase {
         InitiationInputDataBoundary interactor = new InitiationInteractor((FileUserDataAccessObject) dao, drawCardsDataAccessInterface,successPresenter, findPlayableCardsInterface);
 
         interactor.execute(initiationInputData);
+        System.out.println("Test passed");
     }
 }
