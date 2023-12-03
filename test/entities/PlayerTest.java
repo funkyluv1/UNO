@@ -41,7 +41,9 @@ public class PlayerTest extends TestCase {
 
     }
 
-    public void test_get
+    public void test_get(){
+
+    }
 
     @Test
     public void test_deal_card(){

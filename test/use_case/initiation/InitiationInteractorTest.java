@@ -28,9 +28,10 @@ public class InitiationInteractorTest extends TestCase {
         ArrayList<String> playerNames = new ArrayList<String>();
         playerNames.add("Jason");
         playerNames.add("Cynthia");
-        playerNames.add("Daniel");
-        playerNames.add("Aaron");
         playerNames.add("Tony");
+        playerNames.add("Aaron");
+        playerNames.add("Daniel");
+        playerNames.add("David");
         int botNumber = 0;
         String csvPath = "users.csv";
         AIPlayerFactory aiPlayerFactory = new AIPlayerFactory();
@@ -45,7 +46,7 @@ public class InitiationInteractorTest extends TestCase {
 
         InitiationInputData initiationInputData = new InitiationInputData(playerNames, botNumber);
 
-        //DrawCardsInputData drawCardsInputData = new DrawCardsInputData(, numberCardsDeckFactory.create("Jason", 3));
+        DrawCardsInputData drawCardsInputData = new DrawCardsInputData(, numberCardsDeckFactory.create("Jason", 3));
 
         FileUserDataAccessObject dao = new FileUserDataAccessObject(csvPath, aiPlayerFactory, humanPlayerFactory, numberCardsDeckFactory);
 
@@ -53,8 +54,17 @@ public class InitiationInteractorTest extends TestCase {
         InitiationOutputDataBoundary successPresenter = new InitiationOutputDataBoundary() {
             @Override
             public void prepareNewGameView(InitiationOutputData initiationOutputData) {
-                    assertEquals("Jason", initiationOutputData.getPlayerNames().get(0));
-                    assertEquals(dao.get_specific_player_with_index(0), "Jason");
+                // tests if the output data has the player infos
+                assertEquals("Jason", initiationOutputData.getPlayerNames().get(0));
+                assertEquals("Cynthia", initiationOutputData.getPlayerNames().get(1));
+                assertEquals("Tony", initiationOutputData.getPlayerNames().get(2));
+                assertEquals("Aaron", initiationOutputData.getPlayerNames().get(3));
+                assertEquals("Daniel", initiationOutputData.getPlayerNames().get(4));
+                assertEquals("David", initiationOutputData.getPlayerNames().get(5));
+
+                // tests if the dao can get the player infos from the database
+                assertEquals(dao.get_specific_player_with_index(0), "Jason");
+                assertEquals(dao.getNumberCards("Jason"), numberCards);
 
             }
         };
