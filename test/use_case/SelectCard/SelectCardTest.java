@@ -16,6 +16,7 @@ import interface_adapter.Initiation.InitiationViewModel;
 import interface_adapter.SelectCard.SelectCardPresenter;
 import interface_adapter.ViewManagerModel;
 import junit.framework.TestCase;
+import org.junit.jupiter.api.Test;
 import use_case.PreTurn.FindPlayableCards;
 import use_case.PreTurn.FindPlayableCardsInterface;
 import use_case.initiation.InitiationInputData;
@@ -28,13 +29,10 @@ import java.util.ArrayList;
 public class SelectCardTest extends TestCase {
 
     public void testExecute() throws IOException {
-        try {
-            successTest();
-        } catch (Exception e) {
-            System.out.println("Test failed for some mysterious unknown reason");
-        }
+        successTest();
     }
 
+    @Test
     void successTest() throws IOException {
         FileUserDataAccessObject userDataAccessObject = new FileUserDataAccessObject("./users.csv", new AIPlayerFactory(), new HumanPlayerFactory(), new NumberCardsDeckCreator());
         APIDataAccessObject apiDataAccessObject = apiDataAccessObject = new APIDataAccessObject();
@@ -50,7 +48,7 @@ public class SelectCardTest extends TestCase {
         BottomPanel bottomPanel = BottomPanelUseCaseFactory.create(viewManagerModel, bottomPanelViewModel, cardButtonPanelViewModel, funCardButtonPanelViewModel, getCardPanelViewModel,
                 playerPanelViewModel, userDataAccessObject, apiDataAccessObject);
         PlayerPanel playerPanel = PlayerPanelUseCaseFactory.create(viewManagerModel, playerPanelViewModel);
-        GetCardPanel getCardPanel = GetCardPanelUseCaseFactory.create(viewManagerModel, getCardPanelViewModel, cardButtonPanelViewModel,funCardButtonPanelViewModel, bottomPanelViewModel,userDataAccessObject);
+        GetCardPanel getCardPanel = GetCardPanelUseCaseFactory.create(viewManagerModel, getCardPanelViewModel, cardButtonPanelViewModel,funCardButtonPanelViewModel, bottomPanelViewModel,apiDataAccessObject, userDataAccessObject);
         FunCardButtonPanel funCardButtonPanel = FunCardButtonPanelUseCaseFactory.create(viewManagerModel, cardButtonPanelViewModel, funCardButtonPanelViewModel, userDataAccessObject);
         CardButtonPanel cardButtonPanel = CardButtonPanelUseCaseFactory.create(viewManagerModel, funCardButtonPanelViewModel, cardButtonPanelViewModel, getCardPanelViewModel,bottomPanelViewModel,userDataAccessObject);
 
