@@ -1,6 +1,7 @@
 package view;
 
 import entities.card.Card;
+import interface_adapter.Initialized.BottomPanelViewModel;
 import interface_adapter.Initialized.GetCardPanelState;
 import interface_adapter.Initialized.GetCardPanelViewModel;
 import interface_adapter.Undo.UndoController;
@@ -25,11 +26,13 @@ public class GetCardPanel extends JPanel implements PropertyChangeListener {
     private final GetCardPanelViewModel getCardViewModel;
     private final UndoController undoController;
     private int id = 2;
+    private BottomPanelViewModel bottomPanelViewModel;
 
-    public GetCardPanel(GetCardPanelViewModel getCardPanelViewModel, UndoController undoController) {
+    public GetCardPanel(GetCardPanelViewModel getCardPanelViewModel, UndoController undoController, BottomPanelViewModel bottomPanelViewModel) {
         this.getCardViewModel = getCardPanelViewModel;
         this.getCardViewModel.addPropertyChangeListener(this);
         this.undoController = undoController;
+        this.bottomPanelViewModel = bottomPanelViewModel;
 
         undoButton = new JButton("Undo");
         undoButton.setPreferredSize(new Dimension(100, 40));
@@ -48,6 +51,7 @@ public class GetCardPanel extends JPanel implements PropertyChangeListener {
                             GetCardPanelState state = new GetCardPanelState();
                             state.setUndoEnabled(false);
                             getCardPanelViewModel.setState(state);
+                            bottomPanelViewModel.firePropertyChanged();
                         }
                     }
                 }

@@ -1,9 +1,6 @@
 package interface_adapter.Undo;
 
-import interface_adapter.Initialized.CardButtonPanelState;
-import interface_adapter.Initialized.CardButtonPanelViewModel;
-import interface_adapter.Initialized.GetCardPanelState;
-import interface_adapter.Initialized.GetCardPanelViewModel;
+import interface_adapter.Initialized.*;
 import interface_adapter.ViewManagerModel;
 import use_case.Undo.UndoOutputData;
 import use_case.Undo.UndoOutputDataBoundary;
@@ -12,13 +9,15 @@ import view.CardButtonPanel;
 public class UndoPresenter implements UndoOutputDataBoundary {
     final private GetCardPanelViewModel getCardPanelViewModel;
     final private CardButtonPanelViewModel cardButtonPanelViewModel;
-    private ViewManagerModel viewManagerModel;
+    final private ViewManagerModel viewManagerModel;
+    final private BottomPanelViewModel bottomPanelViewModel;
 
     public UndoPresenter(ViewManagerModel viewManagerModel, GetCardPanelViewModel getCardPanelViewModel,
-                         CardButtonPanelViewModel cardButtonPanelViewModel) {
+                         CardButtonPanelViewModel cardButtonPanelViewModel, BottomPanelViewModel bottomPanelViewModel) {
         this.viewManagerModel = viewManagerModel;
         this.getCardPanelViewModel = getCardPanelViewModel;
         this.cardButtonPanelViewModel = cardButtonPanelViewModel;
+        this.bottomPanelViewModel = bottomPanelViewModel;
     }
 
     @Override
@@ -35,5 +34,9 @@ public class UndoPresenter implements UndoOutputDataBoundary {
 
         viewManagerModel.setActiveView("Initialized");
         viewManagerModel.firePropertyChanged();
+
+        BottomPanelState bottomState = bottomPanelViewModel.getState();
+        bottomState.setConfirmButtonEnabled(false);
+        bottomPanelViewModel.setState(bottomState);
     }
 }
