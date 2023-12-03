@@ -42,6 +42,7 @@ public class PlayerPanel extends JPanel implements PropertyChangeListener {
             playerInfo.setBorder(BorderFactory.createLineBorder(Color.WHITE, 15));
             Dimension preferredSize = playerInfo.getPreferredSize();
             preferredSize.height = 120;
+            preferredSize.width = 280;
             playerInfo.setPreferredSize(preferredSize);
             JLabel usernameLabel = new JLabel(players.get(i));
             playerInfo.add(usernameLabel);
