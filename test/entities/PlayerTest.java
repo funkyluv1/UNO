@@ -199,6 +199,7 @@ public class PlayerTest extends TestCase {
         numberCards2.add(num1);
         numberCards2.add(num2);
         humanPlayer.setNumCards(numberCards2);
+
         assertEquals(numberCards2, humanPlayer.getNumberCards());
     }
 
