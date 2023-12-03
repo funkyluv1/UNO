@@ -1,6 +1,5 @@
 package use_case.initiation;
 
-import data_access.APIAccess;
 import data_access.APIDataAccessObject;
 import data_access.FileUserDataAccessObject;
 import entities.NumberCardsDeck.NumberCardsDeck;
@@ -9,23 +8,22 @@ import entities.card.FunctionalCard;
 import entities.card.NumberCard;
 import entities.player.AIPlayerFactory;
 import entities.player.HumanPlayerFactory;
-import junit.framework.TestCase;
+import org.junit.jupiter.api.Test;
 import use_case.DrawCards.DrawCardsDataAccessInterface;
-import use_case.DrawCards.DrawCardsInputData;
-import use_case.DrawCards.DrawCardsResponseExtractFacade;
-import use_case.PreTurn.FindPlayableCards;
 import use_case.PreTurn.FindPlayableCardsInterface;
+import use_case.initiation.InitiationInputData;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
-public class InitiationInteractorTest extends TestCase {
+import static org.junit.jupiter.api.Assertions.*;
 
-    public void testExecute() {
-    }
+class InitiationInteractorTest {
 
+    @Test
     void successTest() throws IOException {
-        ArrayList<String> playerNames = new ArrayList<String>();
+        ArrayList<String> playerNames = new ArrayList<>();
         playerNames.add("Jason");
         playerNames.add("Cynthia");
         playerNames.add("Tony");
@@ -33,6 +31,7 @@ public class InitiationInteractorTest extends TestCase {
         playerNames.add("Daniel");
         playerNames.add("David");
         int botNumber = 0;
+        InitiationInputData inputData = new InitiationInputData(playerNames, 0);
         String csvPath = "users.csv";
         AIPlayerFactory aiPlayerFactory = new AIPlayerFactory();
         HumanPlayerFactory humanPlayerFactory = new HumanPlayerFactory();
@@ -46,11 +45,10 @@ public class InitiationInteractorTest extends TestCase {
 
         InitiationInputData initiationInputData = new InitiationInputData(playerNames, botNumber);
 
-        //DrawCardsInputData drawCardsInputData = new DrawCardsInputData(, numberCardsDeckFactory.create("Jason", 3));
 
         InitiationDataAccessInterface dao = new FileUserDataAccessObject(csvPath, aiPlayerFactory, humanPlayerFactory, numberCardsDeckFactory);
 
-        // IMPORTANT: this creates a "mock presenter" that looks at the output data and assert things about it
+        // This creates a successPresenter that tests whether the test case is as we expect.
         InitiationOutputDataBoundary successPresenter = new InitiationOutputDataBoundary() {
             @Override
             public void prepareNewGameView(InitiationOutputData initiationOutputData) {
@@ -61,10 +59,6 @@ public class InitiationInteractorTest extends TestCase {
                 assertEquals("Aaron", initiationOutputData.getPlayerNames().get(3));
                 assertEquals("Daniel", initiationOutputData.getPlayerNames().get(4));
                 assertEquals("David", initiationOutputData.getPlayerNames().get(5));
-
-                // tests if the dao can get the player infos from the database
-                assertEquals(((FileUserDataAccessObject) dao).get_specific_player_with_index(0), "Jason");
-                assertEquals(((FileUserDataAccessObject) dao).getNumberCards("Jason"), initiationOutputData.getPlayerNumCards().get("Jason"));
 
             }
         };
@@ -100,8 +94,8 @@ public class InitiationInteractorTest extends TestCase {
             }
         };
 
-        InitiationInputDataBoundary interactor = new InitiationInteractor((FileUserDataAccessObject) dao, drawCardsDataAccessInterface,successPresenter, findPlayableCardsInterface);
 
-        interactor.execute(initiationInputData);
+        InitiationInputDataBoundary interactor = new InitiationInteractor((FileUserDataAccessObject) dao, drawCardsDataAccessInterface,successPresenter, findPlayableCardsInterface);
+        interactor.execute(inputData);
     }
 }

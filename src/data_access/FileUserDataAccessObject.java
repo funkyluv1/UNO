@@ -189,8 +189,7 @@ public class FileUserDataAccessObject implements InitiationDataAccessInterface,
 
     @Override
     public ArrayList<FunctionalCard> getFunctionalCards(String player) {
-        // TODO: implement me
-        return null;
+        return playerInfo.get(player).getFuncCards();
     }
 
     @Override
