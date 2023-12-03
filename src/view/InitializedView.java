@@ -180,6 +180,30 @@ public class InitializedView extends JPanel implements ActionListener, PropertyC
             bottomPanel.setOpaque(false);
             cardButtonPanel.setOpaque(false);
         }
+    }
 
+    @Override
+    protected void paintComponent(Graphics g) {
+
+        super.paintComponent(g);
+        g.setColor(Color.WHITE);
+        setBackground(Color.RED);
+        Graphics2D g2d = (Graphics2D) g.create();
+
+        int centerX = getWidth() / 2;
+        int centerY = getHeight() / 2;
+        int width = 1100; // Width of the oval
+        int height = 600; // Height of the oval
+
+        // Set the center of rotation
+        g2d.rotate(Math.toRadians(-30), centerX, centerY);
+
+        // Draw the tilted oval
+        g2d.fillOval(centerX - width / 2, centerY - height / 2, width, height);
+
+        g2d.setColor(Color.RED);
+        g2d.fillOval((centerX - width / 2) + 30, (centerY - height / 2) + 30, 1040, 540);
+
+        g2d.dispose();
     }
 }

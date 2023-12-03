@@ -37,7 +37,7 @@ public class APIDataAccessObject implements DrawCardsDataAccessInterface {
         response = apiAccess.send();
 
         DrawCardsResponseExtractFacade drawCardsResponseExtractFacade = new DrawCardsResponseExtractFacade(response);
-        StringToCardAdapter adapter = new StringToCardAdapter(drawCardsResponseExtractFacade.DrawCardsExtractNumCards());
+        StringToCardConverter adapter = new StringToCardConverter(drawCardsResponseExtractFacade.DrawCardsExtractNumCards());
         return adapter.convertToNumCards();
     }
 

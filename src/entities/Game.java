@@ -19,7 +19,7 @@ public class Game {
     private int plusN; //the total number of additional cards need to be drawn after +2 and +4 cards
 
     private int currentPlayerIndex;
-    private Object currSelectedNumberCard;
+    private Card currSelectedNumberCard;
     private ArrayList<FunctionalCard> currSelectedFunCard;
     private ArrayList<NumberCard> numCardsinRound;
     private int maxCardNum;
@@ -100,10 +100,10 @@ public class Game {
         }
     }
 
-    public void setCurrSelectedNumberCard(Object card) {
+    public void setCurrSelectedNumberCard(Card card) {
         currSelectedNumberCard = card;
     }
-    public Object getCurrSelectedNumberCard() {
+    public Card getCurrSelectedNumberCard() {
         return currSelectedNumberCard;
     }
     public void setCurrSelectedFunCard(ArrayList<FunctionalCard> cards){
