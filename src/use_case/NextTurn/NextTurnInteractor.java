@@ -41,7 +41,7 @@ public class NextTurnInteractor implements NextTurnInputDataBoundary {
         int player_index = nextTurnInputData.getPlayer_index();
         String name = fileUserDataAccessObject.getPlayer(nextTurnInputData.getPlayer_index()).getPlayerName();
         ArrayList<String> players = new ArrayList<String>();
-        for (int b = 0; b < 3; b++){
+        for (int b = 0; b < 4; b++){
             players.add(fileUserDataAccessObject.getPlayer(b).getPlayerName());
         }
 //        Map<String, Integer> playerwithindex = new HashMap<String, Integer>();
