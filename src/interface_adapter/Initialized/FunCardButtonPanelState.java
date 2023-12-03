@@ -6,6 +6,7 @@ import entities.card.NumberCard;
 import java.util.ArrayList;
 
 public class FunCardButtonPanelState {
+    private boolean allButtonDisable = false;
     private boolean leftButtonEnabled = false;
     private boolean rightButtonEnabled = false;
     private ArrayList<String> players;
@@ -22,6 +23,7 @@ public class FunCardButtonPanelState {
         rightButtonEnabled = copy.rightButtonEnabled;
         leftButtonEnabled = copy.leftButtonEnabled;
         currselectedCards = copy.currselectedCards;
+        allButtonDisable = copy.allButtonDisable;
     }
 
     // Because of the previous copy constructor, the default constructor must be explicit.
@@ -50,4 +52,6 @@ public class FunCardButtonPanelState {
         // need current player instead of setting it as the first player
         return displayFunCardsFirstIndex;
     }
+    public void setAllButtonDisable(boolean flag){this.allButtonDisable = flag;};
+    public boolean getAllButtonDisable(){return this.allButtonDisable;};
 }
