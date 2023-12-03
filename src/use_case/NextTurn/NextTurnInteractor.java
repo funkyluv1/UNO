@@ -41,13 +41,13 @@ public class NextTurnInteractor implements NextTurnInputDataBoundary {
         int player_index = nextTurnInputData.getPlayer_index();
         String name = fileUserDataAccessObject.getPlayer(nextTurnInputData.getPlayer_index()).getPlayerName();
         ArrayList<String> players = new ArrayList<String>();
-        for (int b = 0; b < 3; b++){
+        for (int b = 0; b < 4; b++){
             players.add(fileUserDataAccessObject.getPlayer(b).getPlayerName());
         }
-        Map<String, Integer> playerwithindex = new HashMap<String, Integer>();
-        for (int a = 0; a < 3; a ++){
-            playerwithindex.put(players.get(a), 0);
-        }
+//        Map<String, Integer> playerwithindex = new HashMap<String, Integer>();
+//        for (int a = 0; a < 3; a ++){
+//            playerwithindex.put(players.get(a), 0);
+//        }
 
         ArrayList<NumberCard> number_cards = fileUserDataAccessObject.getPlayer(nextTurnInputData.getPlayer_index()).getNumberCards();
         ArrayList<FunctionalCard> fun_cards = fileUserDataAccessObject.getPlayer(nextTurnInputData.getPlayer_index()).getFuncCards();
@@ -57,13 +57,14 @@ public class NextTurnInteractor implements NextTurnInputDataBoundary {
         PostTurnInputData postTurnInputData = new PostTurnInputData(player_index, fun_cards, number_cards, name);
         postTurnInteractor.execute(postTurnInputData);
 
+        game.updateCurrentPlayerIndex();
         // call pre turn
-        PreTurnInputData preTurnInputData = new PreTurnInputData(player_index + 1);
+        PreTurnInputData preTurnInputData = new PreTurnInputData((player_index + 1) % 4);
         preTurnInteractor.execute(preTurnInputData);
 
         player_index = game.getCurrentPlayerIndex();
-        number_cards = fileUserDataAccessObject.getPlayer(nextTurnInputData.getPlayer_index()).getNumberCards();
-        fun_cards = fileUserDataAccessObject.getPlayer(nextTurnInputData.getPlayer_index()).getFuncCards();
+        number_cards = fileUserDataAccessObject.getPlayer((nextTurnInputData.getPlayer_index() + 1) % 4).getNumberCards();
+        fun_cards = fileUserDataAccessObject.getPlayer((nextTurnInputData.getPlayer_index() + 1) % 4).getFuncCards();
         ArrayList<NumberCard> playerplablenumcards = findPlayableCardsInterface.findPlayableNumberCards(game.getTopCard().getColor(), number_cards);
         ArrayList<FunctionalCard> playerplablefuncards = findPlayableCardsInterface.findPlayableFunctionalCards(game.getTopCard().getColor(), fun_cards);
 

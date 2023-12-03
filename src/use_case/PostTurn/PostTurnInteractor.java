@@ -10,19 +10,20 @@ import java.util.ArrayList;
 import static use_case.initiation.InitiationInteractor.game;
 
 public class PostTurnInteractor implements PostTurnInputDataBoundary{
-    final PostTurnOutputDataBoundary postTurnOutputDataBoundary;
+    // final PostTurnOutputDataBoundary postTurnOutputDataBoundary;
     final DrawCardsDataAccessInterface dataAccessInterface;
     final PostTurnDataAccessInterface postTurnDataAccessInterface;
 
-    public PostTurnInteractor(PostTurnOutputDataBoundary postTurnOutputDataBoundary, DrawCardsDataAccessInterface dataAccessInterface, PostTurnDataAccessInterface postTurnDataAccessInterface) {
+    public PostTurnInteractor(DrawCardsDataAccessInterface dataAccessInterface,
+                              PostTurnDataAccessInterface postTurnDataAccessInterface) {
+        // this.postTurnOutputDataBoundary = postTurnOutputDataBoundary;
         this.dataAccessInterface = dataAccessInterface;
-        this.postTurnOutputDataBoundary = postTurnOutputDataBoundary;
         this.postTurnDataAccessInterface = postTurnDataAccessInterface;
     }
 
     @Override
     public void execute(PostTurnInputData inputData) {
-        NumberCardsDeck numberCardsDeck = game.getNumberCardDeck();
+        NumberCardsDeck numberCardsDeck = game.getNumberCardDeck();//TODO: NumberCardDeck hasn't been set up in Game
         int currPlayerIndex = inputData.getCurrPlayerIndex();
         ArrayList<FunctionalCard> functionalCards = inputData.getFuncCards();
         ArrayList<NumberCard> numberCards = inputData.getNumberCards();
@@ -53,7 +54,6 @@ public class PostTurnInteractor implements PostTurnInputDataBoundary{
 
         postTurnDataAccessInterface.recordPostTurnChange(functionalCards, numberCards, inputData.getCurrentPlayer());
         PostTurnOutputData outputData = new PostTurnOutputData(numberCards, functionalCards, inputData.getCurrentPlayer(), winnerClarification);
-        postTurnOutputDataBoundary.preparePostTurnView(outputData);
     }
 
     private Object[] generateFuncCard() {

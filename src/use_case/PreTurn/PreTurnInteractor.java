@@ -10,15 +10,14 @@ import java.util.ArrayList;
 import static use_case.initiation.InitiationInteractor.game;
 
 public class PreTurnInteractor implements PreTurnInputDataBoundary {
-    final PreTurnOutputDataBoundary preTurnOutputDataBoundary;
+    // final PreTurnOutputDataBoundary preTurnOutputDataBoundary;
     final DrawCardsDataAccessInterface dataAccessInterface;
     final PreTurnDataAccessInterface preTurnDataAccessInterface;
 
-    public PreTurnInteractor(PreTurnOutputDataBoundary preTurnOutputDataBoundary,
-                             DrawCardsDataAccessInterface dataAccessInterface,
+    public PreTurnInteractor(DrawCardsDataAccessInterface dataAccessInterface,
                              PreTurnDataAccessInterface preTurnDataAccessInterface) {
+        // this.preTurnOutputDataBoundary = preTurnOutputDataBoundary;
         this.dataAccessInterface = dataAccessInterface;
-        this.preTurnOutputDataBoundary = preTurnOutputDataBoundary;
         this.preTurnDataAccessInterface = preTurnDataAccessInterface;
     }
 
@@ -53,8 +52,6 @@ public class PreTurnInteractor implements PreTurnInputDataBoundary {
         }
         else {
             PreTurnOutputData outputData = new PreTurnOutputData(numberCards, currentPlayer.getPlayerName());
-            preTurnOutputDataBoundary.preparePreTurnView(outputData);
-            //TODO: might delete preTurnPresenter;
         }
     }
 }

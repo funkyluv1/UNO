@@ -25,7 +25,7 @@ public class InitiationPresenter implements InitiationOutputDataBoundary {
 
 
     //TODO: missing one Panel for FunctionalCards buttons
-    private ViewManagerModel viewManagerModel;
+    private final ViewManagerModel viewManagerModel;
     private final InitializedViewModel initializedViewModel;
 
     public InitiationPresenter(ViewManagerModel viewManagerModel,
@@ -68,7 +68,8 @@ public class InitiationPresenter implements InitiationOutputDataBoundary {
         if (cardButtonPanelState.get_Number_Cards().size() > 3){
             cardButtonPanelState.setRightButtonEnabled(true);
             cardButtonPanelState.setLeftButtonEnabled(false);
-        } else {
+        }
+        else {
             cardButtonPanelState.setRightButtonEnabled(false);
             cardButtonPanelState.setLeftButtonEnabled(false);
         }
