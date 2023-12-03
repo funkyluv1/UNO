@@ -111,6 +111,19 @@ public class InitializedView extends JPanel implements ActionListener, PropertyC
                 bottomPanel = panel;
             }
 
+            for (JPanel panel0 : panels) {
+                if (i == 0) {
+                    playerPanel = panel0;
+                } else if (i == 1) {
+                    getCardPanel = panel0;
+                } else if (i == 2) {
+                    cardButtonPanel = panel0;
+                } else if (i == 3) {
+                    funCardPanel = panel0;
+                } else if (i == 4) {
+                    bottomPanel = panel0;
+                }
+
                 i += 1;
             }
             setSize(1200, 1000);
@@ -169,3 +182,4 @@ public class InitializedView extends JPanel implements ActionListener, PropertyC
         }
 
     }
+}
