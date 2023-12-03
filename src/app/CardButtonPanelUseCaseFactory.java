@@ -2,10 +2,7 @@ package app;
 
 import data_access.APIDataAccessObject;
 import data_access.FileUserDataAccessObject;
-import interface_adapter.Initialized.CardButtonPanelViewModel;
-import interface_adapter.Initialized.FunCardButtonPanelState;
-import interface_adapter.Initialized.FunCardButtonPanelViewModel;
-import interface_adapter.Initialized.InitializedViewModel;
+import interface_adapter.Initialized.*;
 import interface_adapter.Initiation.InitiationController;
 import interface_adapter.Initiation.InitiationPresenter;
 import interface_adapter.Initiation.InitiationViewModel;
@@ -46,12 +43,12 @@ public class CardButtonPanelUseCaseFactory {
 
     public static CardButtonPanel create(
             ViewManagerModel viewManagerModel, FunCardButtonPanelViewModel funCardButtonPanelViewModel,
-            CardButtonPanelViewModel cardButtonPanelViewModel,
+            CardButtonPanelViewModel cardButtonPanelViewModel, GetCardPanelViewModel getCardPanelViewModel, BottomPanelViewModel bottomPanelViewModel,
             FileUserDataAccessObject fileUserDataAccessObject) {
 
         try {
             SelectCardController selectCardController = createSelectCardController(viewManagerModel, funCardButtonPanelViewModel,
-                    cardButtonPanelViewModel);
+                    cardButtonPanelViewModel, bottomPanelViewModel,getCardPanelViewModel);
             RightShiftController rightShiftController = createRightShiftController(viewManagerModel,
                     cardButtonPanelViewModel, funCardButtonPanelViewModel, fileUserDataAccessObject);
             LeftShiftController leftShiftController = createLeftShiftController(viewManagerModel,  funCardButtonPanelViewModel, cardButtonPanelViewModel);
@@ -64,10 +61,11 @@ public class CardButtonPanelUseCaseFactory {
     }
 
     private static SelectCardController createSelectCardController(ViewManagerModel viewManagerModel, FunCardButtonPanelViewModel funCardButtonPanelViewModel,
-                                                                CardButtonPanelViewModel cardButtonPanelViewModel) throws IOException {
+                                                                   CardButtonPanelViewModel cardButtonPanelViewModel, BottomPanelViewModel bottomPanelViewModel,
+                                                                   GetCardPanelViewModel getCardPanelViewModel) throws IOException {
 
         SelectCardOutputDataBoundary selectCardOutputDataBoundary = new SelectCardPresenter(viewManagerModel,
-                cardButtonPanelViewModel);
+                cardButtonPanelViewModel, getCardPanelViewModel,bottomPanelViewModel);
 
         SelectCardInputDataBoundary selectCardInteractor = new SelectCardInteractor(selectCardOutputDataBoundary);
 
