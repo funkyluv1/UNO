@@ -93,16 +93,23 @@ public class FileUserDataAccessObject implements InitiationDataAccessInterface,
     }
 
     @Override
-    public void initiate(NumberCardsDeck numberCardsDeck, InitiationInputData initiationInputData) {
+    public void initiate(NumberCardsDeck numberCardsDeck,
+                         InitiationInputData initiationInputData) {
         cardsDeck.put(0, numberCardsDeck);
         for (String playerName : initiationInputData.getPlayerNames()){
-            playerInfo.put(playerName, humanPlayerFactory.create(playerName, new ArrayList<NumberCard>(), new ArrayList<FunctionalCard>(),2));
+            playerInfo.put(playerName, humanPlayerFactory.create(playerName,
+                    new ArrayList<NumberCard>(),
+                    new ArrayList<FunctionalCard>(),2));
         };
         int i = 0;
         while (i < initiationInputData.getBotNumber()){
 //            playerFactory = new AIPlayerFactory();
-            String username = aiPlayerFactory.create("", new ArrayList<NumberCard>(), new ArrayList<FunctionalCard>(), 0).getPlayerName();
-            playerInfo.put(username, aiPlayerFactory.create(username, new ArrayList<NumberCard>(), new ArrayList<FunctionalCard>(), 0));
+            String username = aiPlayerFactory.create("",
+                    new ArrayList<NumberCard>(), new ArrayList<FunctionalCard>(),
+                    0).getPlayerName();
+            playerInfo.put(username, aiPlayerFactory.create(username,
+                    new ArrayList<NumberCard>(), new ArrayList<FunctionalCard>(),
+                    0));
         }
         this.save();
     }
