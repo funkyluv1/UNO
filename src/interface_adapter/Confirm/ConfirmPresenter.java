@@ -10,15 +10,18 @@ public class ConfirmPresenter implements ConfirmOutputDataBoundary {
 
     private final BottomPanelViewModel bottomPanelViewModel;
     private ViewManagerModel viewManagerModel;
+    private final GetCardPanelViewModel getCardPanelViewModel;
     private final CardButtonPanelViewModel cardButtonPanelViewModel;
     private final FunCardButtonPanelViewModel funCardButtonPanelViewModel;
 
     public ConfirmPresenter(ViewManagerModel viewManagerModel, BottomPanelViewModel bottomPanelViewModel,
-                            CardButtonPanelViewModel cardButtonPanelViewModel, FunCardButtonPanelViewModel funCardButtonPanelViewModel){
+                            CardButtonPanelViewModel cardButtonPanelViewModel, FunCardButtonPanelViewModel funCardButtonPanelViewModel,
+                            GetCardPanelViewModel getCardPanelViewModel){
         this.viewManagerModel = viewManagerModel;
         this.bottomPanelViewModel = bottomPanelViewModel;
         this.cardButtonPanelViewModel = cardButtonPanelViewModel;
         this.funCardButtonPanelViewModel = funCardButtonPanelViewModel;
+        this.getCardPanelViewModel = getCardPanelViewModel;
     }
 
     @Override
@@ -38,6 +41,12 @@ public class ConfirmPresenter implements ConfirmOutputDataBoundary {
         funCardButtonPanelState.setAllButtonDisable(false);
         funCardButtonPanelViewModel.setState(funCardButtonPanelState);
         funCardButtonPanelViewModel.firePropertyChanged();
+
+        GetCardPanelState getCardPanelState = getCardPanelViewModel.getState();
+        getCardPanelState.setUndoEnabled(false);
+        getCardPanelState.setGetCardEnabled(false);
+        getCardPanelViewModel.setState(getCardPanelState);
+        getCardPanelViewModel.firePropertyChanged();
 
         viewManagerModel.setActiveView("Initialized");
         viewManagerModel.firePropertyChanged();
