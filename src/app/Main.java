@@ -1,6 +1,7 @@
 package app;
 
 import Assets.BackGroundMusic;
+import data_access.APIDataAccessObject;
 import data_access.FileUserDataAccessObject;
 import entities.Game;
 import entities.NumberCardsDeck.NumberCardsDeckCreator;
@@ -9,6 +10,8 @@ import entities.player.HumanPlayerFactory;
 import interface_adapter.Initialized.*;
 import interface_adapter.Initiation.InitiationViewModel;
 import interface_adapter.ViewManagerModel;
+import interface_adapter.postTurn.PostTurnViewModel;
+import interface_adapter.preTurn.PreTurnViewModel;
 import use_case.PreTurn.FindPlayableCards;
 import use_case.PreTurn.FindPlayableCardsInterface;
 import view.*;
@@ -56,7 +59,7 @@ public class Main {
 
         FindPlayableCardsInterface findPlayableCardsInterface = new FindPlayableCards();
 
-
+        APIDataAccessObject apiDataAccessObject = new APIDataAccessObject();
         FileUserDataAccessObject userDataAccessObject;
         try {
             userDataAccessObject = new FileUserDataAccessObject("./users.csv", new AIPlayerFactory(), new HumanPlayerFactory(), new NumberCardsDeckCreator());
@@ -70,11 +73,14 @@ public class Main {
         BottomPanelViewModel bottomPanelViewModel = new BottomPanelViewModel();
         PlayerPanelViewModel playerPanelViewModel = new PlayerPanelViewModel();
         GetCardPanelViewModel getCardPanelViewModel = new GetCardPanelViewModel();
+        PreTurnViewModel preTurnViewModel = new PreTurnViewModel();
+        PostTurnViewModel postTurnViewModel = new PostTurnViewModel();
+
 
         // panels (views)
-        BottomPanel bottomPanel = BottomPanelUseCaseFactory.create(viewManagerModel, bottomPanelViewModel, cardButtonPanelViewModel, funCardButtonPanelViewModel, getCardPanelViewModel, userDataAccessObject);
+        BottomPanel bottomPanel = BottomPanelUseCaseFactory.create(viewManagerModel, bottomPanelViewModel, cardButtonPanelViewModel, funCardButtonPanelViewModel, getCardPanelViewModel, playerPanelViewModel,postTurnViewModel, preTurnViewModel, apiDataAccessObject, userDataAccessObject);
         PlayerPanel playerPanel = PlayerPanelUseCaseFactory.create(viewManagerModel, playerPanelViewModel);
-        GetCardPanel getCardPanel = GetCardPanelUseCaseFactory.create(viewManagerModel, getCardPanelViewModel, cardButtonPanelViewModel,funCardButtonPanelViewModel, bottomPanelViewModel,userDataAccessObject);
+        GetCardPanel getCardPanel = GetCardPanelUseCaseFactory.create(viewManagerModel, getCardPanelViewModel, cardButtonPanelViewModel,funCardButtonPanelViewModel, bottomPanelViewModel,apiDataAccessObject, userDataAccessObject);
         FunCardButtonPanel funCardButtonPanel = FunCardButtonPanelUseCaseFactory.create(viewManagerModel, cardButtonPanelViewModel, funCardButtonPanelViewModel, userDataAccessObject);
         CardButtonPanel cardButtonPanel = CardButtonPanelUseCaseFactory.create(viewManagerModel, funCardButtonPanelViewModel, cardButtonPanelViewModel, getCardPanelViewModel,bottomPanelViewModel,userDataAccessObject);
 

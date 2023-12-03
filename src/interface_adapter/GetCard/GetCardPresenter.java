@@ -1,27 +1,32 @@
 package interface_adapter.GetCard;
 
+import entities.card.NumberCard;
 import interface_adapter.Initialized.CardButtonPanelViewModel;
 import interface_adapter.Initialized.FunCardButtonPanelViewModel;
 import interface_adapter.Initialized.GetCardPanelState;
+import interface_adapter.Initialized.GetCardPanelViewModel;
 import interface_adapter.ViewManagerModel;
 import use_case.GetCard.GetCardOutputData;
 import use_case.GetCard.GetCardOutputDataBoundary;
 
+import java.util.ArrayList;
+
 public class GetCardPresenter implements GetCardOutputDataBoundary {
 
     private ViewManagerModel viewManagerModel;
-    private GetCardViewModel getCardViewModel;
+    private GetCardPanelViewModel getCardPanelViewModel;
 
-    public GetCardPresenter(ViewManagerModel viewManagerModel, GetCardViewModel getCardViewModel) {
+    public GetCardPresenter(ViewManagerModel viewManagerModel, GetCardPanelViewModel getCardPanelViewModel) {
         this.viewManagerModel = viewManagerModel;
-        this.getCardViewModel = getCardViewModel;
+        this.getCardPanelViewModel = getCardPanelViewModel;
     }
+
     @Override
     public void prepareNewGameView(GetCardOutputData getCardOutputData) {
-        GetCardState getCardState = getCardViewModel.getState();
-        getCardState.setNumberCard(getCardOutputData.getNumberCard());
-
-        getCardViewModel.setState(getCardState);
+        NumberCard card = getCardOutputData.getNumberCard();
+        GetCardPanelState getCardState = getCardPanelViewModel.getState();
+        getCardState.setNumberCard(card);
+        getCardPanelViewModel.setState(getCardState);
         viewManagerModel.firePropertyChanged();
     }
 }
