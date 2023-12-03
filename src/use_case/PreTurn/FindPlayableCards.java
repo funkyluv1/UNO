@@ -13,8 +13,13 @@ public class FindPlayableCards implements FindPlayableCardsInterface{
     @Override
     public ArrayList<FunctionalCard> findPlayableFunctionalCards(String roundColor, ArrayList<FunctionalCard> functionalCards) {
         ArrayList<FunctionalCard>playableFunctionalCards = new ArrayList<>();
+        String roundC;
+        if (roundColor.length() > 1){
+            char rC = (char) (roundColor.charAt(0) - 'a' + 'A');
+            roundC = String.valueOf(rC);
+        } else {roundC = roundColor;}
         for (FunctionalCard functionalCard : functionalCards){
-            if (functionalCard.getColor().equals(roundColor) || functionalCard.getColor().equals("any")){
+            if (functionalCard.getColor().equals(roundC) || functionalCard.getColor().equals("any")){
                 playableFunctionalCards.add(functionalCard);
                 functionalCard.isUsable = true;
             }
@@ -25,13 +30,18 @@ public class FindPlayableCards implements FindPlayableCardsInterface{
     @Override
     public ArrayList<NumberCard> findPlayableNumberCards(String roundColor, ArrayList<NumberCard> numberCards) {
         ArrayList<NumberCard> playableNumberCards = new ArrayList<>();
+        String roundC;
+        if (roundColor.length() > 1){
+            char rC = (char) (roundColor.charAt(0) - 'a' + 'A');
+            roundC = String.valueOf(rC);
+        } else {roundC = roundColor;}
         for (NumberCard numberCard : numberCards){
-            if (numberCard.getColor().equals(roundColor)){
+            if (numberCard.getColor().equals(roundC)){
                 playableNumberCards.add(numberCard);
                 numberCard.isUsable = true;
             }
         }
         return playableNumberCards;
     }
-
 }
+

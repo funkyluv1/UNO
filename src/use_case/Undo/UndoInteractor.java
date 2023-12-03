@@ -1,5 +1,7 @@
 package use_case.Undo;
 
+import java.util.ArrayList;
+
 import static use_case.initiation.InitiationInteractor.game;
 
 public class UndoInteractor implements UndoInputDataBoundary {
@@ -16,6 +18,7 @@ public class UndoInteractor implements UndoInputDataBoundary {
     public void execute(UndoInputData undoInputData) {
         UndoOutputData undoOutputData = new UndoOutputData(game.getCurrSelectedNumberCard());
         game.setCurrSelectedNumberCard(null);
+        game.setCurrSelectedFunCard(new ArrayList<>());
         undoDataAccessInterface.recordUnselectCard(undoInputData.getSelectedCard());
         undoOutputDataBoundary.prepareUndoView(undoOutputData);
     }

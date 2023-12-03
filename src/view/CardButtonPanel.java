@@ -26,6 +26,7 @@ public class CardButtonPanel extends JPanel implements PropertyChangeListener {
     Panel playpanel = new Panel(3);
     JButton leftButton;
     JButton rightButton;
+    SelectCardController selectCardController;
     private int id = 3;
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);
 
@@ -33,10 +34,11 @@ public class CardButtonPanel extends JPanel implements PropertyChangeListener {
                            RightShiftController rightShiftController, LeftShiftController leftShiftController){
         this.cardButtonPanelViewModel = cardButtonPanelViewModel;
         this.cardButtonPanelViewModel.addPropertyChangeListener(this);
+        this.selectCardController = selectCardController;
 
         // left shift button
         JButton leftShift = new JButton("left");
-        leftShift.setPreferredSize(new Dimension(20, 30));
+        leftShift.setPreferredSize(new Dimension(50, 60));
         leftShift.setForeground(Color.WHITE);
         leftShift.setBackground(Color.BLACK);
         leftShift.setFont(new Font("Arial", Font.BOLD, 14));
@@ -57,7 +59,7 @@ public class CardButtonPanel extends JPanel implements PropertyChangeListener {
 
         // right shift button
         JButton rightShift = new JButton("right");
-        rightShift.setPreferredSize(new Dimension(20, 30));
+        rightShift.setPreferredSize(new Dimension(50, 60));
         rightShift.setForeground(Color.WHITE);
         rightShift.setBackground(Color.BLACK);
         rightShift.setFont(new Font("Arial", Font.BOLD, 14));
@@ -88,16 +90,6 @@ public class CardButtonPanel extends JPanel implements PropertyChangeListener {
             Border border = BorderFactory.createLineBorder(Color.BLUE, 2);
             cardButton.setBorder(border);
             int finalI = i;
-            cardButton.addActionListener(
-                    new ActionListener() {
-                        public void actionPerformed(ActionEvent evt) {
-                            if (evt.getSource().equals(cardButton)) {
-                                CardButtonPanelState currentState = cardButtonPanelViewModel.getState();
-                                selectCardController.execute(cardButton.getText(),finalI);
-                            }
-                        }
-                    }
-            );
             playpanel.add(cardButton);
             cardNames.add(cardButton);
 
@@ -124,7 +116,7 @@ public class CardButtonPanel extends JPanel implements PropertyChangeListener {
             cardNames.get(i - startInd).setText(name);
             if (playableNumCardsString.contains(name)){
                 cardNames.get(i - startInd).setEnabled(true);
-            }
+            } else {cardNames.get(i - startInd).setEnabled(false);}
 //          TODO: probably don't need highlight any more; contrast between Enabled and Disabled Button is distinguishable
 //          cardNames.get(cardButtonPanelViewModel.getState().getButtonindexHighlighted()).setBackground(Color.CYAN);
 
@@ -137,6 +129,18 @@ public class CardButtonPanel extends JPanel implements PropertyChangeListener {
                 cardNames.get(i - startInd).setEnabled(false);
             }
 
+            int finalI = i;
+            cardNames.get(i - startInd).addActionListener(
+                    new ActionListener() {
+                        public void actionPerformed(ActionEvent evt) {
+                            if (evt.getSource().equals(cardNames.get(finalI - startInd))) {
+                                CardButtonPanelState currentState = cardButtonPanelViewModel.getState();
+                                selectCardController.execute(currentState.get_Number_Cards().get(finalI).getString(),finalI - startInd);
+                            }
+                        }
+                    }
+            );
+
 //            if (i == startInd){cardNames.get(i - startInd).setEnabled(cardButtonPanelViewModel.getState().getButton1enabled());}
 //            else if (i == startInd + 1){cardNames.get(i - startInd).setEnabled(cardButtonPanelViewModel.getState().getButton2enabled());}
 //            else cardNames.get(i - startInd).setEnabled(cardButtonPanelViewModel.getState().getButton3enabled());
@@ -144,7 +148,7 @@ public class CardButtonPanel extends JPanel implements PropertyChangeListener {
         }
         leftButton.setEnabled(cardButtonPanelViewModel.getState().getLeftButtonEnabled());
         rightButton.setEnabled(cardButtonPanelViewModel.getState().getRightButtonEnabled());
-
+        playpanel.setPreferredSize(new Dimension(600, 200));
         this.firePropertyChange();
     }
     public void addPropertyChangeListener(PropertyChangeListener listener) {
