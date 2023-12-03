@@ -37,6 +37,12 @@ public class PlayerTest extends TestCase {
 
     }
 
+    public void test_set_numberCards(){
+
+    }
+
+    public void test_get
+
     @Test
     public void test_deal_card(){
 
