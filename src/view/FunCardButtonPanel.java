@@ -41,7 +41,7 @@ public class FunCardButtonPanel extends JPanel implements PropertyChangeListener
 
         // left shift button
         JButton leftShift = new JButton("left");
-        leftShift.setPreferredSize(new Dimension(20, 30));
+        leftShift.setPreferredSize(new Dimension(50, 60));
         leftShift.setForeground(Color.WHITE);
         leftShift.setBackground(Color.BLACK);
         leftShift.setFont(new Font("Arial", Font.BOLD, 14));
@@ -62,7 +62,7 @@ public class FunCardButtonPanel extends JPanel implements PropertyChangeListener
 
         // right shift button
         JButton rightShift = new JButton("right");
-        rightShift.setPreferredSize(new Dimension(20, 30));
+        rightShift.setPreferredSize(new Dimension(50, 60));
         rightShift.setForeground(Color.WHITE);
         rightShift.setBackground(Color.BLACK);
         rightShift.setFont(new Font("Arial", Font.BOLD, 14));
@@ -133,6 +133,10 @@ public class FunCardButtonPanel extends JPanel implements PropertyChangeListener
             cardNames.get(i - startInd).setText(name);
             if (playableFunCardsString.contains(name)){
                 cardNames.get(i - startInd).setEnabled(true);
+            }
+
+            if (funCardButtonPanelViewModel.getState().getAllButtonDisable()){
+                cardNames.get(i - startInd).setEnabled(false);
             }
 
             if (selectedFunCardsString.contains(name)){

@@ -1,8 +1,7 @@
 package app;
 
 import data_access.FileUserDataAccessObject;
-import interface_adapter.Initialized.CardButtonPanelViewModel;
-import interface_adapter.Initialized.GetCardPanelViewModel;
+import interface_adapter.Initialized.*;
 import interface_adapter.SelectCard.SelectCardController;
 import interface_adapter.Undo.UndoController;
 import interface_adapter.Undo.UndoPresenter;
@@ -23,8 +22,11 @@ public class GetCardPanelUseCaseFactory {
             ViewManagerModel viewManagerModel,
             GetCardPanelViewModel getCardPanelViewModel,
             CardButtonPanelViewModel cardButtonPanelViewModel,
+            FunCardButtonPanelViewModel funCardButtonPanelViewModel,
+            BottomPanelViewModel bottomPanelViewModel,
             FileUserDataAccessObject fileUserDataAccessObject) {
-        UndoController undoController = createUndoController(viewManagerModel, getCardPanelViewModel, cardButtonPanelViewModel, fileUserDataAccessObject);
+        UndoController undoController = createUndoController(viewManagerModel, getCardPanelViewModel, cardButtonPanelViewModel, funCardButtonPanelViewModel,
+                bottomPanelViewModel,fileUserDataAccessObject);
 
         return new GetCardPanel(getCardPanelViewModel, undoController);
     }
@@ -32,8 +34,11 @@ public class GetCardPanelUseCaseFactory {
     private static UndoController createUndoController(ViewManagerModel viewManagerModel,
                                                        GetCardPanelViewModel getCardPanelViewModel,
                                                        CardButtonPanelViewModel cardButtonPanelViewModel,
+                                                       FunCardButtonPanelViewModel funCardButtonPanelViewModel,
+                                                       BottomPanelViewModel bottomPanelViewModel,
                                                        FileUserDataAccessObject fileUserDataAccessObject) {
-        UndoOutputDataBoundary undoOutputDataBoundary = new UndoPresenter(viewManagerModel, getCardPanelViewModel, cardButtonPanelViewModel);
+        UndoOutputDataBoundary undoOutputDataBoundary = new UndoPresenter(viewManagerModel, getCardPanelViewModel,
+                cardButtonPanelViewModel, funCardButtonPanelViewModel, bottomPanelViewModel);
 
         UndoDataAccessInterface undoDataAccessInterface = fileUserDataAccessObject;
         UndoInputDataBoundary undoInteractor = new UndoInteractor(undoOutputDataBoundary, undoDataAccessInterface);

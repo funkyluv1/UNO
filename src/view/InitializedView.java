@@ -13,7 +13,7 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 
-public class InitializedView extends JPanel implements ActionListener, PropertyChangeListener {
+public class InitializedView extends JPanel implements ActionListener, PropertyChangeListener{
 
     public final String viewName;
     private final InitializedViewModel initializedViewModel;
@@ -27,7 +27,8 @@ public class InitializedView extends JPanel implements ActionListener, PropertyC
     JLabel jLabel;
     ArrayList<Color> colorList;
 
-    JLabel label;
+    ArrayList<JLabel> usernames = new ArrayList<>();
+    ArrayList<JButton> cardNames = new ArrayList<>();
 
     public InitializedView(InitializedViewModel initializedViewModel) {
         JLabel title = new JLabel("Initialized Screen");
@@ -36,7 +37,6 @@ public class InitializedView extends JPanel implements ActionListener, PropertyC
         this.viewName = "Initialized";
         this.initializedViewModel = initializedViewModel;
         this.initializedViewModel.addPropertyChangeListener(this);
-
         this.cardButtonPanel = new JPanel();
         this.bottomPanel = new JPanel();
         this.playerPanel = new JPanel();
@@ -50,40 +50,7 @@ public class InitializedView extends JPanel implements ActionListener, PropertyC
         bigPanel.add(funCardPanel);
         bigPanel.add(getCardPanel);
         add(bigPanel);
-
-        cardButtonPanel.setBackground(Color.BLUE);
-        bottomPanel.setBackground(Color.RED);
-        playerPanel.setBackground(Color.YELLOW);
-        getCardPanel.setBackground(Color.GREEN);
-        funCardPanel.setBackground(Color.BLACK);
-
-
-        setSize(1000, 1000);
-
-        this.setLayout(new BorderLayout());
-
-//        JPanel playerPanel = new JPanel();
-        //      playerPanel.setLayout(new GridLayout(1, 4, 10, 10));
-        //     playerPanel.setOpaque(false);
-
-        bigPanel = new JPanel();
-        bigPanel.setLayout(new BorderLayout());
-
-        label = new JLabel("Testing");
-        bigPanel.add(label);
-        bigPanel.add(label, BorderLayout.CENTER);
-
-        bigPanel.add(this.getCardPanel, BorderLayout.NORTH);
-        bigPanel.add(this.cardButtonPanel, BorderLayout.WEST);
-        bigPanel.add(this.funCardPanel, BorderLayout.EAST);
-        this.add(bigPanel, BorderLayout.CENTER);
-
-        this.add(this.playerPanel, BorderLayout.NORTH);
-        playerPanel.add(label, BorderLayout.CENTER);
-        this.add(this.bottomPanel, BorderLayout.SOUTH);
-
     }
-
     public void actionPerformed(ActionEvent e) {
         System.out.println("Click " + e.getActionCommand());
     }
@@ -110,47 +77,35 @@ public class InitializedView extends JPanel implements ActionListener, PropertyC
                 this.remove(bottomPanel);
                 bottomPanel = panel;
             }
+            i += 1;
+        }
+        setSize(1200, 1000);
+        this.setLayout(new BorderLayout());
+        Color darkRed = new Color(218, 40, 40);
+        this.setBackground(Color.CYAN);
 
-            for (JPanel panel0 : panels) {
-                if (i == 0) {
-                    playerPanel = panel0;
-                } else if (i == 1) {
-                    getCardPanel = panel0;
-                } else if (i == 2) {
-                    cardButtonPanel = panel0;
-                } else if (i == 3) {
-                    funCardPanel = panel0;
-                } else if (i == 4) {
-                    bottomPanel = panel0;
-                }
+        bigPanel.setLayout(new BorderLayout());
+        playerPanel.setPreferredSize(new Dimension(1200, 100));
+        playerPanel.setBounds(0,0,1200,100);
+        playerPanel.setBackground(Color.red);
 
-                i += 1;
-            }
-            setSize(1200, 1000);
-            this.setLayout(new BorderLayout());
-            Color darkRed = new Color(218, 40, 40);
-            this.setBackground(Color.CYAN);
+        bigPanel.setPreferredSize(new Dimension(1200, 600));
+        bigPanel.setBounds(0, 100, 1200,800);
+        getCardPanel.setPreferredSize(new Dimension(1200, 200));
+        getCardPanel.setBackground(Color.yellow);
+        cardButtonPanel.setPreferredSize(new Dimension(600, 200));
+        cardButtonPanel.setBackground(Color.black);
+        funCardPanel.setPreferredSize(new Dimension(600, 200));
+        funCardPanel.setBackground(Color.green);
+        bottomPanel.setPreferredSize(new Dimension(1200, 100));
+        bottomPanel.setBackground(Color.BLUE);
 
-            bigPanel.setLayout(new BorderLayout());
-            playerPanel.setPreferredSize(new Dimension(1200, 100));
-            playerPanel.setBackground(Color.red);
-
-            bigPanel.setPreferredSize(new Dimension(1200, 700));
-            getCardPanel.setPreferredSize(new Dimension(1200, 200));
-            getCardPanel.setBackground(Color.yellow);
-            cardButtonPanel.setPreferredSize(new Dimension(600, 200));
-            cardButtonPanel.setBackground(Color.black);
-            funCardPanel.setPreferredSize(new Dimension(600, 200));
-            funCardPanel.setBackground(Color.green);
-            bottomPanel.setPreferredSize(new Dimension(1200, 100));
-            bottomPanel.setBackground(Color.BLUE);
-
-            this.add(playerPanel, BorderLayout.NORTH);
-            this.add(bottomPanel, BorderLayout.SOUTH);
-            this.add(bigPanel, BorderLayout.CENTER);
-            bigPanel.add(getCardPanel, BorderLayout.NORTH);
-            bigPanel.add(cardButtonPanel, BorderLayout.WEST);
-            bigPanel.add(funCardPanel, BorderLayout.EAST);
+        this.add(playerPanel, BorderLayout.NORTH);
+        this.add(bottomPanel, BorderLayout.SOUTH);
+        this.add(bigPanel, BorderLayout.CENTER);
+        bigPanel.add(getCardPanel, BorderLayout.NORTH);
+        bigPanel.add(cardButtonPanel, BorderLayout.WEST);
+        bigPanel.add(funCardPanel, BorderLayout.EAST);
 
 //        bigPanel.add(this.getCardPanel, BorderLayout.NORTH);
 //        bigPanel.add(this.cardButtonPanel, BorderLayout.WEST);
@@ -168,18 +123,6 @@ public class InitializedView extends JPanel implements ActionListener, PropertyC
 //        cardButtonPanel.setOpaque(true);
 
 
-            // set text changes the jlabel content
-            label.setText("Changed");
-            // whereas assigning our jlabel object to reference another jlable object does not change nything
-            label = new JLabel("not changed");
-
-            bigPanel.setOpaque(false);
-            playerPanel.setOpaque(false);
-            getCardPanel.setOpaque(false);
-            funCardPanel.setOpaque(false);
-            bottomPanel.setOpaque(false);
-            cardButtonPanel.setOpaque(false);
-        }
     }
 
     @Override
@@ -206,4 +149,6 @@ public class InitializedView extends JPanel implements ActionListener, PropertyC
 
         g2d.dispose();
     }
+
+
 }

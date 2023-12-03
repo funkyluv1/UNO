@@ -2,6 +2,7 @@ package view;
 
 import interface_adapter.Confirm.ConfirmController;
 import interface_adapter.Initialized.BottomPanelViewModel;
+import interface_adapter.NextTurn.NextTurnController;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -24,7 +25,7 @@ public class BottomPanel extends JPanel implements PropertyChangeListener {
     private int ID = 5;
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);
 
-    public BottomPanel(BottomPanelViewModel bottomPanelViewModel, ConfirmController confirmController){
+    public BottomPanel(BottomPanelViewModel bottomPanelViewModel, ConfirmController confirmController, NextTurnController nextTurnController){
         this.bottomPanelViewModel = bottomPanelViewModel;
         this.bottomPanelViewModel.addPropertyChangeListener(this);
 
@@ -55,7 +56,7 @@ public class BottomPanel extends JPanel implements PropertyChangeListener {
                 new ActionListener() {
                     public void actionPerformed(ActionEvent evt) {
                         if (evt.getSource().equals(nextButton)) {
-                            //TODO: NextUseCase controller here
+                            nextTurnController.execute((game.getCurrentPlayerIndex() + 1)%4);
                         }
                     }
                 }
@@ -79,7 +80,6 @@ public class BottomPanel extends JPanel implements PropertyChangeListener {
     public void propertyChange(PropertyChangeEvent evt) {
         nextButton.setEnabled(bottomPanelViewModel.getState().getNextButtonEnabled());
         confirmButton.setEnabled(bottomPanelViewModel.getState().getConfirmButtonEnabled());
-//        this.setOpaque(true);
 
     this.firePropertyChange();
 }
