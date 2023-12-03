@@ -1,6 +1,7 @@
 package interface_adapter.SelectCard;
 
-import data_access.StringToCardAdapter;
+import data_access.StringToCardConverter;
+import data_access.StringToCardConverter;
 import entities.card.Card;
 import entities.card.CardFactory;
 import entities.card.NumberCard;
@@ -25,7 +26,7 @@ public class SelectCardController {
         if (Character.isDigit(text.charAt(0))) {
             ArrayList<String> list = new ArrayList<>();
             list.add(text);
-            StringToCardAdapter stringToCardAdapter = new StringToCardAdapter(list);
+            StringToCardConverter stringToCardAdapter = new StringToCardConverter(list);
             cardNew = stringToCardAdapter.convertToNumCards().get(0);//TODO: StringToCardAdapter have bugs; will change everything to Red
         }
         SelectCardInputData selectCardInputData = new SelectCardInputData(cardNew, button_index);
