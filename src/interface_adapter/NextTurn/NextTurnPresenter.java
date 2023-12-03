@@ -33,22 +33,25 @@ public class NextTurnPresenter implements NextTurnOutputDataBoundary {
     public void prepare_view(NextTurnOutputData nextTurnOutputData){
         CardButtonPanelState cardButtonPanelState = cardButtonPanelViewModel.getState();
         BottomPanelState bottomPanelState = bottomPanelViewModel.getState();
-        cardButtonPanelState.setOneCardSelected(false);
         PlayerPanelState playerPanelState = playerPanelViewModel.getState();
         FunCardButtonPanelState funCardButtonPanelState = funCardButtonPanelViewModel.getState();
+
         if (nextTurnOutputData.getPlayer_index() == 3){
             //change color
         }
+        this.playerPanelViewModel.setState(playerPanelState);
+        this.playerPanelViewModel.firePropertyChanged();
+
         funCardButtonPanelState.set_cards(nextTurnOutputData.getFunctionalCards(),nextTurnOutputData.getPlayerplayablefuncards(), 0);
         funCardButtonPanelState.setAllButtonDisable(false);
         cardButtonPanelState.set_cards(nextTurnOutputData.getnumcards(), nextTurnOutputData.getPlayerplayablenumcards(), 0);
         playerPanelState.setCurrent_player_index(nextTurnOutputData.getPlayer_index());
-        this.playerPanelViewModel.setState(playerPanelState);
-        this.playerPanelViewModel.firePropertyChanged();
+
 
         this.funCardButtonPanelViewModel.setState(funCardButtonPanelState);
         this.funCardButtonPanelViewModel.firePropertyChanged();
 
+        cardButtonPanelState.setOneCardSelected(false);
         if (cardButtonPanelState.get_Number_Cards().size() > 3){
             cardButtonPanelState.setRightButtonEnabled(true);
             cardButtonPanelState.setLeftButtonEnabled(false);
@@ -64,7 +67,6 @@ public class NextTurnPresenter implements NextTurnOutputDataBoundary {
         bottomPanelState.setNextButtonEnabled(false);
         bottomPanelViewModel.setState(bottomPanelState);
         this.bottomPanelViewModel.firePropertyChanged();
-
     }
 
 }
