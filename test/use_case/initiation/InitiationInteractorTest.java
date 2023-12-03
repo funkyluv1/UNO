@@ -46,11 +46,11 @@ public class InitiationInteractorTest extends TestCase {
 
         InitiationInputData initiationInputData = new InitiationInputData(playerNames, botNumber);
 
-        DrawCardsInputData drawCardsInputData = new DrawCardsInputData(, numberCardsDeckFactory.create("Jason", 3));
+        //DrawCardsInputData drawCardsInputData = new DrawCardsInputData(, numberCardsDeckFactory.create("Jason", 3));
 
-        FileUserDataAccessObject dao = new FileUserDataAccessObject(csvPath, aiPlayerFactory, humanPlayerFactory, numberCardsDeckFactory);
+        InitiationDataAccessInterface dao = new FileUserDataAccessObject(csvPath, aiPlayerFactory, humanPlayerFactory, numberCardsDeckFactory);
 
-        // this creates a successPresenter that tests whether the test case is as we expect
+        // IMPORTANT: this creates a "mock presenter" that looks at the output data and assert things about it
         InitiationOutputDataBoundary successPresenter = new InitiationOutputDataBoundary() {
             @Override
             public void prepareNewGameView(InitiationOutputData initiationOutputData) {
@@ -63,8 +63,8 @@ public class InitiationInteractorTest extends TestCase {
                 assertEquals("David", initiationOutputData.getPlayerNames().get(5));
 
                 // tests if the dao can get the player infos from the database
-                assertEquals(dao.get_specific_player_with_index(0), "Jason");
-                assertEquals(dao.getNumberCards("Jason"), numberCards);
+                assertEquals(((FileUserDataAccessObject) dao).get_specific_player_with_index(0), "Jason");
+                assertEquals(((FileUserDataAccessObject) dao).getNumberCards("Jason"), initiationOutputData.getPlayerNumCards().get("Jason"));
 
             }
         };
@@ -101,7 +101,6 @@ public class InitiationInteractorTest extends TestCase {
         };
 
         InitiationInputDataBoundary interactor = new InitiationInteractor((FileUserDataAccessObject) dao, drawCardsDataAccessInterface,successPresenter, findPlayableCardsInterface);
-
 
         interactor.execute(initiationInputData);
     }
