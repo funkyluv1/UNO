@@ -34,7 +34,7 @@ public class FileUserDataAccessObject implements InitiationDataAccessInterface,
     private final Map<Integer, NumberCardsDeck> cardsDeck = new HashMap<>();
     private final Map<String, Integer> numberCardDeckHeaders = new LinkedHashMap<>();
     private final Map<String, Integer> playerHeaders = new LinkedHashMap<>();
-    private Game game;
+    private Game game = Game.getInstance();
 
 
     public FileUserDataAccessObject(String csvPath, AIPlayerFactory aiPlayerFactory,
