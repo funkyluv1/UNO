@@ -14,13 +14,16 @@ public class UndoPresenter implements UndoOutputDataBoundary {
     private GetCardPanelViewModel getCardPanelViewModel;
     private CardButtonPanelViewModel cardButtonPanelViewModel;
     private FunCardButtonPanelViewModel funCardButtonPanelViewModel;
+    private BottomPanelViewModel bottomPanelViewModel;
 
     public UndoPresenter(ViewManagerModel viewManagerModel, GetCardPanelViewModel getCardPanelViewModel,
-                            CardButtonPanelViewModel cardButtonPanelViewModel, FunCardButtonPanelViewModel funCardButtonPanelViewModel) {
+                            CardButtonPanelViewModel cardButtonPanelViewModel,
+                         FunCardButtonPanelViewModel funCardButtonPanelViewModel, BottomPanelViewModel bottomPanelViewModel) {
         this.viewManagerModel = viewManagerModel;
         this.getCardPanelViewModel = getCardPanelViewModel;
         this.funCardButtonPanelViewModel = funCardButtonPanelViewModel;
         this.cardButtonPanelViewModel = cardButtonPanelViewModel;
+        this.bottomPanelViewModel = bottomPanelViewModel;
     }
     @Override
     public void prepareUndoView(UndoOutputData undoOutputData) {
@@ -44,6 +47,11 @@ public class UndoPresenter implements UndoOutputDataBoundary {
         funCardButtonPanelState.setAllButtonDisable(false);
         funCardButtonPanelViewModel.setState(funCardButtonPanelState);
         funCardButtonPanelViewModel.firePropertyChanged();
+
+        BottomPanelState bottomPanelState = bottomPanelViewModel.getState();
+        bottomPanelState.setNextButtonEnabled(false);
+        bottomPanelViewModel.setState(bottomPanelState);
+        bottomPanelViewModel.firePropertyChanged();
 
         viewManagerModel.setActiveView("Initialized");
         viewManagerModel.firePropertyChanged();
