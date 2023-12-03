@@ -230,6 +230,18 @@ public class FileUserDataAccessObject implements InitiationDataAccessInterface,
     }
 
     @Override
+    public void play_Card_and_update_DAO(String playerName, NumberCard numberCard, ArrayList<FunctionalCard> functionalCards) {
+        ArrayList<NumberCard> numberCards = playerInfo.get(playerName).getNumberCards();
+        ArrayList<FunctionalCard> currPlayerFuncCard = getFunctionalCards(playerName);
+
+        numberCards.remove(numberCard);
+        for (FunctionalCard functionalCard : functionalCards){
+            currPlayerFuncCard.remove(functionalCard);
+        }
+        recordPostTurnChange(currPlayerFuncCard, numberCards, playerName);
+    }
+
+    @Override
     public void recordGetCard(int index, NumberCard numberCard) {
         String player = get_specific_player_with_index(index);
         ArrayList<NumberCard> hand = playerInfo.get(player).getNumberCards();
