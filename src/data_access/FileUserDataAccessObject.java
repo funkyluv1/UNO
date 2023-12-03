@@ -227,6 +227,6 @@ public class FileUserDataAccessObject implements InitiationDataAccessInterface,
     @Override
     public String get_specific_player_with_index(int player_index) {
         ArrayList<String> usernames = new ArrayList<>(playerInfo.keySet());
-        return playerInfo.get(usernames.get(player_index)).playerName;
+        return playerInfo.get(usernames.get(player_index % 4)).playerName;
     }
 }
