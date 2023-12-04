@@ -18,6 +18,9 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
+import java.util.HashMap;
+
+import static use_case.initiation.InitiationInteractor.game;
 
 public class CardButtonPanel extends JPanel implements PropertyChangeListener {
 
@@ -54,12 +57,23 @@ public class CardButtonPanel extends JPanel implements PropertyChangeListener {
         this.leftButton = leftShift;
         playpanel.add(this.leftButton);
 
+        int startInd = cardButtonPanelViewModel.getState().getdisplayCardsFirstIndex();
         for (int i = 0; i < 3; i++) {
             CardButton cardButton = new CardButton();
             cardButton.setOpaque(false);
             Border border = BorderFactory.createLineBorder(Color.BLUE, 2);
             cardButton.setBorder(border);
             int finalI = i;
+            cardButton.addActionListener(
+                    new ActionListener() {
+                        public void actionPerformed(ActionEvent evt) {
+                            if (evt.getSource().equals(cardNames.get(finalI))) {
+                                CardButtonPanelState currentState = cardButtonPanelViewModel.getState();
+                                selectCardController.execute(currentState.get_Number_Cards_after_index().get(finalI).getString(), finalI);
+                            }
+                        }
+                    }
+            );
             playpanel.add(cardButton);
             cardNames.add(cardButton);
         }
@@ -120,18 +134,6 @@ public class CardButtonPanel extends JPanel implements PropertyChangeListener {
             if (cardButtonPanelViewModel.getState().getOneCardsSelected()){
                 cardNames.get(i - startInd).setEnabled(false);
             }
-
-            int finalI = i;
-            cardNames.get(i - startInd).addActionListener(
-                    new ActionListener() {
-                        public void actionPerformed(ActionEvent evt) {
-                            if (evt.getSource().equals(cardNames.get(finalI - startInd))) {
-                                CardButtonPanelState currentState = cardButtonPanelViewModel.getState();
-                                selectCardController.execute(currentState.get_Number_Cards().get(finalI).getString(),finalI - startInd);
-                            }
-                        }
-                    }
-            );
 
 //            if (i == startInd){cardNames.get(i - startInd).setEnabled(cardButtonPanelViewModel.getState().getButton1enabled());}
 //            else if (i == startInd + 1){cardNames.get(i - startInd).setEnabled(cardButtonPanelViewModel.getState().getButton2enabled());}

@@ -36,7 +36,7 @@ public class GetCardPanelUseCaseFactory {
             FileUserDataAccessObject fileUserDataAccessObject) {
         UndoController undoController = createUndoController(viewManagerModel, getCardPanelViewModel, cardButtonPanelViewModel, funCardButtonPanelViewModel,
                 bottomPanelViewModel,fileUserDataAccessObject);
-        GetCardController getCardController = createGetCardController(viewManagerModel, getCardPanelViewModel, apiDataAccessObject, fileUserDataAccessObject);
+        GetCardController getCardController = createGetCardController(viewManagerModel, getCardPanelViewModel, apiDataAccessObject, cardButtonPanelViewModel, fileUserDataAccessObject);
         return new GetCardPanel(getCardPanelViewModel, undoController, getCardController, bottomPanelViewModel, cardButtonPanelViewModel);
     }
 
@@ -57,8 +57,9 @@ public class GetCardPanelUseCaseFactory {
     private static GetCardController createGetCardController(ViewManagerModel viewManagerModel,
                                                        GetCardPanelViewModel getCardPanelViewModel,
                                                        APIDataAccessObject apiDataAccessObject,
+                                                       CardButtonPanelViewModel cardButtonPanelViewModel,
                                                        FileUserDataAccessObject fileUserDataAccessObject) {
-        GetCardOutputDataBoundary getCardOutputDataBoundary = new GetCardPresenter(viewManagerModel, getCardPanelViewModel);
+        GetCardOutputDataBoundary getCardOutputDataBoundary = new GetCardPresenter(viewManagerModel, getCardPanelViewModel, cardButtonPanelViewModel);
 
         GetCardDataAccessInterface getCardDataAccessInterface = fileUserDataAccessObject;
         DrawCardsDataAccessInterface drawCardsDataAccessInterface = apiDataAccessObject;
