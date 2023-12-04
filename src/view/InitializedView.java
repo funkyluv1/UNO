@@ -88,6 +88,7 @@ public class InitializedView extends JPanel implements ActionListener, PropertyC
         playerPanel.setPreferredSize(new Dimension(1200, 130));
         playerPanel.setBounds(0,0,1200,130);
         playerPanel.setBackground(Color.WHITE);
+        playerPanel.setOpaque(false);
 
         JPanel gap = new JPanel();
         gap.setPreferredSize(new Dimension(1100, 100));
