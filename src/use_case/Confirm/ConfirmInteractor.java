@@ -25,6 +25,10 @@ public class ConfirmInteractor implements ConfirmInputDataBoundary{
 
         confirmDataAccessInterface.play_Card_and_update_DAO(currPlayer,selectedNumCard, selectedFunCard);
 
+        if (game.getTopCard().getValue() < selectedNumCard.getValue()){
+            game.setTopCard(selectedNumCard);
+        }
+
         game.setCurrSelectedNumberCard(null);
         game.addNumCardsinRound(selectedNumCard);
         game.setCurrSelectedFunCard(new ArrayList<>());
