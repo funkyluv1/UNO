@@ -6,16 +6,22 @@ import entities.NumberCardsDeck.NumberCardsDeck;
 import entities.NumberCardsDeck.NumberCardsDeckFactory;
 import entities.card.Card;
 import entities.card.FunctionalCard;
+import entities.card.FunctionalCardFactory;
 import entities.card.NumberCard;
 import entities.player.AIPlayerFactory;
 import entities.player.HumanPlayer;
 import entities.player.HumanPlayerFactory;
+import entities.player.Player;
 import org.junit.Before;
 import org.junit.jupiter.api.Test;
 import use_case.DrawCards.*;
 import use_case.LeftShift.*;
+import use_case.NextTurn.*;
+import use_case.PostTurn.*;
 import use_case.PreTurn.FindPlayableCards;
 import use_case.PreTurn.FindPlayableCardsInterface;
+import use_case.PreTurn.PreTurnDataAccessInterface;
+import use_case.PreTurn.PreTurnInteractor;
 import use_case.RightShift.*;
 import use_case.Undo.*;
 import use_case.initiation.*;
@@ -261,6 +267,85 @@ class InitiationInteractorTest {
         interactor.execute(inputData);
     }
 
+    @Test
+    void nextTurnSuccessTest() throws IOException {
+        String playername = "Jason";
+        ArrayList<NumberCard> hand = new ArrayList<>();
+        NumberCard card1 = new NumberCard(1, "R");
+        hand.add(card1);
+        NumberCard card2 = new NumberCard(1, "G");
+        hand.add(card2);
+        NumberCard card3 = new NumberCard(1, "B");
+        hand.add(card3);
+        HumanPlayer player = new HumanPlayer(playername, hand, 0);
+        String csvPath = "users.csv";
+        AIPlayerFactory aiPlayerFactory = new AIPlayerFactory();
+        HumanPlayerFactory humanPlayerFactory = new HumanPlayerFactory();
 
+        NumberCardsDeckFactory numberCardsDeckFactory = new NumberCardsDeckFactory() {
+            @Override
+            public NumberCardsDeck create(String id, int remainingCards) {
+                return new NumberCardsDeck(id, remainingCards);
+            }
+        };
+
+        NextTurnDataAccessInterface dao =  new FileUserDataAccessObject(csvPath, aiPlayerFactory, humanPlayerFactory, numberCardsDeckFactory);
+
+        NextTurnInputData inputData = new NextTurnInputData(0);
+
+        // NOTES: This creates a successPresenter that tests whether the test case is as we expect.
+        NextTurnOutputDataBoundary successPresenter = new NextTurnOutputDataBoundary(){
+
+            @Override
+            public void prepare_view(NextTurnOutputData nextTurnOutputData) {
+
+            }
+        };
+
+        PreTurnDataAccessInterface preTurnDataAccessInterface = new PreTurnDataAccessInterface() {
+            @Override
+            public ArrayList<NumberCard> getNumberCards(String player) {
+                return null;
+            }
+
+            @Override
+            public void recordPreTurnChange(ArrayList<NumberCard> numberCards, String currentPlayer) {
+
+            }
+
+            @Override
+            public ArrayList<FunctionalCard> getFunctionalCards(String player) {
+                return null;
+            }
+
+            @Override
+            public Player getPlayer(int playerIndex) {
+                return null;
+            }
+        };
+
+        PostTurnDataAccessInterface postTurnDataAccessInterface = new PostTurnDataAccessInterface() {
+            @Override
+            public void recordPostTurnChange(ArrayList<FunctionalCard> functionalCards, ArrayList<NumberCard> numberCards, String currentPlayer) {
+
+            }
+
+            @Override
+            public void recordRoundChange(String currentPlayer, FunctionalCard reward) {
+
+            }
+        };
+
+
+        PreTurnInteractor preTurnInteractor = new PreTurnInteractor(drawCardsDataAccessInterface,
+                preTurnDataAccessInterface);
+        PostTurnInteractor postTurnInteractor = new PostTurnInteractor(drawCardsDataAccessInterface,
+                postTurnDataAccessInterface);
+
+        NextTurnInputDataBoundary interactor = new NextTurnInteractor(dao,successPresenter,
+                findPlayableCardsInterface, postTurnInteractor,
+                preTurnInteractor);
+        interactor.execute(inputData);
+    }
 
 }
