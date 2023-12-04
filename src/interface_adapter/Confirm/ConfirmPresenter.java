@@ -50,8 +50,8 @@ public class ConfirmPresenter implements ConfirmOutputDataBoundary {
         getCardPanelState.setUndoEnabled(false);
         getCardPanelState.setGetCardEnabled(false);
         int newCardValue = confirmOutputData.getNumber();
-        int currCardValuew = getCardPanelState.getTopCard().getValue();
-        if (newCardValue > currCardValuew){
+        int currCardValue = getCardPanelState.getTopCard().getValue();
+        if (newCardValue > currCardValue){
             getCardPanelState.setTopCard(confirmOutputData.getNumberCard());
         }
         getCardPanelViewModel.setState(getCardPanelState);

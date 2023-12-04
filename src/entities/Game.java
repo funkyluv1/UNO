@@ -26,10 +26,10 @@ public class Game {
     private String currWinnerStr;
 
     public Game() {
-        String[] randColor = {"red", "blue", "green", "yellow"};
+        String[] randColor = {"R", "B", "G", "Y"};
         int randColorIndex = (int) Math.floor(Math.random()*4);
         int randValue = (int) Math.floor(Math.random()*9);
-        this.topCard = new NumberCard(randValue, randColor[randColorIndex]);
+        this.topCard = new NumberCard(0, randColor[randColorIndex]);
         drawCard = 0;
         isSkipped = false;
         plusN = 0;
@@ -142,5 +142,10 @@ public class Game {
     }
     public void setNumberCardDeck(NumberCardsDeck numberCardDeck){
         this.numberCardDeck = numberCardDeck;
+    }
+    public NumberCard create_a_random_NumCard_with_value_0(){
+        String[] randColor = {"R", "B", "G", "Y"};
+        int randColorIndex = (int) Math.floor(Math.random()*4);
+        return new NumberCard(0, randColor[randColorIndex]);
     }
 }

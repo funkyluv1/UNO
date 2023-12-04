@@ -38,7 +38,9 @@ public class CardButtonPanelState{
         public CardButtonPanelState() {}
         public ArrayList<String> get_players(){return players;}
         public ArrayList<NumberCard> get_Number_Cards(){return playerNumCards;}
+        public ArrayList<NumberCard> get_Number_Cards_after_index(){return new ArrayList<>(playerNumCards.subList(displayNumCardsFirstIndex, displayNumCardsFirstIndex + 3));}
         public ArrayList<NumberCard> get_Highlighted_Number_Cards(){return playerPlayableNumCards;}
+        public void set_Highlighted_Number_Cards(ArrayList<NumberCard> numberCards){this.playerPlayableNumCards = numberCards;}
         public void set_players(ArrayList<String> players){this.players = players;}
         public void set_cards(ArrayList<NumberCard> playerNumCards,
                               ArrayList<NumberCard> playerPlayableNumCards,

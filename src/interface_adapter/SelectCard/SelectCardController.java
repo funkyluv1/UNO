@@ -24,12 +24,12 @@ public class SelectCardController {
     public void execute (String text, int button_index) {
         NumberCard cardNew = null;
         if (Character.isDigit(text.charAt(0))) {
-            ArrayList<String> list = new ArrayList<>();
-            list.add(text);
-            StringToCardConverter stringToCardConverter = new StringToCardConverter(list);
-            cardNew = stringToCardConverter.convertToNumCards().get(0);//TODO: StringToCardAdapter have bugs; will change everything to Red
-        }
+            NumberCardFactory numberCardFactory = new NumberCardFactory(
+                    Integer.parseInt(String.valueOf(text.charAt(0))), String.valueOf(text.charAt(1)));
+            cardNew = numberCardFactory.createCard();
+
         SelectCardInputData selectCardInputData = new SelectCardInputData(cardNew, button_index);
         selectCardInteractor.execute(selectCardInputData);
+        }
     }
 }

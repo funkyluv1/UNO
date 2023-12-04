@@ -9,6 +9,8 @@ import use_case.NextTurn.NextTurnOutputDataBoundary;
 
 import java.util.ArrayList;
 
+import static use_case.initiation.InitiationInteractor.game;
+
 public class NextTurnPresenter implements NextTurnOutputDataBoundary {
     private final PlayerPanelViewModel playerPanelViewModel;
 
@@ -51,6 +53,7 @@ public class NextTurnPresenter implements NextTurnOutputDataBoundary {
             getCardPanelState.setGetCardEnabled(true);
         } else {getCardPanelState.setGetCardEnabled(false);}
         getCardPanelState.setUndoEnabled(false);
+        getCardPanelState.setTopCard(game.getTopCard());
         getCardPanelViewModel.setState(getCardPanelState);
         getCardPanelViewModel.firePropertyChanged();
 

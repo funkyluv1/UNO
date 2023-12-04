@@ -6,6 +6,8 @@ import use_case.DrawCards.DrawCardsDataAccessInterface;
 
 import java.util.*;
 
+import static use_case.initiation.InitiationInteractor.game;
+
 
 public class GetCardInteractor implements GetCardInputDataBoundary{
 
@@ -23,7 +25,7 @@ public class GetCardInteractor implements GetCardInputDataBoundary{
     public void execute(GetCardInputData getCardInputData) {
 
         NumberCard card = drawCardsDataAccessInterface.drawNumberCards(getCardDataAccessObject.getNumberCardsDeck(), 1).get(0);
-
+        getCardDataAccessObject.recordGetCard(game.getCurrentPlayerIndex(), card);
         GetCardOutputData getCardOutputData = new GetCardOutputData(card);
         getCardOutputDataBoundary.prepareNewGameView(getCardOutputData);
     }

@@ -45,7 +45,7 @@ public class PostTurnInteractor implements PostTurnInputDataBoundary{
             String cardName = (String) randGenerate[1];
             String winnerStr = game.getCurrWinnerStr();
             postTurnDataAccessInterface.recordRoundChange(winnerStr, reward);
-
+            game.setTopCard(game.create_a_random_NumCard_with_value_0());
             game.setMaxCardNum(-1);
             game.setCurrWinner("");
 
