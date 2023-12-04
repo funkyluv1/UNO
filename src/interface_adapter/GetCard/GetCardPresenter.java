@@ -23,10 +23,12 @@ public class GetCardPresenter implements GetCardOutputDataBoundary {
 
     @Override
     public void prepareNewGameView(GetCardOutputData getCardOutputData) {
-        NumberCard card = getCardOutputData.getNumberCard();
         GetCardPanelState getCardState = getCardPanelViewModel.getState();
+        NumberCard card = getCardOutputData.getNumberCard();
         getCardState.setNumberCard(card);
         getCardPanelViewModel.setState(getCardState);
+
+        viewManagerModel.setActiveView("Initialized");
         viewManagerModel.firePropertyChanged();
     }
 }
