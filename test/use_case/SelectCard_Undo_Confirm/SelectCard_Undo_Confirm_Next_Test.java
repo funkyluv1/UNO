@@ -4,6 +4,7 @@ import app.*;
 import data_access.APIDataAccessObject;
 import data_access.FileUserDataAccessObject;
 import entities.NumberCardsDeck.NumberCardsDeckCreator;
+import entities.card.Card;
 import entities.card.NumberCard;
 import entities.card.NumberCardFactory;
 import entities.player.AIPlayerFactory;
@@ -39,7 +40,7 @@ import view.*;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class SelectCard_Undo_Confirm_Test extends TestCase {
+public class SelectCard_Undo_Confirm_Next_Test extends TestCase {
 
     public void testExecute() throws IOException {
         successTest();
@@ -90,7 +91,8 @@ public class SelectCard_Undo_Confirm_Test extends TestCase {
         Player player = new HumanPlayer("You", numberCards, 0);
 
         int k = 1;
-        SelectCardInputData selectCardInputData = new SelectCardInputData(numberCards.get(k), k);
+        Card chosenCard = numberCards.get(k);
+        SelectCardInputData selectCardInputData = new SelectCardInputData(chosenCard, k);
         SelectCardPresenter selectCardPresenter = new SelectCardPresenter(viewManagerModel, cardButtonPanelViewModel, getCardPanelViewModel, bottomPanelViewModel);
         SelectCardInteractor selectCardInteractor = new SelectCardInteractor(selectCardPresenter);
 
