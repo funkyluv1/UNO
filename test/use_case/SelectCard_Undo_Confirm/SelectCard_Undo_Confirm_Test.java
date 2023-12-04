@@ -1,4 +1,4 @@
-package entities.SelectCard_Undo;
+package use_case.SelectCard_Undo_Confirm;
 
 import app.*;
 import data_access.APIDataAccessObject;
@@ -10,16 +10,24 @@ import entities.player.AIPlayerFactory;
 import entities.player.HumanPlayer;
 import entities.player.HumanPlayerFactory;
 import entities.player.Player;
+import interface_adapter.Confirm.ConfirmPresenter;
 import interface_adapter.Initialized.*;
 import interface_adapter.Initiation.InitiationPresenter;
 import interface_adapter.Initiation.InitiationViewModel;
+import interface_adapter.NextTurn.NextTurnPresenter;
 import interface_adapter.SelectCard.SelectCardPresenter;
 import interface_adapter.Undo.UndoPresenter;
 import interface_adapter.ViewManagerModel;
 import junit.framework.TestCase;
 import org.junit.Test;
+import use_case.Confirm.ConfirmInputData;
+import use_case.Confirm.ConfirmInteractor;
+import use_case.NextTurn.NextTurnInputData;
+import use_case.NextTurn.NextTurnInteractor;
+import use_case.PostTurn.PostTurnInteractor;
 import use_case.PreTurn.FindPlayableCards;
 import use_case.PreTurn.FindPlayableCardsInterface;
+import use_case.PreTurn.PreTurnInteractor;
 import use_case.SelectCard.SelectCardInputData;
 import use_case.SelectCard.SelectCardInteractor;
 import use_case.Undo.UndoInputData;
@@ -31,7 +39,7 @@ import view.*;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class SelectCard_Undo_Test extends TestCase {
+public class SelectCard_Undo_Confirm_Test extends TestCase {
 
     public void testExecute() throws IOException {
         successTest();
@@ -86,23 +94,24 @@ public class SelectCard_Undo_Test extends TestCase {
         SelectCardPresenter selectCardPresenter = new SelectCardPresenter(viewManagerModel, cardButtonPanelViewModel, getCardPanelViewModel, bottomPanelViewModel);
         SelectCardInteractor selectCardInteractor = new SelectCardInteractor(selectCardPresenter);
 
+        // =======================================================================
 
         // Test select card
         selectCardInteractor.execute(selectCardInputData);
 
         // card button panel
         CardButtonPanelState cardButtonPanelState1 = cardButtonPanelViewModel.getState();
-        assertEquals(cardButtonPanelState1.getOneCardsSelected(), true);
+        assertEquals(true, cardButtonPanelState1.getOneCardsSelected());
 
         // get card panel
         GetCardPanelState getCardPanelState1 = getCardPanelViewModel.getState();
-        assertEquals(getCardPanelState1.isGetCardEnabled(), false);
-        assertEquals(getCardPanelState1.isUndoEnabled(), true);
+        assertEquals(false, getCardPanelState1.isGetCardEnabled());
+        assertEquals(true, getCardPanelState1.isUndoEnabled());
 
         // bottom panel
         BottomPanelState bottomPanelState1 = bottomPanelViewModel.getState();
-        assertEquals(bottomPanelState1.getConfirmButtonEnabled(),true);
-        assertEquals(bottomPanelState1.getNextButtonEnabled(), false);
+        assertEquals(true, bottomPanelState1.getConfirmButtonEnabled());
+        assertEquals(false, bottomPanelState1.getNextButtonEnabled());
 
         // =======================================================================
 
@@ -115,17 +124,73 @@ public class SelectCard_Undo_Test extends TestCase {
 
         // card button panel
         CardButtonPanelState cardButtonPanelState2 = cardButtonPanelViewModel.getState();
-        assertEquals(cardButtonPanelState2.getOneCardsSelected(), false);
+        assertEquals(false, cardButtonPanelState2.getOneCardsSelected());
 
         // get card panel
         GetCardPanelState getCardPanelState2 = getCardPanelViewModel.getState();
-        assertEquals(getCardPanelState2.isUndoEnabled(), false);
+        assertEquals(false, getCardPanelState2.isUndoEnabled());
 
         // bottom panel
         BottomPanelState bottomPanelState2 = bottomPanelViewModel.getState();
-        assertEquals(bottomPanelState2.getConfirmButtonEnabled(),false);
-        assertEquals(bottomPanelState2.getNextButtonEnabled(), false);
+        assertEquals(false, bottomPanelState2.getConfirmButtonEnabled());
+        assertEquals(false, bottomPanelState2.getNextButtonEnabled());
 
+        // =======================================================================
+
+        int currIndex = 0;
+        ConfirmInputData confirmInputData = new ConfirmInputData(currIndex);
+        ConfirmPresenter confirmPresenter = new ConfirmPresenter(viewManagerModel, bottomPanelViewModel, cardButtonPanelViewModel, funCardButtonPanelViewModel, getCardPanelViewModel);
+        ConfirmInteractor confirmInteractor = new ConfirmInteractor(confirmPresenter, userDataAccessObject);
+
+        // Test Confirm
+        selectCardInteractor.execute(selectCardInputData);
+        confirmInteractor.execute(confirmInputData);
+
+        // card button panel
+        CardButtonPanelState cardButtonPanelState3 = cardButtonPanelViewModel.getState();
+        assertEquals(true, cardButtonPanelState3.getOneCardsSelected());
+
+        // fun card panel
+        FunCardButtonPanelState funCardButtonPanelState3 = funCardButtonPanelViewModel.getState();
+        assertEquals(false, funCardButtonPanelState3.getAllButtonDisable());
+
+        // get card panel
+        GetCardPanelState getCardPanelState3 = getCardPanelViewModel.getState();
+        assertEquals(false, getCardPanelState3.isGetCardEnabled());
+        assertEquals(false, getCardPanelState3.isUndoEnabled());
+
+        // bottom panel
+        BottomPanelState bottomPanelState3 = bottomPanelViewModel.getState();
+        assertEquals(false, bottomPanelState3.getConfirmButtonEnabled());
+        assertEquals(true, bottomPanelState3.getNextButtonEnabled());
+
+        // =======================================================================
+
+        NextTurnInputData nextTurnInputData = new NextTurnInputData(currIndex);
+        NextTurnPresenter nextTurnPresenter = new NextTurnPresenter(playerPanelViewModel, cardButtonPanelViewModel, viewManagerModel, funCardButtonPanelViewModel, bottomPanelViewModel, getCardPanelViewModel);
+        NextTurnInteractor nextTurnInteractor = new NextTurnInteractor(userDataAccessObject, nextTurnPresenter,
+                findPlayableCardsInterface, new PostTurnInteractor(apiDataAccessObject, userDataAccessObject), new PreTurnInteractor(apiDataAccessObject, userDataAccessObject));
+
+        // Test next
+        nextTurnInteractor.execute(nextTurnInputData);
+
+        // player panel
+        int nextIndex = (currIndex + 1) % playerNames.size();
+        PlayerPanelState playerPanelState3 = playerPanelViewModel.getState();
+        assertEquals(nextIndex, playerPanelState3.getCurrent_player_index());
+
+        // card button panel
+        CardButtonPanelState cardButtonPanelState4 = cardButtonPanelViewModel.getState();
+        assertEquals(false, cardButtonPanelState4.getOneCardsSelected());
+
+        // get card panel
+        GetCardPanelState getCardPanelState4 = getCardPanelViewModel.getState();
+        assertEquals(false, getCardPanelState4.isUndoEnabled());
+
+        // bottom panel
+        BottomPanelState bottomPanelState4 = bottomPanelViewModel.getState();
+        assertEquals(false, bottomPanelState4.getConfirmButtonEnabled());
+        assertEquals(false, bottomPanelState4.getNextButtonEnabled());
     }
 }
 
