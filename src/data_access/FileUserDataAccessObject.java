@@ -234,9 +234,20 @@ public class FileUserDataAccessObject implements InitiationDataAccessInterface,
         ArrayList<NumberCard> numberCards = playerInfo.get(playerName).getNumberCards();
         ArrayList<FunctionalCard> currPlayerFuncCard = getFunctionalCards(playerName);
 
-        numberCards.remove(numberCard);
-        for (FunctionalCard functionalCard : functionalCards){
-            currPlayerFuncCard.remove(functionalCard);
+        for (NumberCard numberCard1 : numberCards){
+            if (numberCard1.getString().equals(numberCard.getString())){
+                numberCards.remove(numberCard1);
+                break;
+            }
+        }
+        ArrayList<Integer> removeFuncCardIndex = new ArrayList<Integer>();
+        for (int i = 0; i < functionalCards.size(); i ++){
+            for (int j = 0; j < currPlayerFuncCard.size(); j++){
+                if (functionalCards.get(i).equals(currPlayerFuncCard.get(j))){
+                    removeFuncCardIndex.add(j);
+                    continue;
+                }
+            }
         }
         recordPostTurnChange(currPlayerFuncCard, numberCards, playerName);
     }
