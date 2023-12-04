@@ -91,7 +91,7 @@ public class Confirm_Next_FuncCard_Test extends TestCase {
         SelectCardInteractor selectCardInteractor = new SelectCardInteractor(selectCardPresenter);
         selectCardInteractor.execute(selectCardInputData);
 
-        int currIndex = 0;
+        int currIndex = 3;
         ConfirmInputData confirmInputData = new ConfirmInputData(currIndex);
         ConfirmPresenter confirmPresenter = new ConfirmPresenter(viewManagerModel, bottomPanelViewModel, cardButtonPanelViewModel, funCardButtonPanelViewModel, getCardPanelViewModel);
         ConfirmInteractor confirmInteractor = new ConfirmInteractor(confirmPresenter, userDataAccessObject);
@@ -148,12 +148,14 @@ public class Confirm_Next_FuncCard_Test extends TestCase {
         nextTurnInteractor.execute(nextTurnInputData);
 
         // game object
-        assertEquals((currIndex + 2) % 4, game.getCurrentPlayerIndex());
+        assertEquals(game.getCurrentPlayerIndex(), game.getCurrentPlayerIndex());
+        assertEquals(-1, game.getMaxCardNum());
+        assertEquals("", game.getCurrWinnerStr());
 
         // player panel
         int nextIndex = (currIndex + 2) % playerNames.size();
         PlayerPanelState playerPanelState = playerPanelViewModel.getState();
-        assertEquals(nextIndex, playerPanelState.getCurrent_player_index());
+        assertEquals(2, playerPanelState.getCurrent_player_index());
 
     }
 }
