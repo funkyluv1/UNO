@@ -143,4 +143,9 @@ public class Game {
     public void setNumberCardDeck(NumberCardsDeck numberCardDeck){
         this.numberCardDeck = numberCardDeck;
     }
+    public NumberCard create_a_random_NumCard_with_value_0(){
+        String[] randColor = {"R", "B", "G", "Y"};
+        int randColorIndex = (int) Math.floor(Math.random()*4);
+        return new NumberCard(0, randColor[randColorIndex]);
+    }
 }
