@@ -119,8 +119,10 @@ public class FileUserDataAccessObject implements InitiationDataAccessInterface,
                 }
                 //numberCards = numberCards.substring(0, numberCards.length() - 1);
                 String funcCards = "";
-                //TODO: need getString for FunctionalCards
-
+                ArrayList<FunctionalCard> functionalCards = player.getFuncCards();
+                for (FunctionalCard functionalCard : functionalCards){
+                    funcCards = funcCards.concat(functionalCard.getString()).concat(",");
+                }
                 // initialize index of the first displayed cards
                 int firstCardIndex = 0;
 
@@ -157,6 +159,7 @@ public class FileUserDataAccessObject implements InitiationDataAccessInterface,
         ArrayList<FunctionalCard> hand = playerInfo.get(currentPlayer).getFuncCards();
         hand.add(reward);
         playerInfo.get(currentPlayer).setFuncCards(hand);
+        save();
     }
 
 

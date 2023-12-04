@@ -1,8 +1,6 @@
 package view;
 
-import entities.card.Card;
-import entities.card.FunctionalCard;
-import entities.card.NumberCard;
+import entities.card.*;
 import interface_adapter.Initialized.CardButtonPanelState;
 import interface_adapter.Initialized.CardButtonPanelViewModel;
 import interface_adapter.Initialized.FunCardButtonPanelState;
@@ -74,11 +72,11 @@ public class FunCardButtonPanel extends JPanel implements PropertyChangeListener
                         public void actionPerformed(ActionEvent evt) {
                             if (evt.getSource().equals(cardButton)) {
                                 FunCardButtonPanelState currentState = funCardButtonPanelViewModel.getState();
-                                ArrayList<String> selectedCards = new ArrayList<>();
+                                ArrayList<String> selectedFuncCards = new ArrayList<>();
                                 for (FunctionalCard functionalCard : currentState.get_Selected_Fun_Cards()){
-                                    selectedCards.add(functionalCard.getString());
+                                    selectedFuncCards.add(functionalCard.getString());
                                 }
-                                selectFuncCardController.execute(cardButton.getText(), selectedCards, finalI);
+                                selectFuncCardController.execute(cardButton.getText(), selectedFuncCards, finalI);
                             }
                         }
                     }
@@ -117,10 +115,18 @@ public class FunCardButtonPanel extends JPanel implements PropertyChangeListener
         ArrayList<String> playableFunCardsString = new ArrayList<>();
         ArrayList<String> selectedFunCardsString = new ArrayList<>();
         for (FunctionalCard functionalCard : funCardButtonPanelViewModel.getState().get_Playable_Fun_Cards()){
-            playableFunCardsString.add(functionalCard.getString());
+            if (functionalCard instanceof SkipCard){
+                playableFunCardsString.add("Skip");}
+            else if (functionalCard instanceof PlusTwoCard){
+                playableFunCardsString.add("+2");
+            } else {playableFunCardsString.add("+4");}
         }
         for (FunctionalCard functionalCard : funCardButtonPanelViewModel.getState().get_Selected_Fun_Cards()){
-            selectedFunCardsString.add(functionalCard.getString());
+            if (functionalCard instanceof SkipCard){
+                selectedFunCardsString.add("Skip");}
+            else if (functionalCard instanceof PlusTwoCard){
+                selectedFunCardsString.add("+2");
+            } else {selectedFunCardsString.add("+4");}
         }
 
         int startInd = funCardButtonPanelViewModel.getState().getdisplayCardsFirstIndex();
@@ -130,11 +136,18 @@ public class FunCardButtonPanel extends JPanel implements PropertyChangeListener
         } else {card_with_value = funCardButtonPanelViewModel.getState().get_Fun_Cards().size();}
 
         for (int i = startInd; i < startInd + card_with_value; i++) {
-            String name = funCardButtonPanelViewModel.getState().get_Fun_Cards().get(i).getString();
+            String name;
+            if (funCardButtonPanelViewModel.getState().get_Fun_Cards().get(i) instanceof PlusFourCard){
+                name = "+4";
+            } else if (funCardButtonPanelViewModel.getState().get_Fun_Cards().get(i) instanceof PlusTwoCard){
+                name = "+2";
+            } else {
+                name = "Skip";
+            }
 
             cardNames.get(i - startInd).setText(name);
-            if (playableFunCardsString.contains(name)){
-                cardNames.get(i - startInd).setEnabled(true);
+            if (selectedFunCardsString.contains(name)){
+                cardNames.get(i - startInd).setEnabled(false);
             }
 
             if (funCardButtonPanelViewModel.getState().getAllButtonDisable()){

@@ -34,7 +34,6 @@ public class ConfirmInteractor implements ConfirmInputDataBoundary{
         }
 
 
-
         for (FunctionalCard functionalCard : selectedFunCard){
             if (functionalCard instanceof PlusTwoCard){
                 game.setDrawCard(game.getDrawCard() + 2);

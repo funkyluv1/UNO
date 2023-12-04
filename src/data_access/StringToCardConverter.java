@@ -1,9 +1,6 @@
 package data_access;
 
-import entities.card.FunctionalCard;
-import entities.card.FunctionalCardFactory;
-import entities.card.NumberCard;
-import entities.card.NumberCardFactory;
+import entities.card.*;
 
 import java.util.ArrayList;
 import java.util.regex.Matcher;
@@ -53,14 +50,19 @@ public class StringToCardConverter {
         ArrayList<FunctionalCard> output = new ArrayList<>();
 
         for (String cardEncoding : this.cardInfo) {
-            Pattern pattern = Pattern.compile("([a-zA-Z]+)(\\d)([a-zA-Z])");
-            Matcher matcher = pattern.matcher(cardEncoding);
-            String type = matcher.group(1);
-            String value = matcher.group(2);
-            String color = matcher.group(3);
+//            Pattern pattern = Pattern.compile("([a-zA-Z]+)(\\d)([a-zA-Z])");
+//            Matcher matcher = pattern.matcher(cardEncoding);
+//            String type = matcher.group(1);
+//            String value = matcher.group(2);
+//            String color = matcher.group(3);
+            FunctionalCard cardNew;
+            if (cardEncoding.charAt(0) == '+'){
+                if (cardEncoding.charAt(1) == '2'){
+                    cardNew = new FunctionalCardFactory(3, "any", "PlusTwo").createCard();
+                } else {cardNew =  new FunctionalCardFactory(3, "any", "PlusFour").createCard();}
+            } else {cardNew = new FunctionalCardFactory(3, "any", "Skip").createCard();}
 
-            FunctionalCardFactory builder = new FunctionalCardFactory(Integer.parseInt(value), color, type);
-            output.add(builder.createCard());
+            output.add(cardNew);
         }
 
         return output;
