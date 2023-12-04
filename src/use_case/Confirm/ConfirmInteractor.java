@@ -50,7 +50,7 @@ public class ConfirmInteractor implements ConfirmInputDataBoundary{
             game.setCurrWinner(currPlayer);
         }
 
-        confirmOutputDataBoundary.prepareSuccessView();
+        confirmOutputDataBoundary.prepareSuccessView(new ConfirmOutputData(selectedNumCard));
     }
 
 }
