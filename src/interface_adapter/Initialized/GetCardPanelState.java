@@ -2,11 +2,15 @@ package interface_adapter.Initialized;
 
 import entities.card.NumberCard;
 
+import static use_case.initiation.InitiationInteractor.game;
+
 public class GetCardPanelState {
     private boolean undoEnabled = false;
     private boolean getCardEnabled = false;
 
-    private NumberCard topCard = null;
+    private NumberCard topCard = game.getTopCard();
+
+    private NumberCard numberCard = null;
 
     public GetCardPanelState(GetCardPanelState copy){
         this.undoEnabled = copy.undoEnabled;
@@ -39,4 +43,8 @@ public class GetCardPanelState {
     public NumberCard getTopCard() {
         return topCard;
     }
+
+    public NumberCard getNumberCard() {return this.numberCard;}
+
+    public void setNumberCard(NumberCard numberCard) {this.numberCard = numberCard;}
 }

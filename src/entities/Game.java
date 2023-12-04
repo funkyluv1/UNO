@@ -33,7 +33,7 @@ public class Game {
         drawCard = 0;
         isSkipped = false;
         plusN = 0;
-        currentPlayerIndex = 1;
+        currentPlayerIndex = 0;
         currSelectedFunCard = new ArrayList<>();
         currSelectedNumberCard = null;
         numCardsinRound = new ArrayList<>();

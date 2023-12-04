@@ -82,7 +82,7 @@ public class InitializedView extends JPanel implements ActionListener, PropertyC
         setSize(1200, 1000);
         this.setLayout(new BorderLayout());
         Color darkRed = new Color(218, 40, 40);
-        this.setBackground(Color.CYAN);
+//        this.setBackground(Color.CYAN);
 
         bigPanel.setLayout(new BorderLayout());
         playerPanel.setPreferredSize(new Dimension(1200, 100));
@@ -91,14 +91,19 @@ public class InitializedView extends JPanel implements ActionListener, PropertyC
 
         bigPanel.setPreferredSize(new Dimension(1200, 600));
         bigPanel.setBounds(0, 100, 1200,800);
+        bigPanel.setOpaque(false);
         getCardPanel.setPreferredSize(new Dimension(1200, 200));
-        getCardPanel.setBackground(Color.yellow);
+//        getCardPanel.setBackground(Color.yellow);
+        getCardPanel.setOpaque(false);
         cardButtonPanel.setPreferredSize(new Dimension(600, 200));
-        cardButtonPanel.setBackground(Color.black);
+//        cardButtonPanel.setBackground(Color.black);
+        cardButtonPanel.setOpaque(false);
         funCardPanel.setPreferredSize(new Dimension(600, 200));
-        funCardPanel.setBackground(Color.green);
+//        funCardPanel.setBackground(Color.green);
+        funCardPanel.setOpaque(false);
         bottomPanel.setPreferredSize(new Dimension(1200, 100));
-        bottomPanel.setBackground(Color.BLUE);
+//        bottomPanel.setBackground(Color.BLUE);
+        bottomPanel.setOpaque(false);
 
         this.add(playerPanel, BorderLayout.NORTH);
         this.add(bottomPanel, BorderLayout.SOUTH);
