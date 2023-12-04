@@ -36,7 +36,9 @@ import use_case.initiation.InitiationInputData;
 import use_case.initiation.InitiationInteractor;
 import view.*;
 
+import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 public class SelectCard_Undo_Confirm_Next_Test extends TestCase {
@@ -47,6 +49,11 @@ public class SelectCard_Undo_Confirm_Next_Test extends TestCase {
 
     @Test
     void successTest() throws IOException {
+        File file = new File("users.csv");
+        PrintWriter printWriter = new PrintWriter(file);
+        printWriter.print("");
+        printWriter.close();
+
         FileUserDataAccessObject userDataAccessObject = new FileUserDataAccessObject("./users.csv", new AIPlayerFactory(), new HumanPlayerFactory(), new NumberCardsDeckCreator());
         APIDataAccessObject apiDataAccessObject = apiDataAccessObject = new APIDataAccessObject();
         FindPlayableCardsInterface findPlayableCardsInterface = new FindPlayableCards();

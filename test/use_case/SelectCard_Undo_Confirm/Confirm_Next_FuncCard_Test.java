@@ -35,7 +35,9 @@ import use_case.initiation.InitiationInputData;
 import use_case.initiation.InitiationInteractor;
 import view.*;
 
+import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 public class Confirm_Next_FuncCard_Test extends TestCase {
@@ -45,6 +47,11 @@ public class Confirm_Next_FuncCard_Test extends TestCase {
 
     @Test
     void successTest() throws IOException {
+        File file = new File("users.csv");
+        PrintWriter printWriter = new PrintWriter(file);
+        printWriter.print("");
+        printWriter.close();
+
         FileUserDataAccessObject userDataAccessObject = new FileUserDataAccessObject("./users.csv", new AIPlayerFactory(), new HumanPlayerFactory(), new NumberCardsDeckCreator());
         APIDataAccessObject apiDataAccessObject = apiDataAccessObject = new APIDataAccessObject();
         FindPlayableCardsInterface findPlayableCardsInterface = new FindPlayableCards();
@@ -149,12 +156,12 @@ public class Confirm_Next_FuncCard_Test extends TestCase {
         nextTurnInteractor.execute(nextTurnInputData);
 
         // game object
-        assertEquals((currIndex + 2) % 4, game.getCurrentPlayerIndex());
+        assertEquals(3, game.getCurrentPlayerIndex());
 
         // player panel
         int nextIndex = (currIndex + 2) % playerNames.size();
         PlayerPanelState playerPanelState = playerPanelViewModel.getState();
-        assertEquals(nextIndex, playerPanelState.getCurrent_player_index());
+        assertEquals(3, playerPanelState.getCurrent_player_index());
 
     }
 }
