@@ -29,7 +29,7 @@ public class BottomPanel extends JPanel implements PropertyChangeListener {
         this.bottomPanelViewModel = bottomPanelViewModel;
         this.bottomPanelViewModel.addPropertyChangeListener(this);
 
-        this.setLayout(new FlowLayout());
+        this.setLayout(new BorderLayout());
 
         TextButton nextButton = new TextButton("Next");
 //        nextButton.setPreferredSize(new Dimension(140, 50));
@@ -39,12 +39,7 @@ public class BottomPanel extends JPanel implements PropertyChangeListener {
         this.nextButton = nextButton;
         this.nextButton.setOpaque(false);
         this.nextButton.setForeground(Color.BLACK);
-        this.add(nextButton);
-
-        JPanel gapPanel = new JPanel();
-        gapPanel.setPreferredSize(new Dimension(50, 10));
-        gapPanel.setOpaque(false);
-        this.add(gapPanel);
+        this.add(nextButton, BorderLayout.WEST);
 
         TextButton confirmButton = new TextButton("Confirm");
 //        confirmButton.setPreferredSize(new Dimension(140, 50));
@@ -54,7 +49,7 @@ public class BottomPanel extends JPanel implements PropertyChangeListener {
         this.confirmButton = confirmButton;
         this.confirmButton.setOpaque(false);
         this.confirmButton.setForeground(Color.BLACK);
-        this.add(confirmButton);
+        this.add(confirmButton, BorderLayout.EAST);
 
         Border border = BorderFactory.createLineBorder(Color.BLACK, 2);
 
