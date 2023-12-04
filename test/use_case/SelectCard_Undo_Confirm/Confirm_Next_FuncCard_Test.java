@@ -130,7 +130,8 @@ public class Confirm_Next_FuncCard_Test extends TestCase {
         confirmInteractor.execute(confirmInputData);
 
         // game object
-        assertTrue((game.getDrawCard() == 6 && game.getSkipped()));
+        assertEquals(6, game.getDrawCard());
+        assertTrue(game.getSkipped());
 
         // fun card button panel
         FunCardButtonPanelState funCardButtonPanelState = funCardButtonPanelViewModel.getState();
