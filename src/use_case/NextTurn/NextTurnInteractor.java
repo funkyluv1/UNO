@@ -52,6 +52,7 @@ public class NextTurnInteractor implements NextTurnInputDataBoundary {
 
         ArrayList<NumberCard> number_cards = fileUserDataAccessObject.getPlayer(nextTurnInputData.getPlayer_index()).getNumberCards();
         ArrayList<FunctionalCard> fun_cards = fileUserDataAccessObject.getPlayer(nextTurnInputData.getPlayer_index()).getFuncCards();
+        fileUserDataAccessObject.play_Card_and_update_DAO(name,selectedNumCard, selectedFunCard);
 
 
         // call post turn
