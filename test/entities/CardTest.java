@@ -1,10 +1,13 @@
 package entities;
 
 import entities.card.*;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Objects;
+
+import static junit.framework.TestCase.assertEquals;
 
 public class CardTest {
     // test abstract class Card
@@ -124,11 +127,12 @@ public class CardTest {
     //test FunctionalCard Factory
     @Test
     public void test_funcard_fac_constructor_and_method(){
-        FunctionalCardFactory functionalCardFactory = new FunctionalCardFactory(3, "G", "PlusTwo");
-        assert (functionalCardFactory.createCard().getValue() == 3);
-        assert (functionalCardFactory.createCard().getColor().equals("G"));
-        assert (functionalCardFactory.createCard().getType().equals("PlusTwo"));
-        assert (functionalCardFactory.createCard().getString().equals("PlusTwo3G"));
+        FunctionalCardFactory functionalCardFactory = new FunctionalCardFactory(0, "G", "+2");
+        FunctionalCard functionalCard = functionalCardFactory.createCard();
+        Assertions.assertEquals(20, functionalCard.getValue());
+        Assertions.assertEquals("any", functionalCard.getColor());
+        Assertions.assertEquals("PlusTwo", functionalCard.getType());
+        Assertions.assertEquals("PlusTwo20any", functionalCard.getString());
     }
 
     //Test NumberCard Factory
