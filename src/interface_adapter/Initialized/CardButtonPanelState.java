@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Map;
 
 public class CardButtonPanelState{
+        private boolean resetAllNumCards = false;
         private boolean oneCardSelected = false;
         private boolean leftButtonEnabled = false;
         private boolean rightButtonEnabled = false;
@@ -32,6 +33,7 @@ public class CardButtonPanelState{
             rightButtonEnabled = copy.rightButtonEnabled;
             leftButtonEnabled = copy.leftButtonEnabled;
             oneCardSelected = copy.oneCardSelected;
+            resetAllNumCards = copy.resetAllNumCards;
         }
 
         // Because of the previous copy constructor, the default constructor must be explicit.
@@ -76,5 +78,7 @@ public class CardButtonPanelState{
         public ArrayList<NumberCard> getPlayerNumCards() {
             return playerNumCards;
         }
+        public void setResetAllNumCards(boolean flag){this.resetAllNumCards = resetAllNumCards;}
+        public boolean getResetAllNumCards(){return this.resetAllNumCards;}
 }
 
