@@ -4,6 +4,17 @@ import entities.card.BombCard;
 
 public class BombCardTest {
 
+
+    /*
+    BOMBCARD
+
+    a card where if you're unable
+    to use it right away
+    you get the x number of
+    NumberCards stated on the bombcard
+
+     */
+
     public void testGetType()
     {
 
