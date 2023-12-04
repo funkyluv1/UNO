@@ -1,10 +1,14 @@
 package interface_adapter.Confirm;
 
+import entities.card.NumberCard;
 import interface_adapter.Initialized.*;
 import interface_adapter.ViewManagerModel;
+import use_case.Confirm.ConfirmOutputData;
 import use_case.Confirm.ConfirmOutputDataBoundary;
 import use_case.SelectCard.SelectCardOutputData;
 import use_case.SelectCard.SelectCardOutputDataBoundary;
+
+import static use_case.initiation.InitiationInteractor.game;
 
 public class ConfirmPresenter implements ConfirmOutputDataBoundary {
 
@@ -25,7 +29,7 @@ public class ConfirmPresenter implements ConfirmOutputDataBoundary {
     }
 
     @Override
-    public void prepareSuccessView() {
+    public void prepareSuccessView(ConfirmOutputData confirmOutputData) {
         BottomPanelState bottomPanelState = bottomPanelViewModel.getState();
         bottomPanelState.setConfirmButtonEnabled(false);
         bottomPanelState.setNextButtonEnabled(true);
@@ -45,6 +49,11 @@ public class ConfirmPresenter implements ConfirmOutputDataBoundary {
         GetCardPanelState getCardPanelState = getCardPanelViewModel.getState();
         getCardPanelState.setUndoEnabled(false);
         getCardPanelState.setGetCardEnabled(false);
+        int newCardValue = confirmOutputData.getNumber();
+        int currCardValuew = getCardPanelState.getTopCard().getValue();
+        if (newCardValue > currCardValuew){
+            getCardPanelState.setTopCard(confirmOutputData.getNumberCard());
+        }
         getCardPanelViewModel.setState(getCardPanelState);
         getCardPanelViewModel.firePropertyChanged();
 
