@@ -37,40 +37,9 @@ public class GetCardInteractorTest extends TestCase {
     private Game game = Game.getInstance();
 
     public void testExecute() throws IOException {
-        testOneCard();
-        testTwoCard();
-        testThreeCards();
         testGetCardInteractorExecute();
     }
 
-    public void testOneCard()
-    {
-        ArrayList<NumberCard> numberCards = new ArrayList<>();
-        NumberCard num1 = new NumberCard(1, "G");
-        NumberCard num2 = new NumberCard(1, "R");
-        numberCards.add(num1);
-        numberCards.add(num2);
-    }
-
-    public void testTwoCard(){
-        ArrayList<NumberCard> numberCards = new ArrayList<>();
-        NumberCard num1 = new NumberCard(1, "G");
-        NumberCard num2 = new NumberCard(1, "R");
-        numberCards.add(num1);
-        numberCards.add(num2);
-    }
-
-
-    public void testThreeCards()
-    {
-
-        ArrayList<NumberCard> numberCards = new ArrayList<>();
-        NumberCard num1 = new NumberCard(1, "G");
-        NumberCard num2 = new NumberCard(1, "R");
-        numberCards.add(num1);
-        numberCards.add(num2);
-
-    };
 
     public void testGetCardInteractorExecute() throws IOException {
         FileUserDataAccessObject userDataAccessObject = new FileUserDataAccessObject("./users.csv", new AIPlayerFactory(), new HumanPlayerFactory(), new NumberCardsDeckCreator());
