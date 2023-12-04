@@ -8,22 +8,25 @@ import entities.card.FunctionalCard;
 import entities.card.NumberCard;
 import entities.player.AIPlayerFactory;
 import entities.player.HumanPlayerFactory;
+import org.junit.Before;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 import use_case.DrawCards.DrawCardsDataAccessInterface;
 import use_case.PreTurn.FindPlayableCards;
 import use_case.PreTurn.FindPlayableCardsInterface;
+import use_case.Undo.*;
 import use_case.initiation.InitiationInputData;
 
 import java.io.IOException;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class InitiationInteractorTest {
 
-    @Test
-    void successTest() throws IOException {
+    @Test @Before
+    void initiationSuccessTest() throws IOException {
         ArrayList<String> playerNames = new ArrayList<>();
         playerNames.add("Jason");
         playerNames.add("Cynthia");
@@ -116,6 +119,42 @@ class InitiationInteractorTest {
         };
 
         InitiationInputDataBoundary interactor = new InitiationInteractor((FileUserDataAccessObject) dao, drawCardsDataAccessInterface,successPresenter, findPlayableCardsInterface);
+        interactor.execute(inputData);
+    }
+
+    @Test
+    void undoSuccessTest() throws IOException {
+        String csvPath = "users.csv";
+        NumberCard card = new NumberCard(1, "Y");
+        AIPlayerFactory aiPlayerFactory = new AIPlayerFactory();
+        HumanPlayerFactory humanPlayerFactory = new HumanPlayerFactory();
+
+        NumberCardsDeckFactory numberCardsDeckFactory = new NumberCardsDeckFactory() {
+            @Override
+            public NumberCardsDeck create(String id, int remainingCards) {
+                return new NumberCardsDeck(id, remainingCards);
+            }
+        };
+
+        UndoInputData inputData = new UndoInputData(card);
+
+        UndoDataAccessInterface dao = new FileUserDataAccessObject(csvPath, aiPlayerFactory, humanPlayerFactory, numberCardsDeckFactory);
+
+        // NOTES: This creates a successPresenter that tests whether the test case is as we expect.
+        UndoOutputDataBoundary successPresenter = new UndoOutputDataBoundary() {
+            @Override
+            public void prepareUndoView(UndoOutputData undoOutputData) {
+                // tests if the output data has the correct information
+                //assertEquals(undoOutputData.getUnselectedCard(), card);
+                System.out.println(undoOutputData.getUnselectedCard());
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                // tests if the dao (specifically the initiationDataAccessInterface) methods
+
+            }
+        };
+
+        UndoInputDataBoundary interactor = new UndoInteractor(successPresenter, dao);
         interactor.execute(inputData);
     }
 }

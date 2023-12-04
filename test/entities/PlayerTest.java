@@ -4,6 +4,7 @@ import entities.card.Card;
 import entities.card.FunctionalCard;
 import entities.card.NumberCard;
 import entities.player.HumanPlayer;
+import entities.player.HumanPlayerFactory;
 import entities.player.Player;
 import junit.framework.TestCase;
 import org.junit.jupiter.api.Test;
@@ -143,7 +144,7 @@ public class PlayerTest extends TestCase {
         assertEquals(num2, humanPlayer.getSelectedCard());
 
     }
-
+    @Test
     public void test_get_setdisplay_first_index(){
         ArrayList<NumberCard> numberCards = new ArrayList<>();
         NumberCard num1 = new NumberCard(1, "Green");
@@ -155,6 +156,7 @@ public class PlayerTest extends TestCase {
         assertEquals(1, humanPlayer.getDisplayFirstCardIndex());
 
     }
+    @Test
     public void test_player_get_playername(){
         ArrayList<NumberCard> numberCards = new ArrayList<>();
         NumberCard num1 = new NumberCard(1, "Green");
@@ -164,6 +166,8 @@ public class PlayerTest extends TestCase {
         Player humanPlayer = new HumanPlayer("Aaron", numberCards, 1);
         assertEquals("Aaron", humanPlayer.getPlayerName());
     }
+
+    @Test
     public void test_Player_get_set_funcards(){
         ArrayList<FunctionalCard> functionalCards = new ArrayList<>();
         FunctionalCard fun1 = new FunctionalCard(3, "Y", "PlusTwo");
@@ -176,6 +180,8 @@ public class PlayerTest extends TestCase {
         player1.setFuncCards(functionalCards);
         assertEquals(functionalCards, player1.getFuncCards());
     }
+
+    @Test
     public void test_player_get_numbercards(){
         ArrayList<NumberCard> numberCards = new ArrayList<>();
         NumberCard num1 = new NumberCard(1, "G");
@@ -202,11 +208,24 @@ public class PlayerTest extends TestCase {
         assertEquals(numberCards2, humanPlayer.getNumberCards());
     }
 
+    // Test Human Player Factory
+
+    @Test
+    public void test_human_player_fac_constructor_methods(){
+        HumanPlayerFactory hf = new HumanPlayerFactory();
+        ArrayList<NumberCard> numcards = new ArrayList<>();
+        NumberCard num1 = new NumberCard(1, "B");
+        NumberCard num2 = new NumberCard(3, "G");
+        numcards.add(num1);
+        numcards.add(num2);
+        ArrayList<FunctionalCard> funcards = new ArrayList<>();
+        FunctionalCard fun1 = new FunctionalCard(2, "B", "Skip");
+        funcards.add(fun1);
+        HumanPlayer a = hf.create("Yuka", numcards, funcards, 0);
+        assertEquals(numcards, a.getNumberCards());
+        assertEquals(funcards, a.getFuncCards());
+        assertEquals("Yuka", a.getPlayerName());
 
 
-
-
-
-
-
+    }
 }
