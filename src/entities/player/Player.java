@@ -8,7 +8,7 @@ import java.util.List;
 
 /**
  * Player is the abstract base class for all player classes in this UNO game, which
- * include HumanPlayer and AIPlayer.
+ * include HumanPlayer.
  * This class contains essential attributes for any player, which include:
  * - userID: a unique number assigned to this player, which is used for identifying
  *           this player in the database
@@ -121,7 +121,7 @@ public abstract class Player {
 
     /**
      * Returns the Card object dealt by this Player object and removes it from the
-     * hand; HumanPlayer and AIPlayer have different implementations for this method.
+     * hand; HumanPlayer and have different implementations for this method.
      *
      * @param topCard the most recently placed card in the game
      * @return the Card object dealt
