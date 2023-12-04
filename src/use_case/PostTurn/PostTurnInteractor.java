@@ -57,48 +57,47 @@ public class PostTurnInteractor implements PostTurnInputDataBoundary{
     }
 
     private Object[] generateFuncCard() {
-        int randIndex = (int) Math.floor(Math.random()*7);
-        String[] randColors = {"red", "blue", "green", "yellow"};
-        int randColorIndex = (int) Math.floor(Math.random()*4);
+        int randIndex = (int) Math.floor(Math.random()*1);
+//        String[] randColors = {"red", "blue", "green", "yellow"};
+        String[] randColors = {"any"};
+        int randColorIndex = (int) Math.floor(Math.random()*0);
 
         int randValue = (int) Math.floor(Math.random()*9);
         String randColor = randColors[randColorIndex];
 
         Object[] result = new Object[2];
         switch (randIndex) {
+//            case 0 -> {
+//                result[0] = new BombCard(randValue, randColor);
+//                result[1] = "Bomb Card";
+//                return result;
+//            }
+//            case 1 -> {
+//                result[0] = new HotPotatoCard(randValue, randColor);
+//                result[1] = "Hot Potato Card";
+//                return result;
+//            }
             case 0 -> {
-                result[0] = new BombCard(randValue, randColor);
-                result[1] = "Bomb Card";
-                return result;
-            }
-            case 1 -> {
-                result[0] = new HotPotatoCard(randValue, randColor);
-                result[1] = "Hot Potato Card";
-                return result;
-            }
-            case 2 -> {
                 result[0] = new PlusFourCard();
                 result[1] = "Plus Four Card";
                 return result;
             }
-            case 3 -> {
+            case 1 -> {
                 result[0] = new PlusTwoCard();
                 result[1] = "Plus Two Card";
                 return result;
             }
-            case 4 -> {
-                result[0] = new RandomCard();
-                result[1] = "Random Card";
-                return result;
-            }
-            case 5 -> {
-                result[0] = new SkipCard();
-                result[1] = "Skip Card";
-                return result;
-            }
+//            case 4 -> {
+//                result[0] = new RandomCard();
+//                result[1] = "Random Card";
+//                return result;
+//            }
         }
-        result[0] = new WildCard();
-        result[1] = "Wild Card";
+        result[0] = new SkipCard();
+        result[1] = "Skip Card";
         return result;
+//        result[0] = new WildCard();
+//        result[1] = "Wild Card";
+//        return result;
     }
 }

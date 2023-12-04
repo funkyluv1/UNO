@@ -4,7 +4,6 @@ import data_access.FileUserDataAccessObject;
 import entities.NumberCardsDeck.NumberCardsDeck;
 import entities.NumberCardsDeck.NumberCardsDeckFactory;
 import entities.card.NumberCard;
-import entities.player.AIPlayerFactory;
 import entities.player.HumanPlayerFactory;
 import org.junit.jupiter.api.Test;
 import use_case.Undo.*;

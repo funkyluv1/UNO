@@ -25,7 +25,6 @@ public class FileUserDataAccessObject implements InitiationDataAccessInterface,
         PreTurnDataAccessInterface, PostTurnDataAccessInterface, RightShiftDataAccessInterface,
         NextTurnDataAccessInterface, UndoDataAccessInterface, SelectCardDataAccessInterface, GetCardDataAccessInterface, ConfirmDataAccessInterface {
     private final File csvFile;
-    private final AIPlayerFactory aiPlayerFactory;
     private final HumanPlayerFactory humanPlayerFactory;
     private final NumberCardsDeckFactory numberCardsDeckFactory;
     private CardFactory cardFactory;
@@ -37,10 +36,9 @@ public class FileUserDataAccessObject implements InitiationDataAccessInterface,
     private Game game = Game.getInstance();
 
 
-    public FileUserDataAccessObject(String csvPath, AIPlayerFactory aiPlayerFactory,
+    public FileUserDataAccessObject(String csvPath,
                                     HumanPlayerFactory humanPlayerFactory,
                                     NumberCardsDeckFactory numberCardsDeckFactory) throws IOException {
-        this.aiPlayerFactory = aiPlayerFactory;
         this.humanPlayerFactory = humanPlayerFactory;
         this.numberCardsDeckFactory = numberCardsDeckFactory;
 
@@ -83,11 +81,8 @@ public class FileUserDataAccessObject implements InitiationDataAccessInterface,
                 }
                 int displayFirstCardIndex = Integer.parseInt(rowList1[playerHeaders.get("displayFirstCardIndex")]);
 
-                if (rowList1[playerHeaders.get("playerType")].equals("AI")){
-                    playerInfo.put(username, aiPlayerFactory.create(username, numberCardsArrayList, functionalCards, displayFirstCardIndex));
-                } else {
-                    playerInfo.put(username, humanPlayerFactory.create(username,numberCardsArrayList,functionalCards, displayFirstCardIndex));
-                }
+                playerInfo.put(username, humanPlayerFactory.create(username,numberCardsArrayList,functionalCards, displayFirstCardIndex));
+
             }
         }
     }
@@ -101,16 +96,7 @@ public class FileUserDataAccessObject implements InitiationDataAccessInterface,
                     new ArrayList<NumberCard>(),
                     new ArrayList<FunctionalCard>(),2));
         };
-        int i = 0;
-        while (i < initiationInputData.getBotNumber()){
-//            playerFactory = new AIPlayerFactory();
-            String username = aiPlayerFactory.create("",
-                    new ArrayList<NumberCard>(), new ArrayList<FunctionalCard>(),
-                    0).getPlayerName();
-            playerInfo.put(username, aiPlayerFactory.create(username,
-                    new ArrayList<NumberCard>(), new ArrayList<FunctionalCard>(),
-                    0));
-        }
+
         this.save();
     }
 
@@ -138,9 +124,7 @@ public class FileUserDataAccessObject implements InitiationDataAccessInterface,
                 // initialize index of the first displayed cards
                 int firstCardIndex = 0;
 
-                if (player instanceof AIPlayer){
-                    playerType = "AI";
-                }else{playerType = "Human";}
+                playerType = "Human";
 
                 String line = String.format("%s;%s;%s;%s;%s", playerType, playerName, numberCards, funcCards, firstCardIndex);
                 writer.write(line);
