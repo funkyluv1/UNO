@@ -17,11 +17,4 @@ public class InitiationInputData {
     public int getBotNumber(){return this.botNumber;}
     public ArrayList<String> getPlayerNames(){return this.playerNames;}
 
-    public int getPlayerNumber(){
-        int cnt = 0;
-        for(String i : this.playerNames){
-            cnt ++;
-        }
-        return cnt;
-    };
 }
