@@ -97,23 +97,6 @@ class InitiationInteractorTest {
                 assertEquals(36, initiationOutputData.getNumberCardsDeck().getRemainingCards());
                 assertTrue(initiationOutputData.getPlayerNumCards().get("Jason").get(0) instanceof NumberCard);
 
-                // BUG IN PLAYABLENUMCARDS
-                //assertTrue(initiationOutputData.getPlayerPlayableNumCards().get("Jason").get(0) instanceof NumberCard);
-                //System.out.println(initiationOutputData.getPlayerPlayableNumCards().get("Jason").get(0).getString());
-
-                // PLAYER FUNCCARDS NOT IMPLEMENTED YET
-                //System.out.println(initiationOutputData.getPlayerFunCards().get("Jason").get(0));
-
-                //System.out.println(initiationOutputData.getPlayerPlayableFunCards().get("Jason").get(0));
-
-                //assertEquals(0, initiationOutputData.getDisplayNumCardsIndexes().get("Jason"));
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                // tests if the dao (specifically the initiationDataAccessInterface) methods
-                //System.out.println(dao.getPlayerDisplayFirstCardIndex("Jason"));
-
-                // NOTES: many other methods of the dao should not be tested here
-                // e.g. dao.getNumberCards(), because it is a method in the preTurn data access interface
             }
         };
 
@@ -145,7 +128,7 @@ class InitiationInteractorTest {
             public void prepareUndoView(UndoOutputData undoOutputData) {
                 // tests if the output data has the correct information
                 //assertEquals(undoOutputData.getUnselectedCard(), card);
-                System.out.println("unselectedcard" + undoOutputData.getUnselectedCard());
+                assertEquals(undoOutputData.getUnselectedCard(), null);
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 // tests if the dao (specifically the initiationDataAccessInterface) methods
@@ -171,7 +154,7 @@ class InitiationInteractorTest {
             @Override
             public void prepareSuccessView(LeftShiftOutputData leftShiftOutputData) {
                 // tests if the output data has the correct information
-                System.out.println("left shift " + leftShiftOutputData.getLeftShiftActive());
+                assert(!leftShiftOutputData.getLeftShiftActive());
 
             }
 
@@ -217,7 +200,7 @@ class InitiationInteractorTest {
             @Override
             public void prepareSuccessView(RightShiftOutputData rightShiftOutputData) {
                 // tests if the output data has the correct information
-                System.out.println("right shift " + rightShiftOutputData.getRightShiftActive());
+                assert(!rightShiftOutputData.getRightShiftActive());
 
             }
 
@@ -269,7 +252,7 @@ class InitiationInteractorTest {
             @Override
             public void prepareSuccessView(DrawCardsOutputData drawCardsOutputData) {
                 // tests if the output data has the correct information
-                System.out.println(drawCardsOutputData.getNumberCards());
+                assert(drawCardsOutputData.getNumberCards() != null);
             }
 
         };
