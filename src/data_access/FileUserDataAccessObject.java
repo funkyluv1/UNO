@@ -240,13 +240,18 @@ public class FileUserDataAccessObject implements InitiationDataAccessInterface,
                 break;
             }
         }
-        ArrayList<Integer> removeFuncCardIndex = new ArrayList<Integer>();
-        for (int i = 0; i < functionalCards.size(); i ++){
+        ArrayList<Integer> selectedFuncCards = new ArrayList<>();
+        for (int i = 0; i < functionalCards.size(); i++){
             for (int j = 0; j < currPlayerFuncCard.size(); j++){
-                if (functionalCards.get(i).equals(currPlayerFuncCard.get(j))){
-                    removeFuncCardIndex.add(j);
-                    continue;
+                if (functionalCards.get(i).getString().equals(currPlayerFuncCard.get(j).getString()) && !selectedFuncCards.contains(j)){
+                    selectedFuncCards.add(j);
                 }
+            }
+        }
+        Collections.sort(selectedFuncCards, Collections.reverseOrder());
+        for (int index : selectedFuncCards) {
+            if (index >= 0 && index < currPlayerFuncCard.size()) {
+                cardsDeck.remove(index);
             }
         }
         recordPostTurnChange(currPlayerFuncCard, numberCards, playerName);
