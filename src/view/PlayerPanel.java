@@ -71,7 +71,7 @@ public class PlayerPanel extends JPanel implements PropertyChangeListener {
         }
 
         int current = playerPanelViewModel.getState().getCurrent_player_index();  //get current player,用上面的方法给他set border
-        for (int i = 0; i < 3; i++){
+        for (int i = 0; i <= 3; i++){
             if (i == current){
                 playernames.get(i).setBorder(BorderFactory.createLineBorder(Color.BLACK, 15));
             }

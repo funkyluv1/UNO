@@ -8,7 +8,6 @@ import interface_adapter.Initialized.*;
 import interface_adapter.NextTurn.NextTurnController;
 import interface_adapter.NextTurn.NextTurnPresenter;
 import interface_adapter.ViewManagerModel;
-//import interface_adapter.postTurn.PostTurnPresenter;
 import use_case.Confirm.*;
 import use_case.DrawCards.DrawCardsDataAccessInterface;
 import use_case.NextTurn.NextTurnDataAccessInterface;
@@ -16,7 +15,6 @@ import use_case.NextTurn.NextTurnInputDataBoundary;
 import use_case.NextTurn.NextTurnInteractor;
 import use_case.NextTurn.NextTurnOutputDataBoundary;
 import use_case.PostTurn.PostTurnDataAccessInterface;
-import use_case.PostTurn.PostTurnInputDataBoundary;
 import use_case.PostTurn.PostTurnInteractor;
 import use_case.PostTurn.PostTurnOutputDataBoundary;
 import use_case.PreTurn.*;
@@ -34,14 +32,14 @@ public class BottomPanelUseCaseFactory {
             FunCardButtonPanelViewModel funCardButtonPanelViewModel,
             GetCardPanelViewModel getCardPanelViewModel,
             PlayerPanelViewModel playerPanelViewModel,
-            APIDataAccessObject apiDataAccessObject,
-            FileUserDataAccessObject fileUserDataAccessObject) {
+            FileUserDataAccessObject dataAccessInterface,
+            APIDataAccessObject apiDataAccessObject) {
 
         try {
             ConfirmController confirmController = createConfirmController(viewManagerModel, bottomPanelViewModel, cardButtonPanelViewModel,
-                    funCardButtonPanelViewModel, fileUserDataAccessObject, getCardPanelViewModel);
+                    funCardButtonPanelViewModel, dataAccessInterface, getCardPanelViewModel);
             NextTurnController nextTurnController = createNextTurnController(viewManagerModel, playerPanelViewModel,
-                    cardButtonPanelViewModel, funCardButtonPanelViewModel, bottomPanelViewModel,apiDataAccessObject, fileUserDataAccessObject);
+                    cardButtonPanelViewModel, funCardButtonPanelViewModel, bottomPanelViewModel, dataAccessInterface, apiDataAccessObject, dataAccessInterface, dataAccessInterface, getCardPanelViewModel);
             return new BottomPanel(bottomPanelViewModel, confirmController, nextTurnController);
         }
         catch (IOException e) {
@@ -64,16 +62,18 @@ public class BottomPanelUseCaseFactory {
 
     private static NextTurnController createNextTurnController(ViewManagerModel viewManagerModel, PlayerPanelViewModel playerPanelViewModel, CardButtonPanelViewModel cardButtonPanelViewModel,
                                                                FunCardButtonPanelViewModel funCardButtonPanelViewModel, BottomPanelViewModel bottomPanelViewModel,
-                                                               APIDataAccessObject apiDataAccessObject, FileUserDataAccessObject fileUserDataAccessObject) {
+                                                               NextTurnDataAccessInterface nextTurnDataAccessInterface,
+                                                               DrawCardsDataAccessInterface drawCardsDataAccessInterface,
+                                                               PostTurnDataAccessInterface postTurnDataAccessInterface, PreTurnDataAccessInterface preTurnDataAccessInterface,
+                                                               GetCardPanelViewModel getCardPanelViewModel) {
+        PostTurnInteractor postTurnInteractor = new PostTurnInteractor(drawCardsDataAccessInterface, postTurnDataAccessInterface);
 
-        PostTurnInteractor postTurnInteractor = new PostTurnInteractor(apiDataAccessObject, fileUserDataAccessObject);
-
-        PreTurnInteractor preTurnInteractor = new PreTurnInteractor(apiDataAccessObject, fileUserDataAccessObject);
+        PreTurnInteractor preTurnInteractor = new PreTurnInteractor(drawCardsDataAccessInterface, preTurnDataAccessInterface);
 
         FindPlayableCardsInterface findPlayableCards = new FindPlayableCards();
 
-        NextTurnOutputDataBoundary nextTurnPresenter = new NextTurnPresenter(playerPanelViewModel, cardButtonPanelViewModel, viewManagerModel, funCardButtonPanelViewModel, bottomPanelViewModel);
-        NextTurnInputDataBoundary nextTurnInteractor = new NextTurnInteractor(fileUserDataAccessObject, nextTurnPresenter, findPlayableCards, postTurnInteractor, preTurnInteractor);
+        NextTurnOutputDataBoundary nextTurnPresenter = new NextTurnPresenter(playerPanelViewModel, cardButtonPanelViewModel, viewManagerModel, funCardButtonPanelViewModel, bottomPanelViewModel, getCardPanelViewModel);
+        NextTurnInputDataBoundary nextTurnInteractor = new NextTurnInteractor(nextTurnDataAccessInterface, nextTurnPresenter, findPlayableCards, postTurnInteractor, preTurnInteractor);
         return new NextTurnController(nextTurnInteractor);
     }
 

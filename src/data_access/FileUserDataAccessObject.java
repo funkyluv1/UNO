@@ -34,7 +34,7 @@ public class FileUserDataAccessObject implements InitiationDataAccessInterface,
     private final Map<Integer, NumberCardsDeck> cardsDeck = new HashMap<>();
     private final Map<String, Integer> numberCardDeckHeaders = new LinkedHashMap<>();
     private final Map<String, Integer> playerHeaders = new LinkedHashMap<>();
-    private Game game;
+    private Game game = Game.getInstance();
 
 
     public FileUserDataAccessObject(String csvPath, AIPlayerFactory aiPlayerFactory,
@@ -227,6 +227,34 @@ public class FileUserDataAccessObject implements InitiationDataAccessInterface,
     public String get_specific_player_with_index(int player_index) {
         ArrayList<String> usernames = new ArrayList<>(playerInfo.keySet());
         return playerInfo.get(usernames.get(player_index % 4)).playerName;
+    }
+
+    @Override
+    public void play_Card_and_update_DAO(String playerName, NumberCard numberCard, ArrayList<FunctionalCard> functionalCards) {
+        ArrayList<NumberCard> numberCards = playerInfo.get(playerName).getNumberCards();
+        ArrayList<FunctionalCard> currPlayerFuncCard = getFunctionalCards(playerName);
+
+        for (NumberCard numberCard1 : numberCards){
+            if (numberCard1.getString().equals(numberCard.getString())){
+                numberCards.remove(numberCard1);
+                break;
+            }
+        }
+        ArrayList<Integer> selectedFuncCards = new ArrayList<>();
+        for (int i = 0; i < functionalCards.size(); i++){
+            for (int j = 0; j < currPlayerFuncCard.size(); j++){
+                if (functionalCards.get(i).getString().equals(currPlayerFuncCard.get(j).getString()) && !selectedFuncCards.contains(j)){
+                    selectedFuncCards.add(j);
+                }
+            }
+        }
+        Collections.sort(selectedFuncCards, Collections.reverseOrder());
+        for (int index : selectedFuncCards) {
+            if (index >= 0 && index < currPlayerFuncCard.size()) {
+                cardsDeck.remove(index);
+            }
+        }
+        recordPostTurnChange(currPlayerFuncCard, numberCards, playerName);
     }
 
     @Override

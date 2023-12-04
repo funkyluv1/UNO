@@ -57,11 +57,20 @@ public class Main {
 
         FindPlayableCardsInterface findPlayableCardsInterface = new FindPlayableCards();
 
-        APIDataAccessObject apiDataAccessObject = new APIDataAccessObject();
+
         FileUserDataAccessObject userDataAccessObject;
         try {
             userDataAccessObject = new FileUserDataAccessObject("./users.csv", new AIPlayerFactory(), new HumanPlayerFactory(), new NumberCardsDeckCreator());
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        APIDataAccessObject apiDataAccessObject;
+        try {
+            apiDataAccessObject = new APIDataAccessObject();
+        }
+        catch (Exception e) {
             throw new RuntimeException(e);
         }
 
@@ -72,14 +81,13 @@ public class Main {
         PlayerPanelViewModel playerPanelViewModel = new PlayerPanelViewModel();
         GetCardPanelViewModel getCardPanelViewModel = new GetCardPanelViewModel();
 
-
         // panels (views)
-        BottomPanel bottomPanel = BottomPanelUseCaseFactory.create(viewManagerModel, bottomPanelViewModel, cardButtonPanelViewModel, funCardButtonPanelViewModel, getCardPanelViewModel, playerPanelViewModel, apiDataAccessObject, userDataAccessObject);
+        BottomPanel bottomPanel = BottomPanelUseCaseFactory.create(viewManagerModel, bottomPanelViewModel, cardButtonPanelViewModel, funCardButtonPanelViewModel, getCardPanelViewModel,
+                playerPanelViewModel, userDataAccessObject, apiDataAccessObject);
         PlayerPanel playerPanel = PlayerPanelUseCaseFactory.create(viewManagerModel, playerPanelViewModel);
-        GetCardPanel getCardPanel = GetCardPanelUseCaseFactory.create(viewManagerModel, getCardPanelViewModel, cardButtonPanelViewModel,funCardButtonPanelViewModel, bottomPanelViewModel,apiDataAccessObject, userDataAccessObject);
+        GetCardPanel getCardPanel = GetCardPanelUseCaseFactory.create(viewManagerModel, getCardPanelViewModel, cardButtonPanelViewModel,funCardButtonPanelViewModel, bottomPanelViewModel, apiDataAccessObject, userDataAccessObject);
         FunCardButtonPanel funCardButtonPanel = FunCardButtonPanelUseCaseFactory.create(viewManagerModel, cardButtonPanelViewModel, funCardButtonPanelViewModel, userDataAccessObject);
         CardButtonPanel cardButtonPanel = CardButtonPanelUseCaseFactory.create(viewManagerModel, funCardButtonPanelViewModel, cardButtonPanelViewModel, getCardPanelViewModel,bottomPanelViewModel,userDataAccessObject);
-
 
 
         InitiationViewModel initiationViewModel = new InitiationViewModel();

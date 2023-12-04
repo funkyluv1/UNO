@@ -8,7 +8,7 @@ import use_case.Confirm.ConfirmOutputDataBoundary;
 import use_case.SelectCard.SelectCardOutputData;
 import use_case.SelectCard.SelectCardOutputDataBoundary;
 
-import java.util.ArrayList;
+import static use_case.initiation.InitiationInteractor.game;
 
 public class ConfirmPresenter implements ConfirmOutputDataBoundary {
 
@@ -29,7 +29,7 @@ public class ConfirmPresenter implements ConfirmOutputDataBoundary {
     }
 
     @Override
-    public void prepareSuccessView(ConfirmOutputData outputData) {
+    public void prepareSuccessView(ConfirmOutputData confirmOutputData) {
         BottomPanelState bottomPanelState = bottomPanelViewModel.getState();
         bottomPanelState.setConfirmButtonEnabled(false);
         bottomPanelState.setNextButtonEnabled(true);
@@ -38,9 +38,6 @@ public class ConfirmPresenter implements ConfirmOutputDataBoundary {
 
         CardButtonPanelState cardButtonPanelState = cardButtonPanelViewModel.getState();
         cardButtonPanelState.setOneCardSelected(true);
-        ArrayList<NumberCard> cards = cardButtonPanelState.getPlayerNumCards();
-        cards.remove(outputData.getCard());
-        cardButtonPanelState.setPlayerNumCards(cards);
         cardButtonPanelViewModel.setState(cardButtonPanelState);
         cardButtonPanelViewModel.firePropertyChanged();
 
@@ -52,6 +49,11 @@ public class ConfirmPresenter implements ConfirmOutputDataBoundary {
         GetCardPanelState getCardPanelState = getCardPanelViewModel.getState();
         getCardPanelState.setUndoEnabled(false);
         getCardPanelState.setGetCardEnabled(false);
+        int newCardValue = confirmOutputData.getNumber();
+        int currCardValuew = getCardPanelState.getTopCard().getValue();
+        if (newCardValue > currCardValuew){
+            getCardPanelState.setTopCard(confirmOutputData.getNumberCard());
+        }
         getCardPanelViewModel.setState(getCardPanelState);
         getCardPanelViewModel.firePropertyChanged();
 

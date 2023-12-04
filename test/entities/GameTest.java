@@ -59,17 +59,17 @@ public class GameTest extends TestCase {
     }
 
     public void testGetCurrentPlayerIndexInitialValue() {
-        assertEquals(game.getCurrentPlayerIndex(), 1);
+        assertEquals(game.getCurrentPlayerIndex(), 0);
     }
 
     public void testUpdateCurrentPlayerIndex() {
+        assertEquals(game.getCurrentPlayerIndex(), 0);
+        game.updateCurrentPlayerIndex();
         assertEquals(game.getCurrentPlayerIndex(), 1);
         game.updateCurrentPlayerIndex();
         assertEquals(game.getCurrentPlayerIndex(), 2);
         game.updateCurrentPlayerIndex();
         assertEquals(game.getCurrentPlayerIndex(), 3);
-        game.updateCurrentPlayerIndex();
-        assertEquals(game.getCurrentPlayerIndex(), 0);
     }
 
     public void testGetCurrSelectedNumberCardInitialValue() {

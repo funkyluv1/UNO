@@ -19,10 +19,11 @@ public class ConfirmInteractor implements ConfirmInputDataBoundary{
     @Override
     public void execute(ConfirmInputData confirmInputData) {
         NumberCard selectedNumCard = (NumberCard) game.getCurrSelectedNumberCard();
-        ConfirmOutputData outputData = new ConfirmOutputData(selectedNumCard);
         ArrayList<FunctionalCard> selectedFunCard = game.getCurrSelectedFunCard();
         int currPlayerIndex = confirmInputData.getCurrPlayerIndex();
         String currPlayer = confirmDataAccessInterface.get_specific_player_with_index(currPlayerIndex);
+
+        confirmDataAccessInterface.play_Card_and_update_DAO(currPlayer,selectedNumCard, selectedFunCard);
 
         game.setCurrSelectedNumberCard(null);
         game.addNumCardsinRound(selectedNumCard);
@@ -49,8 +50,7 @@ public class ConfirmInteractor implements ConfirmInputDataBoundary{
             game.setCurrWinner(currPlayer);
         }
 
-
-        confirmOutputDataBoundary.prepareSuccessView(outputData);
+        confirmOutputDataBoundary.prepareSuccessView(new ConfirmOutputData(selectedNumCard));
     }
 
 }

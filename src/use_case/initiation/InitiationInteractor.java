@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class InitiationInteractor implements InitiationInputDataBoundary {
-    public static Game game;
+    public static Game game = Game.getInstance();
     final InitiationDataAccessInterface fileUserDataAccessObject;
     final InitiationOutputDataBoundary initiationOutputDataBoundary;
     final DrawCardsDataAccessInterface drawCardsDataAccessInterface;
@@ -36,7 +36,8 @@ public class InitiationInteractor implements InitiationInputDataBoundary {
         Map<String, Integer> displayCardsFirstIndex = new HashMap<>();
 
         int initialNumberCards = 5;
-        NumberCardsDeck numberCardsDeck = drawCardsDataAccessInterface.returnNumberCardsDeck();
+        NumberCardsDeck numberCardsDeck = drawCardsDataAccessInterface.createNumberCardsDeck();
+        game.setNumberCardDeck(numberCardsDeck);
         fileUserDataAccessObject.initiate(numberCardsDeck, initiationInputData);
         for (String playerName : initiationInputData.getPlayerNames()){
             ArrayList<NumberCard> numberCards = drawCardsDataAccessInterface.drawNumberCards(numberCardsDeck, initialNumberCards);

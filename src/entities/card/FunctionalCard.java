@@ -17,27 +17,29 @@ public class FunctionalCard extends Card {
         this.type = type;
     }
 
-    public static void applyFunction(FunctionalCard funcCard) {
-        switch (funcCard.type) {
-            case "PlusTwo":
-                // handlePlusFour using helper
-                break;
-            case "PlusFour":
-                break;
-            case "Skip":
-                break;
-            case "Wild":
-                break;
-            case "Bomb":
-                break;
-            case "HotPotato":
-                break;
-        }
-    }
+//    public static void applyFunction(FunctionalCard funcCard) {
+//        switch (funcCard.type) {
+//            case "PlusTwo":
+//                // handlePlusFour using helper
+//                break;
+//            case "PlusFour":
+//                break;
+//            case "Skip":
+//                break;
+//            case "Wild":
+//                break;
+//            case "Bomb":
+//                break;
+//            case "HotPotato":
+//                break;
+//        }
+//    }
 
     public String getType() {
         return type;
     }
 
-    public String getString(){return type + this.getValue() + this.getColor();}
+    public String getString(){
+        String s = String.valueOf(this.getValue());
+        return type + s + this.getColor();}
 }
