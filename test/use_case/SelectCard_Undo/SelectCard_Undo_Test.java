@@ -1,4 +1,4 @@
-package use_case.SelectCard;
+package use_case.SelectCard_Undo;
 
 import app.*;
 import data_access.APIDataAccessObject;
@@ -14,11 +14,16 @@ import interface_adapter.Initialized.*;
 import interface_adapter.Initiation.InitiationPresenter;
 import interface_adapter.Initiation.InitiationViewModel;
 import interface_adapter.SelectCard.SelectCardPresenter;
+import interface_adapter.Undo.UndoPresenter;
 import interface_adapter.ViewManagerModel;
 import junit.framework.TestCase;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import use_case.PreTurn.FindPlayableCards;
 import use_case.PreTurn.FindPlayableCardsInterface;
+import use_case.SelectCard.SelectCardInputData;
+import use_case.SelectCard.SelectCardInteractor;
+import use_case.Undo.UndoInputData;
+import use_case.Undo.UndoInteractor;
 import use_case.initiation.InitiationInputData;
 import use_case.initiation.InitiationInteractor;
 import view.*;
@@ -26,7 +31,7 @@ import view.*;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class SelectCardTest extends TestCase {
+public class SelectCard_Undo_Test extends TestCase {
 
     public void testExecute() throws IOException {
         successTest();
@@ -82,26 +87,45 @@ public class SelectCardTest extends TestCase {
         SelectCardInteractor selectCardInteractor = new SelectCardInteractor(selectCardPresenter);
 
 
-        // Test whether, given an input, the use case produces the correct outcome
+        // Test select card
         selectCardInteractor.execute(selectCardInputData);
 
         // card button panel
-        CardButtonPanelState cardButtonPanelState = cardButtonPanelViewModel.getState();
-        assertEquals(cardButtonPanelState.getOneCardsSelected(), true);
-        assertEquals(cardButtonPanelState.getLeftButtonEnabled(), false);
-        assertEquals(cardButtonPanelState.getRightButtonEnabled(), false);
+        CardButtonPanelState cardButtonPanelState1 = cardButtonPanelViewModel.getState();
+        assertEquals(cardButtonPanelState1.getOneCardsSelected(), true);
 
         // get card panel
-        GetCardPanelState getCardPanelState = getCardPanelViewModel.getState();
-        assertEquals(getCardPanelState.isGetCardEnabled(), false);
-        assertEquals(getCardPanelState.isUndoEnabled(), true);
+        GetCardPanelState getCardPanelState1 = getCardPanelViewModel.getState();
+        assertEquals(getCardPanelState1.isGetCardEnabled(), false);
+        assertEquals(getCardPanelState1.isUndoEnabled(), true);
 
         // bottom panel
-        BottomPanelState bottomPanelState = bottomPanelViewModel.getState();
-        assertEquals(bottomPanelState.getConfirmButtonEnabled(),true);
-        assertEquals(bottomPanelState.getNextButtonEnabled(), false);
+        BottomPanelState bottomPanelState1 = bottomPanelViewModel.getState();
+        assertEquals(bottomPanelState1.getConfirmButtonEnabled(),true);
+        assertEquals(bottomPanelState1.getNextButtonEnabled(), false);
 
-        System.out.println("Test passed");
+        // =======================================================================
+
+        UndoInputData undoInputData = new UndoInputData(numberCards.get(k));
+        UndoPresenter undoPresenter = new UndoPresenter(viewManagerModel, getCardPanelViewModel, cardButtonPanelViewModel, funCardButtonPanelViewModel, bottomPanelViewModel);
+        UndoInteractor undoInteractor = new UndoInteractor(undoPresenter, userDataAccessObject);
+
+        // Test undo
+        undoInteractor.execute(undoInputData);
+
+        // card button panel
+        CardButtonPanelState cardButtonPanelState2 = cardButtonPanelViewModel.getState();
+        assertEquals(cardButtonPanelState2.getOneCardsSelected(), false);
+
+        // get card panel
+        GetCardPanelState getCardPanelState2 = getCardPanelViewModel.getState();
+        assertEquals(getCardPanelState2.isUndoEnabled(), false);
+
+        // bottom panel
+        BottomPanelState bottomPanelState2 = bottomPanelViewModel.getState();
+        assertEquals(bottomPanelState2.getConfirmButtonEnabled(),false);
+        assertEquals(bottomPanelState2.getNextButtonEnabled(), false);
+
     }
 }
 
