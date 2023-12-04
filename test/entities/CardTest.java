@@ -1,7 +1,6 @@
 package entities;
 
 import entities.card.*;
-import entities.player.HumanPlayer;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
