@@ -1,13 +1,11 @@
-package use_case.SelectCard_Undo_Confirm;
+package use_case.PreTurn;
 
 import app.*;
 import data_access.APIDataAccessObject;
 import data_access.FileUserDataAccessObject;
 import entities.Game;
 import entities.NumberCardsDeck.NumberCardsDeckCreator;
-import entities.card.Card;
-import entities.card.NumberCard;
-import entities.card.NumberCardFactory;
+import entities.card.*;
 import entities.player.AIPlayerFactory;
 import entities.player.HumanPlayerFactory;
 import interface_adapter.Confirm.ConfirmPresenter;
@@ -16,37 +14,38 @@ import interface_adapter.Initiation.InitiationPresenter;
 import interface_adapter.Initiation.InitiationViewModel;
 import interface_adapter.NextTurn.NextTurnPresenter;
 import interface_adapter.SelectCard.SelectCardPresenter;
-import interface_adapter.Undo.UndoPresenter;
+import interface_adapter.SelectFuncCard.SelectFuncCardPresenter;
 import interface_adapter.ViewManagerModel;
 import junit.framework.TestCase;
-import org.junit.Test;
 import use_case.Confirm.ConfirmInputData;
 import use_case.Confirm.ConfirmInteractor;
 import use_case.NextTurn.NextTurnInputData;
 import use_case.NextTurn.NextTurnInteractor;
 import use_case.PostTurn.PostTurnInteractor;
-import use_case.PreTurn.FindPlayableCards;
-import use_case.PreTurn.FindPlayableCardsInterface;
-import use_case.PreTurn.PreTurnInteractor;
 import use_case.SelectCard.SelectCardInputData;
 import use_case.SelectCard.SelectCardInteractor;
-import use_case.Undo.UndoInputData;
-import use_case.Undo.UndoInteractor;
+import use_case.SelectFuncCard.SelectFuncCardInputData;
+import use_case.SelectFuncCard.SelectFuncCardInteractor;
 import use_case.initiation.InitiationInputData;
 import use_case.initiation.InitiationInteractor;
 import view.*;
 
+import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
-public class SelectCard_Undo_Confirm_Next_Test extends TestCase {
-
+public class PreTurn_Test extends TestCase {
     public void testExecute() throws IOException {
-        successTest();
+        testNextHasPlusCard();
     }
 
-    @Test
-    void successTest() throws IOException {
+    public void testNextHasPlusCard() throws IOException {
+        File file = new File("users.csv");
+        PrintWriter printWriter = new PrintWriter(file);
+        printWriter.print("");
+        printWriter.close();
+
         FileUserDataAccessObject userDataAccessObject = new FileUserDataAccessObject("./users.csv", new AIPlayerFactory(), new HumanPlayerFactory(), new NumberCardsDeckCreator());
         APIDataAccessObject apiDataAccessObject = apiDataAccessObject = new APIDataAccessObject();
         FindPlayableCardsInterface findPlayableCardsInterface = new FindPlayableCards();
@@ -61,16 +60,16 @@ public class SelectCard_Undo_Confirm_Next_Test extends TestCase {
         BottomPanel bottomPanel = BottomPanelUseCaseFactory.create(viewManagerModel, bottomPanelViewModel, cardButtonPanelViewModel, funCardButtonPanelViewModel, getCardPanelViewModel,
                 playerPanelViewModel, userDataAccessObject, apiDataAccessObject);
         PlayerPanel playerPanel = PlayerPanelUseCaseFactory.create(viewManagerModel, playerPanelViewModel);
-        GetCardPanel getCardPanel = GetCardPanelUseCaseFactory.create(viewManagerModel, getCardPanelViewModel, cardButtonPanelViewModel,funCardButtonPanelViewModel, bottomPanelViewModel,apiDataAccessObject, userDataAccessObject);
+        GetCardPanel getCardPanel = GetCardPanelUseCaseFactory.create(viewManagerModel, getCardPanelViewModel, cardButtonPanelViewModel, funCardButtonPanelViewModel, bottomPanelViewModel, apiDataAccessObject, userDataAccessObject);
         FunCardButtonPanel funCardButtonPanel = FunCardButtonPanelUseCaseFactory.create(viewManagerModel, cardButtonPanelViewModel, funCardButtonPanelViewModel, userDataAccessObject);
-        CardButtonPanel cardButtonPanel = CardButtonPanelUseCaseFactory.create(viewManagerModel, funCardButtonPanelViewModel, cardButtonPanelViewModel, getCardPanelViewModel,bottomPanelViewModel,userDataAccessObject);
+        CardButtonPanel cardButtonPanel = CardButtonPanelUseCaseFactory.create(viewManagerModel, funCardButtonPanelViewModel, cardButtonPanelViewModel, getCardPanelViewModel, bottomPanelViewModel, userDataAccessObject);
 
         InitializedViewModel initializedViewModel = new InitializedViewModel(cardButtonPanel, bottomPanel, playerPanel, getCardPanel, funCardButtonPanel);
         InitiationPresenter initiationPresenter = new InitiationPresenter(viewManagerModel, cardButtonPanelViewModel, initializedViewModel, getCardPanelViewModel, bottomPanelViewModel, playerPanelViewModel, funCardButtonPanelViewModel);
 
         InitiationViewModel initiationViewModel = new InitiationViewModel();
         InitiationInteractor initiationInteractor = new InitiationInteractor(userDataAccessObject, apiDataAccessObject, initiationPresenter, findPlayableCardsInterface);
-        InitiationView initiationView = InitiationUseCaseFactory.create(viewManagerModel, initiationViewModel, cardButtonPanelViewModel,initializedViewModel, userDataAccessObject,  funCardButtonPanelViewModel,
+        InitiationView initiationView = InitiationUseCaseFactory.create(viewManagerModel, initiationViewModel, cardButtonPanelViewModel, initializedViewModel, userDataAccessObject, funCardButtonPanelViewModel,
                 findPlayableCardsInterface, getCardPanelViewModel, bottomPanelViewModel, playerPanelViewModel);
 
         ArrayList<String> playerNames = new ArrayList<>();
@@ -82,7 +81,7 @@ public class SelectCard_Undo_Confirm_Next_Test extends TestCase {
         initiationInteractor.execute(initiationInputData);
 
         ArrayList<NumberCard> numberCards = new ArrayList<>();
-        for (int i=0; i<3; i++) {
+        for (int i = 0; i < 3; i++) {
             NumberCardFactory numberCardFactory = new NumberCardFactory(i, "R");
             numberCards.add(numberCardFactory.createCard());
         }
@@ -92,6 +91,7 @@ public class SelectCard_Undo_Confirm_Next_Test extends TestCase {
         SelectCardInputData selectCardInputData = new SelectCardInputData(chosenCard, k);
         SelectCardPresenter selectCardPresenter = new SelectCardPresenter(viewManagerModel, cardButtonPanelViewModel, getCardPanelViewModel, bottomPanelViewModel);
         SelectCardInteractor selectCardInteractor = new SelectCardInteractor(selectCardPresenter);
+        selectCardInteractor.execute(selectCardInputData);
 
         // =======================================================================
 
@@ -102,99 +102,41 @@ public class SelectCard_Undo_Confirm_Next_Test extends TestCase {
             game.updateCurrentPlayerIndex();
         }
 
-        // Test select card
-        selectCardInteractor.execute(selectCardInputData);
+        ArrayList<FunctionalCard> functionalCards = new ArrayList<>();
+        functionalCards.add(new PlusTwoCard());
 
-        // card button panel
-        CardButtonPanelState cardButtonPanelState1 = cardButtonPanelViewModel.getState();
-        assertTrue(cardButtonPanelState1.getOneCardsSelected());
-
-        // get card panel
-        GetCardPanelState getCardPanelState1 = getCardPanelViewModel.getState();
-        assertTrue(getCardPanelState1.isUndoEnabled());
-
-        // bottom panel
-        BottomPanelState bottomPanelState1 = bottomPanelViewModel.getState();
-        assertTrue(bottomPanelState1.getConfirmButtonEnabled());
-        assertFalse(bottomPanelState1.getNextButtonEnabled());
-
-        // =======================================================================
-
-        UndoInputData undoInputData = new UndoInputData(numberCards.get(k));
-        UndoPresenter undoPresenter = new UndoPresenter(viewManagerModel, getCardPanelViewModel, cardButtonPanelViewModel, funCardButtonPanelViewModel, bottomPanelViewModel);
-        UndoInteractor undoInteractor = new UndoInteractor(undoPresenter, userDataAccessObject);
-
-        // Test undo
-        undoInteractor.execute(undoInputData);
-
-        // card button panel
-        CardButtonPanelState cardButtonPanelState2 = cardButtonPanelViewModel.getState();
-        assertFalse(cardButtonPanelState2.getOneCardsSelected());
-
-        // get card panel
-        GetCardPanelState getCardPanelState2 = getCardPanelViewModel.getState();
-        assertFalse(getCardPanelState2.isUndoEnabled());
-
-        // bottom panel
-        BottomPanelState bottomPanelState2 = bottomPanelViewModel.getState();
-        assertFalse(bottomPanelState2.getConfirmButtonEnabled());
-        assertFalse(bottomPanelState2.getNextButtonEnabled());
-
-        // =======================================================================
+        ArrayList<FunctionalCard> selectedFuncCards = new ArrayList<>();
+        FunctionalCard newCard = functionalCards.get(0);
+        SelectFuncCardInputData selectFuncCardInputData = new SelectFuncCardInputData(newCard, selectedFuncCards, 0);
+        SelectFuncCardPresenter selectFuncCardPresenter = new SelectFuncCardPresenter(viewManagerModel, funCardButtonPanelViewModel);
+        SelectFuncCardInteractor selectFuncCardInteractor = new SelectFuncCardInteractor(selectFuncCardPresenter);
+        selectFuncCardInteractor.execute(selectFuncCardInputData);
 
         int currIndex = 0;
         ConfirmInputData confirmInputData = new ConfirmInputData(currIndex);
         ConfirmPresenter confirmPresenter = new ConfirmPresenter(viewManagerModel, bottomPanelViewModel, cardButtonPanelViewModel, funCardButtonPanelViewModel, getCardPanelViewModel);
         ConfirmInteractor confirmInteractor = new ConfirmInteractor(confirmPresenter, userDataAccessObject);
-
-        // Test Confirm
-        selectCardInteractor.execute(selectCardInputData);
         confirmInteractor.execute(confirmInputData);
 
-        // card button panel
-        CardButtonPanelState cardButtonPanelState3 = cardButtonPanelViewModel.getState();
-        assertTrue(cardButtonPanelState3.getOneCardsSelected());
-
-        // fun card panel
-        FunCardButtonPanelState funCardButtonPanelState3 = funCardButtonPanelViewModel.getState();
-        assertFalse(funCardButtonPanelState3.getAllButtonDisable());
-
-        // get card panel
-        GetCardPanelState getCardPanelState3 = getCardPanelViewModel.getState();
-        assertFalse(getCardPanelState3.isGetCardEnabled());
-        assertFalse(getCardPanelState3.isUndoEnabled());
-
-        // bottom panel
-        BottomPanelState bottomPanelState3 = bottomPanelViewModel.getState();
-        assertFalse(bottomPanelState3.getConfirmButtonEnabled());
-        assertTrue(bottomPanelState3.getNextButtonEnabled());
-
         // =======================================================================
+
+        // if the player has plus cards
+        int nextIndex = (currIndex + 1) % playerNames.size();
+        userDataAccessObject.recordRoundChange(playerNames.get(nextIndex), new PlusFourCard());
 
         NextTurnInputData nextTurnInputData = new NextTurnInputData(currIndex);
         NextTurnPresenter nextTurnPresenter = new NextTurnPresenter(playerPanelViewModel, cardButtonPanelViewModel, viewManagerModel, funCardButtonPanelViewModel, bottomPanelViewModel, getCardPanelViewModel);
         NextTurnInteractor nextTurnInteractor = new NextTurnInteractor(userDataAccessObject, nextTurnPresenter,
                 findPlayableCardsInterface, new PostTurnInteractor(apiDataAccessObject, userDataAccessObject), new PreTurnInteractor(apiDataAccessObject, userDataAccessObject));
 
-        // Test next
         nextTurnInteractor.execute(nextTurnInputData);
 
-        // player panel
-        int nextIndex = (currIndex + 1) % playerNames.size();
-        PlayerPanelState playerPanelState3 = playerPanelViewModel.getState();
-        assertEquals(nextIndex, playerPanelState3.getCurrent_player_index());
+        // Test preturn interactor
 
-        // card button panel
-        CardButtonPanelState cardButtonPanelState4 = cardButtonPanelViewModel.getState();
-        assertFalse(cardButtonPanelState4.getOneCardsSelected());
+        // game object
+        assertEquals(2, game.getCurrentPlayerIndex());
+        assertFalse(game.getSkipped());
+        assertEquals(game.getDrawCard(), game.getDrawCard());
 
-        // get card panel
-        GetCardPanelState getCardPanelState4 = getCardPanelViewModel.getState();
-        assertFalse(getCardPanelState4.isUndoEnabled());
-
-        // bottom panel
-        BottomPanelState bottomPanelState4 = bottomPanelViewModel.getState();
-        assertFalse(bottomPanelState4.getConfirmButtonEnabled());
-        assertFalse(bottomPanelState4.getNextButtonEnabled());
     }
 }
