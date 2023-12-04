@@ -109,16 +109,29 @@ public class CardButtonPanel extends JPanel implements PropertyChangeListener {
             playableNumCardsString.add(numberCard.getString());
         }
 
+        int difference;
         int startInd = cardButtonPanelViewModel.getState().getdisplayCardsFirstIndex();
-        int card_with_value;
+        int card_with_value = 3;
         if (cardButtonPanelViewModel.getState().get_Number_Cards().size() >= 3){
-            card_with_value = 3;
-        } else {card_with_value = cardButtonPanelViewModel.getState().get_Number_Cards().size();}
+            difference = 0;
+        } else {
+            difference = 3 - cardButtonPanelViewModel.getState().get_Number_Cards().size();
+        }
+
+        boolean nullCardAfter = false;
 
         for (int i = startInd; i < startInd + card_with_value; i++) {
-            String name = cardButtonPanelViewModel.getState().get_Number_Cards().get(i).getString();
+            String name;
+            int finalI = i;
+            if (nullCardAfter || finalI == startInd + 3 - difference){
+                name = "Null";
+                nullCardAfter = true;
+            } else {name = cardButtonPanelViewModel.getState().get_Number_Cards().get(i).getString();}
 
-            // CardButton: default is Disabled; Enable playable Card;
+            if (name.equals("Null")){
+                cardNames.get(i - startInd).setEnabled(false);
+            }
+
             cardNames.get(i - startInd).setText(name);
             if (playableNumCardsString.contains(name)){
                 cardNames.get(i - startInd).setEnabled(true);
@@ -126,18 +139,17 @@ public class CardButtonPanel extends JPanel implements PropertyChangeListener {
 //          TODO: probably don't need highlight any more; contrast between Enabled and Disabled Button is distinguishable
 //          cardNames.get(cardButtonPanelViewModel.getState().getButtonindexHighlighted()).setBackground(Color.CYAN);
 
-            if (name.charAt(1) == 'B'){cardNames.get(i - startInd).setBackground(Color.BLUE);}
-            else if (name.charAt(1) == 'R'){cardNames.get(i - startInd).setBackground(Color.RED);}
-            else if (name.charAt(1) == 'G'){cardNames.get(i - startInd).setBackground(Color.GREEN);}
+            if (name != "Null"){
+                if (name.charAt(1) == 'B'){cardNames.get(i - startInd).setBackground(Color.BLUE);}
+                else if (name.charAt(1) == 'R'){cardNames.get(i - startInd).setBackground(Color.RED);}
+                else if (name.charAt(1) == 'G'){cardNames.get(i - startInd).setBackground(Color.GREEN);}
+            }
+
 
             //If someone has selected one card beforehand, then disable the enabled playable card.
             if (cardButtonPanelViewModel.getState().getOneCardsSelected()){
                 cardNames.get(i - startInd).setEnabled(false);
             }
-
-//            if (i == startInd){cardNames.get(i - startInd).setEnabled(cardButtonPanelViewModel.getState().getButton1enabled());}
-//            else if (i == startInd + 1){cardNames.get(i - startInd).setEnabled(cardButtonPanelViewModel.getState().getButton2enabled());}
-//            else cardNames.get(i - startInd).setEnabled(cardButtonPanelViewModel.getState().getButton3enabled());
 
         }
         leftButton.setEnabled(cardButtonPanelViewModel.getState().getLeftButtonEnabled());

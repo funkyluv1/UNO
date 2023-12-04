@@ -62,6 +62,7 @@ public class NextTurnPresenter implements NextTurnOutputDataBoundary {
         this.funCardButtonPanelViewModel.setState(funCardButtonPanelState);
         this.funCardButtonPanelViewModel.firePropertyChanged();
 
+        cardButtonPanelState.setDisplayNumCardsFirstIndex(0);
         cardButtonPanelState.set_cards(nextTurnOutputData.getnumcards(), nextTurnOutputData.getPlayerplayablenumcards(), 0);
         cardButtonPanelState.setOneCardSelected(false);
         if (cardButtonPanelState.get_Number_Cards().size() > 3){
@@ -69,6 +70,7 @@ public class NextTurnPresenter implements NextTurnOutputDataBoundary {
             cardButtonPanelState.setLeftButtonEnabled(false);
         }
         else {
+            cardButtonPanelState.setResetAllNumCards(true);
             cardButtonPanelState.setRightButtonEnabled(false);
             cardButtonPanelState.setLeftButtonEnabled(false);
         }
