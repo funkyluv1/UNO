@@ -263,6 +263,7 @@ public class FileUserDataAccessObject implements InitiationDataAccessInterface,
         ArrayList<NumberCard> hand = playerInfo.get(player).getNumberCards();
         hand.add(numberCard);
         playerInfo.get(player).setNumCards(hand);
+        save();
     }
 
     @Override

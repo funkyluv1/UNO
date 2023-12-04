@@ -24,14 +24,21 @@ public class GetCardPresenter implements GetCardOutputDataBoundary {
     @Override
     public void prepareNewGameView(GetCardOutputData getCardOutputData) {
         GetCardPanelState getCardState = getCardPanelViewModel.getState();
+        CardButtonPanelState cardButtonPanelState = cardButtonPanelViewModel.getState();
+
         NumberCard card = getCardOutputData.getNumberCard();
-        getCardState.setNumberCard(card);
+        ArrayList<NumberCard> numberCards = cardButtonPanelState.get_Number_Cards();
+        numberCards.add(card);
+        cardButtonPanelState.setPlayerNumCards(numberCards);
         if (card.getColor().charAt(0) == getCardState.getTopCard().getColor().charAt(0)){
-            CardButtonPanelState cardButtonPanelState = cardButtonPanelViewModel.getState();
+            ArrayList<NumberCard> playableNumberCards = cardButtonPanelState.get_Highlighted_Number_Cards();
+            playableNumberCards.add(card);
+            cardButtonPanelState.set_Highlighted_Number_Cards(playableNumberCards);
             cardButtonPanelState.setOneCardSelected(false);
             cardButtonPanelViewModel.setState(cardButtonPanelState);
             cardButtonPanelViewModel.firePropertyChanged();
         }
+        getCardState.setNumberCard(card);
         getCardPanelViewModel.setState(getCardState);
         getCardPanelViewModel.firePropertyChanged();
 
