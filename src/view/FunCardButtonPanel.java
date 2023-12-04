@@ -116,13 +116,14 @@ public class FunCardButtonPanel extends JPanel implements PropertyChangeListener
     public void propertyChange(PropertyChangeEvent evt) {
         ArrayList<String> playableFunCardsString = new ArrayList<>();
         ArrayList<String> selectedFunCardsString = new ArrayList<>();
-        for (FunctionalCard functionalCard : funCardButtonPanelViewModel.getState().get_Playable_Fun_Cards()){
-            playableFunCardsString.add(functionalCard.getString());
+        if (funCardButtonPanelViewModel.getState().get_Playable_Fun_Cards() != null) {
+            for (FunctionalCard functionalCard : funCardButtonPanelViewModel.getState().get_Playable_Fun_Cards()) {
+                playableFunCardsString.add(functionalCard.getString());
+            }
+            for (FunctionalCard functionalCard : funCardButtonPanelViewModel.getState().get_Selected_Fun_Cards()) {
+                selectedFunCardsString.add(functionalCard.getString());
+            }
         }
-        for (FunctionalCard functionalCard : funCardButtonPanelViewModel.getState().get_Selected_Fun_Cards()){
-            selectedFunCardsString.add(functionalCard.getString());
-        }
-
         int startInd = funCardButtonPanelViewModel.getState().getdisplayCardsFirstIndex();
         int card_with_value;
         if (funCardButtonPanelViewModel.getState().get_Fun_Cards().size() >= 3){
