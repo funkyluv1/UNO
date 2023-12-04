@@ -36,7 +36,7 @@ public class MainMenuView extends JPanel implements ActionListener {
         TextButton startButton = new TextButton("START");
         startButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         startButton.setAlignmentY(Component.CENTER_ALIGNMENT);
-        startButton.setBorderPainted(false);
+        startButton.setOpaque(false);
 
         startButton.addActionListener(new ActionListener() {
             @Override

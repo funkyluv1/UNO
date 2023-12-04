@@ -133,6 +133,7 @@ public class FunCardButtonPanel extends JPanel implements PropertyChangeListener
             String name = funCardButtonPanelViewModel.getState().get_Fun_Cards().get(i).getString();
 
             cardNames.get(i - startInd).setText(name);
+            cardNames.get(i - startInd).setToolTipText(name);
             if (playableFunCardsString.contains(name)){
                 cardNames.get(i - startInd).setEnabled(true);
             }

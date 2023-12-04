@@ -79,9 +79,9 @@ public class InitializedView extends JPanel implements ActionListener, PropertyC
             }
             i += 1;
         }
-        setSize(1200, 1000);
+//        setSize(1200, 1000);
         this.setLayout(new BorderLayout());
-        Color darkRed = new Color(218, 40, 40);
+//        Color darkRed = new Color(218, 40, 40);
 //        this.setBackground(Color.CYAN);
 
         bigPanel.setLayout(new BorderLayout());
@@ -95,7 +95,7 @@ public class InitializedView extends JPanel implements ActionListener, PropertyC
         gap.setOpaque(false);
 
         bigPanel.setPreferredSize(new Dimension(1100, 500));
-        bigPanel.setBounds(0, 100, 1100,800);
+//        bigPanel.setBounds(0, 100, 1100,800);
         bigPanel.setOpaque(false);
         getCardPanel.setPreferredSize(new Dimension(1200, 300));
 //        getCardPanel.setBackground(Color.yellow);
@@ -113,10 +113,11 @@ public class InitializedView extends JPanel implements ActionListener, PropertyC
         this.add(gap, BorderLayout.NORTH);
         this.add(playerPanel, BorderLayout.NORTH);
         this.add(bottomPanel, BorderLayout.SOUTH);
-        this.add(bigPanel, BorderLayout.CENTER);
         bigPanel.add(getCardPanel, BorderLayout.NORTH);
         bigPanel.add(cardButtonPanel, BorderLayout.WEST);
         bigPanel.add(funCardPanel, BorderLayout.EAST);
+        this.add(bigPanel, BorderLayout.CENTER);
+
 
 //        bigPanel.add(this.getCardPanel, BorderLayout.NORTH);
 //        bigPanel.add(this.cardButtonPanel, BorderLayout.WEST);
