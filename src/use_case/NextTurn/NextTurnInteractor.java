@@ -69,7 +69,7 @@ public class NextTurnInteractor implements NextTurnInputDataBoundary {
         ArrayList<NumberCard> playerplablenumcards = findPlayableCardsInterface.findPlayableNumberCards(game.getTopCard().getColor(), number_cards);
         ArrayList<FunctionalCard> playerplablefuncards = findPlayableCardsInterface.findPlayableFunctionalCards(game.getTopCard().getColor(), fun_cards);
 
-        game.setTopCard(game.create_a_random_NumCard_with_value_0());
+
 //        Map<String, ArrayList<NumberCard>> playerNumCards = new HashMap<String, ArrayList<NumberCard>>();
 //        playerNumCards.put(name, number_cards);
 //        Map<String, ArrayList<FunctionalCard>> playerFunCards = new HashMap<String, ArrayList<FunctionalCard>>();
