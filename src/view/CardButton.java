@@ -61,6 +61,11 @@ public class CardButton extends JButton {
             case 'Y':
                 color = (Color.YELLOW);
                 break;
+            case 'h':
+                color = Color.PINK;
+                break;
+            default:
+                color = Color.cyan;
         }
 
         super.setText(text);

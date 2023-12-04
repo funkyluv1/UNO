@@ -32,6 +32,7 @@ public class BottomPanel extends JPanel implements PropertyChangeListener {
         this.setLayout(new BorderLayout());
 
         TextButton nextButton = new TextButton("Next");
+        nextButton.setColor(Color.black);
 //        nextButton.setColor(Color.black);
 //        nextButton.setPreferredSize(new Dimension(140, 50));
 //        nextButton.setBorder(BorderFactory.createEmptyBorder());
@@ -43,7 +44,7 @@ public class BottomPanel extends JPanel implements PropertyChangeListener {
         this.add(nextButton, BorderLayout.WEST);
 
         TextButton confirmButton = new TextButton("Confirm");
-//        confirmButton.setColor(Color.black);
+        confirmButton.setColor(Color.black);
 //        confirmButton.setPreferredSize(new Dimension(140, 50));
 //        confirmButton.setBorder(BorderFactory.createEmptyBorder());
 //        confirmButton.setBackground(Color.GRAY); // fill here for the card's color
