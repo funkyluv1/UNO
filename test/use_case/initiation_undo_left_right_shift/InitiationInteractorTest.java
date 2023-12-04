@@ -7,7 +7,6 @@ import entities.NumberCardsDeck.NumberCardsDeckFactory;
 import entities.card.Card;
 import entities.card.FunctionalCard;
 import entities.card.NumberCard;
-import entities.player.AIPlayerFactory;
 import entities.player.HumanPlayer;
 import entities.player.HumanPlayerFactory;
 import org.junit.Before;
@@ -71,7 +70,6 @@ class InitiationInteractorTest {
         int botNumber = 0;
         InitiationInputData inputData = new InitiationInputData(playerNames, botNumber);
         String csvPath = "users.csv";
-        AIPlayerFactory aiPlayerFactory = new AIPlayerFactory();
         HumanPlayerFactory humanPlayerFactory = new HumanPlayerFactory();
 
         NumberCardsDeckFactory numberCardsDeckFactory = new NumberCardsDeckFactory() {
@@ -81,7 +79,7 @@ class InitiationInteractorTest {
             }
         };
 
-        InitiationDataAccessInterface dao = new FileUserDataAccessObject(csvPath, aiPlayerFactory, humanPlayerFactory, numberCardsDeckFactory);
+        InitiationDataAccessInterface dao = new FileUserDataAccessObject(csvPath, humanPlayerFactory, numberCardsDeckFactory);
 
         // NOTES: This creates a successPresenter that tests whether the test case is as we expect.
         InitiationOutputDataBoundary successPresenter = new InitiationOutputDataBoundary() {
@@ -125,7 +123,6 @@ class InitiationInteractorTest {
     void undoSuccessTest() throws IOException {
         String csvPath = "users.csv";
         NumberCard card = new NumberCard(1, "Y");
-        AIPlayerFactory aiPlayerFactory = new AIPlayerFactory();
         HumanPlayerFactory humanPlayerFactory = new HumanPlayerFactory();
 
         NumberCardsDeckFactory numberCardsDeckFactory = new NumberCardsDeckFactory() {
@@ -137,7 +134,7 @@ class InitiationInteractorTest {
 
         UndoInputData inputData = new UndoInputData(card);
 
-        UndoDataAccessInterface dao = new FileUserDataAccessObject(csvPath, aiPlayerFactory, humanPlayerFactory, numberCardsDeckFactory);
+        UndoDataAccessInterface dao = new FileUserDataAccessObject(csvPath, humanPlayerFactory, numberCardsDeckFactory);
 
         // NOTES: This creates a successPresenter that tests whether the test case is as we expect.
         UndoOutputDataBoundary successPresenter = new UndoOutputDataBoundary() {
@@ -190,7 +187,6 @@ class InitiationInteractorTest {
     void rightShiftSuccessTest() throws IOException {
         String csvPath = "users.csv";
         NumberCard card = new NumberCard(1, "Y");
-        AIPlayerFactory aiPlayerFactory = new AIPlayerFactory();
         HumanPlayerFactory humanPlayerFactory = new HumanPlayerFactory();
         int displayCardFirstIndex = 0;
         boolean flag_for_func = false;
@@ -210,7 +206,7 @@ class InitiationInteractorTest {
         playerNumCards.add(card3);
         RightShiftInputData inputData = new RightShiftInputData(playerNumCards, displayCardFirstIndex, flag_for_func);
 
-        RightShiftDataAccessInterface dao = new FileUserDataAccessObject(csvPath, aiPlayerFactory, humanPlayerFactory, numberCardsDeckFactory);
+        RightShiftDataAccessInterface dao = new FileUserDataAccessObject(csvPath, humanPlayerFactory, numberCardsDeckFactory);
 
         // NOTES: This creates a successPresenter that tests whether the test case is as we expect.
         RightShiftOutputDataBoundary successPresenter = new RightShiftOutputDataBoundary() {
@@ -244,7 +240,6 @@ class InitiationInteractorTest {
         hand.add(card3);
         HumanPlayer player = new HumanPlayer(playername, hand, 0);
         String csvPath = "users.csv";
-        AIPlayerFactory aiPlayerFactory = new AIPlayerFactory();
         HumanPlayerFactory humanPlayerFactory = new HumanPlayerFactory();
 
         NumberCardsDeckFactory numberCardsDeckFactory = new NumberCardsDeckFactory() {
@@ -258,7 +253,7 @@ class InitiationInteractorTest {
         //new APIDataAccessObject();
 
 
-        FileUserDataAccessObject dao1 = new FileUserDataAccessObject(csvPath, aiPlayerFactory, humanPlayerFactory, numberCardsDeckFactory);
+        FileUserDataAccessObject dao1 = new FileUserDataAccessObject(csvPath, humanPlayerFactory, numberCardsDeckFactory);
 
         NumberCardsDeck numberCardsDeck = dao1.getNumberCardsDeck();
 
