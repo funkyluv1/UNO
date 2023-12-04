@@ -23,7 +23,6 @@ public class GetCardInteractor implements GetCardInputDataBoundary{
 
 
     public void execute(GetCardInputData getCardInputData) {
-
         NumberCard card = drawCardsDataAccessInterface.drawNumberCards(getCardDataAccessObject.getNumberCardsDeck(), 1).get(0);
         getCardDataAccessObject.recordGetCard(game.getCurrentPlayerIndex(), card);
         GetCardOutputData getCardOutputData = new GetCardOutputData(card);

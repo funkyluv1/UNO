@@ -1,11 +1,7 @@
 package entities;
 
-import entities.card.Card;
-import entities.card.FunctionalCard;
-import entities.card.NumberCard;
-import entities.player.HumanPlayer;
-import entities.player.HumanPlayerFactory;
-import entities.player.Player;
+import entities.card.*;
+import entities.player.*;
 import junit.framework.TestCase;
 import org.junit.jupiter.api.Test;
 
@@ -227,5 +223,24 @@ public class PlayerTest extends TestCase {
         assertEquals("Yuka", a.getPlayerName());
 
 
+    }
+
+    @Test
+    public void testAIPlayerFactoryConstructor () {
+        AIPlayerFactory aiPlayerFactory = new AIPlayerFactory();
+        ArrayList<NumberCard> numberCards = new ArrayList<>();
+        NumberCard num1 = new NumberCard(1, "B");
+        NumberCard num2 = new NumberCard(3, "G");
+        numberCards.add(num1);
+        numberCards.add(num2);
+        ArrayList<FunctionalCard> functionalCards = new ArrayList<>();
+        functionalCards.add(new BombCard(2, "B"));
+        functionalCards.add(new PlusFourCard());
+
+        AIPlayer aiPlayer = aiPlayerFactory.create("bot", numberCards, functionalCards, 0);
+
+        assertEquals("bot", aiPlayer.getPlayerName());
+        assertEquals(numberCards, aiPlayer.getNumberCards());
+        assertEquals(functionalCards, aiPlayer.getFuncCards());
     }
 }

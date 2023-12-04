@@ -106,17 +106,17 @@ public class SelectCard_Undo_Confirm_Next_Test extends TestCase {
 
         // card button panel
         CardButtonPanelState cardButtonPanelState1 = cardButtonPanelViewModel.getState();
-        assertEquals(true, cardButtonPanelState1.getOneCardsSelected());
+        assertTrue(cardButtonPanelState1.getOneCardsSelected());
 
         // get card panel
         GetCardPanelState getCardPanelState1 = getCardPanelViewModel.getState();
-        assertEquals(false, getCardPanelState1.isGetCardEnabled());
-        assertEquals(true, getCardPanelState1.isUndoEnabled());
+        assertFalse(getCardPanelState1.isGetCardEnabled());
+        assertTrue(getCardPanelState1.isUndoEnabled());
 
         // bottom panel
         BottomPanelState bottomPanelState1 = bottomPanelViewModel.getState();
-        assertEquals(true, bottomPanelState1.getConfirmButtonEnabled());
-        assertEquals(false, bottomPanelState1.getNextButtonEnabled());
+        assertTrue(bottomPanelState1.getConfirmButtonEnabled());
+        assertFalse(bottomPanelState1.getNextButtonEnabled());
 
         // =======================================================================
 
@@ -129,16 +129,16 @@ public class SelectCard_Undo_Confirm_Next_Test extends TestCase {
 
         // card button panel
         CardButtonPanelState cardButtonPanelState2 = cardButtonPanelViewModel.getState();
-        assertEquals(false, cardButtonPanelState2.getOneCardsSelected());
+        assertFalse(cardButtonPanelState2.getOneCardsSelected());
 
         // get card panel
         GetCardPanelState getCardPanelState2 = getCardPanelViewModel.getState();
-        assertEquals(false, getCardPanelState2.isUndoEnabled());
+        assertFalse(getCardPanelState2.isUndoEnabled());
 
         // bottom panel
         BottomPanelState bottomPanelState2 = bottomPanelViewModel.getState();
-        assertEquals(false, bottomPanelState2.getConfirmButtonEnabled());
-        assertEquals(false, bottomPanelState2.getNextButtonEnabled());
+        assertFalse(bottomPanelState2.getConfirmButtonEnabled());
+        assertFalse(bottomPanelState2.getNextButtonEnabled());
 
         // =======================================================================
 
@@ -153,21 +153,21 @@ public class SelectCard_Undo_Confirm_Next_Test extends TestCase {
 
         // card button panel
         CardButtonPanelState cardButtonPanelState3 = cardButtonPanelViewModel.getState();
-        assertEquals(true, cardButtonPanelState3.getOneCardsSelected());
+        assertTrue(cardButtonPanelState3.getOneCardsSelected());
 
         // fun card panel
         FunCardButtonPanelState funCardButtonPanelState3 = funCardButtonPanelViewModel.getState();
-        assertEquals(false, funCardButtonPanelState3.getAllButtonDisable());
+        assertFalse(funCardButtonPanelState3.getAllButtonDisable());
 
         // get card panel
         GetCardPanelState getCardPanelState3 = getCardPanelViewModel.getState();
-        assertEquals(false, getCardPanelState3.isGetCardEnabled());
-        assertEquals(false, getCardPanelState3.isUndoEnabled());
+        assertFalse(getCardPanelState3.isGetCardEnabled());
+        assertFalse(getCardPanelState3.isUndoEnabled());
 
         // bottom panel
         BottomPanelState bottomPanelState3 = bottomPanelViewModel.getState();
-        assertEquals(false, bottomPanelState3.getConfirmButtonEnabled());
-        assertEquals(true, bottomPanelState3.getNextButtonEnabled());
+        assertFalse(bottomPanelState3.getConfirmButtonEnabled());
+        assertTrue(bottomPanelState3.getNextButtonEnabled());
 
         // =======================================================================
 
@@ -186,15 +186,15 @@ public class SelectCard_Undo_Confirm_Next_Test extends TestCase {
 
         // card button panel
         CardButtonPanelState cardButtonPanelState4 = cardButtonPanelViewModel.getState();
-        assertEquals(false, cardButtonPanelState4.getOneCardsSelected());
+        assertFalse(cardButtonPanelState4.getOneCardsSelected());
 
         // get card panel
         GetCardPanelState getCardPanelState4 = getCardPanelViewModel.getState();
-        assertEquals(false, getCardPanelState4.isUndoEnabled());
+        assertFalse(getCardPanelState4.isUndoEnabled());
 
         // bottom panel
         BottomPanelState bottomPanelState4 = bottomPanelViewModel.getState();
-        assertEquals(false, bottomPanelState4.getConfirmButtonEnabled());
-        assertEquals(false, bottomPanelState4.getNextButtonEnabled());
+        assertFalse(bottomPanelState4.getConfirmButtonEnabled());
+        assertFalse(bottomPanelState4.getNextButtonEnabled());
     }
 }
