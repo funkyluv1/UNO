@@ -8,6 +8,7 @@ import entities.NumberCardsDeck.NumberCardsDeckCreator;
 import entities.card.Card;
 import entities.card.NumberCard;
 import entities.card.NumberCardFactory;
+import entities.player.AIPlayerFactory;
 import entities.player.HumanPlayerFactory;
 import interface_adapter.Confirm.ConfirmPresenter;
 import interface_adapter.Initialized.*;
@@ -46,7 +47,7 @@ public class SelectCard_Undo_Confirm_Next_Test extends TestCase {
 
     @Test
     void successTest() throws IOException {
-        FileUserDataAccessObject userDataAccessObject = new FileUserDataAccessObject("./users.csv", new HumanPlayerFactory(), new NumberCardsDeckCreator());
+        FileUserDataAccessObject userDataAccessObject = new FileUserDataAccessObject("./users.csv", new AIPlayerFactory(), new HumanPlayerFactory(), new NumberCardsDeckCreator());
         APIDataAccessObject apiDataAccessObject = apiDataAccessObject = new APIDataAccessObject();
         FindPlayableCardsInterface findPlayableCardsInterface = new FindPlayableCards();
 

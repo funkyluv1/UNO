@@ -6,6 +6,7 @@ import data_access.FileUserDataAccessObject;
 import entities.Game;
 import entities.NumberCardsDeck.NumberCardsDeckCreator;
 import entities.card.*;
+import entities.player.AIPlayerFactory;
 import entities.player.HumanPlayerFactory;
 import interface_adapter.Confirm.ConfirmPresenter;
 import interface_adapter.Initialized.*;
@@ -43,7 +44,7 @@ public class Confirm_Next_FuncCard_Test extends TestCase {
 
     @Test
     void successTest() throws IOException {
-        FileUserDataAccessObject userDataAccessObject = new FileUserDataAccessObject("./users.csv", new HumanPlayerFactory(), new NumberCardsDeckCreator());
+        FileUserDataAccessObject userDataAccessObject = new FileUserDataAccessObject("./users.csv", new AIPlayerFactory(), new HumanPlayerFactory(), new NumberCardsDeckCreator());
         APIDataAccessObject apiDataAccessObject = apiDataAccessObject = new APIDataAccessObject();
         FindPlayableCardsInterface findPlayableCardsInterface = new FindPlayableCards();
 
