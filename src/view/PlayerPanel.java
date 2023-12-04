@@ -17,7 +17,7 @@ public class PlayerPanel extends JPanel implements PropertyChangeListener {
 
     ArrayList<String> players;
 
-    ArrayList<JPanel> playernames = new ArrayList<JPanel>();
+    ArrayList<PlayerInfoPanel> playernames = new ArrayList<PlayerInfoPanel>();
 
     Panel PlayerPanel = new Panel(1);
     private int ID = 1;
@@ -38,26 +38,43 @@ public class PlayerPanel extends JPanel implements PropertyChangeListener {
 //        colorList.add(new Color(144, 238, 144));
 //        colorList.add(new Color(255, 224, 255));
         for (int i = 0; i <= 3; i++) {
-            JPanel playerInfo = new JPanel();
+
+            PlayerInfoPanel playerInfo = new PlayerInfoPanel();
+            switch (i) {
+                case 0:
+                    playerInfo.setColor(Color.RED);
+                    break;
+
+                case 1:
+                    playerInfo.setColor(Color.GREEN);
+                    break;
+                case 2:
+                    playerInfo.setColor(Color.BLUE);
+                    break;
+                case 3:
+                    playerInfo.setColor(Color.YELLOW);
+                    break;
+            }
             playerInfo.setBorder(BorderFactory.createLineBorder(Color.WHITE, 15));
             Dimension preferredSize = playerInfo.getPreferredSize();
             preferredSize.height = 120;
             preferredSize.width = 280;
             playerInfo.setPreferredSize(preferredSize);
             JLabel usernameLabel = new JLabel(players.get(i));
+            usernameLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 26));
             playerInfo.add(usernameLabel);
             PlayerPanel.add(playerInfo);
-            playerInfo.setBackground(Color.WHITE);
+//            playerInfo.setBackground(Color.WHITE);
             playernames.add(playerInfo);
         }
 
         int current = playerPanelViewModel.getState().getCurrent_player_index();  //get current player,用上面的方法给他set border
         for (int i = 0; i <= 3; i++){
             if (i == current){
-                playernames.get(i).setBorder(BorderFactory.createLineBorder(Color.BLACK, 15));
+                playernames.get(i).setBorderColor(Color.BLACK);
             }
             if (i != current){
-                playernames.get(i).setBorder(BorderFactory.createLineBorder(Color.WHITE, 15));
+                playernames.get(i).setBorderColor(Color.WHITE);
             }
         }
         this.firePropertyChange();
