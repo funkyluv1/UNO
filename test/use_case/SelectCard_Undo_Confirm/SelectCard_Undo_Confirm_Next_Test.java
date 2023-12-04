@@ -3,14 +3,13 @@ package use_case.SelectCard_Undo_Confirm;
 import app.*;
 import data_access.APIDataAccessObject;
 import data_access.FileUserDataAccessObject;
+import entities.Game;
 import entities.NumberCardsDeck.NumberCardsDeckCreator;
 import entities.card.Card;
 import entities.card.NumberCard;
 import entities.card.NumberCardFactory;
 import entities.player.AIPlayerFactory;
-import entities.player.HumanPlayer;
 import entities.player.HumanPlayerFactory;
-import entities.player.Player;
 import interface_adapter.Confirm.ConfirmPresenter;
 import interface_adapter.Initialized.*;
 import interface_adapter.Initiation.InitiationPresenter;
@@ -88,8 +87,6 @@ public class SelectCard_Undo_Confirm_Next_Test extends TestCase {
             numberCards.add(numberCardFactory.createCard());
         }
 
-        Player player = new HumanPlayer("You", numberCards, 0);
-
         int k = 1;
         Card chosenCard = numberCards.get(k);
         SelectCardInputData selectCardInputData = new SelectCardInputData(chosenCard, k);
@@ -97,6 +94,13 @@ public class SelectCard_Undo_Confirm_Next_Test extends TestCase {
         SelectCardInteractor selectCardInteractor = new SelectCardInteractor(selectCardPresenter);
 
         // =======================================================================
+
+        Game game = Game.getInstance();
+        game.setSkipped(false);
+        game.setPlusN(0);
+        while (game.getCurrentPlayerIndex() != 0){
+            game.updateCurrentPlayerIndex();
+        }
 
         // Test select card
         selectCardInteractor.execute(selectCardInputData);
@@ -195,4 +199,3 @@ public class SelectCard_Undo_Confirm_Next_Test extends TestCase {
         assertEquals(false, bottomPanelState4.getNextButtonEnabled());
     }
 }
-

@@ -35,7 +35,7 @@ public class ConfirmInteractor implements ConfirmInputDataBoundary{
                 game.setSkipped(true);
             }
             else if (functionalCard instanceof PlusFourCard){
-                game.setDrawCard(game.getDrawCard() + 2);
+                game.setDrawCard(game.getDrawCard() + 4);
                 game.setSkipped(true);
             }
             else if (functionalCard instanceof SkipCard){
