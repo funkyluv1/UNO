@@ -71,11 +71,31 @@ public class CardButton extends JButton {
 
     @Override
     protected void paintComponent(Graphics g) {
-        Graphics2D g2d = (Graphics2D) g.create();
-        g2d.setColor(color);
-        g2d.fill(new RoundRectangle2D.Float(0, 0, getWidth()-8, getHeight()-8, 20, 20));
-        super.paintComponent(g);
-        g2d.dispose();
+
+            Graphics2D g2d = (Graphics2D) g.create();
+
+            // Paint the rounded rectangle background
+            g2d.setColor(color);
+            g2d.fill(new RoundRectangle2D.Float(0, 0, getWidth() - 8, getHeight() - 8, 20, 20));
+
+            // Draw the rotated oval
+            g2d.setColor(Color.WHITE);
+            int centerX = getWidth() / 2;
+            int centerY = getHeight() / 2;
+            int width = 80; // Width of the oval
+            int height = 120; // Height of the oval
+
+            // Set the center of rotation
+            g2d.rotate(Math.toRadians(30), centerX, centerY);
+
+            // Draw the tilted oval
+            g2d.fillOval(centerX - width / 2, centerY - height / 2, width, height);
+
+            g2d.setColor(color);
+            g2d.fillOval((centerX - width / 2) + 5, (centerY - height / 2) + 5, 70, 110);
+
+            g2d.dispose();
+            super.paintComponent(g);
 
     }
 

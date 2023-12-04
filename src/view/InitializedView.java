@@ -85,26 +85,31 @@ public class InitializedView extends JPanel implements ActionListener, PropertyC
 //        this.setBackground(Color.CYAN);
 
         bigPanel.setLayout(new BorderLayout());
-        playerPanel.setPreferredSize(new Dimension(1200, 100));
-        playerPanel.setBounds(0,0,1200,100);
+        playerPanel.setPreferredSize(new Dimension(1200, 130));
+        playerPanel.setBounds(0,0,1200,130);
         playerPanel.setBackground(Color.WHITE);
 
-        bigPanel.setPreferredSize(new Dimension(1200, 600));
-        bigPanel.setBounds(0, 100, 1200,800);
+        JPanel gap = new JPanel();
+        gap.setPreferredSize(new Dimension(1100, 100));
+        gap.setOpaque(false);
+
+        bigPanel.setPreferredSize(new Dimension(1100, 500));
+        bigPanel.setBounds(0, 100, 1100,800);
         bigPanel.setOpaque(false);
-        getCardPanel.setPreferredSize(new Dimension(1200, 200));
+        getCardPanel.setPreferredSize(new Dimension(1200, 300));
 //        getCardPanel.setBackground(Color.yellow);
         getCardPanel.setOpaque(false);
-        cardButtonPanel.setPreferredSize(new Dimension(600, 200));
+        cardButtonPanel.setPreferredSize(new Dimension(650, 200));
 //        cardButtonPanel.setBackground(Color.black);
         cardButtonPanel.setOpaque(false);
-        funCardPanel.setPreferredSize(new Dimension(600, 200));
+        funCardPanel.setPreferredSize(new Dimension(650, 200));
 //        funCardPanel.setBackground(Color.green);
         funCardPanel.setOpaque(false);
-        bottomPanel.setPreferredSize(new Dimension(1200, 100));
+        bottomPanel.setPreferredSize(new Dimension(600, 100));
 //        bottomPanel.setBackground(Color.BLUE);
         bottomPanel.setOpaque(false);
 
+        this.add(gap, BorderLayout.NORTH);
         this.add(playerPanel, BorderLayout.NORTH);
         this.add(bottomPanel, BorderLayout.SOUTH);
         this.add(bigPanel, BorderLayout.CENTER);
