@@ -37,12 +37,9 @@ public class CardButtonPanel extends JPanel implements PropertyChangeListener {
         this.selectCardController = selectCardController;
 
         // left shift button
-        JButton leftShift = new JButton("left");
+        TextButton leftShift = new TextButton("<");
         leftShift.setPreferredSize(new Dimension(50, 60));
-        leftShift.setForeground(Color.WHITE);
-        leftShift.setBackground(Color.BLACK);
-        leftShift.setFont(new Font("Arial", Font.BOLD, 14));
-        leftShift.setOpaque(true);
+        leftShift.setOpaque(false);
         leftShift.setEnabled(false);
         leftShift.addActionListener(
                 new ActionListener() {
@@ -57,14 +54,21 @@ public class CardButtonPanel extends JPanel implements PropertyChangeListener {
         this.leftButton = leftShift;
         playpanel.add(this.leftButton);
 
+        for (int i = 0; i < 3; i++) {
+            CardButton cardButton = new CardButton();
+            cardButton.setOpaque(false);
+            Border border = BorderFactory.createLineBorder(Color.BLUE, 2);
+            cardButton.setBorder(border);
+            int finalI = i;
+            playpanel.add(cardButton);
+            cardNames.add(cardButton);
+        }
+
         // right shift button
-        JButton rightShift = new JButton("right");
+        TextButton rightShift = new TextButton(">");
         rightShift.setPreferredSize(new Dimension(50, 60));
-        rightShift.setForeground(Color.WHITE);
-        rightShift.setBackground(Color.BLACK);
-        rightShift.setFont(new Font("Arial", Font.BOLD, 14));
-        rightShift.setOpaque(true);
         rightShift.setEnabled(false);
+        rightShift.setOpaque(false);
         rightShift.addActionListener(
                 new ActionListener() {
                     public void actionPerformed(ActionEvent evt) {
@@ -81,19 +85,7 @@ public class CardButtonPanel extends JPanel implements PropertyChangeListener {
         playpanel.add(this.rightButton);
 
 
-        for (int i = 0; i < 3; i++) {
-            JButton cardButton = new JButton();
-            cardButton.setPreferredSize(new Dimension(100, 100));
-            cardButton.setBorder(BorderFactory.createEmptyBorder());
-            cardButton.setBackground(Color.YELLOW); // fill here for the card's color
-            cardButton.setOpaque(true);
-            Border border = BorderFactory.createLineBorder(Color.BLUE, 2);
-            cardButton.setBorder(border);
-            int finalI = i;
-            playpanel.add(cardButton);
-            cardNames.add(cardButton);
 
-        }
 
     }
     @Override
