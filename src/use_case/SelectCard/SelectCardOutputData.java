@@ -11,10 +11,6 @@ public class SelectCardOutputData {
         this.button_index = button_index;
     }
 
-    public Card getSelectedCard() {
-        return (Card) selectedCard;
-    }
-
     public int getButton_index(){
         return button_index;
     }
