@@ -36,7 +36,7 @@ public class GetCardPanelUseCaseFactory {
             FileUserDataAccessObject fileUserDataAccessObject) {
         UndoController undoController = createUndoController(viewManagerModel, getCardPanelViewModel, cardButtonPanelViewModel, funCardButtonPanelViewModel,
                 bottomPanelViewModel,fileUserDataAccessObject);
-        GetCardController getCardController = createGetCardController(viewManagerModel, getCardPanelViewModel, apiDataAccessObject, cardButtonPanelViewModel, fileUserDataAccessObject);
+        GetCardController getCardController = createGetCardController(viewManagerModel, bottomPanelViewModel, getCardPanelViewModel, apiDataAccessObject, cardButtonPanelViewModel, fileUserDataAccessObject);
         return new GetCardPanel(getCardPanelViewModel, undoController, getCardController, bottomPanelViewModel, cardButtonPanelViewModel);
     }
 
@@ -55,11 +55,13 @@ public class GetCardPanelUseCaseFactory {
     }
 
     private static GetCardController createGetCardController(ViewManagerModel viewManagerModel,
+                                                       BottomPanelViewModel bottomPanelViewModel,
                                                        GetCardPanelViewModel getCardPanelViewModel,
                                                        APIDataAccessObject apiDataAccessObject,
                                                        CardButtonPanelViewModel cardButtonPanelViewModel,
                                                        FileUserDataAccessObject fileUserDataAccessObject) {
-        GetCardOutputDataBoundary getCardOutputDataBoundary = new GetCardPresenter(viewManagerModel, getCardPanelViewModel, cardButtonPanelViewModel);
+        GetCardOutputDataBoundary getCardOutputDataBoundary = new GetCardPresenter(viewManagerModel,getCardPanelViewModel, cardButtonPanelViewModel, bottomPanelViewModel
+        );
 
         GetCardDataAccessInterface getCardDataAccessInterface = fileUserDataAccessObject;
         DrawCardsDataAccessInterface drawCardsDataAccessInterface = apiDataAccessObject;
