@@ -2,11 +2,13 @@ package interface_adapter.Initialized;
 
 import entities.card.NumberCard;
 
+import static use_case.initiation.InitiationInteractor.game;
+
 public class GetCardPanelState {
     private boolean undoEnabled = false;
     private boolean getCardEnabled = false;
 
-    private NumberCard topCard = null;
+    private NumberCard topCard = game.getTopCard();
 
     private NumberCard numberCard = null;
 
