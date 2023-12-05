@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class TextButton extends JButton {
+    private Color color = Color.white;
     public TextButton(String text) {
         super(text);
 
@@ -20,9 +21,12 @@ public class TextButton extends JButton {
             }
 
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                setForeground(Color.WHITE);
+                setForeground(color);
             }
         });
 
+    }
+    public void setColor(Color color){
+        this.color = color;
     }
 }
