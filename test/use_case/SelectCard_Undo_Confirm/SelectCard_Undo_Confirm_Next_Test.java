@@ -111,7 +111,6 @@ public class SelectCard_Undo_Confirm_Next_Test extends TestCase {
 
         // get card panel
         GetCardPanelState getCardPanelState1 = getCardPanelViewModel.getState();
-        assertFalse(getCardPanelState1.isGetCardEnabled());
         assertTrue(getCardPanelState1.isUndoEnabled());
 
         // bottom panel

@@ -27,15 +27,6 @@ public class PostTurnInteractor implements PostTurnInputDataBoundary{
         int currPlayerIndex = inputData.getCurrPlayerIndex();
         ArrayList<FunctionalCard> functionalCards = inputData.getFuncCards();
         ArrayList<NumberCard> numberCards = inputData.getNumberCards();
-        for (FunctionalCard card: functionalCards){
-            if (card instanceof BombCard) {
-                numberCards.addAll(dataAccessInterface.drawNumberCards(numberCardsDeck, 5));
-                functionalCards.remove(card);
-            }
-            else if (card instanceof HotPotatoCard) {
-                numberCards.addAll(dataAccessInterface.drawNumberCards(numberCardsDeck, card.getValue()));
-            }
-        }
 
         String winnerClarification = "";
 

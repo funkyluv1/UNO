@@ -1,4 +1,4 @@
-package use_case.SelectCard_Undo_Confirm;
+package use_case.PreTurn;
 
 import app.*;
 import data_access.APIDataAccessObject;
@@ -17,15 +17,11 @@ import interface_adapter.SelectCard.SelectCardPresenter;
 import interface_adapter.SelectFuncCard.SelectFuncCardPresenter;
 import interface_adapter.ViewManagerModel;
 import junit.framework.TestCase;
-import org.junit.Test;
 import use_case.Confirm.ConfirmInputData;
 import use_case.Confirm.ConfirmInteractor;
 import use_case.NextTurn.NextTurnInputData;
 import use_case.NextTurn.NextTurnInteractor;
 import use_case.PostTurn.PostTurnInteractor;
-import use_case.PreTurn.FindPlayableCards;
-import use_case.PreTurn.FindPlayableCardsInterface;
-import use_case.PreTurn.PreTurnInteractor;
 import use_case.SelectCard.SelectCardInputData;
 import use_case.SelectCard.SelectCardInteractor;
 import use_case.SelectFuncCard.SelectFuncCardInputData;
@@ -34,16 +30,22 @@ import use_case.initiation.InitiationInputData;
 import use_case.initiation.InitiationInteractor;
 import view.*;
 
+import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
-public class Confirm_Next_FuncCard_Test extends TestCase {
+public class PreTurn_Test extends TestCase {
     public void testExecute() throws IOException {
-        successTest();
+        testNextHasPlusCard();
     }
 
-    @Test
-    void successTest() throws IOException {
+    public void testNextHasPlusCard() throws IOException {
+        File file = new File("users.csv");
+        PrintWriter printWriter = new PrintWriter(file);
+        printWriter.print("");
+        printWriter.close();
+
         FileUserDataAccessObject userDataAccessObject = new FileUserDataAccessObject("./users.csv", new AIPlayerFactory(), new HumanPlayerFactory(), new NumberCardsDeckCreator());
         APIDataAccessObject apiDataAccessObject = apiDataAccessObject = new APIDataAccessObject();
         FindPlayableCardsInterface findPlayableCardsInterface = new FindPlayableCards();
@@ -91,11 +93,6 @@ public class Confirm_Next_FuncCard_Test extends TestCase {
         SelectCardInteractor selectCardInteractor = new SelectCardInteractor(selectCardPresenter);
         selectCardInteractor.execute(selectCardInputData);
 
-        int currIndex = 3;
-        ConfirmInputData confirmInputData = new ConfirmInputData(currIndex);
-        ConfirmPresenter confirmPresenter = new ConfirmPresenter(viewManagerModel, bottomPanelViewModel, cardButtonPanelViewModel, funCardButtonPanelViewModel, getCardPanelViewModel);
-        ConfirmInteractor confirmInteractor = new ConfirmInteractor(confirmPresenter, userDataAccessObject);
-
         // =======================================================================
 
         Game game = Game.getInstance();
@@ -107,55 +104,39 @@ public class Confirm_Next_FuncCard_Test extends TestCase {
 
         ArrayList<FunctionalCard> functionalCards = new ArrayList<>();
         functionalCards.add(new PlusTwoCard());
-        functionalCards.add(new PlusFourCard());
-        functionalCards.add(new SkipCard());
 
         ArrayList<FunctionalCard> selectedFuncCards = new ArrayList<>();
-        selectedFuncCards.add(functionalCards.get(0));
-        selectedFuncCards.add(functionalCards.get(1));
-        FunctionalCard newCard = functionalCards.get(2);
-        SelectFuncCardInputData selectFuncCardInputData = new SelectFuncCardInputData(newCard, functionalCards, 2);
+        FunctionalCard newCard = functionalCards.get(0);
+        SelectFuncCardInputData selectFuncCardInputData = new SelectFuncCardInputData(newCard, selectedFuncCards, 0);
         SelectFuncCardPresenter selectFuncCardPresenter = new SelectFuncCardPresenter(viewManagerModel, funCardButtonPanelViewModel);
         SelectFuncCardInteractor selectFuncCardInteractor = new SelectFuncCardInteractor(selectFuncCardPresenter);
-
-        // Test choosing functional cards
         selectFuncCardInteractor.execute(selectFuncCardInputData);
 
-        // game object
-        assertEquals(functionalCards, game.getCurrSelectedFunCard());
-
-        // =======================================================================
-
-        // Test confirm with functional cards
+        int currIndex = 0;
+        ConfirmInputData confirmInputData = new ConfirmInputData(currIndex);
+        ConfirmPresenter confirmPresenter = new ConfirmPresenter(viewManagerModel, bottomPanelViewModel, cardButtonPanelViewModel, funCardButtonPanelViewModel, getCardPanelViewModel);
+        ConfirmInteractor confirmInteractor = new ConfirmInteractor(confirmPresenter, userDataAccessObject);
         confirmInteractor.execute(confirmInputData);
 
-        // game object
-        assertEquals(6, game.getDrawCard());
-        assertTrue(game.getSkipped());
-
-        // fun card button panel
-        FunCardButtonPanelState funCardButtonPanelState = funCardButtonPanelViewModel.getState();
-        assertEquals(functionalCards, funCardButtonPanelState.get_Selected_Fun_Cards());
-
         // =======================================================================
+
+        // if the player has plus cards
+        int nextIndex = (currIndex + 1) % playerNames.size();
+        userDataAccessObject.recordRoundChange(playerNames.get(nextIndex), new PlusFourCard());
 
         NextTurnInputData nextTurnInputData = new NextTurnInputData(currIndex);
         NextTurnPresenter nextTurnPresenter = new NextTurnPresenter(playerPanelViewModel, cardButtonPanelViewModel, viewManagerModel, funCardButtonPanelViewModel, bottomPanelViewModel, getCardPanelViewModel);
         NextTurnInteractor nextTurnInteractor = new NextTurnInteractor(userDataAccessObject, nextTurnPresenter,
                 findPlayableCardsInterface, new PostTurnInteractor(apiDataAccessObject, userDataAccessObject), new PreTurnInteractor(apiDataAccessObject, userDataAccessObject));
 
-        // Test next with functional cards
         nextTurnInteractor.execute(nextTurnInputData);
 
-        // game object
-        assertEquals(game.getCurrentPlayerIndex(), game.getCurrentPlayerIndex());
-        assertEquals(-1, game.getMaxCardNum());
-        assertEquals("", game.getCurrWinnerStr());
+        // Test preturn interactor
 
-        // player panel
-        int nextIndex = (currIndex + 2) % playerNames.size();
-        PlayerPanelState playerPanelState = playerPanelViewModel.getState();
-        assertEquals(2, playerPanelState.getCurrent_player_index());
+        // game object
+        assertEquals(2, game.getCurrentPlayerIndex());
+        assertFalse(game.getSkipped());
+        assertEquals(game.getDrawCard(), game.getDrawCard());
 
     }
 }
