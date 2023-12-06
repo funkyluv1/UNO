@@ -32,11 +32,6 @@ public class PlayerPanel extends JPanel implements PropertyChangeListener {
     public void propertyChange(PropertyChangeEvent evt){
         ArrayList<String> players = playerPanelViewModel.getState().getPlayer();
         this.setLayout(new FlowLayout());
-//        ArrayList<Color> colorList = new ArrayList<>();
-//        colorList.add(new Color(173, 216, 230));
-//        colorList.add(new Color(255, 255, 210));
-//        colorList.add(new Color(144, 238, 144));
-//        colorList.add(new Color(255, 224, 255));
         for (int i = 0; i <= 3; i++) {
 
             PlayerInfoPanel playerInfo = new PlayerInfoPanel();
@@ -57,15 +52,27 @@ public class PlayerPanel extends JPanel implements PropertyChangeListener {
             }
             playerInfo.setBorder(BorderFactory.createLineBorder(Color.WHITE, 15));
             Dimension preferredSize = playerInfo.getPreferredSize();
-            preferredSize.height = 10;
-            preferredSize.width = 20;
+            preferredSize.height = 120;
+            preferredSize.width = 280;
             playerInfo.setPreferredSize(preferredSize);
             JLabel usernameLabel = new JLabel(players.get(i));
             usernameLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 26));
-
+            playerInfo.add(usernameLabel);
+            PlayerPanel.add(playerInfo);
+//            playerInfo.setBackground(Color.WHITE);
+            playernames.add(playerInfo);
         }
 
-
+        int current = playerPanelViewModel.getState().getCurrent_player_index();  //get current player,用上面的方法给他set border
+        for (int i = 0; i <= 3; i++){
+            if (i == current){
+                playernames.get(i).setBorderColor(Color.BLACK);
+            }
+            if (i != current){
+                playernames.get(i).setBorderColor(Color.WHITE);
+            }
+        }
+        this.firePropertyChange();
 
     }
     public void addPropertyChangeListener(PropertyChangeListener listener) {
