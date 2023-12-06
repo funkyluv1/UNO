@@ -83,7 +83,7 @@ public class GetCardInteractorTest extends TestCase {
         }
 
         GetCardInputData getCardInputData = new GetCardInputData(0);
-        GetCardPresenter getCardPresenter = new GetCardPresenter(viewManagerModel, getCardPanelViewModel, cardButtonPanelViewModel);
+        GetCardPresenter getCardPresenter = new GetCardPresenter(viewManagerModel, getCardPanelViewModel, cardButtonPanelViewModel, bottomPanelViewModel);
         GetCardInteractor getCardInteractor = new GetCardInteractor(getCardPresenter, userDataAccessObject, apiDataAccessObject);
 
         // =======================================================================

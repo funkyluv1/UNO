@@ -22,7 +22,7 @@ public class GetCardPanel extends JPanel implements PropertyChangeListener {
     Game game = Game.getInstance();
     JButton getCardButton;
     JButton undoButton;
-    JLabel topCard;
+    CardButton topCard;
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);
     private final GetCardPanelViewModel getCardViewModel;
     private final UndoController undoController;
@@ -39,11 +39,11 @@ public class GetCardPanel extends JPanel implements PropertyChangeListener {
         this.getCardController = getCardController;
         this.cardButtonPanelViewModel = cardButtonPanelViewModel;
 
-        undoButton = new JButton("Undo");
-        undoButton.setPreferredSize(new Dimension(100, 40));
-        undoButton.setBackground(Color.BLACK);
-        undoButton.setForeground(Color.WHITE);
-        undoButton.setOpaque(true);
+        undoButton = new TextButton("Undo");
+//        undoButton.setPreferredSize(new Dimension(100, 40));
+//        undoButton.setBackground(Color.BLACK);
+//        undoButton.setForeground(Color.WHITE);
+//        undoButton.setOpaque(true);
         panel.add(undoButton);
 
         undoButton.addActionListener(
@@ -62,19 +62,22 @@ public class GetCardPanel extends JPanel implements PropertyChangeListener {
                 }
         );
 
-        ImageIcon icon = new ImageIcon("");
-        topCard = new JLabel(icon);
-        topCard.setPreferredSize(new Dimension(100, 150));
+//        ImageIcon icon = new ImageIcon("");
+//        topCard = new JLabel(icon);
+//        topCard.setPreferredSize(new Dimension(100, 150));
+        topCard = new CardButton();
+        topCard.setEnabled(false);
         panel.add(topCard);
 
-        getCardButton = new JButton();
-        getCardButton.setPreferredSize(new Dimension(100, 150));
-        getCardButton.setText("Get Card");
-        getCardButton.setBorder(BorderFactory.createEmptyBorder());
-        getCardButton.setBackground(Color.BLACK);
-        getCardButton.setForeground(Color.WHITE);
-        getCardButton.setFont(new Font("Arial", Font.BOLD, 15));
-        getCardButton.setOpaque(true);
+//        getCardButton = new JButton();
+//        getCardButton.setPreferredSize(new Dimension(100, 150));
+        getCardButton = new CardButton();
+        getCardButton.setText("<html> Get<br>Card</html>");
+//        getCardButton.setBorder(BorderFactory.createEmptyBorder());
+//        getCardButton.setBackground(Color.BLACK);
+//        getCardButton.setForeground(Color.WHITE);
+        getCardButton.setFont(new Font("Arial", Font.BOLD, 22));
+        getCardButton.setOpaque(false);
         panel.add(getCardButton);
 
         getCardButton.addActionListener(

@@ -25,6 +25,7 @@ public class FileUserDataAccessObject implements InitiationDataAccessInterface,
         PreTurnDataAccessInterface, PostTurnDataAccessInterface, RightShiftDataAccessInterface,
         NextTurnDataAccessInterface, UndoDataAccessInterface, SelectCardDataAccessInterface, GetCardDataAccessInterface, ConfirmDataAccessInterface {
     private final File csvFile;
+    private final AIPlayerFactory aiPlayerFactory;
     private final HumanPlayerFactory humanPlayerFactory;
     private final NumberCardsDeckFactory numberCardsDeckFactory;
     private CardFactory cardFactory;
@@ -36,9 +37,10 @@ public class FileUserDataAccessObject implements InitiationDataAccessInterface,
     private Game game = Game.getInstance();
 
 
-    public FileUserDataAccessObject(String csvPath,
+    public FileUserDataAccessObject(String csvPath,AIPlayerFactory aiPlayerFactory,
                                     HumanPlayerFactory humanPlayerFactory,
                                     NumberCardsDeckFactory numberCardsDeckFactory) throws IOException {
+        this.aiPlayerFactory = aiPlayerFactory;
         this.humanPlayerFactory = humanPlayerFactory;
         this.numberCardsDeckFactory = numberCardsDeckFactory;
 
